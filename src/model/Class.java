@@ -27,4 +27,8 @@ public class Class {
     public void addMentor(Mentor mentor) {
         this.mentors.add(mentor);
     }
+
+    public void addMember(Codecooler member) {
+        this.members.add(member);
+    }
 }
