@@ -16,4 +16,8 @@ public abstract class AbstractUser {
     public String getFullName() {
         return String.format("%s %s", this.name, this.surname);
     }
+
+    public String getEmail() {
+        return this.email;
+    }
 }
