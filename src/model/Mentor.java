@@ -18,4 +18,9 @@ public class Mentor extends AbstractUser {
     public void removeClass(Class class) {
         this.teachedClass.remove(class);
     }
+
+    public ArrayList<Class> getTeachedClasses(Class class) {
+        return this.teachedClass;
+    }
+
 }
