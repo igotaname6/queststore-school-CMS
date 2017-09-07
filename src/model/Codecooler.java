@@ -22,7 +22,11 @@ public class Codecooler extends AbstractUser {
     }
 
     public void addArtifact(Artifact artifact) {
-        this.teams.add(artifact);
+        this.ownArtifacts.add(artifact);
+    }
+
+    public void addQuest(Quest quest) {
+        this.achievedQuests.add(quest);
     }
 
     public void removeTeam(Team team) {
@@ -43,5 +47,9 @@ public class Codecooler extends AbstractUser {
 
     public Wallet getWallet() {
         return this.wallet;
+    }
+
+    public void getLevel(Wallet wallet) {
+        //to implementation!
     }
 }
