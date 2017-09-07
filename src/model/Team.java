@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Team {
 
     private String name;
-    private ArrayList<Quest> achievedQuests;
-    private ArrayList<Artifact> ownArtifacts;
+    private ArrayList<TeamQuest> achievedQuests;
+    private ArrayList<TeamArtifact> ownArtifacts;
     private ArrayList<Codecooler> members;
 
     public Team(String name) {
@@ -20,11 +20,11 @@ public class Team {
         return this.name;
     }
 
-    public ArrayList<Quest> getAchievedQuests() {
+    public ArrayList<TeamQuest> getAchievedQuests() {
         return this.achievedQuests;
     }
 
-    public ArrayList<Artifact> getOwnArtifacts() {
+    public ArrayList<TeamArtifact> getOwnArtifacts() {
         return this.ownArtifacts;
     }
 
@@ -32,17 +32,26 @@ public class Team {
         return this.members;
     }
 
-    public void addArtifact(Artifact artifact) {
+    public void addTeamArtifact(TeamArtifact artifact) {
         this.ownArtifacts.add(artifact);
     }
 
-    public void addQuest(Quest quest) {
+    public void addTeamQuest(TeamQuest quest) {
         this.achievedQuests.add(quest);
     }
 
     public void addMember(Codecooler member) {
         this.members.add(member);
     }
+
+    public void removeMember(Codecooler member) {
+        this.members.remove(member);
+    }
+
+    public void splitEqualGainedCoins() {
+        //to implementation
+    }
+
 
 
 }
