@@ -12,4 +12,8 @@ public abstract class AbstractUser {
         this.email = email;
         this.password = password;
     }
+
+    public String getFullName() {
+        return String.format("%s %s", this.name, this.surname);
+    }
 }
