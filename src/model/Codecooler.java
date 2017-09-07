@@ -15,8 +15,10 @@ public class Codecooler extends AbstractUser {
         this.ownArtifacts = new ArrayList<>();
         this.teams = new ArrayList<>();
         this.wallet = new Wallet();
-
     }
 
-    
+    public void addTeam(Team team) {
+        this.teams(team);
+    }
+
 }
