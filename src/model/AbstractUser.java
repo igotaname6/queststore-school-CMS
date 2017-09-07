@@ -37,6 +37,7 @@ public abstract class AbstractUser {
         this.email = email;
     }
 
-
-
+    public void setPassword(String email) {
+        this.password = password;
+    }
 }
