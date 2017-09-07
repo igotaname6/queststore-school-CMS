@@ -10,8 +10,12 @@ public class Mentor extends AbstractUser {
         super(name, surname, email, password);
         this.teachedClass = new ArrayList<>();
     }
-    
+
     public void addClass(Class class) {
         this.teachedClass.add(class);
+    }
+
+    public void removeClass(Class class) {
+        this.teachedClass.remove(class);
     }
 }
