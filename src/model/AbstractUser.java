@@ -29,12 +29,14 @@ public abstract class AbstractUser {
         this.name = name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setSurname(String surname) {
         this.surname = surname;
     }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
 
 }
