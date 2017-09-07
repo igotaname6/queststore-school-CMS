@@ -11,15 +11,15 @@ public class Mentor extends AbstractUser {
         this.teachedClass = new ArrayList<>();
     }
 
-    public void addClass(Class class) {
-        this.teachedClass.add(class);
+    public void addClass(Class teachedClass) {
+        this.teachedClass.add(teachedClass);
     }
 
-    public void removeClass(Class class) {
-        this.teachedClass.remove(class);
+    public void removeClass(Class teachedClass) {
+        this.teachedClass.remove(teachedClass);
     }
 
-    public ArrayList<Class> getTeachedClasses(Class class) {
+    public ArrayList<Class> getTeachedClasses() {
         return this.teachedClass;
     }
 }
