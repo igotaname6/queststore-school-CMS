@@ -29,4 +29,8 @@ public class Codecooler extends AbstractUser {
         return this.achievedQuests;
     }
 
+    public ArrayList<Artifact> getOwnArtifacts() {
+        return this.ownArtifacts;
+    }
+
 }
