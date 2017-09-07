@@ -12,7 +12,14 @@ public class Class {
         this.mentors = new ArrayList<>();
     }
 
+    public String getName() {
+        return this.name;
+    }
     public ArrayList<Codecooler> getMembers() {
         return this.members;
+    }
+
+    public ArrayList<Mentor> getMentors() {
+        return this.mentors;
     }
 }
