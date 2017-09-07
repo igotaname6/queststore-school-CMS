@@ -1,10 +1,12 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Class {
 
     private String name;
     private ArrayList<Codecooler> members;
-    private ArrayList<Mentor> mentor;
+    private ArrayList<Mentor> mentors;
 
     public Class(String name) {
         this.name = name;
