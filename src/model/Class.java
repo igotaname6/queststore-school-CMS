@@ -11,4 +11,8 @@ public class Class {
         this.members = new ArrayList<>();
         this.mentors = new ArrayList<>();
     }
+
+    public ArrayList<Codecooler> getMembers() {
+        return this.members;
+    }
 }
