@@ -37,4 +37,7 @@ public class Codecooler extends AbstractUser {
         return this.teams;
     }
 
+    public Wallet getWallet() {
+        return this.wallet;
+    }
 }
