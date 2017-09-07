@@ -25,4 +25,8 @@ public class Codecooler extends AbstractUser {
         this.teams.remove(team);
     }
 
+    public ArrayList<Quest> getAchievedQuests() {
+        return this.achievedQuests;
+    }
+
 }
