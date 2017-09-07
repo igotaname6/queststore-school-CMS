@@ -35,4 +35,8 @@ public class Class {
     public void removeMentor(Mentor mentor) {
         this.mentors.remove(mentor);
     }
+
+    public void removeMember(Codecooler member) {
+        this.members.remove(member);
+    }
 }
