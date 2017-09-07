@@ -19,7 +19,7 @@ public class Team {
     public String getName() {
         return this.name;
     }
-    
+
     public ArrayList<Quest> getAchievedQuests() {
         return this.achievedQuests;
     }
@@ -31,4 +31,18 @@ public class Team {
     public ArrayList<Codecooler> getMembers() {
         return this.members;
     }
+
+    public void addArtifact(Artifact artifact) {
+        this.ownArtifacts.add(artifact);
+    }
+
+    public void addQuest(Quest quest) {
+        this.achievedQuests.add(quest);
+    }
+
+    public void addMember(Codecooler member) {
+        this.members.add(member);
+    }
+
+
 }
