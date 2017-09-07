@@ -22,5 +22,4 @@ public class Mentor extends AbstractUser {
     public ArrayList<Class> getTeachedClasses(Class class) {
         return this.teachedClass;
     }
-
 }
