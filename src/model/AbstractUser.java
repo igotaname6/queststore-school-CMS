@@ -24,4 +24,8 @@ public abstract class AbstractUser {
     public String getPassword() {
         return this.password;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
