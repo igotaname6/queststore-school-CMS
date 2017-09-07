@@ -31,4 +31,8 @@ public class Class {
     public void addMember(Codecooler member) {
         this.members.add(member);
     }
+
+    public void removeMentor(Mentor mentor) {
+        this.mentors.remove(mentor);
+    }
 }
