@@ -51,7 +51,4 @@ public class Team {
     public void splitEqualGainedCoins() {
         //to implementation
     }
-
-
-
 }
