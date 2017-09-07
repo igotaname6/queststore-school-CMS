@@ -14,6 +14,7 @@ public class Class {
 
     public String getName() {
         return this.name;
+
     }
     public ArrayList<Codecooler> getMembers() {
         return this.members;
@@ -21,5 +22,9 @@ public class Class {
 
     public ArrayList<Mentor> getMentors() {
         return this.mentors;
+    }
+
+    public void addMentor(Mentor mentor) {
+        this.mentors.add(mentor);
     }
 }
