@@ -33,4 +33,8 @@ public class Codecooler extends AbstractUser {
         return this.ownArtifacts;
     }
 
+    public ArrayList<Team> getTeams() {
+        return this.teams;
+    }
+
 }
