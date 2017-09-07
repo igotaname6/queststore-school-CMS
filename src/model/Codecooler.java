@@ -12,8 +12,11 @@ public class Codecooler extends AbstractUser {
     public Codecooler(String name, String surname, String email, String password) {
         super(name, surname, email, password);
         this.achievedQuests = new ArrayList<>();
-        this.achievedQuests = new ArrayList<>();
-        this.achievedQuests = new ArrayList<>();
+        this.ownArtifacts = new ArrayList<>();
+        this.teams = new ArrayList<>();
         this.wallet = new Wallet();
+
     }
+
+    
 }
