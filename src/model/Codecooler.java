@@ -18,7 +18,9 @@ public class Codecooler extends AbstractUser {
     }
 
     public void addTeam(Team team) {
-        this.teams(team);
+        this.teams.add(team);
     }
+
+
 
 }
