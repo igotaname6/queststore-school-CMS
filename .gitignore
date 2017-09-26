@@ -41,6 +41,6 @@ buildNumber.properties
 # IntelliJ project files
 .idea
 *.iml
-queststoremjs.iml
+
 out
 gen
