@@ -1,4 +1,4 @@
-package com.codecool-mjs;
+package com.codecool_mjs;
 
 /**
  * Hello world!

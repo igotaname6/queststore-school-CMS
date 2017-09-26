@@ -1,4 +1,4 @@
-package model;
+package com.codecool_mjs.model;
 
 public abstract class AbstractUser {
     private String name;

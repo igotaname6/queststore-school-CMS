@@ -1,4 +1,4 @@
-package model;
+package com.codecool_mjs.model;
 
 public class TeamArtifact extends Artifact {
 

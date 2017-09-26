@@ -1,4 +1,4 @@
-package model;
+package com.codecool_mjs.model;
 
 import java.util.ArrayList;
 
