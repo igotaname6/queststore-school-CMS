@@ -18,6 +18,7 @@ abstract public class Dao<T> implements DaoInterface<T> {
     abstract T createObject(ResultSet results) throws SQLException;
 //    abstract List<T> prepareList(ResultSet results) throws SQLException;
     abstract String getQuery();
+    abstract String getQuerySearchBy(String category, String arg);
     abstract String getIdQuery();
 
     @Override
@@ -25,7 +26,6 @@ abstract public class Dao<T> implements DaoInterface<T> {
 
         ArrayList<T> resultsList = null;
 
-        Connection connection;
         Statement statement;
         ResultSet results;
 
