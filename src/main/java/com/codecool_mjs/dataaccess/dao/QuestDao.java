@@ -19,9 +19,8 @@ public class QuestDao extends Dao<Quest>{
         return Quest(name, description, reward);
     }
 
-
+    @Override
+    String getQuery() {
+        return QUERY;
+    }
 }
-
-
-
-
