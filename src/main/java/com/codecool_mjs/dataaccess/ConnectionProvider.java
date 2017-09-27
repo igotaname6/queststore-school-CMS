@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectionProvider {
 
     private static Connection connection = createConnection();
-    public static final String URL = "jdbc:sqlite:data.db";
+    public static final String URL = "jdbc:sqlite:src/main/resources/data.db";
     public static final String DRIVER_CLASS = "org.sqlite.JDBC";
 
     private ConnectionProvider() {
@@ -31,5 +31,13 @@ public class ConnectionProvider {
 
     public static Connection getConnection() {
         return connection;
+    }
+
+    public static void closeConnection() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
