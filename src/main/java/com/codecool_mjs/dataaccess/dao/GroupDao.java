@@ -26,4 +26,10 @@ public class GroupDao extends Dao<Quest> {
     String getIdQuery() {
         return null;
     }
+
+    String getQuerySearchBy(String category, String arg) {
+
+        String query = "SELECT * FROM groups WHERE " + category + " LIKE '" + arg + " '";
+
+        return query;
 }

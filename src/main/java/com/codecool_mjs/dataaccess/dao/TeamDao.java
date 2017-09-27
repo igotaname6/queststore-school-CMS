@@ -26,4 +26,10 @@ public class TeamDao extends Dao<Team> {
     String getIdQuery() {
         return null;
     }
+
+    String getQuerySearchBy(String category, String arg) {
+
+        String query = "SELECT * FROM teams WHERE " + category + " LIKE '" + arg + "' ";
+
+        return query;
 }

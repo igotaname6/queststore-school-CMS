@@ -20,4 +20,10 @@ public class WalletDao {
     }
 
     String getQUARY() {return QUARY; }
+
+    String getQuerySearchBy(String category, String arg) {
+
+        String query = "SELECT * FROM wallets WHERE " + category + " LIKE '" + arg + "' AND type = 'single";
+
+        return query;
 }

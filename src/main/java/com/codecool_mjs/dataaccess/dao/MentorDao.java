@@ -39,4 +39,10 @@ public class MentorDao extends Dao<User> {
     String getIdQuery() {
         return null;
     }
+
+    String getQuerySearchBy(String category, String arg) {
+
+        String query = "SELECT * FROM users WHERE " + category + " LIKE '" + arg + "' AND profession = 'mentor'";
+
+        return query;
 }
