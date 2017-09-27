@@ -48,8 +48,29 @@ abstract public class Dao<T> implements DaoInterface<T> {
     }
 
     @Override
-    public <U> List<T> getBy() {
-        return null;
+    public List<T> getBy(String category, String arg) {
+
+        ArrayList<T> resultsList = null;
+
+        Statement statement;
+        ResultSet results;
+
+        try {
+            statement = this.connection.createStatement();
+            results = statement.executeQuery(getQuerySearchBy(category, arg));
+
+            resultsList = new ArrayList<>();
+
+            while (results.next()) {
+
+                T object = createObject(results);
+                resultsList.add(object);
+            }
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultsList;
     }
 
     @Override
