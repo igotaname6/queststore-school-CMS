@@ -2,13 +2,13 @@ package com.codecool_mjs.model;
 
 import java.util.ArrayList;
 
-public class Class {
+public class Group {
 
     private String name;
     private ArrayList<Codecooler> members;
     private ArrayList<Mentor> mentors;
 
-    public Class(String name) {
+    public Group(String name) {
         this.name = name;
         this.members = new ArrayList<>();
         this.mentors = new ArrayList<>();

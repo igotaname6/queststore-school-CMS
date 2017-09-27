@@ -2,15 +2,15 @@ package com.codecool_mjs.model;
 
 import java.util.ArrayList;
 
-public class Codecooler extends AbstractUser {
+public class Codecooler extends User {
 
     private ArrayList<Quest> achievedQuests;
     private ArrayList<Artifact> ownArtifacts;
     private ArrayList<Team> teams;
     private Wallet wallet;
 
-    public Codecooler(String name, String surname, String email, String password) {
-        super(name, surname, email, password);
+    public Codecooler(int id, String name, String surname, String email, String password) {
+        super(id, name, surname, email, password);
         this.achievedQuests = new ArrayList<>();
         this.ownArtifacts = new ArrayList<>();
         this.teams = new ArrayList<>();
