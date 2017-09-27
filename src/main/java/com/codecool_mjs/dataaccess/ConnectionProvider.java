@@ -18,4 +18,16 @@ public class ConnectionProvider {
             e.printStackTrace();
         }
     }
+
+    private static Connection createConnection() {
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(URL);
+        } catch (SQLException e) {
+            System.out.println("ERROR: Unable to Connect to Database.");
+        }
+        return connection;
+    }
+
+
 }
