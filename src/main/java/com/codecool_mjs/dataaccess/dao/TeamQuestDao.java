@@ -18,5 +18,8 @@ public class TeamQuestDao extends Dao<TeamQuest>{
         return new TeamQuest(name, description, reward);
     }
 
-
+    @Override
+    String getQuery() {
+        return QUERY;
+    }
 }
