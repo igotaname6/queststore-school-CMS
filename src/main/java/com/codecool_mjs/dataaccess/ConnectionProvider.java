@@ -20,17 +20,20 @@ public class ConnectionProvider {
         }
     }
 
-    private Connection createConnection() {
+    private Connection createConnection() throws SQLException{
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection(URL);
+            if (connection == null) {
+                connection = DriverManager.getConnection(URL);
+            }
+            return connection;
         } catch (SQLException e) {
             System.out.println("ERROR: Unable to Connect to Database.");
+            throw new SQLException("ERROR: Unable to Connect to Database.");
         }
-        return connection;
     }
 
-    public static Connection getConnection() {
+    public static Connection getConnection() throws SQLException{
         return instance.createConnection();
     }
 }
