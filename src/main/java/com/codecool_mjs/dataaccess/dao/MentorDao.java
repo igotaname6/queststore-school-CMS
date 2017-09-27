@@ -15,11 +15,6 @@ public class MentorDao extends Dao<User> {
     }
 
     @Override
-    List<User> prepareList(ResultSet results) throws SQLException {
-        return null;
-    }
-
-    @Override
     String getQuery() {
         return null;
     }
