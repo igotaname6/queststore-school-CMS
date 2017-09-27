@@ -7,7 +7,7 @@ import java.util.List;
 abstract public class Dao<T> implements DaoInterface<T> {
 
     abstract T createObject(ResultSet results) throws SQLException;
-    abstract List<T> prepareList(ResultSet results) throws SQLException;
+//    abstract List<T> prepareList(ResultSet results) throws SQLException;
     abstract String getQuery();
 
     @Override
