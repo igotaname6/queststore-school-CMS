@@ -1,6 +1,5 @@
 package com.codecool_mjs.dataaccess.dao;
 
-import com.codecool_mjs.dataaccess.ConnectionProvider;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -10,20 +9,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 abstract public class Dao<T> implements DaoInterface<T> {
+    private final Connection connection;
+
+    public Dao(Connection connection){
+        this.connection = connection;
+    }
 
     abstract T createObject(ResultSet results) throws SQLException;
 //    abstract List<T> prepareList(ResultSet results) throws SQLException;
     abstract String getQuery();
+    abstract String getIdQuery();
 
     @Override
     public List<T> getAll() {
 
         ArrayList<T> resultsList = null;
 
+        Connection connection;
+        Statement statement;
+        ResultSet results;
+
         try {
-            Connection conn = ConnectionProvider.getConnection();
-            Statement stnt = conn.createStatement();
-            ResultSet results = stnt.executeQuery(getQuery());
+            statement = this.connection.createStatement();
+            results = statement.executeQuery(getQuery());
 
             resultsList = new ArrayList<>();
 
@@ -32,6 +40,7 @@ abstract public class Dao<T> implements DaoInterface<T> {
                 T object = createObject(results);
                 resultsList.add(object);
             }
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -45,7 +54,19 @@ abstract public class Dao<T> implements DaoInterface<T> {
 
     @Override
     public T getById(int id) {
-        return null;
+        Statement statement;
+        ResultSet result;
+        T object = null;
+
+        try{
+            statement = connection.createStatement();
+            result = statement.executeQuery(getIdQuery());
+
+            object = createObject(result);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return object;
     }
 
     @Override
