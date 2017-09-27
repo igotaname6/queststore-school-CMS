@@ -26,6 +26,11 @@ public class AdminDao extends Dao<User> {
         return admin;
     }
 
+    @Override
+    String getQuery() {
+        return QUERY;
+    }
+
 
 
 }
