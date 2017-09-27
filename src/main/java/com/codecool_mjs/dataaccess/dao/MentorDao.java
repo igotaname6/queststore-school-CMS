@@ -13,7 +13,6 @@ public class MentorDao extends Dao<User> {
     @Override
     User createObject(ResultSet results) throws SQLException {
 
-<<<<<<< HEAD
         Integer id = results.getInt("id");
         String name = results.getString("name");
         String surname = results.getString("surname");
