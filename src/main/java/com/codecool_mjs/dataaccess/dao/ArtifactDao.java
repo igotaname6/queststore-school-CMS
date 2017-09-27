@@ -1,7 +1,6 @@
 package com.codecool_mjs.dataaccess.dao;
 
 import com.codecool_mjs.model.Artifact;
-import com.codecool_mjs.model.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
