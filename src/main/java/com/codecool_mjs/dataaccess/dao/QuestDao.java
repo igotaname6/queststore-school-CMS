@@ -14,9 +14,9 @@ public class QuestDao extends Dao<Quest>{
 
         String name = results.getString("name");
         String description = results.getString("description");
-        String reward = results.getString("reward");
+        Integer reward = results.getInt("reward");
 
-        return Quest(name, description, reward);
+        return new Quest(name, description, reward);
     }
 
     @Override
