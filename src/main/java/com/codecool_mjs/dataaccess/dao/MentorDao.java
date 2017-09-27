@@ -5,7 +5,7 @@ import com.codecool_mjs.model.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
+
 
 public class MentorDao extends Dao<User> {
     private static String QUERY = "SELECT * FROM users WHERE profession = 'mentor'";
