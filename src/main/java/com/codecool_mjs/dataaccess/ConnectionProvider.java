@@ -29,5 +29,7 @@ public class ConnectionProvider {
         return connection;
     }
 
-
+    public static Connection getConnection() {
+        return connection;
+    }
 }
