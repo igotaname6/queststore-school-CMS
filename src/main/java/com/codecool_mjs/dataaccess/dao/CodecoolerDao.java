@@ -18,7 +18,7 @@ public class CodecoolerDao extends Dao<User> {
 
         Integer id = results.getInt("id");
         String name = results.getString("name");
-        String surename = results.getString("surename");
+        String surename = results.getString("surname");
         String email = results.getString("email");
         String password = results.getString("password");
 
