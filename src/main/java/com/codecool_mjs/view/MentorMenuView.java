@@ -20,7 +20,7 @@ public class MentorMenuView {
         }
     }
 
-    public static String getAdminMenuInput() {
+    public static String getMentorMenuInput() {
 
         userInput = new Scanner(System.in).useDelimiter("\\n");
         List<String> menuOptions = new ArrayList<String>();
