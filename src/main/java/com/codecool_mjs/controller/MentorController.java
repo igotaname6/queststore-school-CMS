@@ -4,7 +4,7 @@ import com.codecool_mjs.model.Mentor;
 
 public class MentorController {
 
-    public Mentor createMentor() {
+    public Mentor showMentorsAction() {
 
     }
 }
