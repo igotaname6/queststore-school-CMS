@@ -30,7 +30,7 @@ public class AdminMenuController {
         }
     }
 
-    public void runAdminMenu() {
+    public void startController() {
         while (this.isRunning) {
             redirect();
         }
