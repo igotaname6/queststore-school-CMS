@@ -23,18 +23,21 @@ public class LoginDao {
 
         Statement statement;
         ResultSet result;
-        Integer id = null;
-        String profession = null;
+        Integer id = 0;
+        String profession = "";
         Login login;
 
         statement = this.connection.createStatement();
         result = statement.executeQuery(query);
 
-        id = result.getInt("id");
-        profession = result.getString("profession");
+        if(result.next()) {
+            id = result.getInt("id");
+            profession = result.getString("profession");
+        }
+            login = new Login(id, profession);
 
-        login = new Login(id, profession);
 
+        statement.close();
         return login;
     }
 }
