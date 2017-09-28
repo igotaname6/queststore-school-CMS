@@ -1,7 +1,6 @@
 package com.codecool_mjs.controller;
 
 import com.codecool_mjs.view.MentorMenuView;
-import org.omg.CORBA.PRIVATE_MEMBER;
 
 import java.sql.SQLException;
 
