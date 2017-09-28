@@ -1,6 +1,8 @@
 package com.codecool_mjs.dataaccess.dao;
 
 
+import com.codecool_mjs.dataaccess.ConnectionProvider;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,15 +13,14 @@ import java.util.List;
 abstract public class Dao<T> implements DaoInterface<T> {
     private final Connection connection;
 
-    public Dao(Connection connection){
-        this.connection = connection;
+    public Dao() throws SQLException{
+
+        this.connection = ConnectionProvider.getConnection();
     }
 
     abstract T createObject(ResultSet results) throws SQLException;
-//    abstract List<T> prepareList(ResultSet results) throws SQLException;
-    abstract String getQuery();
+    abstract String getQueryGetAll();
     abstract String getQuerySearchBy(String category, String arg);
-    abstract String getIdQuery();
 
     @Override
     public List<T> getAll() {
@@ -31,7 +32,7 @@ abstract public class Dao<T> implements DaoInterface<T> {
 
         try {
             statement = this.connection.createStatement();
-            results = statement.executeQuery(getQuery());
+            results = statement.executeQuery(getQueryGetAll());
 
             resultsList = new ArrayList<>();
 
@@ -73,22 +74,6 @@ abstract public class Dao<T> implements DaoInterface<T> {
         return resultsList;
     }
 
-    @Override
-    public T getById(int id) {
-        Statement statement;
-        ResultSet result;
-        T object = null;
-
-        try{
-            statement = connection.createStatement();
-            result = statement.executeQuery(getIdQuery());
-
-            object = createObject(result);
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        return object;
-    }
 
     @Override
     public boolean update(T t) {
