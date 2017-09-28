@@ -1,5 +1,7 @@
 package com.codecool_mjs.controller;
 
+import com.codecool_mjs.view.AdminMenuView;
+
 import java.sql.SQLException;
 
 public class AdminMenuController {
@@ -12,5 +14,15 @@ public class AdminMenuController {
 
     public void showAllMentors() {
         this.mentorController.showMentorsAction();
+    }
+
+    public void redirect() {
+
+        AdminMenuView.printAdminMenu();
+        String pickedMenuOption = AdminMenuView.getAdminMenuInput();
+
+        if (pickedMenuOption.equals("1")) {
+            showAllMentors();
+        }
     }
 }
