@@ -20,7 +20,7 @@ public class AdminMenuView {
         }
     }
 
-    public static String getMenuInput() {
+    public static String getAdminMenuInput() {
 
         userInput = new Scanner(System.in).useDelimiter("\\n");
         List<String> menuOptions = new ArrayList<String>();
