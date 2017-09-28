@@ -22,4 +22,10 @@ public class TeamArtifactDao extends Dao<Artifact> {
     String getQuery() {
         return QUARY;
     }
+
+    String getQuerySearchBy(String category, String arg) {
+
+        String query = "SELECT * FROM artifacts WHERE " + category + " LIKE '" + arg + "' AND type = 'team'";
+
+        return query;
 }

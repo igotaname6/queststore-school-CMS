@@ -18,6 +18,7 @@ abstract public class Dao<T> implements DaoInterface<T> {
     abstract T createObject(ResultSet results) throws SQLException;
 //    abstract List<T> prepareList(ResultSet results) throws SQLException;
     abstract String getQuery();
+    abstract String getQuerySearchBy(String category, String arg);
     abstract String getIdQuery();
 
     @Override
@@ -25,7 +26,6 @@ abstract public class Dao<T> implements DaoInterface<T> {
 
         ArrayList<T> resultsList = null;
 
-        Connection connection;
         Statement statement;
         ResultSet results;
 
@@ -48,8 +48,29 @@ abstract public class Dao<T> implements DaoInterface<T> {
     }
 
     @Override
-    public <U> List<T> getBy() {
-        return null;
+    public List<T> getBy(String category, String arg) {
+
+        ArrayList<T> resultsList = null;
+
+        Statement statement;
+        ResultSet results;
+
+        try {
+            statement = this.connection.createStatement();
+            results = statement.executeQuery(getQuerySearchBy(category, arg));
+
+            resultsList = new ArrayList<>();
+
+            while (results.next()) {
+
+                T object = createObject(results);
+                resultsList.add(object);
+            }
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultsList;
     }
 
     @Override

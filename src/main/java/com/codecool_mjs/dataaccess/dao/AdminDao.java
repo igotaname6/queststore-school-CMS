@@ -17,11 +17,11 @@ public class AdminDao extends Dao<User> {
 
         Integer id = results.getInt("id");
         String name = results.getString("name");
-        String surename = results.getString("surename");
+        String surname = results.getString("surename");
         String email = results.getString("email");
         String password = results.getString("password");
 
-        admin = new Admin(id, name, surename, email, password);
+        admin = new Admin(id, name, surname, email, password);
 
         return admin;
     }
@@ -29,6 +29,13 @@ public class AdminDao extends Dao<User> {
     @Override
     String getQuery() {
         return QUERY;
+    }
+
+    String getQuerySearchBy(String category, String arg) {
+
+        String query = "SELECT * FROM users WHERE " + category + " LIKE '" + arg + "' WHERE profession = 'admin'";
+
+        return query;
     }
 
 

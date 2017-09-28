@@ -22,4 +22,10 @@ public class TeamQuestDao extends Dao<TeamQuest>{
     String getQuery() {
         return QUERY;
     }
+
+    String getQuerySearchBy(String category, String arg) {
+
+        String query = "SELECT * FROM quests WHERE " + category + " LIKE '" + arg + "' AND type = 'team'";
+
+        return query;
 }

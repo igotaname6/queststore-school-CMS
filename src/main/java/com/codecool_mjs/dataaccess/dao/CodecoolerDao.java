@@ -30,6 +30,13 @@ public class CodecoolerDao extends Dao<User> {
         String getQuery() {
             return QUERY;
         }
+
+    String getQuerySearchBy(String category, String arg) {
+
+        String query = "SELECT * FROM artifacts WHERE " + category + " LIKE '" + arg + "' AND profession = 'codelooler'";
+
+        return query;
+    }
     }
 
 
