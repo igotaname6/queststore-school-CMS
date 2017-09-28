@@ -6,7 +6,7 @@ public class Quest {
     private String description;
     private Integer coinReward;
 
-    public Quest() {
+    public Quest(String name) {
 
         this.name = null;
         this.description = null;
