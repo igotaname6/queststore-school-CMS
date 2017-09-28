@@ -26,4 +26,8 @@ public class MentorMenuController {
             this.isRunning = false;
         }
     }
+
+    private void showAllStudents() {
+        this.codecoolerController.showCodecoolersAction();
+    }
 }
