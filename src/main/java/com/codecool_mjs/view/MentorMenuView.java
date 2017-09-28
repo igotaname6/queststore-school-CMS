@@ -1,13 +1,12 @@
 package com.codecool_mjs.view;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 import static java.lang.System.out;
 
 public class MentorMenuView {
+
+    private static Scanner userInput = new Scanner(System.in).useDelimiter("\\n");
 
     public static void printMentorMenu() {
 
@@ -19,5 +18,24 @@ public class MentorMenuView {
         while (iterator.hasNext()) {
             out.println((iterator.nextIndex() + 1) + ". " + iterator.next());
         }
+    }
+
+    public static String getAdminMenuInput() {
+
+        userInput = new Scanner(System.in).useDelimiter("\\n");
+        List<String> menuOptions = new ArrayList<String>();
+
+        for(Integer i = 1; i <= 2; i++){
+            menuOptions.add(i.toString());
+        }
+
+        System.out.println("\n" + "What do you want to do? Pick an option [by option's number]!");
+
+        String pickedOption = null;
+        do {
+            pickedOption = userInput.next();
+        } while (!menuOptions.contains(pickedOption));
+
+        return pickedOption;
     }
 }
