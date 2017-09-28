@@ -6,7 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class TeamArtifactDao extends Dao<Artifact> {
-    private static String QUARY = "SELECT * FROM artifacts WHERE type = 'team'";
+
+    public TeamArtifactDao() throws SQLException {}
 
     Artifact createObject(ResultSet results) throws SQLException {
 
@@ -19,8 +20,11 @@ public class TeamArtifactDao extends Dao<Artifact> {
         return artifact;
     }
 
-    String getQuery() {
-        return QUARY;
+    String getQueryGetAll() {
+
+        String query = "SELECT * FROM artifacts WHERE type = 'team'";
+
+        return query;
     }
 
     String getQuerySearchBy(String category, String arg) {
@@ -28,4 +32,5 @@ public class TeamArtifactDao extends Dao<Artifact> {
         String query = "SELECT * FROM artifacts WHERE " + category + " LIKE '" + arg + "' AND type = 'team'";
 
         return query;
+    }
 }

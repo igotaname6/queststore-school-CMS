@@ -8,28 +8,32 @@ import java.sql.SQLException;
 
 public class CodecoolerDao extends Dao<User> {
 
-        private static String QUERY = "SELECT * FROM users WHERE profession = \"codecooler\";";
 
-        @Override
-        User createObject(ResultSet results) throws SQLException {
+    public CodecoolerDao() throws SQLException {}
 
-            User codecooler = null;
+    @Override
+    User createObject(ResultSet results) throws SQLException {
 
-            Integer id = results.getInt("id");
-            String name = results.getString("name");
-            String surename = results.getString("surename");
-            String email = results.getString("email");
-            String password = results.getString("password");
+        User codecooler = null;
 
-            codecooler = new Codecooler(id, name, surename, email, password);
+        Integer id = results.getInt("id");
+        String name = results.getString("name");
+        String surename = results.getString("surename");
+        String email = results.getString("email");
+        String password = results.getString("password");
 
-            return codecooler;
-        }
+        codecooler = new Codecooler(id, name, surename, email, password);
 
-        @Override
-        String getQuery() {
-            return QUERY;
-        }
+        return codecooler;
+    }
+
+    @Override
+    String getQueryGetAll() {
+
+        String query = "SELECT * FROM users WHERE profession = 'codecooler'";
+
+        return query;
+    }
 
     String getQuerySearchBy(String category, String arg) {
 
@@ -37,6 +41,6 @@ public class CodecoolerDao extends Dao<User> {
 
         return query;
     }
-    }
+}
 
 

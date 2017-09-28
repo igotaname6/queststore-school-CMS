@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class AdminDao extends Dao<User> {
 
-    private static String QUERY = "SELECT * FROM users WHERE profession = \"admin\";";
+    public AdminDao() throws SQLException {}
 
     @Override
     User createObject(ResultSet results) throws SQLException {
@@ -27,18 +27,19 @@ public class AdminDao extends Dao<User> {
     }
 
     @Override
-    String getQuery() {
-        return QUERY;
+    String getQueryGetAll() {
+
+        String query = "SELECT * FROM users WHERE profession = 'admin'";
+
+        return query;
     }
 
+    @Override
     String getQuerySearchBy(String category, String arg) {
 
         String query = "SELECT * FROM users WHERE " + category + " LIKE '" + arg + "' WHERE profession = 'admin'";
 
         return query;
     }
-
-
-
 }
 

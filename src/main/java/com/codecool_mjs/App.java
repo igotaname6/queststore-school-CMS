@@ -6,10 +6,6 @@ import com.codecool_mjs.dataaccess.dao.MentorDao;
 import com.codecool_mjs.model.User;
 
 import java.util.List;
-<<<<<<< HEAD
-=======
-import java.sql.Connection;
->>>>>>> dao-dev
 import java.sql.SQLException;
 
 
@@ -17,18 +13,20 @@ public class App
 {
     public static void main( String[] args )
     {
+        Dao dao = null;
         List<User> lista;
         System.out.println( "Hello World!" );
 
         try {
             ConnectionProvider.getConnection();
+            dao = new MentorDao();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        lista = dao.getAll();
+        System.out.println(lista);
 
 
-        Dao dao = new MentorDao();
-        lista = dao.getAll();System.out.println(lista);
 
     }
 }

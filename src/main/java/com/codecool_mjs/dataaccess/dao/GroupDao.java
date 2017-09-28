@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class GroupDao extends Dao<Quest> {
 
-    private static String QUERY = "SELECT * FROM groups";
+    public GroupDao() throws SQLException {}
 
     @Override
     Quest createObject(ResultSet results) throws SQLException {
@@ -20,16 +20,18 @@ public class GroupDao extends Dao<Quest> {
     }
 
     @Override
-    String getQuery() { return QUERY; }
+    String getQueryGetAll() {
 
-    @Override
-    String getIdQuery() {
-        return null;
+        String query = "SELECT * FROM groups";
+
+        return query;
     }
 
+    @Override
     String getQuerySearchBy(String category, String arg) {
 
         String query = "SELECT * FROM groups WHERE " + category + " LIKE '" + arg + " '";
 
         return query;
+    }
 }

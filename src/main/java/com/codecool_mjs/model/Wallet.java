@@ -5,9 +5,9 @@ public class Wallet {
     private Integer totalEarnedCoins;
     private Integer availableCoins;
 
-    public Wallet() {
-        this.totalEarnedCoins = 0;
-        this.availableCoins = 0;
+    public Wallet(Integer totalEarnedCoins, Integer availableCoins) {
+        this.totalEarnedCoins = totalEarnedCoins;
+        this.availableCoins = availableCoins;
     }
 
     public void addCoins(Integer amount) {
