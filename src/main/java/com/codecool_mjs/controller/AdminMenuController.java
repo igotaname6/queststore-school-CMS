@@ -12,7 +12,7 @@ public class AdminMenuController {
         this.mentorController = new MentorController();
     }
 
-    public void showAllMentors() {
+    private void showAllMentors() {
         this.mentorController.showMentorsAction();
     }
 
@@ -25,4 +25,6 @@ public class AdminMenuController {
             showAllMentors();
         }
     }
+
+
 }
