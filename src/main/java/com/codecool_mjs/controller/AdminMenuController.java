@@ -25,7 +25,7 @@ public class AdminMenuController {
 
         if (pickedMenuOption.equals("1")) {
             showAllMentors();
-        } else if (pickedMenuOption.equals("11")) {
+        } else if (pickedMenuOption.equals("2")) {
             this.isRunning = false;
         }
     }
