@@ -7,9 +7,11 @@ import java.sql.SQLException;
 public class AdminMenuController {
 
     private MentorController mentorController;
+    private boolean isRunning;
 
     public AdminMenuController() throws SQLException {
         this.mentorController = new MentorController();
+        this.isRunning = true;
     }
 
     private void showAllMentors() {
