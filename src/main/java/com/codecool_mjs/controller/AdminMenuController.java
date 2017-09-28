@@ -16,7 +16,7 @@ public class AdminMenuController {
         this.mentorController.showMentorsAction();
     }
 
-    public void redirect() {
+    private void redirect() {
 
         AdminMenuView.printAdminMenu();
         String pickedMenuOption = AdminMenuView.getAdminMenuInput();
