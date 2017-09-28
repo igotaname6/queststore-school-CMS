@@ -29,4 +29,10 @@ public class MentorMenuController {
     private void showAllCodecoolers() {
         this.codecoolerController.showCodecoolersAction();
     }
+
+    public void startController() {
+        while (this.isRunning) {
+            redirect();
+        }
+    }
 }
