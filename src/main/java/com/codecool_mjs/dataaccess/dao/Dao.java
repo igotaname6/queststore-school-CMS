@@ -21,6 +21,10 @@ abstract public class Dao<T> implements DaoInterface<T> {
     abstract String getQuerySearchBy(String category, String arg);
     abstract String getIdQuery();
 
+    public getConnection() {
+        return this.connection;
+    }
+
     @Override
     public List<T> getAll() {
 
