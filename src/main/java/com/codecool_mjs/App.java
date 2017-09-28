@@ -1,5 +1,6 @@
 package com.codecool_mjs;
 
+import com.codecool_mjs.controller.AdminMenuController;
 import com.codecool_mjs.dataaccess.ConnectionProvider;
 import com.codecool_mjs.dataaccess.dao.Dao;
 import com.codecool_mjs.dataaccess.dao.MentorDao;
@@ -13,20 +14,15 @@ public class App
 {
     public static void main( String[] args )
     {
-        Dao dao = null;
-        List<User> lista;
+
         System.out.println( "Hello World!" );
 
         try {
-            ConnectionProvider.getConnection();
-            dao = new MentorDao();
+            AdminMenuController amc = new AdminMenuController();
+            amc.startController();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        lista = dao.getAll();
-        System.out.println(lista);
-
-
 
     }
 }
