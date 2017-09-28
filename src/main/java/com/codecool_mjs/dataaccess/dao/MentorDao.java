@@ -9,11 +9,8 @@ import java.sql.SQLException;
 
 
 public class MentorDao extends Dao<User> {
-    private static String QUERY = "SELECT * FROM users WHERE profession = 'mentor'";
 
-    public MentorDao(Connection connection) {
-        super(connection);
-    }
+    public MentorDao() throws SQLException {}
 
     @Override
     User createObject(ResultSet results) throws SQLException {
@@ -27,22 +24,21 @@ public class MentorDao extends Dao<User> {
         User mentor = new Mentor(id, name, surname, email, password);
 
         return mentor;
-
     }
 
     @Override
-    String getQuery() {
-        return QUERY;
+    String getQueryGetAll() {
+
+        String query = "SELECT * FROM users WHERE profession = 'mentor'";
+
+        return query;
     }
 
     @Override
-    String getIdQuery() {
-        return null;
-    }
-
     String getQuerySearchBy(String category, String arg) {
 
         String query = "SELECT * FROM users WHERE " + category + " LIKE '" + arg + "' AND profession = 'mentor'";
 
         return query;
+    }
 }

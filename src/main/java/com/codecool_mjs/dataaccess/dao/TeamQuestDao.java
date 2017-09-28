@@ -6,7 +6,8 @@ import java.sql.SQLException;
 
 public class TeamQuestDao extends Dao<TeamQuest>{
 
-    private static String QUERY = "SELECT * FROM quests WHERE type = \"team\";";
+
+    public TeamQuestDao() throws SQLException {}
 
     @Override
     TeamQuest createObject(ResultSet results) throws SQLException {
@@ -19,8 +20,11 @@ public class TeamQuestDao extends Dao<TeamQuest>{
     }
 
     @Override
-    String getQuery() {
-        return QUERY;
+    String getQueryGetAll() {
+
+        String query = "SELECT * FROM quests WHERE type = 'team';";
+
+        return query;
     }
 
     String getQuerySearchBy(String category, String arg) {
@@ -28,4 +32,5 @@ public class TeamQuestDao extends Dao<TeamQuest>{
         String query = "SELECT * FROM quests WHERE " + category + " LIKE '" + arg + "' AND type = 'team'";
 
         return query;
+    }
 }
