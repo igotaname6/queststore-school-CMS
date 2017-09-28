@@ -23,13 +23,18 @@ public class LoginController implements Loginable{
         LoginView.print("Welcome to CoinMasters 2.0");
 
         while (isRunning) {
-            user = getLoginData();
-            login(user);
+
+            try {
+                user = getLoginData();
+                login(user);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @Override
-    public Integer login(Login user) {
+    public void login(Login user) throws SQLException {
 
         String profession;
         Integer id;
@@ -39,7 +44,7 @@ public class LoginController implements Loginable{
 
         if (profession.equals("admin")) {
             AdminMenuController adminMenuController = new AdminMenuController();
-            adminController.startController();
+            adminMenuController.startController();
 
         } else if (profession.equals("mentor")) {
             System.out.println("Mentor Controller");

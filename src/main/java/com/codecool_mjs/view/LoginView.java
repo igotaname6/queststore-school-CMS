@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class LoginView {
 
-    private static Scanner scanner = new Scanner()
+    private static Scanner scanner = new Scanner(System.in);
 
     public static String getEmail() {
 
