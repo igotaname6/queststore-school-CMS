@@ -1,13 +1,12 @@
 package com.codecool_mjs.view;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 import static java.lang.System.out;
 
 public class AdminMenuView {
+
+    private static Scanner userInput = new Scanner(System.in).useDelimiter("\\n");
 
     public static void printAdminMenu() {
 
