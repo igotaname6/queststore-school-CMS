@@ -20,4 +20,23 @@ public class AdminMenuView {
         }
     }
 
+    public static String getMenuInput() {
+
+        userInput = new Scanner(System.in).useDelimiter("\\n");
+        List<String> menuOptions = new ArrayList<String>();
+
+        for(Integer i = 1; i <= 2; i++){
+            menuOptions.add(i.toString());
+        }
+
+        System.out.println("\n" + "What do you want to do? Pick an option [by option's number]!");
+
+        String pickedOption = null;
+        do {
+            pickedOption = userInput.next();
+        } while (!menuOptions.contains(pickedOption));
+
+        return pickedOption;
+    }
+
 }
