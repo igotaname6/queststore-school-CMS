@@ -1,6 +1,6 @@
 package com.codecool_mjs.controller;
 
-import com.codecool_mjs.View.LoginView;
+import com.codecool_mjs.view.LoginView;
 import com.codecool_mjs.dataaccess.dao.LoginDao;
 import com.codecool_mjs.model.Login;
 

@@ -1,4 +1,4 @@
-package com.codecool_mjs.View;
+package com.codecool_mjs.view;
 
 import java.util.Scanner;
 
