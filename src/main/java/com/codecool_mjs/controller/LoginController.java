@@ -48,8 +48,8 @@ public class LoginController implements Loginable{
 
         } else if (profession.equals("mentor")) {
             System.out.println("Mentor Controller");
-//            MentorMenuController mentorMenuController = new MentorMenuController(id);
-//            mentorMenuController.startController();
+            MentorMenuController mentorMenuController = new MentorMenuController();
+            mentorMenuController.startController();
         } else if (profession.equals("codecooler")) {
             System.out.println("Codecooler Controller");
 //            CodecoolerMenuController codecoolerMenuController = new CodecoolerMenuController(id);
