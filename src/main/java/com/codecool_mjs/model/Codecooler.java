@@ -14,7 +14,7 @@ public class Codecooler extends User {
         this.achievedQuests = new ArrayList<>();
         this.ownArtifacts = new ArrayList<>();
         this.teams = new ArrayList<>();
-        this.wallet = new Wallet();
+//        this.wallet = new Wallet();
     }
 
     public void addTeam(Team team) {
