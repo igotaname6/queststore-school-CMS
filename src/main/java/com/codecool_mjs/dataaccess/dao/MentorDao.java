@@ -10,8 +10,6 @@ import java.sql.SQLException;
 
 public class MentorDao extends Dao<User> {
 
-    public MentorDao() throws SQLException {}
-
     @Override
     User createObject(ResultSet results) throws SQLException {
 

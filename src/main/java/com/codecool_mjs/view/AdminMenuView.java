@@ -10,7 +10,9 @@ public class AdminMenuView {
 
     public static void printAdminMenu() {
 
-        final List<String> MENU = new ArrayList<String>(Arrays.asList("show all mentors", "exit\n"));
+        final List<String> MENU = new ArrayList<String>(Arrays.asList("show all mentors", "search mentor",
+                "update mentor", "add new mentor", "add new group", "add level",
+                "show account info", " edit account info", "log out\n"));
 
         ListIterator<String> iterator = MENU.listIterator();
 
@@ -25,7 +27,7 @@ public class AdminMenuView {
         userInput = new Scanner(System.in).useDelimiter("\\n");
         List<String> menuOptions = new ArrayList<String>();
 
-        for(Integer i = 1; i <= 2; i++){
+        for(Integer i = 1; i <= 9; i++){
             menuOptions.add(i.toString());
         }
 

@@ -8,8 +8,6 @@ import java.sql.SQLException;
 
 public class AdminDao extends Dao<User> {
 
-    public AdminDao() throws SQLException {}
-
     @Override
     User createObject(ResultSet results) throws SQLException {
 

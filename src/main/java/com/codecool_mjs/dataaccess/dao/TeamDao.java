@@ -7,8 +7,6 @@ import java.sql.SQLException;
 
 public class TeamDao extends Dao<Team> {
 
-    public TeamDao() throws SQLException {}
-
     @Override
     Team createObject(ResultSet results) throws SQLException {
 

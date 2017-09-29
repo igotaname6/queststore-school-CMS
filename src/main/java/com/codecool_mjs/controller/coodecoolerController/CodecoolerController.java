@@ -12,7 +12,7 @@ public class CodecoolerController {
 
     private Dao<User> dao;
 
-    public CodecoolerController() throws SQLException {
+    public CodecoolerController() {
         this.dao = new CodecoolerDao();
     }
 

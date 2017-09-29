@@ -12,7 +12,7 @@ public class MentorController {
 
     private Dao<User> dao;
 
-    public MentorController() throws SQLException {
+    public MentorController() {
         this.dao = new MentorDao();
     }
 

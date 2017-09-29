@@ -10,7 +10,7 @@ public class MentorMenuController {
     private CodecoolerController codecoolerController;
     private boolean isRunning;
 
-    public MentorMenuController() throws SQLException{
+    public MentorMenuController() {
         this.codecoolerController = new CodecoolerController();
         this.isRunning = true;
     }
@@ -22,7 +22,7 @@ public class MentorMenuController {
 
         if (pickedMenuOption.equals("1")) {
             showAllCodecoolers();
-        } else if (pickedMenuOption.equals("2")) {
+        } else if (pickedMenuOption.equals("10")) {
             this.isRunning = false;
         }
     }

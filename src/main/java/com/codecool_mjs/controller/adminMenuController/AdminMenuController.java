@@ -10,7 +10,7 @@ public class AdminMenuController {
     private MentorController mentorController;
     private boolean isRunning;
 
-    public AdminMenuController() throws SQLException {
+    public AdminMenuController() {
         this.mentorController = new MentorController();
         this.isRunning = true;
     }
@@ -26,7 +26,7 @@ public class AdminMenuController {
 
         if (pickedMenuOption.equals("1")) {
             showAllMentors();
-        } else if (pickedMenuOption.equals("2")) {
+        } else if (pickedMenuOption.equals("9")) {
             this.isRunning = false;
         }
     }

@@ -8,9 +8,6 @@ import java.sql.SQLException;
 
 public class CodecoolerDao extends Dao<User> {
 
-
-    public CodecoolerDao() throws SQLException {}
-
     @Override
     User createObject(ResultSet results) throws SQLException {
 

@@ -12,7 +12,7 @@ public class LoginController implements Loginable {
 
     LoginDao loginDao;
 
-    public LoginController() throws SQLException {
+    public LoginController() {
 
         this.loginDao = new LoginDao();
     }
@@ -24,17 +24,13 @@ public class LoginController implements Loginable {
 
         while (isRunning) {
             LoginView.print("Welcome to CoinMasters 2.0");
-            try {
-                user = getLoginData();
-                login(user);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            user = getLoginData();
+            login(user);
         }
     }
 
     @Override
-    public void login(Login user) throws SQLException {
+    public void login(Login user) {
 
         String profession;
         Integer id;
@@ -59,7 +55,7 @@ public class LoginController implements Loginable {
         }
     }
 
-    private Login getLoginData() throws SQLException {
+    private Login getLoginData() {
 
         String email;
         String password;

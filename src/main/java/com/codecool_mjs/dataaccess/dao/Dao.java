@@ -13,7 +13,7 @@ import java.util.List;
 abstract public class Dao<T> implements DaoInterface<T> {
     private final Connection connection;
 
-    public Dao() throws SQLException{
+    public Dao() {
 
         this.connection = ConnectionProvider.getConnection();
     }
