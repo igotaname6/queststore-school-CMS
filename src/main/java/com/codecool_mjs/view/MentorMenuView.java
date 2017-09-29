@@ -10,7 +10,10 @@ public class MentorMenuView {
 
     public static void printMentorMenu() {
 
-        final List<String> MENU = new ArrayList<String>(Arrays.asList("show all students", "log out\n"));
+        final List<String> MENU = new ArrayList<String>(Arrays.asList("show all students",
+                "search student", "add student", "add quest", "add artifact", "edit artifact",
+                "mark codecooler's quest as achieved", "show account info", "edit account info",
+                "log out\n"));
 
         ListIterator<String> iterator = MENU.listIterator();
 
