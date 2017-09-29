@@ -1,8 +1,7 @@
 package com.codecool_mjs.controller.loginController;
 
-import com.codecool_mjs.controller.AdminMenuController;
-import com.codecool_mjs.controller.MentorMenuController;
-import com.codecool_mjs.controller.loginController.Loginable;
+import com.codecool_mjs.controller.adminMenuController.AdminMenuController;
+import com.codecool_mjs.controller.mentorController.MentorMenuController;
 import com.codecool_mjs.view.LoginView;
 import com.codecool_mjs.dataaccess.dao.LoginDao;
 import com.codecool_mjs.model.Login;
