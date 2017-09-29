@@ -1,5 +1,6 @@
-package com.codecool_mjs.controller;
+package com.codecool_mjs.controller.mentorController;
 
+import com.codecool_mjs.controller.coodecoolerController.CodecoolerController;
 import com.codecool_mjs.view.MentorMenuView;
 
 import java.sql.SQLException;
