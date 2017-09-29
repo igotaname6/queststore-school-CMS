@@ -22,10 +22,8 @@ public class LoginController implements Loginable {
         Login user;
         Boolean isRunning = true;
 
-        LoginView.print("Welcome to CoinMasters 2.0");
-
         while (isRunning) {
-
+            LoginView.print("Welcome to CoinMasters 2.0");
             try {
                 user = getLoginData();
                 login(user);
