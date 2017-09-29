@@ -7,8 +7,6 @@ import java.sql.SQLException;
 
 public class TeamArtifactDao extends Dao<Artifact> {
 
-    public TeamArtifactDao() throws SQLException {}
-
     Artifact createObject(ResultSet results) throws SQLException {
 
         String name = results.getString("name");

@@ -9,7 +9,7 @@ public class AdminMenuController {
     private MentorController mentorController;
     private boolean isRunning;
 
-    public AdminMenuController() throws SQLException {
+    public AdminMenuController() {
         this.mentorController = new MentorController();
         this.isRunning = true;
     }

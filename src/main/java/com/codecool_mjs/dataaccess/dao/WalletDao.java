@@ -7,8 +7,6 @@ import java.sql.SQLException;
 
 public class WalletDao extends Dao<Wallet>{
 
-    public WalletDao() throws SQLException {}
-
     @Override
     Wallet createObject(ResultSet results) throws SQLException {
 

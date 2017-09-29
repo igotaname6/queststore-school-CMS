@@ -12,12 +12,12 @@ public class LoginDao {
 
     Connection connection;
 
-    public LoginDao() throws SQLException {
+    public LoginDao() {
 
         this.connection = ConnectionProvider.getConnection();
     }
 
-    public Login getLoginData(String email, String password) throws SQLException {
+    public Login getLoginData(String email, String password) {
 
         String query = "SELECT * FROM users WHERE email = '" + email + "' AND password = '" + password + "'";
 
@@ -25,19 +25,24 @@ public class LoginDao {
         ResultSet result;
         Integer id = 0;
         String profession = "";
-        Login login;
+        Login login = null;
 
-        statement = this.connection.createStatement();
-        result = statement.executeQuery(query);
+        try {
 
-        if(result.next()) {
-            id = result.getInt("id");
-            profession = result.getString("profession");
-        }
+            statement = this.connection.createStatement();
+            result = statement.executeQuery(query);
+
+            if (result.next()) {
+                id = result.getInt("id");
+                profession = result.getString("profession");
+            }
             login = new Login(id, profession);
 
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-        statement.close();
         return login;
     }
 }

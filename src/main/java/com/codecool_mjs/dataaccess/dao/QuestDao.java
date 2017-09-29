@@ -7,8 +7,6 @@ import java.sql.SQLException;
 
 public class QuestDao extends Dao<Quest> {
 
-    public QuestDao() throws SQLException {}
-
     @Override
     Quest createObject(ResultSet results) throws SQLException {
 

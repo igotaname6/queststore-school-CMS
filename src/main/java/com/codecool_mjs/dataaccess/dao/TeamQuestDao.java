@@ -6,9 +6,6 @@ import java.sql.SQLException;
 
 public class TeamQuestDao extends Dao<TeamQuest>{
 
-
-    public TeamQuestDao() throws SQLException {}
-
     @Override
     TeamQuest createObject(ResultSet results) throws SQLException {
 

@@ -9,7 +9,7 @@ public class MentorMenuController {
     private CodecoolerController codecoolerController;
     private boolean isRunning;
 
-    public MentorMenuController() throws SQLException{
+    public MentorMenuController() {
         this.codecoolerController = new CodecoolerController();
         this.isRunning = true;
     }
