@@ -28,7 +28,7 @@ public class MentorMenuView {
         userInput = new Scanner(System.in).useDelimiter("\\n");
         List<String> menuOptions = new ArrayList<String>();
 
-        for(Integer i = 1; i <= 2; i++){
+        for(Integer i = 1; i <= 10; i++){
             menuOptions.add(i.toString());
         }
 
