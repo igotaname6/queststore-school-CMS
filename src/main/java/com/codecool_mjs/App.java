@@ -1,6 +1,6 @@
 package com.codecool_mjs;
 
-import com.codecool_mjs.controller.LoginController;
+import com.codecool_mjs.controller.loginController.LoginController;
 import java.sql.SQLException;
 
 
