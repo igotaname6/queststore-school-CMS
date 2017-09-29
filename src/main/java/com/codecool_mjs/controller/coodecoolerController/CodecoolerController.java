@@ -1,4 +1,4 @@
-package com.codecool_mjs.controller;
+package com.codecool_mjs.controller.coodecoolerController;
 
 import com.codecool_mjs.dataaccess.dao.CodecoolerDao;
 import com.codecool_mjs.dataaccess.dao.Dao;
