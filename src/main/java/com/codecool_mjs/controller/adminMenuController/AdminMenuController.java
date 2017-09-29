@@ -1,4 +1,4 @@
-package com.codecool_mjs.controller;
+package com.codecool_mjs.controller.adminMenuController;
 
 import com.codecool_mjs.controller.mentorController.MentorController;
 import com.codecool_mjs.view.AdminMenuView;
