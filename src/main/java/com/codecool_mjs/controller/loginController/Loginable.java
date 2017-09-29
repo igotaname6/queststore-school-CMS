@@ -1,4 +1,4 @@
-package com.codecool_mjs.controller;
+package com.codecool_mjs.controller.loginController;
 
 import com.codecool_mjs.model.Login;
 
