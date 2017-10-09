@@ -1,13 +1,15 @@
 package com.codecool_mjs.model;
 
 public abstract class User {
-    int id;
-    String name;
-    String surname;
-    String email;
-    String password;
 
-    public User(int id, String name, String surname, String email, String password) {
+    private Integer id;
+    private String name;
+    private String surname;
+    private String email;
+    private String password;
+
+    public User(Integer id, String name, String surname, String email, String password) {
+
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -15,35 +17,53 @@ public abstract class User {
         this.password = password;
     }
 
-    public int getId() {
+    public User() {
+
+        this.id = null;
+        this.name = null;
+        this.surname = null;
+        this.email = null;
+        this.password = null;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public String getFullName() {
-        return String.format("%s %s", this.name, this.surname);
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getEmail() {
-        return this.email;
-    }
-
-    public String getPassword() {
-        return this.password;
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setPassword(String email) {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
         this.password = password;
     }
+
 }

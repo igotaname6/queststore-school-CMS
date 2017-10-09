@@ -35,8 +35,13 @@ public class MentorDao extends Dao<User> {
     @Override
     String getQuerySearchBy(String category, String arg) {
 
-        String query = "SELECT * FROM users WHERE " + category + " LIKE '" + arg + "' AND profession = 'mentor'";
+        String query = String.format("SELECT * FROM users WHERE %s LIKE '%s' AND profession = 'mentor'", category, arg);
 
         return query;
+    }
+
+    @Override
+    Integer executeInsertation(User user) throws SQLException {
+        return null;
     }
 }

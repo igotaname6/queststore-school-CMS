@@ -2,26 +2,37 @@ package com.codecool_mjs.model;
 
 public class Quest {
 
+    private Integer id;
     private String name;
     private String description;
     private Integer coinReward;
 
-    public Quest(String name) {
+    public Quest() {
 
+        this.id = null;
         this.name = null;
         this.description = null;
         this.coinReward = null;
     }
 
-    public Quest(String name, String description, Integer coinReward) {
-        
+    public Quest(Integer id, String name, String description, Integer coinReward) {
+
+        this.id = id;
         this.name = name;
         this.description = description;
         this.coinReward = coinReward;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
@@ -29,7 +40,7 @@ public class Quest {
     }
 
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     public void setDescription(String description) {
@@ -37,10 +48,10 @@ public class Quest {
     }
 
     public Integer getCoinReward() {
-        return this.coinReward;
+        return coinReward;
     }
 
-    public void setCoinReward(Integer amount) {
-        this.coinReward = amount;
-    } 
+    public void setCoinReward(Integer coinReward) {
+        this.coinReward = coinReward;
+    }
 }

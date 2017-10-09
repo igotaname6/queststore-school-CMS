@@ -7,9 +7,9 @@ public class TeamArtifact extends Artifact {
         super();
     }
 
-    public TeamArtifact(String name, String description, Integer cost) {
+    public TeamArtifact(Integer id, String name, String description, Integer cost, Boolean isUsed) {
 
-        super(name, description, cost);
+        super(id, name, description, cost, isUsed);
     }
 
 }
