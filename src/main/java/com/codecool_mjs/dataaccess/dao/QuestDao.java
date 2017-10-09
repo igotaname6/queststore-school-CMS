@@ -27,7 +27,7 @@ public class QuestDao extends Dao<Quest> {
 
     String getQuerySearchBy(String category, String arg) {
 
-        String query = "SELECT * FROM quests WHERE " + category + " LIKE '" + arg + "' AND type = 'single'";
+        String query = String.format("SELECT * FROM quests WHERE %s LIKE '%s' AND type = 'single'", category, arg);
 
         return query;
     }

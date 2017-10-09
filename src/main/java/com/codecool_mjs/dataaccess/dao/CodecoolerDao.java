@@ -34,7 +34,7 @@ public class CodecoolerDao extends Dao<User> {
 
     String getQuerySearchBy(String category, String arg) {
 
-        String query = "SELECT * FROM artifacts WHERE " + category + " LIKE '" + arg + "' AND profession = 'codelooler'";
+        String query = String.format("SELECT * FROM artifacts WHERE %s LIKE '%s' AND profession = 'codelooler'", category, arg);
 
         return query;
     }

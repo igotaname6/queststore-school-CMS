@@ -26,7 +26,7 @@ public class TeamQuestDao extends Dao<TeamQuest>{
 
     String getQuerySearchBy(String category, String arg) {
 
-        String query = "SELECT * FROM quests WHERE " + category + " LIKE '" + arg + "' AND type = 'team'";
+        String query = String.format("SELECT * FROM quests WHERE %s LIKE '%s' AND type = 'team'", category, arg);
 
         return query;
     }

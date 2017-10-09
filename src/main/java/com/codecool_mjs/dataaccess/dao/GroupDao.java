@@ -28,7 +28,7 @@ public class GroupDao extends Dao<Quest> {
     @Override
     String getQuerySearchBy(String category, String arg) {
 
-        String query = "SELECT * FROM groups WHERE " + category + " LIKE '" + arg + " '";
+        String query = String.format("SELECT * FROM groups WHERE %s LIKE '%s'", category, arg);
 
         return query;
     }
