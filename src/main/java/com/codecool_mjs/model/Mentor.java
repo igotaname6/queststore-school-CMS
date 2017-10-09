@@ -4,22 +4,25 @@ import java.util.ArrayList;
 
 public class Mentor extends User {
 
-    private ArrayList<Group> teachedGroups;
+    private Integer groupId;
 
-    public Mentor(int id, String name, String surname, String email, String password) {
+    public Mentor(Integer id, String name, String surname, String email, String password, Integer groupId) {
+
         super(id, name, surname, email, password);
-        this.teachedGroups = new ArrayList<>();
+        this.groupId = groupId;
     }
 
-    public void addClass(Group teachedGroup) {
-        this.teachedGroups.add(teachedGroup);
+    public Mentor() {
+
+        super();
+        this.groupId = null;
     }
 
-    public void removeClass(Group teachedGroup) {
-        this.teachedGroups.remove(teachedGroup);
+    public Integer getGroupId() {
+        return groupId;
     }
 
-    public ArrayList<Group> getTeachedClasses() {
-        return this.teachedGroups;
+    public void setGroupId(Integer groupId) {
+        this.groupId = groupId;
     }
 }
