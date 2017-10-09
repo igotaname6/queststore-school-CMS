@@ -9,11 +9,12 @@ public class TeamQuestDao extends Dao<TeamQuest>{
     @Override
     TeamQuest createObject(ResultSet results) throws SQLException {
 
+        Integer id = results.getInt("id");
         String name = results.getString("name");
         String description = results.getString("description");
         Integer reward = results.getInt("reward");
 
-        return new TeamQuest(name, description, reward);
+        return new TeamQuest(id, name, description, reward);
     }
 
     @Override
@@ -29,5 +30,10 @@ public class TeamQuestDao extends Dao<TeamQuest>{
         String query = String.format("SELECT * FROM quests WHERE %s LIKE '%s' AND type = 'team'", category, arg);
 
         return query;
+    }
+
+    @Override
+    Integer executeInsertation(TeamQuest teamQuest) throws SQLException {
+        return null;
     }
 }

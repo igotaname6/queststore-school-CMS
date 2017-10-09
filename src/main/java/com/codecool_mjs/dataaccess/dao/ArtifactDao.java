@@ -9,11 +9,12 @@ public class ArtifactDao extends Dao<Artifact> {
 
     Artifact createObject(ResultSet results) throws SQLException {
 
+        Integer id = results.getInt("id");
         String name = results.getString("name");
         String description = results.getString("description");
         Integer cost = results.getInt("cost");
 
-        Artifact artifact = new Artifact(name, description, cost);
+        Artifact artifact = new Artifact(id, name, description, cost);
 
         return artifact;
     }
@@ -30,5 +31,10 @@ public class ArtifactDao extends Dao<Artifact> {
         String query = String.format("SELECT * FROM artifacts WHERE %s LIKE '%s' AND type = 'single'", category, arg);
 
         return query;
+    }
+
+    @Override
+    Integer executeInsertation(Artifact artifact) throws SQLException {
+        return null;
     }
 }

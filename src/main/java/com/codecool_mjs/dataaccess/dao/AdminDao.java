@@ -39,4 +39,9 @@ public class AdminDao extends Dao<User> {
 
         return query;
     }
+
+    @Override
+    Integer executeInsertation(User user) throws SQLException {
+        return null;
+    }
 }

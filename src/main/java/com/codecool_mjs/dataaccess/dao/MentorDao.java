@@ -39,4 +39,9 @@ public class MentorDao extends Dao<User> {
 
         return query;
     }
+
+    @Override
+    Integer executeInsertation(User user) throws SQLException {
+        return null;
+    }
 }

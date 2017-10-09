@@ -10,9 +10,10 @@ public class TeamDao extends Dao<Team> {
     @Override
     Team createObject(ResultSet results) throws SQLException {
 
+        Integer id = results.getInt("id");
         String name = results.getString("name");
 
-        Team team = new Team(name);
+        Team team = new Team(id, name);
 
         return team;
     }
@@ -30,5 +31,10 @@ public class TeamDao extends Dao<Team> {
         String query = String.format("SELECT * FROM teams WHERE %s LIKE '%s'", category, arg);
 
         return query;
+    }
+
+    @Override
+    Integer executeInsertation(Team team) throws SQLException {
+        return null;
     }
 }

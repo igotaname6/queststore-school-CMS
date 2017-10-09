@@ -3,10 +3,14 @@ package com.codecool_mjs.dataaccess.dao;
 import com.codecool_mjs.model.Codecooler;
 import com.codecool_mjs.model.User;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CodecoolerDao extends Dao<User> {
+
+    private static String PROFESSION = "codecooler";
 
     @Override
     User createObject(ResultSet results) throws SQLException {
@@ -47,6 +51,27 @@ public class CodecoolerDao extends Dao<User> {
         String query = String.format("SELECT * FROM artifacts WHERE %s LIKE '%s' AND profession = 'codelooler'", category, arg);
 
         return query;
+    }
+
+
+    Integer executeInsertation(User user) throws SQLException {
+        Connection conn = getConnection();
+
+        PreparedStatement statement1 = conn.prepareStatement(getInsertationStatement());
+        statement1.setString(1, user.getName());
+        statement1.setString(2, user.getSurname());
+        statement1.setString(3, user.getEmail());
+        statement1.setString(4, user.getPassword());
+        statement1.setString(5, PROFESSION);
+
+        Integer rowAffected = statement1.executeUpdate();
+        return rowAffected;
+    }
+
+    private String getInsertationStatement(){
+        return "INSERT INTO users (" +
+                            "name, surname, email, password, profession)" +
+                             "VALUES (?, ?, ?, ?, ?)";
     }
 }
 
