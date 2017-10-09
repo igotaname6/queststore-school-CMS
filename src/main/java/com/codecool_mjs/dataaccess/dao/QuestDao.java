@@ -10,11 +10,12 @@ public class QuestDao extends Dao<Quest> {
     @Override
     Quest createObject(ResultSet results) throws SQLException {
 
+        Integer id = results.getInt("id");
         String name = results.getString("name");
         String description = results.getString("description");
         Integer reward = results.getInt("reward");
 
-        return new Quest(name, description, reward);
+        return new Quest(id, name, description, reward);
     }
 
     @Override

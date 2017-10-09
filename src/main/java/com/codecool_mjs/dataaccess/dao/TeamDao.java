@@ -10,9 +10,10 @@ public class TeamDao extends Dao<Team> {
     @Override
     Team createObject(ResultSet results) throws SQLException {
 
+        Integer id = results.getInt("id");
         String name = results.getString("name");
 
-        Team team = new Team(name);
+        Team team = new Team(id, name);
 
         return team;
     }

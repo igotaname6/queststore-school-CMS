@@ -9,7 +9,7 @@ public class CodecoolerView {
     public static void printAllCodecoolers(List<User> codecoolers) {
 
         for (User codecooler : codecoolers) {
-            String data = String.format("%d. %s || %s", codecooler.getId(), codecooler.getFullName(), codecooler.getEmail());
+            String data = String.format("%d. %s || %s", codecooler.getId(), codecooler.getName() + codecooler.getSurname(), codecooler.getEmail());
             System.out.println(data);
         }
     }

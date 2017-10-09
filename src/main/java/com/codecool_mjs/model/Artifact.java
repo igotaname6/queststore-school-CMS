@@ -17,6 +17,15 @@ public class Artifact {
         this.isUsed = false;
     }
 
+    public Artifact(Integer id, String name, String description, Integer cost) {
+
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.cost = cost;
+        this.isUsed = null;
+    }
+
     public Artifact(Integer id, String name, String description, Integer cost, Boolean isUsed) {
 
         this.id = id;
