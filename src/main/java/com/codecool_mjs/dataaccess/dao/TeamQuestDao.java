@@ -9,11 +9,12 @@ public class TeamQuestDao extends Dao<TeamQuest>{
     @Override
     TeamQuest createObject(ResultSet results) throws SQLException {
 
+        Integer id = results.getInt("id");
         String name = results.getString("name");
         String description = results.getString("description");
         Integer reward = results.getInt("reward");
 
-        return new TeamQuest(name, description, reward);
+        return new TeamQuest(id, name, description, reward);
     }
 
     @Override

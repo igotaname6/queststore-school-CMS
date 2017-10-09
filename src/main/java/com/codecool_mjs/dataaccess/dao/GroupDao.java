@@ -1,20 +1,21 @@
 package com.codecool_mjs.dataaccess.dao;
 
-import com.codecool_mjs.model.Quest;
+import com.codecool_mjs.model.Group;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class GroupDao extends Dao<Quest> {
+public class GroupDao extends Dao<Group> {
 
     @Override
-    Quest createObject(ResultSet results) throws SQLException {
+    Group createObject(ResultSet results) throws SQLException {
 
+        Integer id = results.getInt("id");
         String name = results.getString("name");
 
-        Quest quest = new Quest(name);
+        Group group = new Group(id, name);
 
-        return quest;
+        return group;
     }
 
     @Override

@@ -1,55 +1,46 @@
 package com.codecool_mjs.model;
 
-import java.util.ArrayList;
-
 public class Codecooler extends User {
 
-    private ArrayList<Quest> achievedQuests;
-    private ArrayList<Artifact> ownArtifacts;
-    private ArrayList<Team> teams;
+    private Integer groupId;
     private Wallet wallet;
 
-    public Codecooler(int id, String name, String surname, String email, String password) {
+
+    public Codecooler(Integer id, String name, String surname, String email, String password,
+                      Integer groupId, Wallet wallet) {
+
         super(id, name, surname, email, password);
-        this.achievedQuests = new ArrayList<>();
-        this.ownArtifacts = new ArrayList<>();
-        this.teams = new ArrayList<>();
-//        this.wallet = new Wallet();
+        this.groupId = groupId;
+        this.wallet = wallet;
     }
 
-    public void addTeam(Team team) {
-        this.teams.add(team);
+    public Codecooler(Integer id, String name, String surname, String email, String password) {
+
+        super(id, name, surname, email, password);
+        this.groupId = null;
+        this.wallet = null;
     }
 
-    public void addArtifact(Artifact artifact) {
-        this.ownArtifacts.add(artifact);
-    }
+    public Codecooler() {
 
-    public void addQuest(Quest quest) {
-        this.achievedQuests.add(quest);
-    }
-
-    public void removeTeam(Team team) {
-        this.teams.remove(team);
-    }
-
-    public ArrayList<Quest> getAchievedQuests() {
-        return this.achievedQuests;
-    }
-
-    public ArrayList<Artifact> getOwnArtifacts() {
-        return this.ownArtifacts;
-    }
-
-    public ArrayList<Team> getTeams() {
-        return this.teams;
+        super();
+        this.groupId = null;
+        this.wallet = null;
     }
 
     public Wallet getWallet() {
-        return this.wallet;
+        return wallet;
     }
 
-    public void getLevel(Wallet wallet) {
-        //to implementation!
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
+    }
+
+    public Integer getGroupId() {
+        return this.groupId;
+    }
+
+    public void setGroupId(Integer groupId) {
+        this.groupId = groupId;
     }
 }
