@@ -2,13 +2,13 @@ package com.codecool_mjs.model;
 
 public abstract class User {
 
-    int id;
+    Integer id;
     String name;
     String surname;
     String email;
     String password;
 
-    public User(int id, String name, String surname, String email, String password) {
+    public User(Integer id, String name, String surname, String email, String password) {
 
         this.id = id;
         this.name = name;
@@ -19,13 +19,14 @@ public abstract class User {
 
     public User() {
 
+        this.id = null;
         this.name = null;
         this.surname = null;
         this.email = null;
         this.password = null;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
