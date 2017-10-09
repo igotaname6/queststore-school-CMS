@@ -2,6 +2,8 @@ package com.codecool_mjs.dataaccess.dao;
 
 
 import com.codecool_mjs.model.Quest;
+import com.codecool_mjs.model.User;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -35,6 +37,11 @@ public class QuestDao extends Dao<Quest> {
 
     @Override
     Integer executeInsertation(Quest quest) throws SQLException {
+        return null;
+    }
+
+    @Override
+    Integer executeDeletion(Quest quest) throws SQLException {
         return null;
     }
 }

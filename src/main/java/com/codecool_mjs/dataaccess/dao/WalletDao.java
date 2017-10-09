@@ -1,5 +1,6 @@
 package com.codecool_mjs.dataaccess.dao;
 
+import com.codecool_mjs.model.Quest;
 import com.codecool_mjs.model.Wallet;
 
 import java.sql.ResultSet;
@@ -37,6 +38,11 @@ public class WalletDao extends Dao<Wallet>{
 
     @Override
     Integer executeInsertation(Wallet wallet) throws SQLException {
+        return null;
+    }
+
+    @Override
+    Integer executeDeletion(Wallet wallet) throws SQLException {
         return null;
     }
 }

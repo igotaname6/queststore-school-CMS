@@ -1,6 +1,7 @@
 package com.codecool_mjs.dataaccess.dao;
 
 import com.codecool_mjs.model.Group;
+import com.codecool_mjs.model.Quest;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,6 +37,11 @@ public class GroupDao extends Dao<Group> {
 
     @Override
     Integer executeInsertation(Group group) throws SQLException {
+        return null;
+    }
+
+    @Override
+    Integer executeDeletion(Group group) throws SQLException {
         return null;
     }
 }

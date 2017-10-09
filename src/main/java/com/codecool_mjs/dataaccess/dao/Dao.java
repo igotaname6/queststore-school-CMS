@@ -19,6 +19,7 @@ abstract public class Dao<T> implements DaoInterface<T> {
     abstract String getQueryGetAll();
     abstract String getQuerySearchBy(String category, String arg);
 
+
     public Connection getConnection() {
         return this.connection;
     }
@@ -101,12 +102,32 @@ abstract public class Dao<T> implements DaoInterface<T> {
 
 
     @Override
-    public Integer update(T t) {
-        return null;
+    public Integer delete(T t) {
+
+        Integer result = null;
+
+        try{
+            connection.setAutoCommit(false);
+            result = executeInsertation(t);
+
+            if (result==0){
+                connection.rollback();
+            }
+
+            connection.commit();
+            connection.setAutoCommit(true);
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return result;
     }
 
+    abstract Integer executeDeletion(T t) throws SQLException;
+
     @Override
-    public Integer delete(T t) {
-        return null;
-    }
+    public Integer update(T t) {return null;}
+
+
+
 }

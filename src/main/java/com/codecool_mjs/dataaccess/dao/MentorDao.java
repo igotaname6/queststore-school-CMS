@@ -44,4 +44,9 @@ public class MentorDao extends Dao<User> {
     Integer executeInsertation(User user) throws SQLException {
         return null;
     }
+
+    @Override
+    Integer executeDeletion(User user) throws SQLException {
+        return null;
+    }
 }

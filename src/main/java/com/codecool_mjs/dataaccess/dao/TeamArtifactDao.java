@@ -1,6 +1,7 @@
 package com.codecool_mjs.dataaccess.dao;
 
 import com.codecool_mjs.model.Artifact;
+import com.codecool_mjs.model.Quest;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,6 +36,11 @@ public class TeamArtifactDao extends Dao<Artifact> {
 
     @Override
     Integer executeInsertation(Artifact artifact) throws SQLException {
+        return null;
+    }
+
+    @Override
+    Integer executeDeletion(Artifact artifact) throws SQLException {
         return null;
     }
 }

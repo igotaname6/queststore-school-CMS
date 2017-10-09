@@ -29,6 +29,18 @@ public class CodecoolerDao extends Dao<User> {
     }
 
     @Override
+    Integer executeDeletion(User user) throws SQLException {
+        Connection conn = getConnection();
+
+        PreparedStatement statement = conn.prepareStatement(getDeletionStatement());
+        statement.setInt(1, user.getId());
+
+
+        Integer rowAffected = statement.executeUpdate();
+        return rowAffected;
+    }
+
+    @Override
     String getQueryGetAll() {
 
         String query = "SELECT * FROM users WHERE profession = 'codecooler'";
@@ -42,7 +54,6 @@ public class CodecoolerDao extends Dao<User> {
 
         return query;
     }
-
 
     Integer executeInsertation(User user) throws SQLException {
         Connection conn = getConnection();
@@ -62,6 +73,10 @@ public class CodecoolerDao extends Dao<User> {
         return "INSERT INTO users (" +
                             "name, surname, email, password, profession)" +
                              "VALUES (?, ?, ?, ?, ?)";
+    }
+
+    private String getDeletionStatement() {
+        return "DELETE FROM users WHERE id = ?;";
     }
 }
 
