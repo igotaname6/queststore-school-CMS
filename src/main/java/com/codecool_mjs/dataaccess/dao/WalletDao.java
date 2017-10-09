@@ -10,10 +10,11 @@ public class WalletDao extends Dao<Wallet>{
     @Override
     Wallet createObject(ResultSet results) throws SQLException {
 
+        Integer codecoolerId = results.getInt("codecooler_id");
         Integer totalEarnedCoins = results.getInt("total_earned_coins");
         Integer availableCoins = results.getInt("available_coins");
 
-        Wallet wallet = new Wallet(totalEarnedCoins, availableCoins);
+        Wallet wallet = new Wallet(codecoolerId ,totalEarnedCoins, availableCoins);
 
         return wallet;
     }
