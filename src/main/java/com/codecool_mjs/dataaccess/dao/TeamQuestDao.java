@@ -1,5 +1,6 @@
 package com.codecool_mjs.dataaccess.dao;
 
+import com.codecool_mjs.model.Quest;
 import com.codecool_mjs.model.TeamQuest;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,6 +35,11 @@ public class TeamQuestDao extends Dao<TeamQuest>{
 
     @Override
     Integer executeInsertation(TeamQuest teamQuest) throws SQLException {
+        return null;
+    }
+
+    @Override
+    Integer executeDeletion(TeamQuest teamQuest) throws SQLException {
         return null;
     }
 }

@@ -1,5 +1,6 @@
 package com.codecool_mjs.dataaccess.dao;
 
+import com.codecool_mjs.model.Quest;
 import com.codecool_mjs.model.Team;
 
 import java.sql.ResultSet;
@@ -35,6 +36,11 @@ public class TeamDao extends Dao<Team> {
 
     @Override
     Integer executeInsertation(Team team) throws SQLException {
+        return null;
+    }
+
+    @Override
+    Integer executeDeletion(Team team) throws SQLException {
         return null;
     }
 }
