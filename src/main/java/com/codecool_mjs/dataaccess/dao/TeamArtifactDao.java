@@ -27,7 +27,7 @@ public class TeamArtifactDao extends Dao<Artifact> {
 
     String getQuerySearchBy(String category, String arg) {
 
-        String query = "SELECT * FROM artifacts WHERE " + category + " LIKE '" + arg + "' AND type = 'team'";
+        String query = String.format("SELECT * FROM artifacts WHERE %s LIKE '%s' AND type = 'team'", category, arg);
 
         return query;
     }
