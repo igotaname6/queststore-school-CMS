@@ -35,7 +35,7 @@ public class GroupDao extends Dao<Group> {
     }
 
     @Override
-    Integer executeInsertation(Quest quest) throws SQLException {
+    Integer executeInsertation(Group group) throws SQLException {
         return null;
     }
 }
