@@ -35,9 +35,8 @@ public class AdminDao extends Dao<User> {
     @Override
     String getQuerySearchBy(String category, String arg) {
 
-        String query = "SELECT * FROM users WHERE " + category + " LIKE '" + arg + "' WHERE profession = 'admin'";
+        String query = String.format("SELECT * FROM users WHERE %s LIKE '%s' AND profession = 'admin'", category, arg);
 
         return query;
     }
 }
-
