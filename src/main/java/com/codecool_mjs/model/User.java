@@ -17,6 +17,14 @@ public abstract class User {
         this.password = password;
     }
 
+    public User() {
+
+        this.name = null;
+        this.surname = null;
+        this.email = null;
+        this.password = null;
+    }
+
     public int getId() {
         return id;
     }
