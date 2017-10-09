@@ -2,6 +2,7 @@ package com.codecool_mjs.model;
 
 public class Artifact {
 
+    private Integer id;
     private String name;
     private String description;
     private Integer cost;
@@ -9,57 +10,54 @@ public class Artifact {
 
     public Artifact() {
 
+        this.id = null;
         this.name = null;
         this.description = null;
         this.cost = null;
         this.isUsed = false;
     }
 
-    public Artifact(String name, String description, Integer cost) {
+    public Artifact(String name, String description, Integer cost, Boolean isUsed) {
 
         this.name = name;
         this.description = description;
         this.cost = cost;
-        this.isUsed = false;
+        this.isUsed = isUsed;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getName() {
-
-        return this.name;
-    }
-
-    public String getDescription() {
-
-        return this.description;
-    }
-
-    public Integer getCost() {
-
-        return this.cost;
-    }
-
-    public Boolean getIsUsed() {
-        
-        return this.isUsed;
+        return name;
     }
 
     public void setName(String name) {
-
         this.name = name;
     }
 
-    public void setDescription(String description) {
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    public void setCost(Integer cost) {
+    public Integer getCost() {
+        return cost;
+    }
 
+    public void setCost(Integer cost) {
         this.cost = cost;
     }
 
-    public void useArtifact() {
-        
-        this.isUsed = true;
+    public Boolean getUsed() {
+        return isUsed;
+    }
+
+    public void setUsed(Boolean used) {
+        isUsed = used;
     }
 }
