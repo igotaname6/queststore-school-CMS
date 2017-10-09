@@ -54,14 +54,14 @@ public class CodecoolerDao extends Dao<User> {
         statement1.setString(4, user.getPassword());
         statement1.setString(5, PROFESSION);
 
-        Integer rowAffeted = statement1.executeUpdate();
-        return rowAffeted;
+        Integer rowAffected = statement1.executeUpdate();
+        return rowAffected;
     }
 
     private String getInsertationStatement(){
         return "INSERT INTO users (" +
                             "name, surname, email, password, profession)" +
-                            "VALUES (?, ?, ?, ?, ?)";
+                             "VALUES (?, ?, ?, ?, ?)";
     }
 }
 

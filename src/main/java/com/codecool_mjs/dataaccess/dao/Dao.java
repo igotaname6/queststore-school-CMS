@@ -78,7 +78,6 @@ abstract public class Dao<T> implements DaoInterface<T> {
     @Override
     public Integer insert(T t) {
 
-        Statement statement;
         Integer result = null;
 
         try{

@@ -31,4 +31,9 @@ public class QuestDao extends Dao<Quest> {
 
         return query;
     }
+
+    @Override
+    Integer executeInsertation(Quest quest) throws SQLException {
+        return null;
+    }
 }

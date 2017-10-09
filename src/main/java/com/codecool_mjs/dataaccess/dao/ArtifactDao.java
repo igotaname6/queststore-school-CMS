@@ -31,4 +31,9 @@ public class ArtifactDao extends Dao<Artifact> {
 
         return query;
     }
+
+    @Override
+    Integer executeInsertation(Artifact artifact) throws SQLException {
+        return null;
+    }
 }

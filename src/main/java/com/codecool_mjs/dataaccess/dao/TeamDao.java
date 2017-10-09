@@ -31,4 +31,9 @@ public class TeamDao extends Dao<Team> {
 
         return query;
     }
+
+    @Override
+    Integer executeInsertation(Team team) throws SQLException {
+        return null;
+    }
 }
