@@ -1,7 +1,5 @@
 package com.codecool_mjs.model;
 
-import java.util.ArrayList;
-
 public class Mentor extends User {
 
     private Integer groupId;
