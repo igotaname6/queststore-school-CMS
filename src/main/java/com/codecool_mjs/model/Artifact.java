@@ -17,8 +17,9 @@ public class Artifact {
         this.isUsed = false;
     }
 
-    public Artifact(String name, String description, Integer cost, Boolean isUsed) {
+    public Artifact(Integer id, String name, String description, Integer cost, Boolean isUsed) {
 
+        this.id = id;
         this.name = name;
         this.description = description;
         this.cost = cost;
@@ -27,6 +28,10 @@ public class Artifact {
 
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
