@@ -25,6 +25,16 @@ public class CodecoolerDao extends Dao<User> {
     }
 
     @Override
+    void executeDeletion(User codecooler) {
+
+
+    }
+
+    @Override
+    String getQueryDelete() {
+        return "";
+    }
+    @Override
     String getQueryGetAll() {
 
         String query = "SELECT * FROM users WHERE profession = 'codecooler'";

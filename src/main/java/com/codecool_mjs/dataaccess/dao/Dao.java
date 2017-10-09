@@ -21,6 +21,8 @@ abstract public class Dao<T> implements DaoInterface<T> {
     abstract T createObject(ResultSet results) throws SQLException;
     abstract String getQueryGetAll();
     abstract String getQuerySearchBy(String category, String arg);
+    abstract String getQueryDelete();
+    abstract void executeDeletion(T t);
 
     public Connection getConnection() {
         return this.connection;
@@ -85,8 +87,17 @@ abstract public class Dao<T> implements DaoInterface<T> {
     }
 
     @Override
-    public boolean delete(T t) {
-        return false;
+    public Integer delete(T t) {
+
+        Integer deletedRows = null;
+
+        try {
+            executeDeletion(t);
+
+        } catch ( SQLException e ) {
+            e.printStackTrace();
+        }
+        return 1;
     }
 
     @Override
