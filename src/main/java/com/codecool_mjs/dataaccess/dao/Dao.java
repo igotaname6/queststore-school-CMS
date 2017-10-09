@@ -3,10 +3,7 @@ package com.codecool_mjs.dataaccess.dao;
 
 import com.codecool_mjs.dataaccess.ConnectionProvider;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,19 +75,39 @@ abstract public class Dao<T> implements DaoInterface<T> {
         return resultsList;
     }
 
+    @Override
+    public Integer insert(T t) {
+
+        Statement statement;
+        Integer result = null;
+
+        try{
+            connection.setAutoCommit(false);
+            result = executeInsertation(t);
+
+            if (result==0){
+                connection.rollback();
+            }
+
+            connection.commit();
+            connection.setAutoCommit(true);
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    abstract Integer executeInsertation(T t) throws SQLException;
+
 
     @Override
-    public boolean update(T t) {
-        return false;
+    public Integer update(T t) {
+        return null;
     }
 
     @Override
-    public boolean delete(T t) {
-        return false;
-    }
-
-    @Override
-    public boolean insert(T t) {
-        return false;
+    public Integer delete(T t) {
+        return null;
     }
 }
