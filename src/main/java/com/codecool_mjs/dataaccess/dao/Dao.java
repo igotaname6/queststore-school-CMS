@@ -18,8 +18,7 @@ abstract public class Dao<T> implements DaoInterface<T> {
     abstract T createObject(ResultSet results) throws SQLException;
     abstract String getQueryGetAll();
     abstract String getQuerySearchBy(String category, String arg);
-    abstract String getQueryDelete();
-    abstract void executeDeletion(T t);
+
 
     public Connection getConnection() {
         return this.connection;
@@ -105,20 +104,30 @@ abstract public class Dao<T> implements DaoInterface<T> {
     @Override
     public Integer delete(T t) {
 
-        Integer deletedRows = null;
+        Integer result = null;
 
-        try {
-            executeDeletion(t);
+        try{
+            connection.setAutoCommit(false);
+            result = executeInsertation(t);
 
-        } catch ( SQLException e ) {
+            if (result==0){
+                connection.rollback();
+            }
+
+            connection.commit();
+            connection.setAutoCommit(true);
+
+        } catch (SQLException e){
             e.printStackTrace();
         }
-        return 1;
-
+        return result;
     }
+
+    abstract Integer executeDeletion(T t) throws SQLException;
 
     @Override
-    public Integer delete(T t) {
-        return null;
-    }
+    public Integer update(T t) {return null;}
+
+
+
 }
