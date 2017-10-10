@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectionProvider {
 
     private static ConnectionProvider instance = new ConnectionProvider();
-    public static final String URL = "jdbc:sqlite:src/main/resources/data.db";
+    public static final String URL = "jdbc:sqlite:src/main/resources/queststore.db";
     public static final String DRIVER_CLASS = "org.sqlite.JDBC";
 
 

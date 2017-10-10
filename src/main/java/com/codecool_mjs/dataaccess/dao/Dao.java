@@ -11,16 +11,7 @@ abstract public class Dao<T> implements DaoInterface<T> {
     private final Connection connection;
 
     public Dao() {
-
         this.connection = ConnectionProvider.getConnection();
-    }
-
-    abstract T createObject(ResultSet results) throws SQLException;
-    abstract String getQueryGetAll();
-    abstract String getQuerySearchBy(String category, String arg);
-
-    public Connection getConnection() {
-        return this.connection;
     }
 
     @Override
@@ -33,7 +24,7 @@ abstract public class Dao<T> implements DaoInterface<T> {
 
         try {
             statement = this.connection.createStatement();
-            results = statement.executeQuery(getQueryGetAll());
+            results = statement.executeQuery(getQueryForGetAll());
 
             resultsList = new ArrayList<>();
 
@@ -59,7 +50,7 @@ abstract public class Dao<T> implements DaoInterface<T> {
 
         try {
             statement = this.connection.createStatement();
-            results = statement.executeQuery(getQuerySearchBy(category, arg));
+            results = statement.executeQuery(getQueryForSearchBy(category, arg));
 
             resultsList = new ArrayList<>();
 
@@ -97,16 +88,62 @@ abstract public class Dao<T> implements DaoInterface<T> {
         return result;
     }
 
-    abstract Integer executeInsertation(T t) throws SQLException;
-
-
-    @Override
-    public Integer update(T t) {
-        return null;
-    }
 
     @Override
     public Integer delete(T t) {
-        return null;
+
+        Integer result = null;
+
+        try{
+            connection.setAutoCommit(false);
+            result = executeDeletion(t);
+            if (result==0){
+                connection.rollback();
+            }
+
+            connection.commit();
+            connection.setAutoCommit(true);
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return result;
     }
+
+    @Override
+    public Integer update(T t){
+        Integer result = null;
+
+        try{
+            connection.setAutoCommit(false);
+            result = executeUpdateStatements(t);
+
+            if (result==0){
+                connection.rollback();
+            }
+
+            connection.commit();
+            connection.setAutoCommit(true);
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return result;
+        }
+
+    public Connection getConnection() {
+        return this.connection;
+    }
+
+    abstract Integer executeInsertation(T t) throws SQLException;
+    abstract Integer executeUpdateStatements(T t) throws SQLException;
+    abstract Integer executeDeletion(T t) throws SQLException;
+    abstract T createObject(ResultSet results) throws SQLException;
+    abstract String getQueryForGetAll();
+    abstract String getQueryForSearchBy(String category, String arg);
+    abstract String getInsertationStatement();
+
+
+
+
 }

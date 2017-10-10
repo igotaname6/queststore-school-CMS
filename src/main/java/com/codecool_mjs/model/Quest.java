@@ -6,6 +6,7 @@ public class Quest {
     private String name;
     private String description;
     private Integer coinReward;
+    private Boolean isGroup;
 
     public Quest() {
 
@@ -13,14 +14,24 @@ public class Quest {
         this.name = null;
         this.description = null;
         this.coinReward = null;
+        this.isGroup = null;
     }
 
-    public Quest(Integer id, String name, String description, Integer coinReward) {
+    public Boolean getIsGroup() {
+        return isGroup;
+    }
+
+    public void setGroup(Boolean Isgroup) {
+        isGroup = Isgroup;
+    }
+
+    public Quest(Integer id, String name, String description, Integer coinReward, Boolean isGroup) {
 
         this.id = id;
         this.name = name;
         this.description = description;
         this.coinReward = coinReward;
+        this.isGroup = isGroup;
     }
 
     public Integer getId() {

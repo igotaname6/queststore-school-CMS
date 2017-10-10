@@ -1,7 +1,10 @@
 package com.codecool_mjs.dataaccess.dao;
 
+import com.codecool_mjs.model.Quest;
 import com.codecool_mjs.model.Team;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -19,14 +22,14 @@ public class TeamDao extends Dao<Team> {
     }
 
     @Override
-    String getQueryGetAll() {
+    String getQueryForGetAll() {
 
         String query = "SELECT * FROM teams";
 
         return query;
     }
 
-    String getQuerySearchBy(String category, String arg) {
+    String getQueryForSearchBy(String category, String arg) {
 
         String query = String.format("SELECT * FROM teams WHERE %s LIKE '%s'", category, arg);
 
@@ -34,7 +37,32 @@ public class TeamDao extends Dao<Team> {
     }
 
     @Override
+    String getInsertationStatement() {
+        return null;
+    }
+
+    @Override
+    Integer executeDeletion(Team team) throws SQLException {
+        Connection conn = getConnection();
+
+        PreparedStatement statement = conn.prepareStatement(getDeletionStatement());
+        statement.setInt(1, team.getId());
+
+        Integer rowAffected = statement.executeUpdate();
+        return rowAffected;
+    }
+
+    private String getDeletionStatement() {
+        return "";
+    }
+
+    @Override
     Integer executeInsertation(Team team) throws SQLException {
+        return null;
+    }
+
+    @Override
+    Integer executeUpdateStatements(Team team) throws SQLException {
         return null;
     }
 }

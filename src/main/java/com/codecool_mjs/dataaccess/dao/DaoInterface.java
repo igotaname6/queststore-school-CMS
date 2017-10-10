@@ -8,4 +8,5 @@ public interface DaoInterface <T> {
     public Integer update(T t);
     public Integer delete(T t);
     public Integer insert(T t);
+
 }

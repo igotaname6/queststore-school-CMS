@@ -1,7 +1,10 @@
 package com.codecool_mjs.dataaccess.dao;
 
+import com.codecool_mjs.model.Quest;
 import com.codecool_mjs.model.Wallet;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -20,7 +23,7 @@ public class WalletDao extends Dao<Wallet>{
     }
 
     @Override
-    String getQueryGetAll() {
+    String getQueryForGetAll() {
 
         String query = "SELECT * FROM wallets";
 
@@ -28,7 +31,7 @@ public class WalletDao extends Dao<Wallet>{
     }
 
     @Override
-    String getQuerySearchBy(String category, String arg) {
+    String getQueryForSearchBy(String category, String arg) {
 
         String query = String.format("SELECT * FROM wallets WHERE %s LIKE '%s' AND type = 'single", category, arg);
 
@@ -36,7 +39,32 @@ public class WalletDao extends Dao<Wallet>{
     }
 
     @Override
+    String getInsertationStatement() {
+        return null;
+    }
+
+    @Override
     Integer executeInsertation(Wallet wallet) throws SQLException {
         return null;
+    }
+
+    @Override
+    Integer executeUpdateStatements(Wallet wallet) throws SQLException {
+        return null;
+    }
+
+    @Override
+    Integer executeDeletion(Wallet wallet) throws SQLException {
+        Connection conn = getConnection();
+
+        PreparedStatement statement = conn.prepareStatement(getDeletionStatement());
+        statement.setInt(1, wallet.getId());
+
+        Integer rowAffected = statement.executeUpdate();
+        return rowAffected;
+    }
+
+    private String getDeletionStatement() {
+        return "";
     }
 }
