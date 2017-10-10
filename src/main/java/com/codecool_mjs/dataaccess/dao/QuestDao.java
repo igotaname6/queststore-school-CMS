@@ -18,8 +18,9 @@ public class QuestDao extends Dao<Quest> {
         String name = results.getString("name");
         String description = results.getString("description");
         Integer reward = results.getInt("reward");
+        Boolean isGroup = results.getBoolean("is_group");
 
-        return new Quest(id, name, description, reward);
+        return new Quest(id, name, description, reward, isGroup);
     }
 
     @Override
@@ -38,7 +39,17 @@ public class QuestDao extends Dao<Quest> {
     }
 
     @Override
+    String getInsertationStatement() {
+        return null;
+    }
+
+    @Override
     Integer executeInsertation(Quest quest) throws SQLException {
+        return null;
+    }
+
+    @Override
+    Integer executeUpdateStatements(Quest quest) throws SQLException {
         return null;
     }
 

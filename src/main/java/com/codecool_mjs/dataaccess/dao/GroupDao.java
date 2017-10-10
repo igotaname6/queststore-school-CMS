@@ -38,7 +38,17 @@ public class GroupDao extends Dao<Group> {
     }
 
     @Override
+    String getInsertationStatement() {
+        return null;
+    }
+
+    @Override
     Integer executeInsertation(Group group) throws SQLException {
+        return null;
+    }
+
+    @Override
+    Integer executeUpdateStatements(Group group) throws SQLException {
         return null;
     }
 

@@ -39,7 +39,17 @@ public class WalletDao extends Dao<Wallet>{
     }
 
     @Override
+    String getInsertationStatement() {
+        return null;
+    }
+
+    @Override
     Integer executeInsertation(Wallet wallet) throws SQLException {
+        return null;
+    }
+
+    @Override
+    Integer executeUpdateStatements(Wallet wallet) throws SQLException {
         return null;
     }
 

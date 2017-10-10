@@ -37,7 +37,7 @@ public class TeamDao extends Dao<Team> {
     }
 
     @Override
-    Integer executeInsertation(Team team) throws SQLException {
+    String getInsertationStatement() {
         return null;
     }
 
@@ -54,5 +54,15 @@ public class TeamDao extends Dao<Team> {
 
     private String getDeletionStatement() {
         return "";
+    }
+
+    @Override
+    Integer executeInsertation(Team team) throws SQLException {
+        return null;
+    }
+
+    @Override
+    Integer executeUpdateStatements(Team team) throws SQLException {
+        return null;
     }
 }

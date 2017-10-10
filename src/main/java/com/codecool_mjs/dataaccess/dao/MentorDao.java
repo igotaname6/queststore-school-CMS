@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class MentorDao extends Dao<Mentor> {
+public class MentorDao extends UserDao<Mentor> {
 
     @Override
     Mentor createObject(ResultSet results) throws SQLException {
@@ -41,23 +41,12 @@ public class MentorDao extends Dao<Mentor> {
         return query;
     }
 
-    @Override
-    Integer executeInsertation(User user) throws SQLException {
-        return null;
-    }
-
-    @Override
-    Integer executeDeletion(User user) throws SQLException {
-        Connection conn = getConnection();
-
-        PreparedStatement statement = conn.prepareStatement(getDeletionStatement());
-        statement.setInt(1, user.getId());
-
-        Integer rowAffected = statement.executeUpdate();
-        return rowAffected;
-    }
-
     private String getDeletionStatement() {
         return "";
+    }
+
+    @Override
+    String getProfession() {
+        return null;
     }
 }
