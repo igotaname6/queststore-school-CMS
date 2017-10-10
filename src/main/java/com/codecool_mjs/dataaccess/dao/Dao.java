@@ -108,7 +108,7 @@ abstract public class Dao<T> implements DaoInterface<T> {
 
         try{
             connection.setAutoCommit(false);
-            result = executeInsertation(t);
+            result = executeDeletion(t);
 
             if (result==0){
                 connection.rollback();
@@ -124,6 +124,8 @@ abstract public class Dao<T> implements DaoInterface<T> {
     }
 
     abstract Integer executeDeletion(T t) throws SQLException;
+
+
 
     @Override
     public Integer update(T t) {return null;}
