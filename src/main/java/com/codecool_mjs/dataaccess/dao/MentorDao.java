@@ -25,7 +25,7 @@ public class MentorDao extends Dao<User> {
     }
 
     @Override
-    String getQueryGetAll() {
+    String getQueryForGetAll() {
 
         String query = "SELECT * FROM users WHERE profession = 'mentor'";
 
@@ -33,7 +33,7 @@ public class MentorDao extends Dao<User> {
     }
 
     @Override
-    String getQuerySearchBy(String category, String arg) {
+    String getQueryForSearchBy(String category, String arg) {
 
         String query = String.format("SELECT * FROM users WHERE %s LIKE '%s' AND profession = 'mentor'", category, arg);
 
