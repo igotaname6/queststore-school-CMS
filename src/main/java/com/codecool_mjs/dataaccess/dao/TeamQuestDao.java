@@ -2,6 +2,9 @@ package com.codecool_mjs.dataaccess.dao;
 
 import com.codecool_mjs.model.Quest;
 import com.codecool_mjs.model.TeamQuest;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -40,6 +43,16 @@ public class TeamQuestDao extends Dao<TeamQuest>{
 
     @Override
     Integer executeDeletion(TeamQuest teamQuest) throws SQLException {
-        return null;
+        Connection conn = getConnection();
+
+        PreparedStatement statement = conn.prepareStatement(getDeletionStatement());
+        statement.setInt(1, teamQuest.getId());
+
+        Integer rowAffected = statement.executeUpdate();
+        return rowAffected;
+    }
+
+    private String getDeletionStatement() {
+        return "";
     }
 }
