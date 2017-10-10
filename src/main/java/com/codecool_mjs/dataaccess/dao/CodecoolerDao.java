@@ -12,7 +12,7 @@ public class CodecoolerDao extends UserDao<Codecooler> {
     @Override
     Codecooler createObject(ResultSet results) throws SQLException {
 
-        Codecooler codecooler = null;
+        Codecooler codecooler;
 
         Integer id = results.getInt("id");
         String name = results.getString("name");
