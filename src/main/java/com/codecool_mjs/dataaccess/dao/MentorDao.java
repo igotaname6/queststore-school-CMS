@@ -9,10 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class MentorDao extends Dao<User> {
+public class MentorDao extends Dao<Mentor> {
 
     @Override
-    User createObject(ResultSet results) throws SQLException {
+    Mentor createObject(ResultSet results) throws SQLException {
 
         Integer id = results.getInt("id");
         String name = results.getString("name");
@@ -20,13 +20,13 @@ public class MentorDao extends Dao<User> {
         String email = results.getString("email");
         String password = results.getString("password");
 
-        User mentor = new Mentor(id, name, surname, email, password);
+        Mentor mentor = new Mentor(id, name, surname, email, password);
 
         return mentor;
     }
 
     @Override
-    String getQueryGetAll() {
+    String getQueryForGetAll() {
 
         String query = "SELECT * FROM users WHERE profession = 'mentor'";
 
@@ -34,7 +34,7 @@ public class MentorDao extends Dao<User> {
     }
 
     @Override
-    String getQuerySearchBy(String category, String arg) {
+    String getQueryForSearchBy(String category, String arg) {
 
         String query = String.format("SELECT * FROM users WHERE %s LIKE '%s' AND profession = 'mentor'", category, arg);
 

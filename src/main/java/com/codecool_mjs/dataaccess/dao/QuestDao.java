@@ -23,14 +23,14 @@ public class QuestDao extends Dao<Quest> {
     }
 
     @Override
-    String getQueryGetAll() {
+    String getQueryForGetAll() {
 
         String query = "SELECT * FROM quests WHERE type = 'single';";
 
         return query;
     }
 
-    String getQuerySearchBy(String category, String arg) {
+    String getQueryForSearchBy(String category, String arg) {
 
         String query = String.format("SELECT * FROM quests WHERE %s LIKE '%s' AND type = 'single'", category, arg);
 

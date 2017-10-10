@@ -7,6 +7,7 @@ public class Artifact {
     private String description;
     private Integer cost;
     private Boolean isUsed;
+    private Boolean isGroup;
 
     public Artifact() {
 
@@ -15,23 +16,26 @@ public class Artifact {
         this.description = null;
         this.cost = null;
         this.isUsed = false;
+        this.isGroup = null;
     }
 
-    public Artifact(Integer id, String name, String description, Integer cost) {
+    public Artifact(Integer id, String name, String description, Integer cost, Boolean isGroup) {
 
         this.id = id;
         this.name = name;
         this.description = description;
         this.cost = cost;
+        this.isGroup = isGroup;
         this.isUsed = null;
     }
 
-    public Artifact(Integer id, String name, String description, Integer cost, Boolean isUsed) {
+    public Artifact(Integer id, String name, String description, Integer cost, Boolean isGroup, Boolean isUsed) {
 
         this.id = id;
         this.name = name;
         this.description = description;
         this.cost = cost;
+        this.isGroup = isGroup;
         this.isUsed = isUsed;
     }
 
@@ -67,11 +71,19 @@ public class Artifact {
         this.cost = cost;
     }
 
-    public Boolean getUsed() {
+    public Boolean getIsUsed() {
         return isUsed;
     }
 
-    public void setUsed(Boolean used) {
+    public void setIsUsed(Boolean used) {
         isUsed = used;
+    }
+
+    public Boolean getIsGroup() {
+        return isGroup;
+    }
+
+    public void setIsGroup(Boolean isGroup) {
+        isGroup = isGroup;
     }
 }

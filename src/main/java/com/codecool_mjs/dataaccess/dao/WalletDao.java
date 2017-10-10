@@ -23,7 +23,7 @@ public class WalletDao extends Dao<Wallet>{
     }
 
     @Override
-    String getQueryGetAll() {
+    String getQueryForGetAll() {
 
         String query = "SELECT * FROM wallets";
 
@@ -31,7 +31,7 @@ public class WalletDao extends Dao<Wallet>{
     }
 
     @Override
-    String getQuerySearchBy(String category, String arg) {
+    String getQueryForSearchBy(String category, String arg) {
 
         String query = String.format("SELECT * FROM wallets WHERE %s LIKE '%s' AND type = 'single", category, arg);
 
