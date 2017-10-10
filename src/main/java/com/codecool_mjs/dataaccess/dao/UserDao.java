@@ -20,13 +20,6 @@ public abstract class UserDao<T extends User> extends Dao <T> {
         return rowAffected;
     }
 
-    String getQueryForSearchBy(String category, String arg) {
-
-        String query = String.format("SELECT * FROM artifacts WHERE %s LIKE '%s' AND profession = '%s'", category, arg, getProfession());
-
-        return query;
-    }
-
     Integer executeInsertation(T t) throws SQLException {
         Connection connection = getConnection();
 
@@ -55,6 +48,20 @@ public abstract class UserDao<T extends User> extends Dao <T> {
 
         Integer rowAffected = statement.executeUpdate();
         return rowAffected;
+    }
+
+    @Override
+    String getQueryForGetAll() {
+
+        String query = String.format("SELECT * FROM users WHERE profession = '%s'", getProfession());
+
+        return query;
+    }
+    String getQueryForSearchBy(String category, String arg) {
+
+        String query = String.format("SELECT * FROM artifacts WHERE %s LIKE '%s' AND profession = '%s'", category, arg, getProfession());
+
+        return query;
     }
 
     private String getInsertationStatement() {
