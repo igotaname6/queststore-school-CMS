@@ -2,6 +2,7 @@ package com.codecool_mjs.controller.mentorController;
 
 import com.codecool_mjs.dataaccess.dao.Dao;
 import com.codecool_mjs.dataaccess.dao.MentorDao;
+import com.codecool_mjs.model.Mentor;
 import com.codecool_mjs.model.User;
 import com.codecool_mjs.view.MentorView;
 
@@ -10,7 +11,7 @@ import java.util.List;
 
 public class MentorController {
 
-    private Dao<User> dao;
+    private Dao<Mentor> dao;
 
     public MentorController() {
         this.dao = new MentorDao();
@@ -18,7 +19,7 @@ public class MentorController {
 
     public void showMentorsAction() {
 
-        List<User> mentors;
+        List<Mentor> mentors;
         mentors = this.dao.getAll();
 
         MentorView.printAllMentors(mentors);
