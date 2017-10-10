@@ -25,7 +25,7 @@ public class AdminDao extends Dao<User> {
     }
 
     @Override
-    String getQueryGetAll() {
+    String getQueryForGetAll() {
 
         String query = "SELECT * FROM users WHERE profession = 'admin'";
 
@@ -33,7 +33,7 @@ public class AdminDao extends Dao<User> {
     }
 
     @Override
-    String getQuerySearchBy(String category, String arg) {
+    String getQueryForSearchBy(String category, String arg) {
 
         String query = String.format("SELECT * FROM users WHERE %s LIKE '%s' AND profession = 'admin'", category, arg);
 
@@ -42,6 +42,11 @@ public class AdminDao extends Dao<User> {
 
     @Override
     Integer executeInsertation(User user) throws SQLException {
+        return null;
+    }
+
+    @Override
+    protected Integer executeUpdateStatements(User user) throws SQLException {
         return null;
     }
 
