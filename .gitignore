@@ -42,7 +42,7 @@ buildNumber.properties
 .idea
 *.iml
 
-
+*.db
 
 out
 gen
