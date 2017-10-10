@@ -53,7 +53,7 @@ public class TeamDao extends Dao<Team> {
     }
 
     private String getDeletionStatement() {
-        return "";
+        return "DELETE FROM teams WHERE id = ?;";
     }
 
     @Override

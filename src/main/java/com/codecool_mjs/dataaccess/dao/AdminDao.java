@@ -46,10 +46,6 @@ public class AdminDao extends UserDao<Admin> {
         return null;
     }
 
-    private String getDeletionStatement() {
-        return "DELETE FROM users WHERE id = ?;";
-    }
-
     String getProfession(){
         return PROFESSION;
     }

@@ -64,6 +64,6 @@ public class GroupDao extends Dao<Group> {
     }
 
     private String getDeletionStatement() {
-        return "";
+        return "DELETE FROM groups WHERE id = ?;";
     }
 }

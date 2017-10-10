@@ -65,6 +65,6 @@ public class QuestDao extends Dao<Quest> {
     }
 
     private String getDeletionStatement() {
-        return "";
+        return "DELETE FROM quests WHERE id = ?;";
     }
 }
