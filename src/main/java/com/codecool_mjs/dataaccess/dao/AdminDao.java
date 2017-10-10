@@ -1,17 +1,18 @@
 package com.codecool_mjs.dataaccess.dao;
 
 import com.codecool_mjs.model.Admin;
-import com.codecool_mjs.model.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class AdminDao extends Dao<User> {
+public class AdminDao extends UserDao<Admin> {
+
+    private static String PROFESSION = "admin";
 
     @Override
-    User createObject(ResultSet results) throws SQLException {
+    Admin createObject(ResultSet results) throws SQLException {
 
-        User admin = null;
+        Admin admin;
 
         Integer id = results.getInt("id");
         String name = results.getString("name");
@@ -25,33 +26,7 @@ public class AdminDao extends Dao<User> {
     }
 
     @Override
-    String getQueryForGetAll() {
-
-        String query = "SELECT * FROM users WHERE profession = 'admin'";
-
-        return query;
-    }
-
-    @Override
-    String getQueryForSearchBy(String category, String arg) {
-
-        String query = String.format("SELECT * FROM users WHERE %s LIKE '%s' AND profession = 'admin'", category, arg);
-
-        return query;
-    }
-
-    @Override
-    Integer executeInsertation(User user) throws SQLException {
-        return null;
-    }
-
-    @Override
-    protected Integer executeUpdateStatements(User user) throws SQLException {
-        return null;
-    }
-
-    @Override
-    Integer executeDeletion(User user) throws SQLException {
-        return null;
+    String getProfession() {
+        return PROFESSION;
     }
 }
