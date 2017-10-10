@@ -3,6 +3,8 @@ package com.codecool_mjs.dataaccess.dao;
 import com.codecool_mjs.model.Admin;
 import com.codecool_mjs.model.User;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -47,6 +49,17 @@ public class AdminDao extends Dao<User> {
 
     @Override
     Integer executeDeletion(User user) throws SQLException {
-        return null;
+        Connection conn = getConnection();
+
+        PreparedStatement statement = conn.prepareStatement(getDeletionStatement());
+        statement.setInt(1, user.getId());
+
+
+        Integer rowAffected = statement.executeUpdate();
+        return rowAffected;
+    }
+
+    private String getDeletionStatement() {
+        return "DELETE FROM users WHERE id = ?;";
     }
 }

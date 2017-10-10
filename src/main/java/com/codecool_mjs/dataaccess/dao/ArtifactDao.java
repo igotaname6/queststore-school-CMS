@@ -2,6 +2,8 @@ package com.codecool_mjs.dataaccess.dao;
 
 import com.codecool_mjs.model.Artifact;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -40,6 +42,16 @@ public class ArtifactDao extends Dao<Artifact> {
 
     @Override
     Integer executeDeletion(Artifact artifact) throws SQLException {
-        return null;
+        Connection conn = getConnection();
+
+        PreparedStatement statement = conn.prepareStatement(getDeletionStatement());
+        statement.setInt(1, artifact.getId());
+
+        Integer rowAffected = statement.executeUpdate();
+        return rowAffected;
+    }
+
+    private String getDeletionStatement() {
+        return "";
     }
 }
