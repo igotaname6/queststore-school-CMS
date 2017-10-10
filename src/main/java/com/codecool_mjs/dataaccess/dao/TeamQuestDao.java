@@ -19,14 +19,14 @@ public class TeamQuestDao extends Dao<TeamQuest>{
     }
 
     @Override
-    String getQueryGetAll() {
+    String getQueryForGetAll() {
 
         String query = "SELECT * FROM quests WHERE type = 'team';";
 
         return query;
     }
 
-    String getQuerySearchBy(String category, String arg) {
+    String getQueryForSearchBy(String category, String arg) {
 
         String query = String.format("SELECT * FROM quests WHERE %s LIKE '%s' AND type = 'team'", category, arg);
 

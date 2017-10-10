@@ -143,6 +143,7 @@ abstract public class Dao<T> implements DaoInterface<T> {
     abstract T createObject(ResultSet results) throws SQLException;
     abstract String getQueryForGetAll();
     abstract String getQueryForSearchBy(String category, String arg);
+    abstract String getInsertationStatement();
 
 
 

@@ -20,14 +20,14 @@ public class TeamDao extends Dao<Team> {
     }
 
     @Override
-    String getQueryGetAll() {
+    String getQueryForGetAll() {
 
         String query = "SELECT * FROM teams";
 
         return query;
     }
 
-    String getQuerySearchBy(String category, String arg) {
+    String getQueryForSearchBy(String category, String arg) {
 
         String query = String.format("SELECT * FROM teams WHERE %s LIKE '%s'", category, arg);
 

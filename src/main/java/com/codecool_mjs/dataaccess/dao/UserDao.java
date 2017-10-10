@@ -64,7 +64,7 @@ public abstract class UserDao<T extends User> extends Dao <T> {
         return query;
     }
 
-    private String getInsertationStatement() {
+     String getInsertationStatement() {
         return "INSERT INTO users (" +
                 "name, surname, email, password, profession)" +
                 "VALUES (?, ?, ?, ?, ?)";

@@ -20,7 +20,7 @@ public class GroupDao extends Dao<Group> {
     }
 
     @Override
-    String getQueryGetAll() {
+    String getQueryForGetAll() {
 
         String query = "SELECT * FROM groups";
 
@@ -28,7 +28,7 @@ public class GroupDao extends Dao<Group> {
     }
 
     @Override
-    String getQuerySearchBy(String category, String arg) {
+    String getQueryForSearchBy(String category, String arg) {
 
         String query = String.format("SELECT * FROM groups WHERE %s LIKE '%s'", category, arg);
 
