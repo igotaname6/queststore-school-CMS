@@ -1,47 +1,46 @@
 package com.codecool_mjs.model;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 class CodecoolerTest {
 
+    Codecooler emptyCodecooler;
+    Codecooler parametrizedCodecooler;
+    Wallet mockedWallet;
+
+    @BeforeEach
+    public void setup() {
+
+        this.emptyCodecooler = new Codecooler();
+        this.parametrizedCodecooler = new Codecooler(1, "test",
+                                                     "test", "test",
+                                                     "test", 1, mockedWallet);
+        this.mockedWallet = mock(Wallet.class);
+    }
+
     @Test
     public void testCodecoolerEmptyConstructor() {
-        Codecooler codecooler = new Codecooler();
-        assertNull(codecooler.getWallet());
+        assertNull(emptyCodecooler.getWallet());
     }
 
     @Test
     public void testCodecoolerParametrizedConstructor() {
-        Codecooler codecooler = new Codecooler(1, "test", "test", "test", "test");
-        assertNotNull(codecooler.getId());
-    }
-
-    @Test
-    public void testCodecoolerParametrizedConstructor2() {
-        Wallet mockedWallet = mock(Wallet.class);
-        Codecooler codecooler = new Codecooler(1, "test",
-                                               "test", "test",
-                                               "test", 1,
-                                               mockedWallet);
-        assertNotNull(codecooler.getWallet());
+        assertNotNull(parametrizedCodecooler.getId());
     }
 
     @Test
     public void testCodecoolerSetGetID() {
-        Codecooler codecooler = new Codecooler();
-        codecooler.setGroupId(1);
-        assertEquals(1, (int)codecooler.getGroupId());
+        emptyCodecooler.setGroupId(1);
+        assertEquals(1, (int)emptyCodecooler.getGroupId());
     }
 
     @Test
     public void testCodecoolerSetGetWallet() {
-        Wallet mockedWallet = mock(Wallet.class);
-        Codecooler codecooler = new Codecooler();
-        codecooler.setWallet(mockedWallet);
-        assertNotNull(codecooler.getWallet());
+        emptyCodecooler.setWallet(mockedWallet);
+        assertNotNull(emptyCodecooler.getWallet());
     }
 }
