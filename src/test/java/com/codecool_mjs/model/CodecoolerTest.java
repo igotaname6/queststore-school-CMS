@@ -39,6 +39,13 @@ class CodecoolerTest {
     }
 
     @Test
+    public void testCodecoolerSetIDToNegative() {
+        assertThrows(IllegalArgumentException.class, () -> {
+           emptyCodecooler.setGroupId(-1);
+        });
+    }
+
+    @Test
     public void testCodecoolerSetGetWallet() {
         emptyCodecooler.setWallet(mockedWallet);
         assertNotNull(emptyCodecooler.getWallet());

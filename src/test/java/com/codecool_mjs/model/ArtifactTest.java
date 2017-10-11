@@ -74,4 +74,17 @@ class ArtifactTest {
         assertNotNull(emptyArtifact.getIsGroup());
     }
 
+    @Test
+    public void testArtifactCostSetToNegative() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            emptyArtifact.setCost(-1);
+        });
+    }
+
+    @Test
+    public void testArtifactIDSetToNegative() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            emptyArtifact.setId(-1);
+        });
+    }
 }

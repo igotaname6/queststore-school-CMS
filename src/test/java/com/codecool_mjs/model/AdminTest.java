@@ -12,4 +12,11 @@ class AdminTest {
         String expectedPassword = "tention";
         assertEquals(expectedPassword, admin.getPassword());
     }
+
+    @Test
+    public void testAdminConstructorIDNegative() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Admin admin = new Admin(-1, "Test", "Name", "dont@pay.at", "tention");
+        });
+    }
 }
