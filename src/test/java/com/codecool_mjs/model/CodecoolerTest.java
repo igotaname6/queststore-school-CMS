@@ -3,6 +3,8 @@ package com.codecool_mjs.model;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class CodecoolerTest {
 
@@ -18,11 +20,15 @@ class CodecoolerTest {
         assertNotNull(codecooler.getId());
     }
 
-//    @Test
-//    public void testCodecoolerParametrizedConstructor2() {
-//        Codecooler codecooler = new Codecooler();
-//        assertNull(codecooler.getWallet());
-//    }
+    @Test
+    public void testCodecoolerParametrizedConstructor2() {
+        Wallet mockedWallet = mock(Wallet.class);
+        Codecooler codecooler = new Codecooler(1, "test",
+                                               "test", "test",
+                                               "test", 1,
+                                               mockedWallet);
+        assertNotNull(codecooler.getWallet());
+    }
 
     @Test
     public void testCodecoolerSetGetID() {
@@ -31,4 +37,11 @@ class CodecoolerTest {
         assertEquals(1, (int)codecooler.getGroupId());
     }
 
+    @Test
+    public void testCodecoolerSetGetWallet() {
+        Wallet mockedWallet = mock(Wallet.class);
+        Codecooler codecooler = new Codecooler();
+        codecooler.setWallet(mockedWallet);
+        assertNotNull(codecooler.getWallet());
+    }
 }
