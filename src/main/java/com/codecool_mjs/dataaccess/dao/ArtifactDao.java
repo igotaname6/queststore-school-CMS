@@ -74,6 +74,6 @@ public class ArtifactDao extends Dao<Artifact> {
     }
 
     private String getDeletionStatement() {
-        return "";
+        return "DELETE FROM artifacts WHERE id = ?;";
     }
 }

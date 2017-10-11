@@ -41,10 +41,6 @@ public class MentorDao extends UserDao<Mentor> {
         return query;
     }
 
-    private String getDeletionStatement() {
-        return "";
-    }
-
     @Override
     String getProfession() {
         return null;

@@ -65,6 +65,6 @@ public class WalletDao extends Dao<Wallet>{
     }
 
     private String getDeletionStatement() {
-        return "";
+        return "DELETE FROM wallets WHERE id = ?;";
     }
 }
