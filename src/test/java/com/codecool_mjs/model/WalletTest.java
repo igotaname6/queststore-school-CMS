@@ -1,5 +1,6 @@
 package com.codecool_mjs.model;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -90,10 +91,18 @@ class WalletTest {
     }
 
     @Test
-    void testSettingNegativeBalance() {
+    void testSettingNegativeAvailableBalance() {
 
         int testCoins = -100;
 
         assertThrows(IllegalArgumentException.class, () ->  wallet.setAvailableCoins(testCoins));
+    }
+
+    @Test
+    void testSettingNegativeTotalBalance() {
+
+        int testCoins = -100;
+
+        assertThrows(IllegalArgumentException.class, () ->  wallet.setTotalEarnedCoins(testCoins));
     }
 }

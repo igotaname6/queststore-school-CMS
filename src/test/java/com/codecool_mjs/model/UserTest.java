@@ -1,11 +1,18 @@
 package com.codecool_mjs.model;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 
-        User user = new Codecooler();
+    User user;
+
+    @BeforeEach
+    void setup() {
+
+        this.user = new Codecooler();
+    }
 
     @Test
     void testSetterAndGetterName() {
