@@ -7,39 +7,43 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MentorTest {
 
-    Mentor emptyMentor;
-    Mentor parametrizedMentor;
-    Mentor parametrizedMentor2;
+    private Mentor emptyMentor;
+    private Mentor ungroupedMentor;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
+
         this.emptyMentor = new Mentor();
-        this.parametrizedMentor = new Mentor(1, "a", "b", "c", "d", 1);
-        this.parametrizedMentor2 = new Mentor(1, "a", "b", "c", "d");
+        this.ungroupedMentor = new Mentor(1, "a", "b", "c", "d");
     }
 
     @Test
-    public void testMentorConstructorNegativeID() {
+    void testUngroupedMentorConstructor() {
+        assertNull(ungroupedMentor.getGroupId());
+    }
+
+    @Test
+    void testMentorConstructorNegativeID() {
         assertThrows(IllegalArgumentException.class, () -> {
            Mentor mentor = new Mentor(-1, "a", "b", "c", "d", 1);
         });
     }
 
     @Test
-    public void testMentorConstructorNegativeGroupId() {
+    void testMentorConstructorNegativeGroupId() {
         assertThrows(IllegalArgumentException.class, () -> {
            Mentor mentor = new Mentor(1, "a", "b", "c", "d", -1);
         });
     }
 
     @Test
-    public void testMentorSetGetGroupID() {
+    void testMentorSetGetGroupID() {
         emptyMentor.setGroupId(1);
         assertEquals(1, (int) emptyMentor.getGroupId());
     }
 
     @Test
-    public void testMentorSetGetGroupIDToNegative() {
+    void testMentorSetGetGroupIDToNegative() {
         assertThrows(IllegalArgumentException.class, () -> {
            emptyMentor.setGroupId(-1);
         });

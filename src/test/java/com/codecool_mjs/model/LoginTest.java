@@ -7,28 +7,28 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LoginTest {
 
-    Login login;
+    private Login login;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
 
         this.login = new Login(1, "test");
     }
 
     @Test
-    public void testConstructorForNegativeID() {
+    void testConstructorForNegativeID() {
         assertThrows(IllegalArgumentException.class, () -> {
            Login login = new Login(-1, "test");
         });
     }
 
     @Test
-    public void testGetID() {
+    void testGetID() {
         assertEquals(1, (int) login.getId());
     }
 
     @Test
-    public void testGetProffession() {
+    void testGetProffession() {
         assertEquals("test", login.getProfession());
     }
 }
