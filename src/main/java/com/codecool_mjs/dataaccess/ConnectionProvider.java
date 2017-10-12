@@ -20,7 +20,7 @@ public class ConnectionProvider {
         }
     }
 
-    private Connection createConnection() {
+    public Connection createConnection() {
         Connection connection = null;
         try {
             if (connection == null) {
