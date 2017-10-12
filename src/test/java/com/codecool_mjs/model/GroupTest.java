@@ -6,28 +6,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GroupTest {
     @Test
-    void testGetId() {
+    void testGetAndSetId() {
         Group testGroup = new Group();
         testGroup.setId(12);
         assertEquals(12, (int) testGroup.getId());
     }
 
     @Test
-    void testSetId() {
-        Group testGroup = new Group();
-        testGroup.setId(12);
-        assertEquals(12, (int) testGroup.getId());
-    }
-
-    @Test
-    void testGetName() {
-        Group testGroup = new Group();
-        testGroup.setName("Janusz");
-        assertEquals("Janusz", testGroup.getName());
-    }
-
-    @Test
-    void testSetName() {
+    void testGetAndSetName() {
         Group testGroup = new Group();
         testGroup.setName("Janusz");
         assertEquals("Janusz", testGroup.getName());
