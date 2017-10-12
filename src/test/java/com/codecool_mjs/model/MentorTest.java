@@ -15,7 +15,7 @@ class MentorTest {
     public void setup() {
         this.emptyMentor = new Mentor();
         this.parametrizedMentor = new Mentor(1, "a", "b", "c", "d", 1);
-        this.parametrizedMentor2 = new Mentor(1, "a", "b", "c", "d", 1);
+        this.parametrizedMentor2 = new Mentor(1, "a", "b", "c", "d");
     }
 
     @Test
