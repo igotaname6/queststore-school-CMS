@@ -83,7 +83,7 @@ public class Artifact {
         return isGroup;
     }
 
-    public void setIsGroup(Boolean isGroup) {
-        isGroup = isGroup;
+    public void setIsGroup(Boolean group) {
+        isGroup = group;
     }
 }

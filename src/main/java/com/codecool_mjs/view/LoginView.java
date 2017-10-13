@@ -4,10 +4,11 @@ import java.util.Scanner;
 
 public class LoginView {
 
-    private static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner;
 
     public static String getEmail() {
 
+        scanner = new Scanner(System.in);
         String email;
 
         System.out.print("Enter email: ");
@@ -17,6 +18,7 @@ public class LoginView {
 
     public static String getPassword() {
 
+        scanner = new Scanner(System.in);
         String password;
 
         System.out.print("Enter password: ");
