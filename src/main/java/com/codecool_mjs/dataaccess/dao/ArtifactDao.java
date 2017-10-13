@@ -53,6 +53,8 @@ public class ArtifactDao extends Dao<Artifact> {
         statement.setInt(3, artifact.getCost());
         statement.setBoolean(4, artifact.getIsGroup());
 
+
+
         Integer rowAffected = statement.executeUpdate();
         return rowAffected;
     }
