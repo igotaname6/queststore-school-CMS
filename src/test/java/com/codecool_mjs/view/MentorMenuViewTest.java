@@ -1,36 +1,12 @@
 package com.codecool_mjs.view;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MentorMenuViewTest {
+class MentorMenuViewTest extends ViewTest {
 
     private MentorMenuView view = new MentorMenuView();
-    private PrintStream originalOutput;
-    private OutputStream outputStream;
-    private InputStream stdin;
-
-    @BeforeEach
-    void setupOutput() {
-
-        this.originalOutput = System.out;
-        outputStream = new ByteArrayOutputStream();
-        PrintStream ps = new PrintStream(outputStream);
-        System.setOut(ps);
-    }
-
-    @AfterEach
-    void cleanOutput() {
-
-        System.setOut(originalOutput);
-    }
 
     @Test
     void testPrintAdminMenu() {
@@ -44,13 +20,6 @@ class MentorMenuViewTest {
 
         MentorMenuView.printMentorMenu();
         assertEquals(menu, outputStream.toString(), "Redundant whitespaces in menu");
-    }
-
-    @Before
-    private void setupInput(String data) {
-
-        stdin = System.in;
-        System.setIn(new ByteArrayInputStream(data.getBytes()));
     }
 
     @Test
@@ -73,9 +42,4 @@ class MentorMenuViewTest {
         cleanInput();
     }
 
-    @After
-    private void cleanInput() {
-
-        System.setIn(stdin);
-    }
 }

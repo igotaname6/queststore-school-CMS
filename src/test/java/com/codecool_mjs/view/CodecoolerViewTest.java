@@ -14,21 +14,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class CodecoolerViewTest {
+class CodecoolerViewTest extends ViewTest {
 
     private CodecoolerView view = new CodecoolerView();
-    private PrintStream originalOutput;
-    private OutputStream outputStream;
     private Codecooler mockUser;
-
-    @BeforeEach
-    void setupOutput() {
-
-        this.originalOutput = System.out;
-        outputStream = new ByteArrayOutputStream();
-        PrintStream ps = new PrintStream(outputStream);
-        System.setOut(ps);
-    }
 
     @BeforeEach
     void setupUser() {
@@ -38,12 +27,6 @@ class CodecoolerViewTest {
         when(mockUser.getName()).thenReturn("testName");
         when(mockUser.getSurname()).thenReturn("testSurname");
         when(mockUser.getEmail()).thenReturn("testEmail");
-    }
-
-    @AfterEach
-    void cleanOutput() {
-
-        System.setOut(originalOutput);
     }
 
     @Test
