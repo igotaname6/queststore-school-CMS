@@ -76,12 +76,7 @@ class ArtifactDaoTest {
         Artifact newItem = artifactDao.createObject(resSet);
 
         int i = artifactDao.executeInsertation(newItem);
-
-
-        verify(prepStmt, times(2)).setString(anyInt(), anyString());
-        verify(prepStmt).setInt(3, anyInt());
-        verify(prepStmt).setBoolean(4, anyBoolean());
-
+        
         assertEquals(1, i);
     }
 
@@ -89,10 +84,15 @@ class ArtifactDaoTest {
     public void testExecuteDeletion() throws SQLException {
 
         setupExecute();
-        ArtifactDao artifactDao = new ArtifactDao();
         setupCreateObject();
+
+        when(prepStmt.executeUpdate()).thenReturn(1);
+
+        ArtifactDao artifactDao = new ArtifactDao();
         Artifact newItem = artifactDao.createObject(resSet);
+
         artifactDao.executeInsertation(newItem);
+
         assertEquals(Integer.valueOf(1), artifactDao.executeDeletion(newItem));
     }
 
