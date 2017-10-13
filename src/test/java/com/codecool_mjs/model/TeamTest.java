@@ -19,7 +19,8 @@ class TeamTest {
 
         Team emptyTeam = new Team();
 
-        assertNull(emptyTeam.getName());
+        assertNull(emptyTeam.getName(),
+                "Empty constructor sets fields to incorrect values.");
     }
 
     @Test
@@ -29,7 +30,8 @@ class TeamTest {
 
         team.setId(1);
 
-        assertEquals(testId, team.getId());
+        assertEquals(testId, team.getId(),
+                "Method sets field to an incorrect value.");
     }
 
     @Test
@@ -39,7 +41,8 @@ class TeamTest {
 
         team.setName(testName);
 
-        assertEquals(testName, team.getName());
+        assertEquals(testName, team.getName(),
+                "Method sets field to an incorrect value.");
     }
 
 }

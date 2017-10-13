@@ -22,7 +22,8 @@ class UserTest {
         user.setName(testName);
         String name = user.getName();
 
-        assertEquals(testName, name);
+        assertEquals(testName, name,
+                "Method sets field to an incorrect value.");
     }
 
     @Test
@@ -33,7 +34,8 @@ class UserTest {
         user.setSurname(testSurname);
         String surname = user.getSurname();
 
-        assertEquals(testSurname, surname);
+        assertEquals(testSurname, surname,
+                "Method sets field to an incorrect value.");
     }
 
     @Test
@@ -44,7 +46,8 @@ class UserTest {
         user.setEmail(testEmail);
         String email = user.getEmail();
 
-        assertEquals(testEmail, email);
+        assertEquals(testEmail, email,
+                "Method sets field to an incorrect value.");
     }
 
     @Test
@@ -55,7 +58,8 @@ class UserTest {
         user.setId(testId);
         Integer id = user.getId();
 
-        assertEquals(testId, id);
+        assertEquals(testId, id,
+                "Method sets field to an incorrect value.");
     }
 
     @Test
@@ -66,7 +70,8 @@ class UserTest {
         user.setPassword(testPassword);
         String password = user.getPassword();
 
-        assertEquals(testPassword, password);
+        assertEquals(testPassword, password,
+                "Method sets field to an incorrect value.");
     }
 
 }

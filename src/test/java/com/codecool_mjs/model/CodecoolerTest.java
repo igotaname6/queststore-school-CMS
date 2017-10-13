@@ -25,35 +25,40 @@ class CodecoolerTest {
 
     @Test
     void testCodecoolerEmptyConstructor() {
-        assertNull(emptyCodecooler.getWallet());
+        assertNull(emptyCodecooler.getWallet(),
+                "Empty constructor does not set all fields to null.");
     }
 
     @Test
     void testCodecoolerParametrizedConstructor() {
-        assertNotNull(parametrizedCodecooler.getId());
+        assertNotNull(parametrizedCodecooler.getId(),
+                "Parametrized construcor sets fields to null.");
     }
 
     @Test
     void testCodecoolerParametrizedConstructor2() {
-        assertNotNull(parametrizedCodecooler2.getId());
+        assertNotNull(parametrizedCodecooler2.getId(),
+                "Parametrized construcor sets fields to null.");
     }
 
     @Test
     void testCodecoolerSetGetID() {
         emptyCodecooler.setGroupId(1);
-        assertEquals(1, (int)emptyCodecooler.getGroupId());
+        assertEquals(1, (int)emptyCodecooler.getGroupId(),
+                "Method sets field to an incorrect value.");
     }
 
     @Test
     void testCodecoolerSetIDToNegative() {
         assertThrows(IllegalArgumentException.class, () -> {
            emptyCodecooler.setGroupId(-1);
-        });
+        }, "Id can be set to a negative value.");
     }
 
     @Test
     void testCodecoolerSetGetWallet() {
         emptyCodecooler.setWallet(mockedWallet);
-        assertNotNull(emptyCodecooler.getWallet());
+        assertNotNull(emptyCodecooler.getWallet(),
+                "Method sets field to an incorrect value.");
     }
 }

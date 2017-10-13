@@ -21,7 +21,7 @@ class WalletTest {
         Wallet wallet = new Wallet();
         Integer id = wallet.getId();
 
-        assertNull(id);
+        assertNull(id, "Constructor sets fields to incorrect values.");
     }
 
     @Test
@@ -31,7 +31,8 @@ class WalletTest {
         wallet.setId(testID);
         int id = wallet.getId();
 
-        assertEquals(testID, id);
+        assertEquals(testID, id,
+                "Method sets field to an incorrect value.");
     }
 
     @Test
@@ -42,7 +43,8 @@ class WalletTest {
         wallet.setAvailableCoins(testCoins);
         int coins = wallet.getAvailableCoins();
 
-        assertEquals(testCoins, coins);
+        assertEquals(testCoins, coins,
+                "Method sets field to an incorrect value.");
     }
 
     @Test
@@ -53,7 +55,8 @@ class WalletTest {
         wallet.setTotalEarnedCoins(testCoins);
         int coins = wallet.getTotalEarnedCoins();
 
-        assertEquals(testCoins, coins);
+        assertEquals(testCoins, coins,
+                "Method sets field to an incorrect value.");
     }
 
     @Test
@@ -65,7 +68,8 @@ class WalletTest {
         int coinsEarned = wallet.getTotalEarnedCoins();
         int coinsAvailable = wallet.getAvailableCoins();
 
-        assertEquals(coinsAvailable, coinsEarned);
+        assertEquals(coinsAvailable, coinsEarned,
+                "Method sets field to an incorrect value.");
     }
 
     @Test
@@ -78,7 +82,8 @@ class WalletTest {
         wallet.removeCoins(testRemoved);
         int coins = wallet.getAvailableCoins();
 
-        assertEquals(testCoins - testRemoved, coins);
+        assertEquals(testCoins - testRemoved, coins,
+                "Method sets field to an incorrect value.");
     }
 
     @Test
@@ -87,7 +92,8 @@ class WalletTest {
         int testCoins = 2000;
 
         wallet.setAvailableCoins(testCoins);
-        assertThrows(IllegalArgumentException.class, () -> wallet.removeCoins(testCoins + 1));
+        assertThrows(IllegalArgumentException.class, () -> wallet.removeCoins(testCoins + 1),
+                "Too much coins can be removed. Value < 0.");
     }
 
     @Test
@@ -95,7 +101,8 @@ class WalletTest {
 
         int testCoins = -100;
 
-        assertThrows(IllegalArgumentException.class, () ->  wallet.setAvailableCoins(testCoins));
+        assertThrows(IllegalArgumentException.class, () ->  wallet.setAvailableCoins(testCoins),
+                "Available balance can be set to a negative value.");
     }
 
     @Test
@@ -103,6 +110,7 @@ class WalletTest {
 
         int testCoins = -100;
 
-        assertThrows(IllegalArgumentException.class, () ->  wallet.setTotalEarnedCoins(testCoins));
+        assertThrows(IllegalArgumentException.class, () ->  wallet.setTotalEarnedCoins(testCoins),
+                "Total balance can be set to a negative value.");
     }
 }

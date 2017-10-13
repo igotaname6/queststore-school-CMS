@@ -19,16 +19,18 @@ class LoginTest {
     void testConstructorForNegativeID() {
         assertThrows(IllegalArgumentException.class, () -> {
            Login login = new Login(-1, "test");
-        });
+        }, "Id can be set to a negative value.");
     }
 
     @Test
     void testGetID() {
-        assertEquals(1, (int) login.getId());
+        assertEquals(1, (int) login.getId(),
+                "Method returns incorrect value.");
     }
 
     @Test
     void testGetProffession() {
-        assertEquals("test", login.getProfession());
+        assertEquals("test", login.getProfession(),
+                "Method returns incorrect value.");
     }
 }
