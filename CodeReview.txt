@@ -1,0 +1,5 @@
+Suggestion on improving your code from team RMBK:
+
+- You could make methods in View package non-static. While it's possible and relatively not difficult to test those methods on their own, static context makes controllers which use them impossible to test.
+- In LoginController, it's impossible to test methods that use Scanner as static field. You could consider either changes mentioned above (make View non-static) or to initialize new Scanner inside every method that uses it.
+- createConnection method in ConnectionProvider singleton is using an if(true) loop, so you create a new connection every time you call a provider, which contradicts the use of singleton pattern here
