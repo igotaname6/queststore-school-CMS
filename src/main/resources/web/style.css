@@ -85,14 +85,29 @@ header
     text-align: left;
     min-width: 150px;
 }
+.content-box{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
 
 #content
 {
     flex: 85%;
     padding: 3%;
-    flex-grow: 1;
 }
 
+.title {
+    flex: 15%;
+    background-color: #84b3c2;
+    border-radius: 5px;
+}
+
+.title p {
+    text-align: center;
+    font-size: 250%;
+}
 
 .category
 {
