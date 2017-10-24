@@ -1,6 +1,66 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 2. v2.0 | 20110126
+  License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*
+-----------------------------------
+^^end of restet
+body
+-----------------------------------
+ */
+
+
+
 body
 {
     background-color: #ffffff;
+    display: flex;
+    flex-flow: column;
+    padding: 0.5%;
 }
 
 a
@@ -9,65 +69,95 @@ a
 }
 
 
-#header-container
-{
-    height: 20%;
-    align-items: center;
+/*
+-----------------------------------
+Typohrapgy
+-----------------------------------
+ */
+
+h4{
+    font-size: 25px;
+}
+
+h1{
+    font-size: 50px;
+}
+
+.bar h4{
+    font-size: 150%;
+}
+
+/*
+-----------------------------------
+Container
+-----------------------------------
+ */
+.container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border-radius: 5px;
-}
-
-#logo
-{
-    height: 80px;
-    width: 80px;
-}
-
-#header-text
-{
-    display: flex;
+    flex-flow: row wrap;
     align-items: center;
 }
 
-header
-{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 30px;
-    font-size: 40px;
+.bar{
+    background-color: #BCB1B3;
+    border-radius: 10px;
     color: white;
 }
+/*
+-----------------------------------
+Header
+-----------------------------------
+ */
 
-#user-name-logout
+.header-container
 {
-    display: flex;
-    flex-direction: row;
-    padding: 15px;
+    height: 50px;
+    padding: 0.4% 2%;
+    justify-content: space-between;
 }
 
-#user-name
-{
-    font-size: 40px;
+
+.logo{
+    height: 100%;
 }
 
-#log-out-button
+.user-holder
 {
     display: flex;
-    margin: 10px 0px 10px 20px;
-    padding: 0px 20px;
-    color: black;
-    border-radius: 10px;
-    font-size: 15px;
+    flex-direction: column;
     align-items: center;
-    background-color: white;
+}
+/*
+-----------------------------------
+Buttons
+-----------------------------------
+ */
+
+.button{
+    display: inline-block;
+    border-radius: 10px;
+    padding: 2% 10%;
 }
 
-#log-out-button:hover{
+.logout-button{
+    color: #998e90;
+    font-size: 15px;
+    background-color: #DEC8C1;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+}
+
+.button:hover{
     background-color: #EEEEEE;
     cursor: pointer;
 }
+
+
+/*
+-----------------------------------
+Content
+-----------------------------------
+ */
 
 
 
@@ -95,18 +185,19 @@ header
 #content
 {
     flex: 85%;
-    padding: 3%;
+    padding: 0% 3% 3% 3%;
 }
 
-.title {
-    flex: 15%;
-    background-color: #84b3c2;
+.status-bar {
+    margin: 0.1% 0 2% 0;
+    padding: 0.2%;
+    background-color: #998e90;
     border-radius: 5px;
+    color: #fff;
 }
 
-.title p {
+.status-bar p {
     text-align: center;
-    font-size: 250%;
 }
 
 .category
@@ -141,18 +232,13 @@ header
 
 #footer-container
 {
-    align-items: center;
-    display: flex;
     height: 50px;
-    border-radius: 5px;
+    justify-content: center;
 }
 
 footer
 {
     font-size: 22px;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
 }
 /*
 -----------------------------------
