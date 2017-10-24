@@ -84,10 +84,15 @@ header
 }
 
 .title {
-    border: 5px solid red;
     width: 40%;
-    justify-content: center;
-    
+    background-color: #84b3c2;
+    border-radius: 5px;
+}
+
+.title p {
+    text-align: center;
+    font-size: 250%;
+    padding: 1% 10% 1% 10%;
 }
 .category
 {
