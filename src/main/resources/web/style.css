@@ -83,6 +83,12 @@ header
     flex-grow: 1;
 }
 
+.title {
+    border: 5px solid red;
+    width: 40%;
+    justify-content: center;
+    
+}
 .category
 {
     background-color: blue;
