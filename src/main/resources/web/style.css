@@ -254,3 +254,12 @@ Colors
 .main-color{
     background-color: #BCB1B3;
 }
+
+#content form {
+    padding: 2% 35% 2% 35%;
+    border: 5px solid #998e90;
+    background-color: #BCB1B3;
+    border-radius: 5px;
+    color: white;
+}
+
