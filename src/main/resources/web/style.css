@@ -184,8 +184,18 @@ Content
 
 #content
 {
+    display: flex;
+    align-content: center;
     flex: 85%;
     padding: 0% 3% 3% 3%;
+}
+
+#table
+{
+    display: flex;
+    align-self: center;
+    margin 0 auto;
+
 }
 
 .status-bar {
