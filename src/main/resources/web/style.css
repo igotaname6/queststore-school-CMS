@@ -103,6 +103,11 @@ Container
     border-radius: 10px;
     color: white;
 }
+
+.list-container{
+    display: flex;
+    flex-flow: column nowrap;
+}
 /*
 -----------------------------------
 Header
