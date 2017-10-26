@@ -14,7 +14,8 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+time, mark, audio, video
+{
     margin: 0;
     padding: 0;
     border: 0;
@@ -24,20 +25,24 @@ time, mark, audio, video {
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+footer, header, hgroup, menu, nav, section
+{
     display: block;
 }
-body {
+body
+{
     line-height: 1;
 }
 ol, ul {
     list-style: none;
 }
-blockquote, q {
+blockquote, q
+{
     quotes: none;
 }
 blockquote:before, blockquote:after,
-q:before, q:after {
+q:before, q:after
+{
     content: '';
     content: none;
 }
@@ -75,15 +80,18 @@ Typohrapgy
 -----------------------------------
  */
 
-h4{
+h4
+{
     font-size: 25px;
 }
 
-h1{
+h1
+{
     font-size: 50px;
 }
 
-.bar h4{
+.bar h4
+{
     font-size: 150%;
 }
 
@@ -92,18 +100,25 @@ h1{
 Container
 -----------------------------------
  */
-.container {
+.container
+{
     display: flex;
     flex-flow: row wrap;
     align-items: center;
 }
 
-.bar{
+.bar
+{
     background-color: #BCB1B3;
     border-radius: 10px;
     color: white;
 }
 
+.list-container
+{
+    display: flex;
+    flex-flow: column nowrap;
+}
 /*
 -----------------------------------
 Header
@@ -118,7 +133,8 @@ Header
 }
 
 
-.logo{
+.logo
+{
     height: 100%;
 }
 
@@ -134,7 +150,8 @@ Buttons
 -----------------------------------
  */
 
-.button{
+.button
+{
     display: inline-block;
     border-radius: 10px;
     padding: 2% 10%;
@@ -148,7 +165,8 @@ Buttons
     text-transform: uppercase;
 }
 
-.button:hover{
+.button:hover
+{
     background-color: #EEEEEE;
     cursor: pointer;
 }
@@ -171,6 +189,7 @@ Content
 }
 
 .content-box{
+
     display: flex;
     flex-direction: column;
     align-content: space-between;
@@ -193,7 +212,8 @@ Content
 
 }
 
-.status-bar {
+.status-bar
+{
     margin: 0.1% 0 2% 0;
     padding: 0.2%;
     background-color: #998e90;
@@ -201,7 +221,8 @@ Content
     color: #fff;
 }
 
-.status-bar p {
+.status-bar p
+{
     text-align: center;
 }
 
@@ -231,7 +252,8 @@ Login
 -----------------------------------
  */
 
-#content form {
+#content form
+{
     padding: 2% 35% 2% 35%;
     border: 5px solid #998e90;
     background-color: #BCB1B3;
@@ -267,7 +289,8 @@ td
     vertical-align: middle;
 }
 
-table, th, td {
+table, th, td
+{
     border: 1px solid black;
 }
 
@@ -304,6 +327,7 @@ Table
 */
 .sidebar {
     text-align: left;
+    min-width: 150px;
 }
 
 .sidebar-line{
@@ -340,3 +364,14 @@ Table
     /*display: flex;*/
     /*flex-flow: column nowrap;*/
 /*}*/
+
+.buttons
+{
+    color: white; 
+    background-color: #998e90;
+}
+/*
+-----------------------------------
+Create
+-----------------------------------
+ */
