@@ -104,10 +104,6 @@ Container
     color: white;
 }
 
-.list-container{
-    display: flex;
-    flex-flow: column nowrap;
-}
 /*
 -----------------------------------
 Header
@@ -168,18 +164,12 @@ Content
 
 #sidebar-content-container
 {
-    /*flex-wrap: wrap;*/
+    flex-wrap: wrap;
     display: flex;
     flex-direction: row;
+    margin: 0.5% 0;
 }
 
-#sidebar
-{
-    flex: 15%;
-    color: #998e90;
-    text-align: left;
-    min-width: 150px;
-}
 .content-box{
     display: flex;
     flex-direction: column;
@@ -199,7 +189,7 @@ Content
 {
     display: flex;
     align-self: center;
-    margin 0 auto;
+    margin: 0 auto;
 
 }
 
@@ -213,36 +203,6 @@ Content
 
 .status-bar p {
     text-align: center;
-}
-
-.category
-{
-    background-color: #DEC8C1;
-    font-size: 25px;
-    padding: 10px;
-    border-top: solid 1px white;
-    border-bottom: solid 1px white;
-    border-radius: 5px;
-}
-
-.option
-{
-    background-color: #DEC8C1;
-    font-size: 20px;
-    padding: 10px;
-    opacity: 0.8;
-    border-radius: 5px;
-}
-
-.option:hover
-{
-    background-color: #00AEEE;
-    cursor: pointer;
-}
-
-.solidline
-{
-    border-bottom: 1px solid white;
 }
 
 #footer-container
@@ -335,3 +295,48 @@ table, th, td {
 {
     width: 50%;
 }
+
+/*
+-----------------------------------
+Table
+-----------------------------------
+
+*/
+.sidebar {
+    text-align: left;
+}
+
+.sidebar-line{
+    background-color: #DEC8C1;
+    font-size: 25px;
+    border-top: solid 1px white;
+    border-bottom: solid 1px white;
+    border-radius: 5px;
+    padding:5px 5px;
+    color: #fff;
+}
+
+.list-head{
+    background-color: #cba899;
+    color: #fff;
+}
+
+.option
+{
+    background-color: #DEC8C1;
+    color: #fff;    
+}
+.option a{
+    color: #fff;
+}
+
+.option:hover
+{
+    background-color: #eec17e;
+    cursor: pointer;
+}
+
+/*.list-container{*/
+    /*display: flex;*/
+    /*flex-flow: column nowrap;*/
+/*}*/
