@@ -278,6 +278,11 @@ Login
     border-radius: 5px;
     color: white;
 }
+
+#content button {
+    color: white; 
+    background-color: #998e90;
+}
 /*
 -----------------------------------
 Table
@@ -329,10 +334,4 @@ table, th, td {
 #e-mail
 {
     width: 50%;
-}
-
-
-.buttons {
-    color: white; 
-    background-color: #998e90";
 }
