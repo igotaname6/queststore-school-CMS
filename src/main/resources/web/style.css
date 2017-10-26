@@ -189,8 +189,18 @@ Content
 
 #content
 {
+    display: flex;
+    align-content: center;
     flex: 85%;
     padding: 0% 3% 3% 3%;
+}
+
+#table
+{
+    display: flex;
+    align-self: center;
+    margin 0 auto;
+
 }
 
 .status-bar {
@@ -255,6 +265,12 @@ Colors
     background-color: #BCB1B3;
 }
 
+/*
+-----------------------------------
+Login
+-----------------------------------
+ */
+
 #content form {
     padding: 2% 35% 2% 35%;
     border: 5px solid #998e90;
@@ -262,4 +278,61 @@ Colors
     border-radius: 5px;
     color: white;
 }
+/*
+-----------------------------------
+Table
+-----------------------------------
+ */
+table
+{
+    border-collapse: collapse;
+    width: 100%;
+}
 
+th
+{
+    padding: 5px;
+    height: 30px;
+    vertical-align: middle;
+}
+
+td
+{
+    padding-left: 1%;
+    vertical-align: middle;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+.thead
+{
+    background-color: #BCB1B3;
+}
+
+#id
+{
+    width: 10%;
+}
+
+#first-name
+{
+    width: 20%;
+}
+
+#last-name
+{
+    width: 20%;
+}
+
+#e-mail
+{
+    width: 50%;
+}
+
+
+.buttons {
+    color: white; 
+    background-color: #998e90";
+}
