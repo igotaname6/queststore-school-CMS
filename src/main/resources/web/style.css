@@ -260,6 +260,12 @@ Colors
     background-color: #BCB1B3;
 }
 
+/*
+-----------------------------------
+Login
+-----------------------------------
+ */
+
 #content form {
     padding: 2% 35% 2% 35%;
     border: 5px solid #998e90;
@@ -321,3 +327,7 @@ table, th, td {
 }
 
 
+.buttons {
+    color: white; 
+    background-color: #998e90";
+}
