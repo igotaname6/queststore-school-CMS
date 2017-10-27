@@ -1,0 +1,423 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 2. v2.0 | 20110126
+  License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section
+{
+    display: block;
+}
+body
+{
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q
+{
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after
+{
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*
+-----------------------------------
+^^end of restet
+body
+-----------------------------------
+ */
+
+
+
+body
+{
+    background-image: url(img/hexellence.png);
+    display: flex;
+    flex-flow: column;
+    padding: 0.5%;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+
+/*
+-----------------------------------
+Typohrapgy
+-----------------------------------
+ */
+
+h4
+{
+    font-size: 25px;
+}
+
+h1
+{
+    font-size: 50px;
+}
+
+.bar h4
+{
+    font-size: 150%;
+}
+
+/*
+-----------------------------------
+Container
+-----------------------------------
+ */
+.container
+{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.bar
+{
+    background-color: #BCB1B3;
+    border-radius: 10px;
+    color: white;
+}
+
+.list-container
+{
+    display: flex;
+    flex-flow: column nowrap;
+}
+/*
+-----------------------------------
+Header
+-----------------------------------
+ */
+
+.header-container
+{
+    height: 50px;
+    padding: 0.4% 2%;
+    justify-content: space-between;
+}
+
+
+.logo
+{
+    margin: 0px 10px;
+    margin-top: 3px;
+    height: 42px;
+    width: 42px;
+    mar
+
+}
+
+.user-holder
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/*
+-----------------------------------
+Buttons
+-----------------------------------
+ */
+
+
+button
+{
+    border-radius: 5px;
+    padding: 0px 40px;
+}
+
+button:hover
+{
+    background-color: #36c130;
+    cursor: pointer;
+}
+
+
+
+.logout-button
+{
+    border-radius: 5px;
+    padding: 0px 40px;
+    color: #998e90;
+    font-size: 15px;
+    background-color: #DEC8C1;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.logout-button:hover
+{
+    background-color: #cdb7b0;
+}
+
+select
+{
+    margin: 10px;
+}
+
+
+
+/*
+-----------------------------------
+Content
+-----------------------------------
+ */
+
+
+
+#sidebar-content-container
+{
+    display: flex;
+    height: auto;
+    flex-direction: row;
+    margin: 0.5% 0;
+}
+
+
+.sidebar
+{
+    color: #998e90;
+    text-align: left;
+    /*min-width: 150px;*/
+}
+
+.sidebar span
+{
+    white-space: nowrap;
+}
+.content-box
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+
+#content
+{
+
+    display: flex;
+    align-content: center;
+    flex: 85%;
+    padding: 0% 3% 3% 3%;
+}
+
+#table
+{
+    display: flex;
+    align-self: center;
+    margin: 0 auto;
+
+}
+
+.status-bar
+{
+    margin: 0.1% 0 2% 0;
+    padding: 0.2%;
+    background-color: #998e90;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.status-bar p
+{
+    text-align: center;
+}
+
+#footer-container
+{
+    height: 50px;
+    justify-content: center;
+}
+
+footer
+{
+    font-size: 22px;
+}
+/*
+-----------------------------------
+Colors
+-----------------------------------
+ */
+
+.main-color{
+    background-color: #BCB1B3;
+}
+
+/*
+-----------------------------------
+Login
+-----------------------------------
+ */
+
+#login-content
+{
+    margin: 50px;
+    height: 65vh;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+#content button {
+    color: white; 
+    background-color: #998e90;
+}
+/*
+-----------------------------------
+Table
+-----------------------------------
+ */
+table
+{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th
+{
+    padding: 5px;
+    height: 30px;
+    vertical-align: middle;
+}
+
+td
+{
+    padding-left: 1%;
+    vertical-align: middle;
+}
+
+table, th, td
+{
+    border: 1px solid black;
+}
+
+.thead
+{
+    background-color: #BCB1B3;
+}
+
+#id
+{
+    width: 10%;
+}
+
+#first-name
+{
+    width: 20%;
+}
+
+#last-name
+{
+    width: 20%;
+}
+
+#e-mail
+{
+    width: 50%;
+}
+
+/*
+-----------------------------------
+Table
+-----------------------------------
+
+*/
+.sidebar {
+    text-align: left;
+}
+
+.sidebar-line{
+    background-color: #DEC8C1;
+    font-size: 25px;
+    border-top: solid 1px white;
+    border-bottom: solid 1px white;
+    border-radius: 5px;
+    padding:5px 5px;
+    color: #fff;
+}
+
+.list-head{
+    background-color: #cba899;
+    color: #fff;
+}
+
+.option
+{
+    background-color: #DEC8C1;
+    color: #fff;    
+}
+.option a{
+    color: #fff;
+}
+
+.option:hover
+{
+    background-color: #eec17e;
+    cursor: pointer;
+}
+/*
+-----------------------------------
+Create
+-----------------------------------
+ */
+
+iframe
+{
+    height: 470px;
+}
+
+#create-mentor, #edit-mentor-data, #create-class, #edit-level-data
+{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: row;
+}
+
+input
+{
+    margin: 15px;
+}
+
+select
+{
+    margin: 0px 25px;
+}
