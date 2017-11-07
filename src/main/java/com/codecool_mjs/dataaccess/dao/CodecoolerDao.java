@@ -30,5 +30,3 @@ public class CodecoolerDao extends UserDao<Codecooler>{
         return codecooler;
     }
 }
-
-
