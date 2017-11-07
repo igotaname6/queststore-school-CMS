@@ -20,8 +20,9 @@ public class ArtifactDao extends Dao<Artifact> {
         String description = results.getString("description");
         int cost = results.getInt("cost");
         Boolean isGroup = results.getBoolean("is_group");
+        Boolean isUsed = results.getBoolean("is_used");
 
-        return new Artifact(id, name, description, cost, isGroup);
+        return new Artifact(id, name, description, cost, isGroup, isUsed);
     }
 
     @Override
@@ -36,12 +37,22 @@ public class ArtifactDao extends Dao<Artifact> {
 
     @Override
     String getUpdateQuery() {
-        return null;
+        return "UPDATE artifacts" +
+                "SET name = ?," +
+                "description = ?," +
+                "cost = ?," +
+                "is_group = ?" +
+                "is_used  = ?" +
+                "WHERE id = ?";
     }
 
     @Override
     void setUpdateStatement(PreparedStatement preparedStatement, Artifact artifact) throws SQLException {
-
+        preparedStatement.setString(1, artifact.getName());
+        preparedStatement.setString(2, artifact.getDescription());
+        preparedStatement.setInt(3, artifact.getCost());
+        preparedStatement.setBoolean(4, artifact.getIsGroup());
+        preparedStatement.setBoolean(4, artifact.getIsUsed());
     }
 
     @Override
