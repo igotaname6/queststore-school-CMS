@@ -1,149 +1,124 @@
 package com.codecool_mjs.dataaccess.dao;
 
-
-import com.codecool_mjs.dataaccess.ConnectionProvider;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract public class Dao<T> implements DaoInterface<T> {
+abstract public class Dao<T> implements IDao<T> {
+
     private final Connection connection;
 
-    public Dao() {
-        this.connection = ConnectionProvider.getConnection();
+    public Dao(Connection connection){
+        this.connection = connection;
     }
 
     @Override
-    public List<T> getAll() {
+    public List<T> getAll() throws DaoException{
 
-        ArrayList<T> resultsList = null;
+        String query = getQueryForGetAll();
+        return get(query);
+    }
+
+    @Override
+    public T getById(int id) throws DaoException{
+
+        String query = String.format(getQueryForGetById(), id);
+
+        List<T> resultList = get(query);
+        //Method returns first element, becouse in this case list always has only one element.
+        return resultList.get(0);
+    }
+
+    @Override
+    public int update(T t) throws DaoException{
+
+        int rowsAffected;
+
+        try{
+            PreparedStatement preparedStatement = this.connection.prepareStatement(getUpdateQuery());
+            setUpdateStatement(preparedStatement, t);
+
+            rowsAffected = preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            String message = "Exception in update metgod";
+            throw new DaoException(message, e);
+        }
+        return rowsAffected;
+    }
+
+    @Override
+    public int delete(T t) throws DaoException{
+        int rowsAffected;
+
+        try{
+            PreparedStatement preparedStatement = this.connection.prepareStatement(getDeleteQuery());
+            setDeleteStatement(preparedStatement, t);
+
+            rowsAffected = preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            String message = "Exception in delete method";
+            throw new DaoException(message, e);
+        }
+        return rowsAffected;
+    }
+
+    @Override
+    public int insert(T t) throws DaoException{
+        int rowsAffected;
+
+        try{
+            PreparedStatement preparedStatement = this.connection.prepareStatement(getInsertQuery());
+            setInsertStatement(preparedStatement, t);
+
+            rowsAffected = preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            String message = "Exception in insert method";
+            throw new DaoException(message, e);
+        }
+        return rowsAffected;
+    }
+
+    public void closeConnection() throws DaoException{
+        try {
+            this.connection.close();
+        } catch (SQLException e) {
+            String message = "Exception in close method";
+            throw new DaoException(message, e);
+        }
+    }
+
+    private List<T> get(String query) throws DaoException{
+        ArrayList<T> resultsList;
 
         Statement statement;
         ResultSet results;
 
         try {
             statement = this.connection.createStatement();
-            results = statement.executeQuery(getQueryForGetAll());
+            results = statement.executeQuery(query);
 
             resultsList = new ArrayList<>();
 
             while (results.next()) {
-
                 T object = createObject(results);
                 resultsList.add(object);
             }
             statement.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            String message = "Exception in get method";
+            throw new DaoException(message, e);
         }
+
         return resultsList;
     }
 
-    @Override
-    public List<T> getBy(String category, String arg) {
-
-        ArrayList<T> resultsList = null;
-
-        Statement statement;
-        ResultSet results;
-
-        try {
-            statement = this.connection.createStatement();
-            results = statement.executeQuery(getQueryForSearchBy(category, arg));
-
-            resultsList = new ArrayList<>();
-
-            while (results.next()) {
-
-                T object = createObject(results);
-                resultsList.add(object);
-            }
-            statement.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return resultsList;
-    }
-
-    @Override
-    public Integer insert(T t) {
-
-        Integer result = null;
-
-        try{
-            connection.setAutoCommit(false);
-            result = executeInsertation(t);
-
-            if (result==0){
-                connection.rollback();
-            }
-
-            connection.commit();
-            connection.setAutoCommit(true);
-
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-
-    @Override
-    public Integer delete(T t) {
-
-        Integer result = null;
-
-        try{
-            connection.setAutoCommit(false);
-            result = executeDeletion(t);
-            if (result==0){
-                connection.rollback();
-            }
-
-            connection.commit();
-            connection.setAutoCommit(true);
-
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    @Override
-    public Integer update(T t){
-        Integer result = null;
-
-        try{
-            connection.setAutoCommit(false);
-            result = executeUpdateStatements(t);
-
-            if (result==0){
-                connection.rollback();
-            }
-
-            connection.commit();
-            connection.setAutoCommit(true);
-
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        return result;
-        }
-
-    public Connection getConnection() {
-        return this.connection;
-    }
-
-    abstract Integer executeInsertation(T t) throws SQLException;
-    abstract Integer executeUpdateStatements(T t) throws SQLException;
-    abstract Integer executeDeletion(T t) throws SQLException;
     abstract T createObject(ResultSet results) throws SQLException;
     abstract String getQueryForGetAll();
-    abstract String getQueryForSearchBy(String category, String arg);
-    abstract String getInsertationStatement();
-
-
-
-
+    abstract String getQueryForGetById();
+    abstract String getUpdateQuery();
+    abstract void setUpdateStatement(PreparedStatement preparedStatement, T t) throws SQLException;
+    abstract String getDeleteQuery();
+    abstract void setDeleteStatement(PreparedStatement preparedStatement, T t) throws SQLException;
+    abstract String getInsertQuery();
+    abstract void setInsertStatement(PreparedStatement preparedStatement, T t) throws SQLException;
 }
