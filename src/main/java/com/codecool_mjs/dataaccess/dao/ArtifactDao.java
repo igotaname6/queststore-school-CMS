@@ -27,12 +27,12 @@ public class ArtifactDao extends Dao<Artifact> {
 
     @Override
     String getQueryForGetAll() {
-        return "SELECT * FROM artifacts";
+        return "SELECT * FROM artifacts;";
     }
 
     @Override
     String getQueryForGetById() {
-        return "SELECT * FROM artifacts where id = %d";
+        return "SELECT * FROM artifacts where id = %d;";
     }
 
     @Override
@@ -43,7 +43,7 @@ public class ArtifactDao extends Dao<Artifact> {
                 "cost = ?," +
                 "is_group = ?" +
                 "is_used  = ?" +
-                "WHERE id = ?";
+                "WHERE id = ?;";
     }
 
     @Override
@@ -57,7 +57,7 @@ public class ArtifactDao extends Dao<Artifact> {
 
     @Override
     String getDeleteQuery() {
-        return null;
+        return "DELETE FROM artifacts WHERE id = ?;";
     }
 
     @Override
