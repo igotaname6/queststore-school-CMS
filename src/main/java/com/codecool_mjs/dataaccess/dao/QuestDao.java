@@ -22,5 +22,5 @@ public class QuestDao extends Dao<Quest> {
     @Override
     String getQueryForGetAll() {
         return QUERY;
-    }
+        
 }

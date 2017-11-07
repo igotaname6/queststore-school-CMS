@@ -20,4 +20,5 @@ public class WalletDao {
     }
 
     String getQUARY() {return QUARY; }
+
 }

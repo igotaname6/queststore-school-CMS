@@ -1,0 +1,251 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 2. v2.0 | 20110126
+  License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*
+-----------------------------------
+^^end of restet
+body
+-----------------------------------
+ */
+
+
+
+body
+{
+    background-color: #ffffff;
+    display: flex;
+    flex-flow: column;
+    padding: 0.5%;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+
+/*
+-----------------------------------
+Typohrapgy
+-----------------------------------
+ */
+
+h4{
+    font-size: 25px;
+}
+
+h1{
+    font-size: 50px;
+}
+
+.bar h4{
+    font-size: 150%;
+}
+
+/*
+-----------------------------------
+Container
+-----------------------------------
+ */
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.bar{
+    background-color: #BCB1B3;
+    border-radius: 10px;
+    color: white;
+}
+/*
+-----------------------------------
+Header
+-----------------------------------
+ */
+
+.header-container
+{
+    height: 50px;
+    padding: 0.4% 2%;
+    justify-content: space-between;
+}
+
+
+.logo{
+    height: 100%;
+}
+
+.user-holder
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/*
+-----------------------------------
+Buttons
+-----------------------------------
+ */
+
+.button{
+    display: inline-block;
+    border-radius: 10px;
+    padding: 2% 10%;
+}
+
+.logout-button{
+    color: #998e90;
+    font-size: 15px;
+    background-color: #DEC8C1;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+}
+
+.button:hover{
+    background-color: #EEEEEE;
+    cursor: pointer;
+}
+
+
+/*
+-----------------------------------
+Content
+-----------------------------------
+ */
+
+
+
+#sidebar-content-container
+{
+    /*flex-wrap: wrap;*/
+    display: flex;
+    flex-direction: row;
+}
+
+#sidebar
+{
+    flex: 15%;
+    color: #998e90;
+    text-align: left;
+    min-width: 150px;
+}
+.content-box{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+
+#content
+{
+    flex: 85%;
+    padding: 0% 3% 3% 3%;
+}
+
+.status-bar {
+    margin: 0.1% 0 2% 0;
+    padding: 0.2%;
+    background-color: #998e90;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.status-bar p {
+    text-align: center;
+}
+
+.category
+{
+    background-color: #DEC8C1;
+    font-size: 25px;
+    padding: 10px;
+    border-top: solid 1px white;
+    border-bottom: solid 1px white;
+    border-radius: 5px;
+}
+
+.option
+{
+    background-color: #DEC8C1;
+    font-size: 20px;
+    padding: 10px;
+    opacity: 0.8;
+    border-radius: 5px;
+}
+
+.option:hover
+{
+    background-color: #00AEEE;
+    cursor: pointer;
+}
+
+.solidline
+{
+    border-bottom: 1px solid white;
+}
+
+#footer-container
+{
+    height: 50px;
+    justify-content: center;
+}
+
+footer
+{
+    font-size: 22px;
+}
+/*
+-----------------------------------
+Colors
+-----------------------------------
+ */
+
+.main-color{
+    background-color: #BCB1B3;
+}

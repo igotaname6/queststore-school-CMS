@@ -20,5 +20,14 @@ public class ArtifactDao extends Dao<Artifact> {
 
     String getQueryForGetAll() {
         return "SELECT * FROM artifacts WHERE type = 'single'";
+
     }
+
+    String getQueryForSearchBy(String category, String arg) {
+
+        String query = String.format("SELECT * FROM artifacts WHERE %s LIKE '%s'", category, arg);
+
+        return query;
+    }
+
 }
