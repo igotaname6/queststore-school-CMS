@@ -16,7 +16,6 @@ abstract public class Dao<T> implements IDao<T> {
     public List<T> getAll() throws DaoException{
 
         String query = getQueryForGetAll();
-
         return get(query);
     }
 
@@ -28,36 +27,6 @@ abstract public class Dao<T> implements IDao<T> {
         List<T> resultList = get(query);
         //Method returns first element, becouse in this case list always has only one element.
         return resultList.get(0);
-    }
-
-
-
-
-    private List<T> get(String query) throws DaoException{
-        ArrayList<T> resultsList;
-
-        Statement statement;
-        ResultSet results;
-
-        try {
-            statement = this.connection.createStatement();
-            results = statement.executeQuery(query);
-
-            resultsList = new ArrayList<>();
-
-            while (results.next()) {
-
-                T object = createObject(results);
-                resultsList.add(object);
-            }
-            statement.close();
-        } catch (SQLException e) {
-            String message = "Exception in get method";
-            throw new DaoException(message, e);
-        }
-
-        return resultsList;
-
     }
 
     @Override
@@ -109,9 +78,41 @@ abstract public class Dao<T> implements IDao<T> {
         return rowsAffected;
     }
 
+    public void closeConnection() throws DaoException{
+        try {
+            this.connection.close();
+        } catch (SQLException e) {
+            String message = "Exception in close method";
+            throw new DaoException(message, e);
+        }
+    }
+
+    private List<T> get(String query) throws DaoException{
+        ArrayList<T> resultsList;
+
+        Statement statement;
+        ResultSet results;
+
+        try {
+            statement = this.connection.createStatement();
+            results = statement.executeQuery(query);
+
+            resultsList = new ArrayList<>();
+
+            while (results.next()) {
+                T object = createObject(results);
+                resultsList.add(object);
+            }
+            statement.close();
+        } catch (SQLException e) {
+            String message = "Exception in get method";
+            throw new DaoException(message, e);
+        }
+
+        return resultsList;
+    }
 
     abstract T createObject(ResultSet results) throws SQLException;
-
     abstract String getQueryForGetAll();
     abstract String getQueryForGetById();
     abstract String getUpdateQuery();
