@@ -22,7 +22,7 @@ abstract public class Dao<T> implements IDao<T> {
     @Override
     public T getById(int id) throws DaoException{
 
-        String query = getQueryForGetById();
+        String query = String.format(getQueryForGetById(), id);
 
         List<T> resultList = get(query);
         //Method returns first element, becouse in this case list always has only one element.
