@@ -8,7 +8,6 @@ import java.sql.SQLException;
 
 public class AdminDao extends UserDao<Admin> {
 
-
     public AdminDao(Connection connection) {
         super(connection);
     }
@@ -27,8 +26,6 @@ public class AdminDao extends UserDao<Admin> {
         String email = results.getString("email");
         String password = results.getString("password");
 
-        Admin admin = new Admin(id, name, surname, email, password);
-
-        return admin;
+        return new Admin(id, name, surname, email, password);
     }
 }
