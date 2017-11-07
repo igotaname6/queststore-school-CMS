@@ -62,16 +62,21 @@ public class ArtifactDao extends Dao<Artifact> {
 
     @Override
     void setDeleteStatement(PreparedStatement preparedStatement, Artifact artifact) throws SQLException {
-
+        preparedStatement.setInt(1, artifact.getId());
     }
 
     @Override
     String getInsertQuery() {
-        return null;
+        return "INSERT INTO artifacts (name, description, cost, is_group, is_used)" +
+                "VALUES(?, ?, ?, ?, ?);";
     }
 
     @Override
     void setInsertStatement(PreparedStatement preparedStatement, Artifact artifact) throws SQLException {
-
+        preparedStatement.setString(1, artifact.getName());
+        preparedStatement.setString(1, artifact.getDescription());
+        preparedStatement.setInt(1, artifact.getCost());
+        preparedStatement.setBoolean(1, artifact.getIsGroup());
+        preparedStatement.setBoolean(1, artifact.getIsUsed());
     }
 }
