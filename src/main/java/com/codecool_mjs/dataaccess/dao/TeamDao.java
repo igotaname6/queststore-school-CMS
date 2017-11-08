@@ -10,59 +10,53 @@ import java.sql.SQLException;
 
 public class TeamDao extends Dao<Team> {
 
+
+    public TeamDao(Connection connection) {
+        super(connection);
+    }
+
     @Override
     Team createObject(ResultSet results) throws SQLException {
-
-        Integer id = results.getInt("id");
-        String name = results.getString("name");
-
-        Team team = new Team(id, name);
-
-        return team;
+        return null;
     }
 
     @Override
     String getQueryForGetAll() {
-
-        String query = "SELECT * FROM teams";
-
-        return query;
-    }
-
-    String getQueryForSearchBy(String category, String arg) {
-
-        String query = String.format("SELECT * FROM teams WHERE %s LIKE '%s'", category, arg);
-
-        return query;
-    }
-
-    @Override
-    String getInsertationStatement() {
         return null;
     }
 
     @Override
-    Integer executeDeletion(Team team) throws SQLException {
-        Connection conn = getConnection();
-
-        PreparedStatement statement = conn.prepareStatement(getDeletionStatement());
-        statement.setInt(1, team.getId());
-
-        Integer rowAffected = statement.executeUpdate();
-        return rowAffected;
-    }
-
-    private String getDeletionStatement() {
-        return "DELETE FROM teams WHERE id = ?;";
-    }
-
-    @Override
-    Integer executeInsertation(Team team) throws SQLException {
+    String getQueryForGetById() {
         return null;
     }
 
     @Override
-    Integer executeUpdateStatements(Team team) throws SQLException {
+    String getUpdateQuery() {
         return null;
+    }
+
+    @Override
+    void setUpdateStatement(PreparedStatement preparedStatement, Team team) throws SQLException {
+
+    }
+
+    @Override
+    String getDeleteQuery() {
+        return null;
+    }
+
+    @Override
+    void setDeleteStatement(PreparedStatement preparedStatement, Team team) throws SQLException {
+
+    }
+
+    @Override
+    String getInsertQuery() {
+        return null;
+    }
+
+    @Override
+    void setInsertStatement(PreparedStatement preparedStatement, Team team) throws SQLException {
+
     }
 }

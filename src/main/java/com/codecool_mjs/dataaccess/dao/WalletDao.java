@@ -2,23 +2,60 @@ package com.codecool_mjs.dataaccess.dao;
 
 import com.codecool_mjs.model.Wallet;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class WalletDao {
+public class WalletDao extends Dao<Wallet>{
 
-    private static String QUARY = "SELECT * FROM wallets";
 
-    Wallet createWallet(ResultSet results) throws SQLException {
-
-        Integer totalEarnedCoins = results.getInt("total_earned_coins");
-        Integer availableCoins = results.getInt("available_coins");
-
-        Wallet wallet = new Wallet(totalEarnedCoins, availableCoins);
-
-        return wallet;
+    public WalletDao(Connection connection) {
+        super(connection);
     }
 
-    String getQUARY() {return QUARY; }
+    @Override
+    Wallet createObject(ResultSet results) throws SQLException {
+        return null;
+    }
 
+    @Override
+    String getQueryForGetAll() {
+        return null;
+    }
+
+    @Override
+    String getQueryForGetById() {
+        return null;
+    }
+
+    @Override
+    String getUpdateQuery() {
+        return null;
+    }
+
+    @Override
+    void setUpdateStatement(PreparedStatement preparedStatement, Wallet wallet) throws SQLException {
+
+    }
+
+    @Override
+    String getDeleteQuery() {
+        return null;
+    }
+
+    @Override
+    void setDeleteStatement(PreparedStatement preparedStatement, Wallet wallet) throws SQLException {
+
+    }
+
+    @Override
+    String getInsertQuery() {
+        return null;
+    }
+
+    @Override
+    void setInsertStatement(PreparedStatement preparedStatement, Wallet wallet) throws SQLException {
+
+    }
 }

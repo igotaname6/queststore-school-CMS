@@ -9,6 +9,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class GroupDao extends Dao<Group> {
+
+    public GroupDao(Connection connection) {
+        super(connection);
+    }
+
     @Override
     Group createObject(ResultSet results) throws SQLException {
         return null;
