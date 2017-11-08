@@ -13,6 +13,10 @@ public class MentorDao extends UserDao<Mentor> {
         super(connection);
     }
 
+    public MentorDao() {
+        super();
+    }
+
     @Override
     String getPofession() {
         return "mentor";
