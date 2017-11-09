@@ -8,15 +8,16 @@ import com.codecool_mjs.model.Mentor;
 
 import java.util.List;
 
-public class MentorController {
+public class MentorController{
 
     private IDao<Mentor> dao;
 
     public MentorController(){
+        setDao();
 
     }
 
-    public void setDao(){
+    private void setDao(){
         try{
             dao = new MentorDao();
             ConnectionProvider.getInstance().connectionRequest(dao);
