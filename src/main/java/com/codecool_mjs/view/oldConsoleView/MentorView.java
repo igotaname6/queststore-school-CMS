@@ -1,4 +1,4 @@
-package com.codecool_mjs.view;
+package com.codecool_mjs.view.oldConsoleView;
 
 import com.codecool_mjs.model.Mentor;
 import com.codecool_mjs.model.User;

@@ -1,4 +1,4 @@
-package com.codecool_mjs.view;
+package com.codecool_mjs.view.oldConsoleView;
 
 import java.util.*;
 
