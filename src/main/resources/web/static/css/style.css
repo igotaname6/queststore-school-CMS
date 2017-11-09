@@ -1,0 +1,257 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 2. v2.0 | 20110126
+  License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section
+{
+    display: block;
+}
+body
+{
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q
+{
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after
+{
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*
+-----------------------------------
+^^end of restet
+body
+-----------------------------------
+ */
+
+body
+{
+    background-image: url("../img/hexellence.png");
+    display: flex;
+    flex-direction: column;
+}
+
+/*
+-----------------------------------
+Header
+-----------------------------------
+ */
+
+header
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #BCB1B3;
+    border-radius: 10px;
+    color: white;
+
+}
+
+.logo
+{
+    margin: 0px 10px;
+    height: 42px;
+    width: 42px;
+}
+
+.user-holder
+{
+    text-align: center;
+
+}
+
+/*
+-----------------------------------
+Typography
+-----------------------------------
+ */
+
+h1
+{
+    font-size: 200%;
+}
+
+
+h2
+{
+    margin: 10px 0px;
+    font-size: 150%;
+}
+
+h3
+{
+    font-size: 125%;
+}
+
+
+thead
+{
+    background-color: #BCB1B3;
+}
+
+th
+{
+    padding: 5px;
+    height: 30px;
+    vertical-align: middle;
+}
+
+td
+{
+    padding: 5px;
+    vertical-align: middle;
+}
+
+table, th, td
+{
+    border: 1px solid black;
+}
+
+/*
+-----------------------------------
+Sidebar, content
+-----------------------------------
+ */
+
+#sidebar-content-container
+
+{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.category
+{
+    background-color: #CDB7B0;
+    font-size: 25px;
+    border-top: solid 1px white;
+    border-bottom: solid 1px white;
+    border-radius: 5px;
+    padding:5px 5px;
+    color: #fff;
+}
+
+.option
+{
+    background-color: #DEC8C1;
+    font-size: 25px;
+    border-top: solid 1px white;
+    border-bottom: solid 1px white;
+    border-radius: 5px;
+    padding:5px 5px;
+    color: #fff;
+}
+
+.option:hover
+{
+    background-color: #EFD9D2;
+    cursor: pointer;
+}
+
+.content-box
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.status-bar
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #797071;
+    border-radius: 10px;
+    color: white;
+    padding: 5px;
+}
+
+#table
+
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 100%;
+    padding: 5px;
+}
+
+/*
+-----------------------------------
+Buttons
+-----------------------------------
+ */
+
+#logout-button
+{
+    border-radius: 5px;
+    padding: 0px 20px;
+    margin: 5px 20px;
+    color: #998e90;
+    font-size: 15px;
+    background-color: #DEC8C1;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+#logout-button:hover
+{
+    background-color: #cdb7b0;
+    cursor: pointer;
+}
+
+/*
+-----------------------------------
+Footer
+-----------------------------------
+ */
+
+footer
+{
+    height: 50px;
+    text-align: center;
+
+    background-color: #BCB1B3;
+    border-radius: 10px;
+    color: white;
+}
+
