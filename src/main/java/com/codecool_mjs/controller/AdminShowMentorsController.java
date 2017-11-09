@@ -12,13 +12,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AdminActionsController implements HttpHandler{
+public class AdminShowMentorsController implements HttpHandler{
 
     private TemplatesEngine templateEngine;
     private Admin loggedUser;
 
 
-    public AdminActionsController(){
+    public AdminShowMentorsController(){
         this.templateEngine = new TemplatesEngine();
     }
 
@@ -48,7 +48,7 @@ public class AdminActionsController implements HttpHandler{
 
     public String showAllMentors() throws DaoException {
         //temporary example of logged user. To remove when sessions will be implemented
-        setLoggedUser(new Admin(15,"Janusz", "Kowalski", "j.k@cc.pl", "typoweHasło"));
+        setLoggedUser(new Admin(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło"));
 
         Map<String, Object> variables = new HashMap<>();
 
