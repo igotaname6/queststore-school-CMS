@@ -21,7 +21,7 @@ public class TemplatesEngine {
         this.context = new Context();
         this.resolver = new ClassLoaderTemplateResolver();
         //Sets up engine by resolver
-        resolver.setPrefix("web/templates/");
+        resolver.setPrefix("/web/templates/");
         resolver.setSuffix(".html");
         resolver.setTemplateMode("HTML5");
 
