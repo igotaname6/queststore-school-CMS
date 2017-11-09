@@ -7,13 +7,13 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import java.io.StringWriter;
 import java.util.Map;
 
-public class TemplatesEngine {
+public class TemplatesProcessor {
     private TemplateEngine engine;
     private ClassLoaderTemplateResolver resolver;
     private Context context;
 
 
-    public TemplatesEngine(){
+    public TemplatesProcessor(){
         // Creates new templateEngine
         this.engine = new TemplateEngine();
         // Creates resolver
@@ -37,6 +37,5 @@ public class TemplatesEngine {
         engine.process(templateName, this.context, writer);
         return writer.toString();
     }
-
 
 }
