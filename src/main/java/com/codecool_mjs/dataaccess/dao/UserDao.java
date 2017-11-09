@@ -13,6 +13,8 @@ public abstract class UserDao<T extends User> extends Dao<T> {
         super(connection);
     }
 
+    public UserDao(){};
+
     @Override
     String getQueryForGetAll() {
         return String.format("SELECT * FROM users WHERE profession = '%s';", getPofession());

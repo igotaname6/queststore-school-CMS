@@ -1,6 +1,7 @@
 
 package com.codecool_mjs.dataaccess.dao;
 
+import java.sql.Connection;
 import java.util.List;
 
 public interface IDao<T> {
@@ -9,4 +10,5 @@ public interface IDao<T> {
     public int update(T t) throws DaoException;
     public int delete(T t) throws DaoException;
     public int insert(T t) throws DaoException;
+    public void setConnection(Connection connection);
 }

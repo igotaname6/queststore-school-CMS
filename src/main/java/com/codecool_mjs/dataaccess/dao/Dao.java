@@ -6,10 +6,13 @@ import java.util.List;
 
 abstract public class Dao<T> implements IDao<T> {
 
-    private final Connection connection;
+    private Connection connection;
 
     public Dao(Connection connection){
         this.connection = connection;
+    }
+
+    public Dao(){
     }
 
     @Override
@@ -110,6 +113,10 @@ abstract public class Dao<T> implements IDao<T> {
         }
 
         return resultsList;
+    }
+
+    public void setConnection(Connection connection){
+        this.connection = connection;
     }
 
     abstract T createObject(ResultSet results) throws SQLException;
