@@ -16,20 +16,7 @@ public class AdminActionsController implements HttpHandler{
 
     }
 
-    private String processTemplateToPage() {
-        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-        templateResolver.setPrefix("web/templates/");
-        templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode("HTML5");
+    public void showAllMentors(){
 
-        TemplateEngine templateEngine = new TemplateEngine();
-        templateEngine.setTemplateResolver(templateResolver);
-
-        StringWriter writer = new StringWriter();
-        Context context = new Context();
-        context.setVariable();
-
-        templateEngine.process("admin-show-mentors", context, writer);
-        return writer.toString();
     }
 }
