@@ -9,24 +9,26 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
+import java.net.URL;
 
 public class StaticController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
-        String root = "../../resources/web/static";
+        String root = "./web";
         URI uri = httpExchange.getRequestURI();
         String path = uri.getPath();
 
-        File file = new File(root + path).getCanonicalFile();
+        ClassLoader classLoader = getClass().getClassLoader();
+        URL fileURL = classLoader.getResource(root + path);
 
         OutputStream os = httpExchange.getResponseBody();
 
-        if(file.exists()) {
-            sendFile(httpExchange, file);
-        } else {
+        if(fileURL == null) {
             send404(httpExchange);
+        } else {
+            sendFile(httpExchange, fileURL);
         }
     }
 
@@ -38,8 +40,9 @@ public class StaticController implements HttpHandler {
         os.close();
     }
 
-    private void sendFile(HttpExchange httpExchange, File file) throws IOException {
+    private void sendFile(HttpExchange httpExchange, URL fileURL) throws IOException {
 
+        File file = new File(fileURL.getFile());
         MimeTypeResolver resolver = new MimeTypeResolver(file);
         String mime = resolver.getMimeType();
 
