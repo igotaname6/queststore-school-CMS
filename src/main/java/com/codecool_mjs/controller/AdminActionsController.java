@@ -5,9 +5,9 @@ import com.codecool_mjs.model.Admin;
 import com.codecool_mjs.model.Mentor;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import org.thymeleaf.TemplateEngine;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +28,21 @@ public class AdminActionsController implements HttpHandler{
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
+        String responseBody;
+        int responseCode;
+
+        try {
+            responseBody = showAllMentors();
+            responseCode = 200;
+        } catch (DaoException e) {
+            responseBody = "No such page";
+            responseCode = 404;
+        }
+
+        httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);
+        OutputStream os = httpExchange.getResponseBody();
+        os.write(responseBody.getBytes());
+        os.close();
 
     }
 
