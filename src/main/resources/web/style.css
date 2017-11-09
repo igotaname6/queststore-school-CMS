@@ -62,7 +62,7 @@ body
 
 body
 {
-    background-image: url(img/hexellence.png);
+    background-image: url(static/img/hexellence.png);
     display: flex;
     flex-flow: column;
     padding: 0.5%;
