@@ -10,7 +10,9 @@ public class ServerController {
     public void createAndStartSever() throws IOException {
 
             HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
-            server.createContext("/admin", new AdminActionsController());
+            server.createContext("/home", new HomeController());
+            server.createContext("/admin-show-mentors", new AdminShowMentorsController());
+            server.createContext("/admin-home", new AdminHomeController());
             server.createContext("/static", new StaticController());
             server.setExecutor(null);
             server.start();
