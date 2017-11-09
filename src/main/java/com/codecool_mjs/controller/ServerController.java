@@ -11,7 +11,7 @@ public class ServerController {
 
             HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
             server.createContext("/admin", new AdminActionsController());
-            server.createContext("static", new StaticController());
+            server.createContext("/static", new StaticController());
             server.setExecutor(null);
             server.start();
     }
