@@ -66,4 +66,8 @@ public abstract class User {
         this.password = password;
     }
 
+    public String getFullName() {
+        return name + " " + surname;
+    }
+
 }
