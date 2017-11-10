@@ -1,6 +1,6 @@
 package com.codecool_mjs.controller.webAccessController.adminActionsController;
 
-import com.codecool_mjs.controller.webAccessController.applicationActionsController.MentorController;
+import com.codecool_mjs.controller.applicationActionsController.MentorController;
 import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.model.Admin;
 import com.codecool_mjs.model.Mentor;
