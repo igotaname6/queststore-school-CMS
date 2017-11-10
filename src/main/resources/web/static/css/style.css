@@ -149,6 +149,15 @@ Sidebar, content
 -----------------------------------
  */
 
+#login-content
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+}
+
 #sidebar-content-container
 
 {
