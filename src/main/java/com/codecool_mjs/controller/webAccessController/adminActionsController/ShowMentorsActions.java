@@ -1,5 +1,6 @@
-package com.codecool_mjs.controller;
+package com.codecool_mjs.controller.webAccessController.adminActionsController;
 
+import com.codecool_mjs.controller.webAccessController.applicationActionsController.MentorController;
 import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.model.Admin;
 import com.codecool_mjs.model.Mentor;
@@ -13,13 +14,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AdminShowMentorsController implements HttpHandler{
+public class ShowMentorsActions implements HttpHandler{
 
     private TemplatesProcessor templateProcessor;
     private Admin loggedUser;
 
 
-    public AdminShowMentorsController(){
+    public ShowMentorsActions(){
         this.templateProcessor = new TemplatesProcessor();
     }
 
