@@ -1,7 +1,8 @@
-package com.codecool_mjs.controller;
+package com.codecool_mjs.controller.webAccessController.adminActionsController;
 
 import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.model.Admin;
+import com.codecool_mjs.view.webView.TemplatesProcessor;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -12,11 +13,11 @@ import java.util.Map;
 
 public class AdminHomeController implements HttpHandler{
 
-    private TemplatesEngine templateEngine;
+    private TemplatesProcessor templatesProcessorr;
     private Admin loggedUser;
 
     public AdminHomeController(){
-        this.templateEngine = new TemplatesEngine();
+        this.templatesProcessorr = new TemplatesProcessor();
     }
 
     public void setLoggedUser(Admin loggedUser) {
@@ -51,9 +52,9 @@ public class AdminHomeController implements HttpHandler{
 
         variables.put("user", loggedUser);
 
-        templateEngine.setVariables(variables);
+        templatesProcessorr.setVariables(variables);
 
-        String page = templateEngine.ProcessTemplateToPage("admin-home");
+        String page = templatesProcessorr.ProcessTemplateToPage("admin-home");
         return page;
     }
 }

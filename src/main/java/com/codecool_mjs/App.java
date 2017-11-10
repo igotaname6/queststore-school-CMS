@@ -1,6 +1,6 @@
 package com.codecool_mjs;
 
-import com.codecool_mjs.controller.ServerController;
+import com.codecool_mjs.severProvider.ServerController;
 
 import java.io.IOException;
 

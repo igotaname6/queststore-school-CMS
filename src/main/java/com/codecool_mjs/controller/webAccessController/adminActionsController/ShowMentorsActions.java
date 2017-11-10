@@ -1,8 +1,10 @@
-package com.codecool_mjs.controller;
+package com.codecool_mjs.controller.webAccessController.adminActionsController;
 
+import com.codecool_mjs.controller.applicationActionsController.MentorController;
 import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.model.Admin;
 import com.codecool_mjs.model.Mentor;
+import com.codecool_mjs.view.webView.TemplatesProcessor;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -12,14 +14,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AdminShowMentorsController implements HttpHandler{
+public class ShowMentorsActions implements HttpHandler{
 
-    private TemplatesEngine templateEngine;
+    private TemplatesProcessor templateProcessor;
     private Admin loggedUser;
 
 
-    public AdminShowMentorsController(){
-        this.templateEngine = new TemplatesEngine();
+    public ShowMentorsActions(){
+        this.templateProcessor = new TemplatesProcessor();
     }
 
     public void setLoggedUser(Admin loggedUser) {
@@ -43,7 +45,6 @@ public class AdminShowMentorsController implements HttpHandler{
         OutputStream os = httpExchange.getResponseBody();
         os.write(responseBody.getBytes());
         os.close();
-
     }
 
     public String showAllMentors() throws DaoException {
@@ -58,9 +59,9 @@ public class AdminShowMentorsController implements HttpHandler{
         variables.put("user", loggedUser);
         variables.put("mentorsList", allMentors);
 
-        templateEngine.setVariables(variables);
+        templateProcessor.setVariables(variables);
 
-        String page = templateEngine.ProcessTemplateToPage("admin-show-mentors");
+        String page = templateProcessor.ProcessTemplateToPage("admin-show-mentors");
         return page;
     }
 }

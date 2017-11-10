@@ -1,4 +1,4 @@
-package com.codecool_mjs.controller;
+package com.codecool_mjs.controller.applicationActionsController;
 
 import com.codecool_mjs.dataaccess.ConnectionProvider;
 import com.codecool_mjs.dataaccess.dao.DaoException;

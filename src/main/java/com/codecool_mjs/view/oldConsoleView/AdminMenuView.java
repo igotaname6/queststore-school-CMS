@@ -1,34 +1,33 @@
-package com.codecool_mjs.view;
+package com.codecool_mjs.view.oldConsoleView;
 
 import java.util.*;
 
 import static java.lang.System.out;
 
-public class MentorMenuView {
+public class AdminMenuView {
 
     private static Scanner userInput = new Scanner(System.in).useDelimiter("\\n");
 
-    public static void printMentorMenu() {
+    public static void printAdminMenu() {
 
-        final List<String> MENU = new ArrayList<String>(Arrays.asList("show all students",
-                "search student", "add student", "add quest", "add artifact", "edit artifact",
-                "mark codecooler's quest as achieved", "show account info", "edit account info",
-                "log out\n"));
+        final List<String> MENU = new ArrayList<String>(Arrays.asList("show all mentors", "search mentor",
+                "update mentor", "add new mentor", "add new group", "add level",
+                "show account info", " edit account info", "log out\n"));
 
         ListIterator<String> iterator = MENU.listIterator();
 
-        out.println("\nMENTOR MENU: ");
+        out.println("\nADMIN MENU: ");
         while (iterator.hasNext()) {
             out.println((iterator.nextIndex() + 1) + ". " + iterator.next());
         }
     }
 
-    public static String getMentorMenuInput() {
+    public static String getAdminMenuInput() {
 
         userInput = new Scanner(System.in).useDelimiter("\\n");
         List<String> menuOptions = new ArrayList<String>();
 
-        for(Integer i = 1; i <= 10; i++){
+        for(Integer i = 1; i <= 9; i++){
             menuOptions.add(i.toString());
         }
 
@@ -41,4 +40,5 @@ public class MentorMenuView {
 
         return pickedOption;
     }
+
 }

@@ -1,4 +1,4 @@
-package com.codecool_mjs.controller;
+package com.codecool_mjs.view.webView;
 
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -7,14 +7,13 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import java.io.StringWriter;
 import java.util.Map;
 
-public class TemplatesEngine {
+public class TemplatesProcessor {
     private TemplateEngine engine;
     private ClassLoaderTemplateResolver resolver;
     private Context context;
 
-    private Map<String, Object> templatesVariables;
 
-    public TemplatesEngine(){
+    public TemplatesProcessor(){
         // Creates new templateEngine
         this.engine = new TemplateEngine();
         // Creates resolver
@@ -36,9 +35,7 @@ public class TemplatesEngine {
         StringWriter writer = new StringWriter();
 
         engine.process(templateName, this.context, writer);
-
         return writer.toString();
     }
-
 
 }

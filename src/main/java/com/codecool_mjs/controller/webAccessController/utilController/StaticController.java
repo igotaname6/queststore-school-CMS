@@ -1,4 +1,4 @@
-package com.codecool_mjs.controller;
+package com.codecool_mjs.controller.webAccessController.utilController;
 
 import com.codecool_mjs.utilities.MimeTypeResolver;
 import com.sun.net.httpserver.HttpExchange;
