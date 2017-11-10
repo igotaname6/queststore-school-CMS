@@ -3,6 +3,7 @@ package com.codecool_mjs.controller;
 import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.model.Admin;
 import com.codecool_mjs.model.Mentor;
+import com.codecool_mjs.view.webView.TemplatesProcessor;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -14,12 +15,12 @@ import java.util.Map;
 
 public class AdminActionsController implements HttpHandler{
 
-    private TemplatesEngine templateEngine;
+    private TemplatesProcessor templateProcessor;
     private Admin loggedUser;
 
 
     public AdminActionsController(){
-        this.templateEngine = new TemplatesEngine();
+        this.templateProcessor = new TemplatesProcessor();
     }
 
     public void setLoggedUser(Admin loggedUser) {
@@ -43,7 +44,6 @@ public class AdminActionsController implements HttpHandler{
         OutputStream os = httpExchange.getResponseBody();
         os.write(responseBody.getBytes());
         os.close();
-
     }
 
     public String showAllMentors() throws DaoException {
@@ -58,9 +58,9 @@ public class AdminActionsController implements HttpHandler{
         variables.put("user", loggedUser);
         variables.put("mentorsList", allMentors);
 
-        templateEngine.setVariables(variables);
+        templateProcessor.setVariables(variables);
 
-        String page = templateEngine.ProcessTemplateToPage("admin-show-mentors");
+        String page = templateProcessor.ProcessTemplateToPage("admin-show-mentors");
         return page;
     }
 }
