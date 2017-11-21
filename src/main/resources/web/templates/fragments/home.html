@@ -8,12 +8,8 @@
     <link rel="stylesheet" href="static/css/style.css" type="text/css"/>
 </head>
 <body>
-<header th:replace="fragments/header :: header">
-</header>
-<div id="sidebar-content-container">
-    <nav th:replace="fragments/admin-sidebar :: admin-sidebar"></nav>
-    <div th:replace="fragments/admin/home :: home"></div>
+<div th:fragment="home" class = "content-box">
+    <iframe src="https://calendar.google.com/calendar/embed?src=codecool.com_s1gkl8l9rc6dhmg64nbc5n1ftg%40group.calendar.google.com&ctz=Europe/Warsaw" name="iframe-content" width="100%" scrolling="no"></iframe>
 </div>
-<footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>
