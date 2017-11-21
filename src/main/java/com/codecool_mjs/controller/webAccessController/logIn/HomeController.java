@@ -18,7 +18,6 @@ public class HomeController implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
-
         String responseBody = templatesProcessor.ProcessTemplateToPage("index");
 
         httpExchange.sendResponseHeaders(200, responseBody.getBytes().length);
