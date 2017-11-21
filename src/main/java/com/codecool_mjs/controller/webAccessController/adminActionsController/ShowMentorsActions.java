@@ -61,7 +61,7 @@ public class ShowMentorsActions implements HttpHandler{
 
         templateProcessor.setVariables(variables);
 
-        String page = templateProcessor.ProcessTemplateToPage("admin-show-mentors");
+        String page = templateProcessor.ProcessTemplateToPage("admin/admin-show-mentors");
         return page;
     }
 }
