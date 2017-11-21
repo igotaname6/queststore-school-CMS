@@ -54,7 +54,7 @@ public class AdminHomeController implements HttpHandler{
 
         templatesProcessorr.setVariables(variables);
 
-        String page = templatesProcessorr.ProcessTemplateToPage("admin-home");
+        String page = templatesProcessorr.ProcessTemplateToPage("/admin/admin-home");
         return page;
     }
 }
