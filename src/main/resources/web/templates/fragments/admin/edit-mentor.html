@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="edit-mentor" class = "content-box">
+        <div class="status-bar">
+            <p id="test">Mentor -> Edit mentor data</p>
+        </div>
+        <div id="edit-mentor-data">
+            <form method="POST">
+
+                <br/></br>Fist name:
+                </br> <input type="text" name="first_name" th:value="${mentor.name}">
+
+                </br>Last name:
+                </br> <input type="text" name="last_name" th:value="${mentor.surname}">
+
+                </br>Email:
+                </br> <input type="email" name="email" th:value="${mentor.email}">
+
+                </br>Password:
+                </br><input type="password" name="password" th:value="${mentor.password}">
+
+                </br>Confirm Password:
+                </br><input type="password" th:value="${mentor.password}">
+
+                <div class="button">
+                    <button  type="button">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

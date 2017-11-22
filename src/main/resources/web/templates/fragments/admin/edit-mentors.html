@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="edit-mentors" class = "content-box">
+        <div class="status-bar">
+            <h3>Mentor -> Edit mentors<h3>
+        </div>
+        <div id="table">
+            <table>
+                <thead>
+                <tr>
+                    <th scope="col" id="id">No</th>
+                    <th scope="col" id="first-name">First Name</th>
+                    <th scope="col" id="last-name">Last Name</th>
+                    <th scope="col" id="e-mail">e - mail</th>
+                    <th scope="col" id="edit-button"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="mentor : ${mentorsList}">
+
+                        <td th:text="${mentorStat.count}"></td>
+                        <td th:text="${mentor.name}">Adam</td>
+                        <td th:text="${mentor.surname}">Nowak</td>
+                        <td th:text="${mentor.email}">example@gmail.com</td>
+                        <td class="edit-button">
+                            <a th:href="${'/mentors/edit/' + mentor.id}">
+                                <button type="button">Edit</button>
+                            </a>
+                        </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
