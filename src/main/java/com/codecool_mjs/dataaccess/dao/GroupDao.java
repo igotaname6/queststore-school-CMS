@@ -10,60 +10,52 @@ import java.sql.SQLException;
 
 public class GroupDao extends Dao<Group> {
 
+    public GroupDao(Connection connection) {
+        super(connection);
+    }
+
     @Override
     Group createObject(ResultSet results) throws SQLException {
-
-        Integer id = results.getInt("id");
-        String name = results.getString("name");
-
-        Group group = new Group(id, name);
-
-        return group;
+        return null;
     }
 
     @Override
     String getQueryForGetAll() {
-
-        String query = "SELECT * FROM groups";
-
-        return query;
-    }
-
-    @Override
-    String getQueryForSearchBy(String category, String arg) {
-
-        String query = String.format("SELECT * FROM groups WHERE %s LIKE '%s'", category, arg);
-
-        return query;
-    }
-
-    @Override
-    String getInsertationStatement() {
         return null;
     }
 
     @Override
-    Integer executeInsertation(Group group) throws SQLException {
+    String getQueryForGetById() {
         return null;
     }
 
     @Override
-    Integer executeUpdateStatements(Group group) throws SQLException {
+    String getUpdateQuery() {
         return null;
     }
 
     @Override
-    Integer executeDeletion(Group group) throws SQLException {
-        Connection conn = getConnection();
+    void setUpdateStatement(PreparedStatement preparedStatement, Group group) throws SQLException {
 
-        PreparedStatement statement = conn.prepareStatement(getDeletionStatement());
-        statement.setInt(1, group.getId());
-
-        Integer rowAffected = statement.executeUpdate();
-        return rowAffected;
     }
 
-    private String getDeletionStatement() {
-        return "DELETE FROM groups WHERE id = ?;";
+    @Override
+    String getDeleteQuery() {
+        return null;
+    }
+
+    @Override
+    void setDeleteStatement(PreparedStatement preparedStatement, Group group) throws SQLException {
+
+    }
+
+    @Override
+    String getInsertQuery() {
+        return null;
+    }
+
+    @Override
+    void setInsertStatement(PreparedStatement preparedStatement, Group group) throws SQLException {
+
     }
 }

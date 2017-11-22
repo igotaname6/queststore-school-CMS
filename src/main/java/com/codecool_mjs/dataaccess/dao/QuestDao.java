@@ -2,7 +2,6 @@ package com.codecool_mjs.dataaccess.dao;
 
 
 import com.codecool_mjs.model.Quest;
-import com.codecool_mjs.model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,60 +10,53 @@ import java.sql.SQLException;
 
 public class QuestDao extends Dao<Quest> {
 
+
+    public QuestDao(Connection connection) {
+        super(connection);
+    }
+
     @Override
     Quest createObject(ResultSet results) throws SQLException {
-
-        Integer id = results.getInt("id");
-        String name = results.getString("name");
-        String description = results.getString("description");
-        Integer reward = results.getInt("reward");
-        Boolean isGroup = results.getBoolean("is_group");
-
-        return new Quest(id, name, description, reward, isGroup);
+        return null;
     }
 
     @Override
     String getQueryForGetAll() {
-
-        String query = "SELECT * FROM quests WHERE type = 'single';";
-
-        return query;
-    }
-
-    String getQueryForSearchBy(String category, String arg) {
-
-        String query = String.format("SELECT * FROM quests WHERE %s LIKE '%s' AND type = 'single'", category, arg);
-
-        return query;
-    }
-
-    @Override
-    String getInsertationStatement() {
         return null;
     }
 
     @Override
-    Integer executeInsertation(Quest quest) throws SQLException {
+    String getQueryForGetById() {
         return null;
     }
 
     @Override
-    Integer executeUpdateStatements(Quest quest) throws SQLException {
+    String getUpdateQuery() {
         return null;
     }
 
     @Override
-    Integer executeDeletion(Quest quest) throws SQLException {
-        Connection conn = getConnection();
+    void setUpdateStatement(PreparedStatement preparedStatement, Quest quest) throws SQLException {
 
-        PreparedStatement statement = conn.prepareStatement(getDeletionStatement());
-        statement.setInt(1, quest.getId());
-
-        Integer rowAffected = statement.executeUpdate();
-        return rowAffected;
     }
 
-    private String getDeletionStatement() {
-        return "DELETE FROM quests WHERE id = ?;";
+    @Override
+    String getDeleteQuery() {
+        return null;
+    }
+
+    @Override
+    void setDeleteStatement(PreparedStatement preparedStatement, Quest quest) throws SQLException {
+
+    }
+
+    @Override
+    String getInsertQuery() {
+        return null;
+    }
+
+    @Override
+    void setInsertStatement(PreparedStatement preparedStatement, Quest quest) throws SQLException {
+
     }
 }

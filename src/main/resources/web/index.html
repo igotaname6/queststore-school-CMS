@@ -1,79 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8"/>
     <title> Codecool Quest Store </title>
     <meta name="description" content="Codecool Quest Storeo"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <link rel="stylesheet" href="style.css" type="text/css"/>
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,900i&amp;subset=latin-ext" rel="stylesheet"/>
-
 </head>
 
 <body>
 
-    <div>
-        <header id="header-container">
-
-            <div id="logo">
-                <img src="img/cc.png" width="50px" height="50px">
-            </div>
-
-            <div id="header-text">
+    <section>
+        <header class="container bar header-container">
+            <img class="logo" src="static/img/cc.png">
+            <h1>
                 Quest Store
-            </div>
-
-            <div id="user-name-logout">
-
-                <div id="user-name">
-                Jan Kowalski
+            </h1>
+            <div class="user-holder">
+                <h4 class="user-name">
+                    Jan Kowalski
+                </h4>
+                <div class = "button logout-button">
+                    Log out
                 </div>
-
-                <div id="log-out-button">
-                    <h1>Log out</h1>
-                </div>
-
-
             </div>
-
         </header>
-    </div>
+    </section>
 
     <div id="sidebar-content-container">
 
-        <div id="sidebar">
-            <div class="category">Mentor</div>
-            <div class="option">Option 1</div>
-            <div class="solidline"></div>
-            <div class="option">Option 2</div>
-            <div class="category">Classes</div>
-            <div class="option">Option 1</div>
-            <div class="solidline"></div>
-            <div class="option">Option 2</div>
-            <div class="category">Levels</div>
-            <div class="option">Option 1</div>
-            <div class="solidline"></div>
-            <div class="option">Option 2</div>
-        </div>
+        <nav class = "sidebar-typography" id="sidebar">
+            <ul class = list-container>
+                <li class="sublist">
+                    <span class = category>Mentor</span>
+                    <ul>
+                        <li class="option">
+                            <a href="admin-index/show-mentors.html" target="iframe-content">
+                                <span>Show mentors</span>
+                            </a>
+                        </li>
+                        <li class="option">
+                            <a href="create-mentors.html" target="iframe-content">
+                                <span>Create mentor</span>
+                            </a>
+                        </li>
+                        <li class="option">
+                            <a href="edit-mentor-data.html" target="iframe-content">
+                                <span>Edit mentor data</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sublist">
+                    <span class = category>Class</span>
+                    <ul>
+                        <li class="option">
+                            <a href="show-classes.html" target="iframe-content">
+                                <span>Show classes</span>
+                            </a>
+                        </li>
+                        <li class="option">
+                            <a href="create-class.html" target="iframe-content">
+                                <span>Create Class</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="Levels">
+                    <span class = Levels></span>
+                    <ul>
+                        <li class="option">
+                            <a href="show-levels.html" target="iframe-content">
+                                <span>Show levels</span>
+                            </a>
+                        </li>
+                        <li class="option">
+                            <a href="create-level.html" target="iframe-content">
+                                <span>Create level</span>
+                            </a>
+                        </li>
+                        <li class="option">
+                            <a href="edit-level.html" target="iframe-content">
+                                <span>Edit level</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
 
-        <div id="content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at sodales ex. Phasellus tempus varius tincidunt. Nam laoreet risus eu diam placerat, nec aliquet turpis faucibus. Praesent massa erat, porttitor vitae porta eget, pharetra et enim. Praesent viverra euismod elit a auctor. Nulla vehicula volutpat risus in condimentum. Cras sed sem gravida, bibendum nisl eget, cursus diam. Aenean non volutpat turpis. Nulla non pharetra enim. Praesent dui eros, viverra facilisis lectus nec, ultricies pretium erat. Proin velit nunc, pharetra sit amet magna non, dictum facilisis purus. Curabitur libero elit, lacinia vel efficitur vel, rhoncus eu diam.
-            <br/> <br/>
-            In sed odio mattis, mattis lacus a, ultricies velit. In sed augue tincidunt, gravida ex at, ultricies velit. In bibendum, lectus et scelerisque fringilla, ex erat congue justo, sodales consectetur dui ipsum at nunc. Vivamus sodales maximus ante in pellentesque. Nunc sollicitudin eget enim eget sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam efficitur eu lectus in semper. Sed aliquam blandit rutrum. Duis at rhoncus odio. Morbi bibendum magna eros, ut porttitor est feugiat ac. Aliquam non lacus libero. Ut rutrum, enim semper vehicula accumsan, tellus ipsum euismod augue, non rhoncus leo justo sit amet diam. Donec ac lacus in lorem auctor accumsan quis vitae metus.
-            <br/> <br/>
-            Aliquam commodo malesuada efficitur. Nulla sit amet urna commodo, dignissim eros id, hendrerit augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non libero ut turpis malesuada cursus quis vitae mi. Etiam blandit, velit quis consectetur auctor, arcu elit interdum lectus, et sagittis dui metus eu tortor. Duis sollicitudin venenatis varius. Fusce nec orci neque. In hac habitasse platea dictumst. Praesent tincidunt, lacus quis convallis convallis, sapien lacus aliquet metus, id fermentum sem leo vitae massa. Donec quis sem quis nulla sollicitudin convallis vel sed urna. Nulla mollis aliquam porttitor. Morbi commodo mattis sem ut sodales. Sed nec tincidunt eros. Donec mollis mi et purus laoreet congue. Quisque id lectus sed erat placerat sodales eu at mauris. In hac habitasse platea dictumst.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at sodales ex. Phasellus tempus varius tincidunt. Nam laoreet risus eu diam placerat, nec aliquet turpis faucibus. Praesent massa erat, porttitor vitae porta eget, pharetra et enim. Praesent viverra euismod elit a auctor. Nulla vehicula volutpat risus in condimentum. Cras sed sem gravida, bibendum nisl eget, cursus diam. Aenean non volutpat turpis. Nulla non pharetra enim. Praesent dui eros, viverra facilisis lectus nec, ultricies pretium erat. Proin velit nunc, pharetra sit amet magna non, dictum facilisis purus. Curabitur libero elit, lacinia vel efficitur vel, rhoncus eu diam.
-            <br/> <br/>
-            In sed odio mattis, mattis lacus a, ultricies velit. In sed augue tincidunt, gravida ex at, ultricies velit. In bibendum, lectus et scelerisque fringilla, ex erat congue justo, sodales consectetur dui ipsum at nunc. Vivamus sodales maximus ante in pellentesque. Nunc sollicitudin eget enim eget sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam efficitur eu lectus in semper. Sed aliquam blandit rutrum. Duis at rhoncus odio. Morbi bibendum magna eros, ut porttitor est feugiat ac. Aliquam non lacus libero. Ut rutrum, enim semper vehicula accumsan, tellus ipsum euismod augue, non rhoncus leo justo sit amet diam. Donec ac lacus in lorem auctor accumsan quis vitae metus.
-            <br/> <br/>
-            Aliquam commodo malesuada efficitur. Nulla sit amet urna commodo, dignissim eros id, hendrerit augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non libero ut turpis malesuada cursus quis vitae mi. Etiam blandit, velit quis consectetur auctor, arcu elit interdum lectus, et sagittis dui metus eu tortor. Duis sollicitudin venenatis varius. Fusce nec orci neque. In hac habitasse platea dictumst. Praesent tincidunt, lacus quis convallis convallis, sapien lacus aliquet metus, id fermentum sem leo vitae massa. Donec quis sem quis nulla sollicitudin convallis vel sed urna. Nulla mollis aliquam porttitor. Morbi commodo mattis sem ut sodales. Sed nec tincidunt eros. Donec mollis mi et purus laoreet congue. Quisque id lectus sed erat placerat sodales eu at mauris. In hac habitasse platea dictumst.
+        <div class = "content-box">
+            <iframe src="home.html" name="iframe-content" width="100%" height="100%"></iframe>
         </div>
     </div>
 
-
-
-    <div id="footer-container">
+    <div class="container bar" id="footer-container">
 
         <footer>
             Code Cool Masters &copy; All rights reserved!

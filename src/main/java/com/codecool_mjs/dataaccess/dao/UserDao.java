@@ -4,82 +4,73 @@ import com.codecool_mjs.model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public abstract class UserDao<T extends User> extends Dao <T> {
+public abstract class UserDao<T extends User> extends Dao<T> {
 
-    @Override
-    Integer executeDeletion(T t) throws SQLException {
-        Connection conn = getConnection();
-
-        PreparedStatement statement = conn.prepareStatement(getDeletionStatement());
-        statement.setInt(1, t.getId());
-
-
-        Integer rowAffected = statement.executeUpdate();
-        return rowAffected;
+    public UserDao(Connection connection) {
+        super(connection);
     }
 
-    Integer executeInsertation(T t) throws SQLException {
-        Connection connection = getConnection();
-
-        PreparedStatement statement = connection.prepareStatement(getInsertationStatement());
-        statement.setString(1, t.getName());
-        statement.setString(2, t.getSurname());
-        statement.setString(3, t.getEmail());
-        statement.setString(4, t.getPassword());
-        statement.setString(5, getProfession());
-
-        Integer rowAffected = statement.executeUpdate();
-        return rowAffected;
-    }
-
-    protected Integer executeUpdateStatements(T t) throws SQLException {
-        Connection connection = getConnection();
-
-        PreparedStatement statement = connection.
-                prepareStatement(getUpdateStatement());
-
-        statement.setString(1, t.getName());
-        statement.setString(2, t.getSurname());
-        statement.setString(3, t.getEmail());
-        statement.setString(4, t.getPassword());
-        statement.setInt(5, t.getId());
-
-        Integer rowAffected = statement.executeUpdate();
-        return rowAffected;
-    }
+    public UserDao(){};
 
     @Override
     String getQueryForGetAll() {
-
-        String query = String.format("SELECT * FROM users WHERE profession = '%s'", getProfession());
-
-        return query;
-    }
-    String getQueryForSearchBy(String category, String arg) {
-
-        String query = String.format("SELECT * FROM artifacts WHERE %s LIKE '%s' AND profession = '%s'", category, arg, getProfession());
-
-        return query;
+        return String.format("SELECT * FROM users WHERE profession = '%s';", getPofession());
     }
 
-     String getInsertationStatement() {
-        return "INSERT INTO users (" +
-                "name, surname, email, password, profession)" +
-                "VALUES (?, ?, ?, ?, ?)";
+    @Override
+    String getQueryForGetById(){
+        return String.format("Select * FROM users WHERE profession = '%s' AND id = %d;", getPofession());
     }
 
-    private String getDeletionStatement() {
-        return "DELETE FROM users WHERE id = ?;";
+    @Override
+    String getUpdateQuery() {
+        return "UPDATE users" +
+                "SET name = ?," +
+                "surname = ?," +
+                "email = ?," +
+                "password = ?" +
+                "WHERE id = ?;";
     }
 
-    private String getUpdateStatement() {
-        return "UPDATE users " +
-                "set name = ?, surname = ?, email = ?, password = ?" +
-                "WHERE id = ?";
+    @Override
+    void setUpdateStatement(PreparedStatement preparedStatement, T t) throws SQLException{
+        preparedStatement.setString(1, t.getName());
+        preparedStatement.setString(2, t.getSurname());
+        preparedStatement.setString(3, t.getEmail());
+        preparedStatement.setString(4, t.getPassword());
+        preparedStatement.setInt(5, t.getId());
     }
 
-    abstract String getProfession();
+    @Override
+    String getDeleteQuery() {
+        return "DELETE from users where id=?;";
+    }
 
+    @Override
+    void setDeleteStatement(PreparedStatement preparedStatement, T t) throws SQLException{
+        preparedStatement.setInt(1, t.getId());
+
+    }
+
+    @Override
+    String getInsertQuery(){
+        return "INSERT INTO users (name, surname, email, password, profession)" +
+                "VALUES(?, ?, ?, ?, 'codecooler');";
+    }
+
+    @Override
+    void setInsertStatement(PreparedStatement preparedStatement, T t) throws SQLException{
+        preparedStatement.setString(1, t.getName());
+        preparedStatement.setString(2, t.getSurname());
+        preparedStatement.setString(3, t.getEmail());
+        preparedStatement.setString(4, t.getPassword());
+    }
+
+    abstract String getPofession();
+
+    @Override
+    abstract T createObject(ResultSet results) throws SQLException;
 }
