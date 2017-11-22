@@ -5,6 +5,7 @@ import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.dataaccess.dao.GroupDao;
 import com.codecool_mjs.dataaccess.dao.IDao;
 import com.codecool_mjs.model.Group;
+import com.codecool_mjs.model.Mentor;
 
 import java.util.List;
 import java.util.Map;
@@ -30,10 +31,16 @@ public class GroupController {
         return dao.getAll();
     }
 
-    //map z danymi, lista z id mentorów przypisanych do klasy
-    public void addGroup(Map<String, String> groupData, List<String> mentorsId) throws DaoException {
+    public void addGroup(Map<String, String> groupData, List<Integer> mentorsId) throws DaoException {
         String name = groupData.get("name");
         Group group = new Group(name);
+
+        for (Integer id : mentorsId) {
+            Mentor mentor = MentorController.getInstance().getMentorById(id);
+            group.addToMentors(mentor);
+        }
+
         this.dao.insert(group);
+        //add to membership dao???
     }
 }
