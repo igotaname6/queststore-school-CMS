@@ -11,6 +11,8 @@ public class Group {
 
     public Group(String name) {
         this.name = name;
+        this.mentors = new ArrayList<>();
+
     }
 
     public Group() {
@@ -24,6 +26,10 @@ public class Group {
         this.id = id;
         this.name = name;
         this.mentors = new ArrayList<>();
+    }
+
+    public List<Mentor> getMentors() {
+        return mentors;
     }
 
     public Integer getId() {
