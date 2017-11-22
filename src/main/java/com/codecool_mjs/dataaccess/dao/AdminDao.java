@@ -13,7 +13,7 @@ public class AdminDao extends UserDao<Admin> {
     }
 
     @Override
-    String getPofession() {
+    String getProfession() {
         return "admin";
     }
 
