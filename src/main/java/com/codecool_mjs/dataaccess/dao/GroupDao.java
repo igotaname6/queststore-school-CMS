@@ -10,10 +10,6 @@ import java.sql.SQLException;
 
 public class GroupDao extends Dao<Group> {
 
-    public GroupDao(Connection connection) {
-        super(connection);
-    }
-
     public GroupDao() {}
 
     @Override
