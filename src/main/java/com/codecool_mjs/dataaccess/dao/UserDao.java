@@ -58,7 +58,7 @@ public abstract class UserDao<T extends User> extends Dao<T> {
     @Override
     String getInsertQuery(){
         return "INSERT INTO users (name, surname, email, password, profession)" +
-                "VALUES(?, ?, ?, ?, 'codecooler');";
+                "VALUES(?, ?, ?, ?, ?';";
     }
 
     @Override
@@ -67,6 +67,7 @@ public abstract class UserDao<T extends User> extends Dao<T> {
         preparedStatement.setString(2, t.getSurname());
         preparedStatement.setString(3, t.getEmail());
         preparedStatement.setString(4, t.getPassword());
+        preparedStatement.setString(5, getPofession());
     }
 
     abstract String getPofession();
