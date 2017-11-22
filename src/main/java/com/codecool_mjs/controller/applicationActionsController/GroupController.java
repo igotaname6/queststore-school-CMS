@@ -6,6 +6,8 @@ import com.codecool_mjs.dataaccess.dao.GroupDao;
 import com.codecool_mjs.dataaccess.dao.IDao;
 import com.codecool_mjs.model.Group;
 
+import java.util.List;
+
 public class GroupController {
 
     private IDao<Group> dao;
@@ -21,5 +23,9 @@ public class GroupController {
         } catch (DaoException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Group> getAllGroups() throws DaoException {
+        return dao.getAll();
     }
 }
