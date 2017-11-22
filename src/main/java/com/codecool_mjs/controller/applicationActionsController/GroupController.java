@@ -7,6 +7,7 @@ import com.codecool_mjs.dataaccess.dao.IDao;
 import com.codecool_mjs.model.Group;
 
 import java.util.List;
+import java.util.Map;
 
 public class GroupController {
 
@@ -27,5 +28,11 @@ public class GroupController {
 
     public List<Group> getAllGroups() throws DaoException {
         return dao.getAll();
+    }
+
+    public void addGroup(Map<String, String> groupData) throws DaoException {
+        String name = groupData.get("name");
+        Group group = new Group(name);
+        this.dao.insert(group);
     }
 }
