@@ -31,7 +31,7 @@ public class GroupController {
     }
 
     //map z danymi, lista z id mentorów przypisanych do klasy
-    public void addGroup(Map<String, String> groupData) throws DaoException {
+    public void addGroup(Map<String, String> groupData, List<String> mentorsId) throws DaoException {
         String name = groupData.get("name");
         Group group = new Group(name);
         this.dao.insert(group);

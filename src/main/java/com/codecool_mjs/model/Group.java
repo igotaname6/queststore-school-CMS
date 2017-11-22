@@ -32,6 +32,10 @@ public class Group {
         return mentors;
     }
 
+    public void addToMentors(Mentor mentor) {
+        this.mentors.add(mentor);
+    }
+
     public Integer getId() {
         return id;
     }
