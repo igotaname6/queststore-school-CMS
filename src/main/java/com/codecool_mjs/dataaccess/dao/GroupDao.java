@@ -14,7 +14,9 @@ public class GroupDao extends Dao<Group> {
 
     @Override
     Group createObject(ResultSet results) throws SQLException {
-        return null;
+        Integer id = results.getInt("id");
+        String name = results.getString("name");
+        return new Group(id, name);
     }
 
     @Override
