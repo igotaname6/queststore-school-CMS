@@ -13,6 +13,7 @@ import java.util.UUID;
 public class MentorController{
 
     private IDao<Mentor> dao;
+    private static MentorController instance = null;
 
     public MentorController(){
         setDao();
@@ -25,6 +26,13 @@ public class MentorController{
         } catch (DaoException e) {
             e.printStackTrace();
         }
+    }
+
+    public static MentorController getInstance() {
+        if(instance==null){
+            instance = new MentorController();
+        }
+        return instance;
     }
 
     public List<Mentor> getAllMentors() throws DaoException {
@@ -51,5 +59,10 @@ public class MentorController{
         String password = mentorData.get("password");
         Mentor mentor = new Mentor(id, name, surname, email, password);
         this.dao.update(mentor); 
+    }
+
+    public Mentor getMentorById(Integer id) throws DaoException {
+        Mentor mentor = this.dao.getById(id);
+        return mentor;
     }
 }
