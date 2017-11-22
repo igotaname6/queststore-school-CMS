@@ -50,12 +50,12 @@ public class GroupDao extends Dao<Group> {
     }
 
     @Override
-    String getInsertQuery() {
-        return null;
+    String getInsertQuery(){
+        return "INSERT INTO users (name) VALUES(?);";
     }
 
     @Override
     void setInsertStatement(PreparedStatement preparedStatement, Group group) throws SQLException {
-
+        preparedStatement.setString(1, group.getName());
     }
 }
