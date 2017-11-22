@@ -1,11 +1,13 @@
 package com.codecool_mjs.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Group {
 
     private Integer id;
     private String name;
+    private List<Mentor> mentors;
 
     public Group(String name) {
         this.name = name;
@@ -21,6 +23,7 @@ public class Group {
 
         this.id = id;
         this.name = name;
+        this.mentors = new ArrayList<>();
     }
 
     public Integer getId() {
