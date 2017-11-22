@@ -1,4 +1,3 @@
-
 package com.codecool_mjs.dataaccess.dao;
 
 import java.sql.Connection;
