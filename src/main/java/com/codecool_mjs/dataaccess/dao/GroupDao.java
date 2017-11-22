@@ -14,6 +14,8 @@ public class GroupDao extends Dao<Group> {
         super(connection);
     }
 
+    public GroupDao() {}
+
     @Override
     Group createObject(ResultSet results) throws SQLException {
         return null;
