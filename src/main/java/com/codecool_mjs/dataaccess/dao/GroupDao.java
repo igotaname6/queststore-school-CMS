@@ -19,7 +19,7 @@ public class GroupDao extends Dao<Group> {
 
     @Override
     String getQueryForGetAll() {
-        return null;
+        return String.format("SELECT * FROM groups;");
     }
 
     @Override
