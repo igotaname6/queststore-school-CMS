@@ -7,6 +7,10 @@ public class Group {
     private Integer id;
     private String name;
 
+    public Group(String name) {
+        this.name = name;
+    }
+
     public Group() {
 
         this.id = null;
