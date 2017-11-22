@@ -17,12 +17,12 @@ public abstract class UserDao<T extends User> extends Dao<T> {
 
     @Override
     String getQueryForGetAll() {
-        return String.format("SELECT * FROM users WHERE profession = '%s';", getPofession());
+        return String.format("SELECT * FROM users WHERE profession = '%s';", getProfession());
     }
 
     @Override
     String getQueryForGetById(){
-        return String.format("Select * FROM users WHERE profession = '%s' AND id = %d;", getPofession());
+        return String.format("Select * FROM users WHERE profession = '%s' AND id = %d;", getProfession());
     }
 
     @Override
@@ -67,10 +67,10 @@ public abstract class UserDao<T extends User> extends Dao<T> {
         preparedStatement.setString(2, t.getSurname());
         preparedStatement.setString(3, t.getEmail());
         preparedStatement.setString(4, t.getPassword());
-        preparedStatement.setString(5, getPofession());
+        preparedStatement.setString(5, getProfession());
     }
 
-    abstract String getPofession();
+    abstract String getProfession();
 
     @Override
     abstract T createObject(ResultSet results) throws SQLException;
