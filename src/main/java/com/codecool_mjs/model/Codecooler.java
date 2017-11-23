@@ -21,13 +21,6 @@ public class Codecooler extends User {
         this.wallet = null;
     }
 
-    public Codecooler() {
-
-        super();
-        this.groupId = null;
-        this.wallet = null;
-    }
-
     public Wallet getWallet() {
         return wallet;
     }

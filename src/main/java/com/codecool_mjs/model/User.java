@@ -17,14 +17,13 @@ public abstract class User {
         this.password = password;
     }
 
-    public User() {
-
-        this.id = null;
-        this.name = null;
-        this.surname = null;
-        this.email = null;
-        this.password = null;
+    public User(String name, String surname, String email, String password) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
     }
+
 
     public Integer getId() {
         return id;
