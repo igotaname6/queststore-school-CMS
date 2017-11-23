@@ -47,7 +47,7 @@ public class GroupController {
         this.dao.insert(group);
     }
 
-    public Group getGroup() throws DaoException {
+    public Group getLastGroup() throws DaoException {
         Group group = this.dao.getLast();
         return group;
     }
