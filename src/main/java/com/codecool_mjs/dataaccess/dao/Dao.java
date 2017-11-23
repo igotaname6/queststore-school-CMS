@@ -15,6 +15,10 @@ abstract public class Dao<T> implements IDao<T> {
     public Dao(){
     }
 
+    public Connection getConnection() {
+        return connection;
+    }
+
     @Override
     public List<T> getAll() throws DaoException{
 
