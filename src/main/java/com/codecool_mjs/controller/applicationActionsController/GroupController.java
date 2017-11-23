@@ -12,7 +12,8 @@ import java.util.Map;
 
 public class GroupController {
 
-    private IDao<Group> dao;
+    private GroupDao dao;
+    private static GroupController instance = null;
 
     public GroupController(){
         setDao();
@@ -25,6 +26,13 @@ public class GroupController {
         } catch (DaoException e) {
             e.printStackTrace();
         }
+    }
+
+    public static GroupController getInstance() {
+        if(instance==null){
+            instance = new GroupController();
+        }
+        return instance;
     }
 
     public List<Group> getAllGroups() throws DaoException {
