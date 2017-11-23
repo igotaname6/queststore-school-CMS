@@ -102,7 +102,7 @@ abstract public class Dao<T> implements IDao<T> {
         }
     }
 
-    private List<T> get(PreparedStatement preparedStatement) throws DaoException{
+    protected List<T> get(PreparedStatement preparedStatement) throws DaoException{
         ArrayList<T> resultsList;
 
         ResultSet results;
