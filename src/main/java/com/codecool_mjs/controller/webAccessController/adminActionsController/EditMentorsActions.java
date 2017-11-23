@@ -76,7 +76,12 @@ public class EditMentorsActions implements HttpHandler{
             records = FormResolver.parseDataForm(dataForm);
             System.out.println(records);
 
-            // metoda zapisujaca do bazy
+            try {
+                mentorController.editMentor(records);
+            } catch (DaoException e) {
+                e.printStackTrace();
+            }
+
             responseBody = templateProcessor.ProcessTemplateToPage("admin/admin-confirmation");
         }
 
