@@ -6,6 +6,7 @@ import com.codecool_mjs.dataaccess.dao.IDao;
 import com.codecool_mjs.dataaccess.dao.MentorDao;
 import com.codecool_mjs.model.Mentor;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;

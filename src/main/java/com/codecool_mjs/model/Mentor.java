@@ -16,13 +16,8 @@ public class Mentor extends User {
         this.groupId = null;
     }
 
-    public Mentor() {
-
-        super();
-        this.groupId = null;
-    }
-
     public Mentor(String name, String surname, String email, String password) {
+        super(name, surname, email, password);
     }
 
     public Integer getGroupId() {
