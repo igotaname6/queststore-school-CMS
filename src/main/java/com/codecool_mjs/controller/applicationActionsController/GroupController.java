@@ -1,6 +1,7 @@
 package com.codecool_mjs.controller.applicationActionsController;
 
 import com.codecool_mjs.dataaccess.ConnectionProvider;
+import com.codecool_mjs.dataaccess.dao.Dao;
 import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.dataaccess.dao.GroupDao;
 import com.codecool_mjs.dataaccess.dao.IDao;
@@ -13,7 +14,7 @@ import java.util.Map;
 
 public class GroupController {
 
-    private IDao dao;
+    private Dao<Group> dao;
     private static GroupController instance = null;
 
     public GroupController(){
@@ -43,7 +44,11 @@ public class GroupController {
     public void addGroup(Map<String, String> groupData) throws DaoException {
         String name = groupData.get("groupName");
         Group group = new Group(name);
-
         this.dao.insert(group);
+    }
+
+    public Group getGroup() throws DaoException {
+        Group group = this.dao.getLast();
+        return group;
     }
 }
