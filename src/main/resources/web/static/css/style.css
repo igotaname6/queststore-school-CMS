@@ -203,6 +203,16 @@ Sidebar, content
     flex-direction: column;
     align-items: center;
     width: 100%;
+
+}
+
+.confirmation-box
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 .status-bar
