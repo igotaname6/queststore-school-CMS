@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title> Codecool Quest Store </title>
+    <meta name="description" content="Codecool Quest Storeo"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css"/>
+</head>
+<body>
+<header th:replace="fragments/header :: header">
+</header>
+<div id="sidebar-content-container">
+    <nav th:replace="fragments/side-bars/admin-sidebar :: admin-sidebar"></nav>
+    <div th:replace="fragments/admin/add-confirmation :: add-confirmation"></div>
+</div>
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>
