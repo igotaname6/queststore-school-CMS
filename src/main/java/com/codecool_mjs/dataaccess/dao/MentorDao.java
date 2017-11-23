@@ -18,7 +18,7 @@ public class MentorDao extends UserDao<Mentor> {
     }
 
     @Override
-    String getPofession() {
+    String getProfession() {
         return "mentor";
     }
 

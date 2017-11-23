@@ -22,6 +22,9 @@ public class Mentor extends User {
         this.groupId = null;
     }
 
+    public Mentor(String name, String surname, String email, String password) {
+    }
+
     public Integer getGroupId() {
         return groupId;
     }
