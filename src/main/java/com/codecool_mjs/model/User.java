@@ -69,4 +69,8 @@ public abstract class User {
         return name + " " + surname;
     }
 
+    public String getProfession(){
+        return this.getClass().getSimpleName();
+    }
+
 }
