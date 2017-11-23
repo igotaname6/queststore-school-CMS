@@ -15,12 +15,6 @@ public class Group {
 
     }
 
-    public Group() {
-
-        this.id = null;
-        this.name = null;
-    }
-
     public Group(Integer id, String name) {
 
         this.id = id;
