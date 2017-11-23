@@ -17,6 +17,7 @@ public abstract class UserDao<T extends User> extends Dao<T> {
 
     @Override
     String getQueryForGetAll() {
+
         return String.format("SELECT * FROM users WHERE profession = '%s';", getProfession());
     }
 
@@ -24,7 +25,6 @@ public abstract class UserDao<T extends User> extends Dao<T> {
     String getQueryForGetById(){
 
         return String.format("Select * FROM users WHERE profession = '%s' AND id = ?", getProfession());
-
     }
 
     @Override
@@ -60,7 +60,6 @@ public abstract class UserDao<T extends User> extends Dao<T> {
     @Override
     String getInsertQuery(){
         return "INSERT INTO users (name, surname, email, password, profession)" +
-
                 "VALUES(?, ?, ?, ?, ?);";
 
     }
