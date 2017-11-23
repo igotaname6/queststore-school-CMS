@@ -70,5 +70,11 @@ public class GroupDao extends Dao<Group> {
         }
     }
 
+    private String getQueryForGetLast() {
+        return "SELECT * FROM groups\n" +
+                "WHERE id = (\n" +
+                "SELECT MAX(id) FROM groups);";
+    }
+
 
 }
