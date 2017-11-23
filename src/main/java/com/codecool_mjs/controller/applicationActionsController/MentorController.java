@@ -29,4 +29,8 @@ public class MentorController{
     public List<Mentor> getAllMentors() throws DaoException {
         return dao.getAll();
     }
+
+    public Mentor getMentorById(int id) throws DaoException {
+        return dao.getById(id);
+    }
 }

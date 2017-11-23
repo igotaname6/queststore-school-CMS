@@ -13,7 +13,7 @@ public class CodecoolerDao extends UserDao<Codecooler>{
     }
 
     @Override
-    String getPofession() {
+    String getProfession() {
         return "codecooler";
     }
 
