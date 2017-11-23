@@ -51,7 +51,7 @@ public class GroupDao extends Dao<Group> {
 
     @Override
     String getInsertQuery(){
-        return "INSERT INTO users (name) VALUES(?);";
+        return "INSERT INTO groups (name) VALUES(?);";
     }
 
     @Override
