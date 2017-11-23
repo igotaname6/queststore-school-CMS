@@ -9,7 +9,6 @@ public class UriResolver {
         String id = null;
 
         String uri = httpExchange.getRequestURI().toString();
-
         StringBuilder sb = new StringBuilder(uri);
         sb.deleteCharAt(0);
 
