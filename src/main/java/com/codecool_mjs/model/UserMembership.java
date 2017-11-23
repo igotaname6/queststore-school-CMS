@@ -16,7 +16,6 @@ public class UserMembership {
     }
 
     public UserMembership(List<Mentor> mentors, List<Codecooler> codecoolers) {
-
         this.mentors = mentors;
         this.codecoolers = codecoolers;
     }
