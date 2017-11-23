@@ -43,13 +43,12 @@ public class UserMembershipDao extends Dao<UserMembership>{
 
     @Override
     String getInsertQuery() {
-        return "INSERT INTO user_membership (user_id, group_id) VALUES(?, ?);"
+        return "INSERT INTO user_membership (user_id, group_id) VALUES(?, ?);";
     }
 
     @Override
     void setInsertStatement(PreparedStatement preparedStatement, UserMembership userMembership) throws SQLException {
         preparedStatement.setInt(1, userMembership.getUser().getId());
         preparedStatement.setInt(1, userMembership.getGroup().getId());
-
     }
 }
