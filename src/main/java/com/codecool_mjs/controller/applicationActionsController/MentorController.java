@@ -53,6 +53,9 @@ public class MentorController{
 
     //mapa zawierająca wszystkie dane mentora łącznie z jego id już po edycji
     public void editMentor(Map<String, String> mentorData) throws DaoException {
+
+        System.out.println(mentorData);
+
         Integer id = Integer.parseInt(mentorData.get("id"));
         String name = mentorData.get("name");
         String surname = mentorData.get("surname");

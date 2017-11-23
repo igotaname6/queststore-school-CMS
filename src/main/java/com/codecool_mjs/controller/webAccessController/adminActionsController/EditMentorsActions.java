@@ -74,6 +74,7 @@ public class EditMentorsActions implements HttpHandler{
             String dataForm = br.readLine();
 
             records = FormResolver.parseDataForm(dataForm);
+            records.put("id", idStr);
             System.out.println(records);
 
             try {
