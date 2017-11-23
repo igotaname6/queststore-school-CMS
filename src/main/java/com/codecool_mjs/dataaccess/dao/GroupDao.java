@@ -59,7 +59,7 @@ public class GroupDao extends Dao<Group> {
         preparedStatement.setString(1, group.getName());
     }
 
-    public Group getLastGroup() throws DaoException{
+    Group getLastGroup() throws DaoException{
 
         String query = getQueryForGetLast();
         try {
@@ -69,4 +69,6 @@ public class GroupDao extends Dao<Group> {
             throw new DaoException("GetById exception", e);
         }
     }
+
+
 }
