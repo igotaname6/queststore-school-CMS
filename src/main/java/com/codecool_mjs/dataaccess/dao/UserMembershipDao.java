@@ -51,4 +51,6 @@ public class UserMembershipDao extends Dao<UserMembership>{
         preparedStatement.setInt(1, userMembership.getUser().getId());
         preparedStatement.setInt(1, userMembership.getGroup().getId());
     }
+    @Override
+    String getQueryForGetLast() {return null;}
 }

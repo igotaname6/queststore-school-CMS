@@ -48,6 +48,8 @@ public class WalletDao extends Dao<Wallet>{
     void setDeleteStatement(PreparedStatement preparedStatement, Wallet wallet) throws SQLException {
 
     }
+    @Override
+    String getQueryForGetLast() {return null;}
 
     @Override
     String getInsertQuery() {

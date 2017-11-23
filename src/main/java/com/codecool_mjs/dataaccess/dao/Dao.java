@@ -125,6 +125,17 @@ abstract public class Dao<T> implements IDao<T> {
         return resultsList;
     }
 
+    public T getLast() throws DaoException{
+
+        String query = getQueryForGetLast();
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(query);
+            return get(statement).get(0);
+        } catch (SQLException e) {
+            throw new DaoException("GetById exception", e);
+        }
+    }
+
     public void setConnection(Connection connection){
         this.connection = connection;
     }
@@ -138,4 +149,5 @@ abstract public class Dao<T> implements IDao<T> {
     abstract void setDeleteStatement(PreparedStatement preparedStatement, T t) throws SQLException;
     abstract String getInsertQuery();
     abstract void setInsertStatement(PreparedStatement preparedStatement, T t) throws SQLException;
+    abstract String getQueryForGetLast();
 }

@@ -26,6 +26,8 @@ public abstract class UserDao<T extends User> extends Dao<T> {
 
         return String.format("Select * FROM users WHERE profession = '%s' AND id = ?", getProfession());
     }
+    @Override
+    String getQueryForGetLast() {return null;}
 
     @Override
     String getUpdateQuery() {
