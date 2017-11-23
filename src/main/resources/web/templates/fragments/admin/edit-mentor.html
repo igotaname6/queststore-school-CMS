@@ -9,22 +9,22 @@
             <form method="POST">
 
                 <br/></br>Fist name:
-                </br> <input type="text" name="first_name" th:value="${mentor.name}">
+                </br> <input type="text" name="name" th:value="${mentor.name}"/>
 
                 </br>Last name:
-                </br> <input type="text" name="last_name" th:value="${mentor.surname}">
+                </br> <input type="text" name="surname" th:value="${mentor.surname}"/>
 
                 </br>Email:
-                </br> <input type="email" name="email" th:value="${mentor.email}">
+                </br> <input type="email" name="email" th:value="${mentor.email}"/>
 
                 </br>Password:
-                </br><input type="password" name="password" th:value="${mentor.password}">
+                </br><input type="password" name="password" th:value="${mentor.password}"/>
 
                 </br>Confirm Password:
-                </br><input type="password" th:value="${mentor.password}">
+                </br><input type="password" th:value="${mentor.password}"/>
 
                 <div class="button">
-                    <button  type="button">Submit</button>
+                    <input type="submit" value="Submit"/>
                 </div>
             </form>
         </div>
