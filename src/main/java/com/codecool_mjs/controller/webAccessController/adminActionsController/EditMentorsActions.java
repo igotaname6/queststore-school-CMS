@@ -67,7 +67,7 @@ public class EditMentorsActions implements HttpHandler{
 
         if(method.equals("POST")) {
 
-            Map<String, String> records = new HashMap<>();
+            Map<String, String> records;
 
             InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "UTF-8");
             BufferedReader br = new BufferedReader(isr);
@@ -75,7 +75,6 @@ public class EditMentorsActions implements HttpHandler{
 
             records = FormResolver.parseDataForm(dataForm);
             records.put("id", idStr);
-            System.out.println(records);
 
             try {
                 mentorController.editMentor(records);
@@ -83,7 +82,7 @@ public class EditMentorsActions implements HttpHandler{
                 e.printStackTrace();
             }
 
-            responseBody = templateProcessor.ProcessTemplateToPage("admin/admin-confirmation");
+            responseBody = templateProcessor.ProcessTemplateToPage("admin/admin-edit-confirmation");
         }
 
         httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);
