@@ -5,29 +5,27 @@
         <div class="status-bar">
             <p id="test">Mentor -> Edit mentor data</p>
         </div>
-        <div id="edit-mentor-data">
-            <form method="POST">
+        <form method="POST">
 
-                <br/></br>Fist name:
-                </br> <input type="text" name="name" th:value="${mentor.name}"/>
+            <br/></br>Fist name:
+            </br> <input type="text" name="name" th:value="${mentor.name}"/>
 
-                </br>Last name:
-                </br> <input type="text" name="surname" th:value="${mentor.surname}"/>
+            </br>Last name:
+            </br> <input type="text" name="surname" th:value="${mentor.surname}"/>
 
-                </br>Email:
-                </br> <input type="email" name="email" th:value="${mentor.email}"/>
+            </br>Email:
+            </br> <input type="email" name="email" th:value="${mentor.email}"/>
 
-                </br>Password:
-                </br><input type="password" name="password" th:value="${mentor.password}"/>
+            </br>Password:
+            </br><input type="password" name="password" th:value="${mentor.password}"/>
 
-                </br>Confirm Password:
-                </br><input type="password" th:value="${mentor.password}"/>
+            </br>Confirm Password:
+            </br><input type="password" th:value="${mentor.password}"/>
 
-                <div class="button">
-                    <input type="submit" value="Submit"/>
-                </div>
-            </form>
-        </div>
+            <div class="button">
+                <input type="submit" value="Submit"/>
+            </div>
+        </form>
     </div>
 </body>
 </html>
