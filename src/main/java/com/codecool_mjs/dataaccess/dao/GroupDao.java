@@ -58,4 +58,15 @@ public class GroupDao extends Dao<Group> {
     void setInsertStatement(PreparedStatement preparedStatement, Group group) throws SQLException {
         preparedStatement.setString(1, group.getName());
     }
+
+    public Group getLastGroup() throws DaoException{
+
+        String query = getQueryForGetLast();
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(query);
+            return get(statement).get(0);
+        } catch (SQLException e) {
+            throw new DaoException("GetById exception", e);
+        }
+    }
 }
