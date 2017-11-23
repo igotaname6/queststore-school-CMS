@@ -7,14 +7,16 @@ import com.codecool_mjs.dataaccess.dao.MentorDao;
 import com.codecool_mjs.model.Mentor;
 
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class MentorController{
 
     private IDao<Mentor> dao;
+    private static MentorController instance = null;
 
     public MentorController(){
         setDao();
-
     }
 
     private void setDao(){
@@ -26,11 +28,41 @@ public class MentorController{
         }
     }
 
+    public static MentorController getInstance() {
+        if(instance==null){
+            instance = new MentorController();
+        }
+        return instance;
+    }
+
     public List<Mentor> getAllMentors() throws DaoException {
         return dao.getAll();
     }
 
-    public Mentor getMentorById(int id) throws DaoException {
-        return dao.getById(id);
+    //mentorData - mapa ze wszystkimi danymi potrzebnymi do stworzenia mentora
+    public void addMentor(Map<String, String> mentorData) throws DaoException {
+        String name = mentorData.get("name");
+        String surname = mentorData.get("surname");
+        String email = mentorData.get("email");
+        //how to generate password?
+        String password = UUID.randomUUID().toString();
+        Mentor mentor = new Mentor(name, surname, email, password);
+        this.dao.insert(mentor);
+    }
+
+    //mapa zawierająca wszystkie dane mentora łącznie z jego id już po edycji
+    public void editMentor(Map<String, String> mentorData) throws DaoException {
+        Integer id = Integer.parseInt(mentorData.get("id"));
+        String name = mentorData.get("name");
+        String surname = mentorData.get("surname");
+        String email = mentorData.get("email");
+        String password = mentorData.get("password");
+        Mentor mentor = new Mentor(id, name, surname, email, password);
+        this.dao.update(mentor); 
+    }
+
+    public Mentor getMentorById(Integer id) throws DaoException {
+        Mentor mentor = this.dao.getById(id);
+        return mentor;
     }
 }
