@@ -4,19 +4,13 @@ import java.util.List;
 
 public class UserMembership {
 
-    private List<Mentor> mentors;
-    private List<Codecooler> codecoolers;
+    private Mentor mentor;
+    private Codecooler codecooler;
+    private Group group;
 
-    public List<Mentor> getMentors() {
-        return mentors;
-    }
-
-    public List<Codecooler> getCodecoolers() {
-        return codecoolers;
-    }
-
-    public UserMembership(List<Mentor> mentors, List<Codecooler> codecoolers) {
-        this.mentors = mentors;
-        this.codecoolers = codecoolers;
+    public UserMembership(Mentor mentor, Codecooler codecooler, Group group) {
+        this.mentor = mentor;
+        this.codecooler = codecooler;
+        this.group = group;
     }
 }
