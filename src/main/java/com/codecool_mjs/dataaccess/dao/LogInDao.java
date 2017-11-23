@@ -60,8 +60,7 @@ public class LogInDao {
     }
 
     public boolean addSession(String uuid, int userId) throws DaoException {
-        String query = "INSERT INTO session (session_id, user_id)" +
-                "VALUES(? , ?)";
+        String query = "INSERT INTO sessions (session_id, user_id) VALUES(? , ?)";
         try {
             Class.forName(DRIVER_CLASS);
             this.connection = DriverManager.getConnection(URL);
