@@ -66,18 +66,4 @@ public class MentorController{
         Mentor mentor = this.dao.getById(id);
         return mentor;
     }
-
-    public static void main(String[] args) {
-        try {
-            Map<String, String> map = new HashMap<>();
-            map.put("name", "Jarek");
-            map.put("surname", "Naja");
-            map.put("email", "jadek.naja@gmail.com");
-            map.put("password", "dupa");
-
-            MentorController.getInstance().addMentor(map);
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-    }
 }
