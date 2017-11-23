@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class GroupController {
 
-    private GroupDao dao;
+    private IDao dao;
     private static GroupController instance = null;
 
     public GroupController(){
