@@ -119,14 +119,9 @@ h3
     font-size: 125%;
 }
 
-
-thead
-{
-    background-color: #BCB1B3;
-}
-
 th
 {
+    background-color: #BCB1B3;
     padding: 5px;
     height: 30px;
     vertical-align: middle;
@@ -138,9 +133,17 @@ td
     vertical-align: middle;
 }
 
-table, th, td
+th, td
 {
     border: 1px solid black;
+}
+
+
+table th#edit-button
+{
+    background-color: transparent;
+    border: none;
+    border-top: none;
 }
 
 /*
@@ -200,6 +203,16 @@ Sidebar, content
     flex-direction: column;
     align-items: center;
     width: 100%;
+
+}
+
+.confirmation-box
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 .status-bar
@@ -252,6 +265,11 @@ Buttons
 {
     background-color: #cdb7b0;
     cursor: pointer;
+}
+
+.edit-button
+{
+    border: none;
 }
 
 /*

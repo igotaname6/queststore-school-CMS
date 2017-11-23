@@ -10,18 +10,18 @@ import java.sql.SQLException;
 
 public class GroupDao extends Dao<Group> {
 
-    public GroupDao(Connection connection) {
-        super(connection);
-    }
+    public GroupDao() {}
 
     @Override
     Group createObject(ResultSet results) throws SQLException {
-        return null;
+        Integer id = results.getInt("id");
+        String name = results.getString("name");
+        return new Group(id, name);
     }
 
     @Override
     String getQueryForGetAll() {
-        return null;
+        return String.format("SELECT * FROM groups;");
     }
 
     @Override
@@ -50,12 +50,12 @@ public class GroupDao extends Dao<Group> {
     }
 
     @Override
-    String getInsertQuery() {
-        return null;
+    String getInsertQuery(){
+        return "INSERT INTO users (name) VALUES(?);";
     }
 
     @Override
     void setInsertStatement(PreparedStatement preparedStatement, Group group) throws SQLException {
-
+        preparedStatement.setString(1, group.getName());
     }
 }
