@@ -43,7 +43,7 @@ public class UserMembershipDao extends Dao<UserMembership>{
 
     @Override
     String getInsertQuery() {
-        return null;
+        return "INSERT INTO user_membership (user_id, group_id) VALUES(?, ?);"
     }
 
     @Override
