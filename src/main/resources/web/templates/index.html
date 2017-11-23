@@ -17,14 +17,18 @@
     </header>
 </section>
 <div id="login-content">
-    <form>
-        E-mail:<br>
-        <input type="text" name="email" placeholder="jan.kowalski@gmail.com"><br>
-        Password:<br>
-        <input type="password" name="password"><br><br>
-        <a href="/admin-home"><button type="button">Admin</button></a>
-        <a href="admin-index.html"><button type="button">Mentor</button></a>
-        <a href="admin-index.html"><button type="button">Student</button></a>
+    <form method="post">
+        <fieldset>
+            <label>
+            E-mail:<br>
+            <input type="text" name="email" placeholder="jan.kowalski@gmail.com" required><br>
+            </label>
+            <label>
+            Password:<br>
+            <input type="password" name="password" required>
+            </label>
+            <input class="center" type="submit" name="submit" value="log in">
+        </fieldset>
     </form>
 </div>
 <footer th:replace="fragments/footer :: footer"></footer>

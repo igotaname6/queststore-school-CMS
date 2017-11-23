@@ -1,8 +1,6 @@
-package com.codecool_mjs.controller.webAccessController.adminActionsController;
+package com.codecool_mjs.controller.webAccessController.mentorActionController;
 
-import com.codecool_mjs.controller.applicationActionsController.MentorController;
 import com.codecool_mjs.dataaccess.dao.DaoException;
-import com.codecool_mjs.model.Admin;
 import com.codecool_mjs.model.Mentor;
 import com.codecool_mjs.view.webView.TemplatesProcessor;
 import com.sun.net.httpserver.HttpExchange;
@@ -11,20 +9,18 @@ import com.sun.net.httpserver.HttpHandler;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class ShowMentorsActions implements HttpHandler{
+public class MentorHomeController implements HttpHandler{
 
-    private TemplatesProcessor templateProcessor;
-    private Admin loggedUser;
+    private TemplatesProcessor templatesProcessorr;
+    private Mentor loggedUser;
 
-
-    public ShowMentorsActions(){
-        this.templateProcessor = new TemplatesProcessor();
+    public MentorHomeController(){
+        this.templatesProcessorr = new TemplatesProcessor();
     }
 
-    public void setLoggedUser(Admin loggedUser) {
+    public void setLoggedUser(Mentor loggedUser) {
         this.loggedUser = loggedUser;
     }
 
@@ -34,7 +30,7 @@ public class ShowMentorsActions implements HttpHandler{
         int responseCode;
 
         try {
-            responseBody = showAllMentors();
+            responseBody = showMentorHomePage();
             responseCode = 200;
         } catch (DaoException e) {
             responseBody = "No such page";
@@ -45,23 +41,21 @@ public class ShowMentorsActions implements HttpHandler{
         OutputStream os = httpExchange.getResponseBody();
         os.write(responseBody.getBytes());
         os.close();
+
     }
 
-    public String showAllMentors() throws DaoException {
+    public String showMentorHomePage() throws DaoException {
         //temporary example of logged user. To remove when sessions will be implemented
-        setLoggedUser(new Admin(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło"));
+        setLoggedUser(new Mentor(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło"));
 
         Map<String, Object> variables = new HashMap<>();
 
-        MentorController mentorController = new MentorController();
-        List<Mentor> allMentors = mentorController.getAllMentors();
-
         variables.put("user", loggedUser);
-        variables.put("mentorsList", allMentors);
 
-        templateProcessor.setVariables(variables);
+        templatesProcessorr.setVariables(variables);
 
-        String page = templateProcessor.ProcessTemplateToPage("admin/admin-show-mentors");
+        String page = templatesProcessorr.ProcessTemplateToPage("/mentor/mentor-home");
+
         return page;
     }
 }

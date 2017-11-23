@@ -19,17 +19,25 @@ abstract public class Dao<T> implements IDao<T> {
     public List<T> getAll() throws DaoException{
 
         String query = getQueryForGetAll();
-        return get(query);
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            return get(preparedStatement);
+        } catch (SQLException e) {
+           throw new DaoException("getAll exception", e);
+        }
     }
 
     @Override
     public T getById(int id) throws DaoException{
 
-        String query = String.format(getQueryForGetById(), id);
-
-        List<T> resultList = get(query);
-        //Method returns first element, becouse in this case list always has only one element.
-        return resultList.get(0);
+        String query = getQueryForGetById();
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+            return get(statement).get(0);
+        } catch (SQLException e) {
+            throw new DaoException("GetById exception", e);
+        }
     }
 
     @Override
@@ -90,15 +98,13 @@ abstract public class Dao<T> implements IDao<T> {
         }
     }
 
-    private List<T> get(String query) throws DaoException{
+    private List<T> get(PreparedStatement preparedStatement) throws DaoException{
         ArrayList<T> resultsList;
 
-        Statement statement;
         ResultSet results;
 
         try {
-            statement = this.connection.createStatement();
-            results = statement.executeQuery(query);
+            results = preparedStatement.executeQuery();
 
             resultsList = new ArrayList<>();
 
@@ -106,7 +112,7 @@ abstract public class Dao<T> implements IDao<T> {
                 T object = createObject(results);
                 resultsList.add(object);
             }
-            statement.close();
+            preparedStatement.close();
         } catch (SQLException e) {
             String message = "Exception in get method";
             throw new DaoException(message, e);

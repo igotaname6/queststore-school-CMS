@@ -31,7 +31,6 @@ public class ConnectionProvider {
     public void connectionRequest(IDao dao) throws DaoException{
         String daoName = dao.getClass().getName();
 
-        Connection con = null;
         try{
             Class.forName(DRIVER_CLASS);
             Connection connection = DriverManager.getConnection(URL);

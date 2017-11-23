@@ -22,6 +22,7 @@ public class StaticController implements HttpHandler {
 
         ClassLoader classLoader = getClass().getClassLoader();
         URL fileURL = classLoader.getResource(root + path);
+        System.out.println(root+ path);
 
         OutputStream os = httpExchange.getResponseBody();
 
