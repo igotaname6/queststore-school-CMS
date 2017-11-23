@@ -4,12 +4,15 @@ import com.codecool_mjs.controller.applicationActionsController.MentorController
 import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.model.Admin;
 import com.codecool_mjs.model.Mentor;
+import com.codecool_mjs.utilities.FormResolver;
 import com.codecool_mjs.utilities.UriResolver;
 import com.codecool_mjs.view.webView.TemplatesProcessor;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
@@ -37,12 +40,11 @@ public class EditMentorsActions implements HttpHandler{
         int responseCode = 200;
 
         String method = httpExchange.getRequestMethod();
-        Integer id = Integer.parseInt(UriResolver.getUserIdFromURI(httpExchange));
-        System.out.println(id);
+        String idStr = UriResolver.getUserIdFromURI(httpExchange);
 
         if(method.equals("GET")) {
 
-            if (id == null) {
+            if (idStr == null) {
                 try {
                     responseBody = ShowMentorsToEdit();
                 } catch (DaoException e) {
@@ -50,13 +52,32 @@ public class EditMentorsActions implements HttpHandler{
                     responseCode = 404;
                 }
             } else {
+
+                Integer id = Integer.parseInt(idStr);
+
                 try {
+
                     responseBody = EditMentor(id);
                 } catch (DaoException e) {
                     responseBody = "No such page";
                     responseCode = 404;
                 }
             }
+        }
+
+        if(method.equals("POST")) {
+
+            Map<String, String> records = new HashMap<>();
+
+            InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "UTF-8");
+            BufferedReader br = new BufferedReader(isr);
+            String dataForm = br.readLine();
+
+            records = FormResolver.parseDataForm(dataForm);
+            System.out.println(records);
+
+            // metoda zapisujaca do bazy
+            responseBody = templateProcessor.ProcessTemplateToPage("admin/admin-confirmation");
         }
 
         httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);
@@ -86,11 +107,12 @@ public class EditMentorsActions implements HttpHandler{
 
         Mentor mentor;
         Map<String, Object> variables = new HashMap<>();
+
         mentor = mentorController.getMentorById(id);
         variables.put("mentor", mentor);
 
         templateProcessor.setVariables(variables);
-        String page = templateProcessor.ProcessTemplateToPage("admin/edit-mentor");
+        String page = templateProcessor.ProcessTemplateToPage("admin/admin-edit-mentor");
         return page;
     }
 }
