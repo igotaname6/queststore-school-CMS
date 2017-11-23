@@ -51,4 +51,8 @@ public class GroupController {
         Group group = this.dao.getLast();
         return group;
     }
+
+    public static void main(String[] args) throws DaoException {
+        System.out.println(GroupController.getInstance().getLastGroup());
+    }
 }
