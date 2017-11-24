@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
-    <div th:fragment="edit-mentor" class = "content-box">
+    <div th:fragment="create-mentor" class = "content-box">
         <div class="status-bar">
             <p id="test">Mentor -> Edit mentor data</p>
         </div>
         <form method="POST">
 
             <br/></br>Fist name:
-            </br> <input type="text" name="name" th:value="${mentor.name}"/>
+            </br> <input type="text" name="name" placeholder="Jan" required/>
 
             </br>Last name:
-            </br> <input type="text" name="surname" th:value="${mentor.surname}"/>
+            </br> <input type="text" name="surname" placeholder="Nowalski" required/>
 
             </br>Email:
-            </br> <input type="email" name="email" th:value="${mentor.email}"/>
+            </br> <input type="email" name="email" placeholder="example@codecool.pl" required/>
 
             </br>Password:
-            </br><input type="password" name="password" th:value="${mentor.password}"/>
+            </br><input type="password" name="password" placeholder="******" required/>
 
             </br>Confirm Password:
-            </br><input type="password" th:value="${mentor.password}"/>
+            </br><input type="password" placeholder="******" required/>
 
             <div class="button">
                 <input type="submit" value="Submit"/>

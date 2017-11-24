@@ -1,5 +1,6 @@
 package com.codecool_mjs.severProvider;
 
+import com.codecool_mjs.controller.webAccessController.adminActionsController.AddMentorController;
 import com.codecool_mjs.controller.webAccessController.adminActionsController.AdminHomeController;
 import com.codecool_mjs.controller.webAccessController.adminActionsController.EditMentorsActions;
 import com.codecool_mjs.controller.webAccessController.adminActionsController.ShowMentorsActions;
@@ -20,6 +21,7 @@ public class ServerController {
             server.createContext("/home", new HomeController());
             server.createContext("/admin-home", new AdminHomeController());
             server.createContext("/mentors", new ShowMentorsActions());
+            server.createContext("/mentors/add",new AddMentorController());
             server.createContext("/mentors/edit", new EditMentorsActions());
             server.createContext("/mentor-home", new MentorHomeController());
             server.createContext("/student-home", new StudentHomeController());
