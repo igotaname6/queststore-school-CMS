@@ -49,7 +49,7 @@ public class UserMembershipDao extends Dao<UserMembership>{
     @Override
     void setInsertStatement(PreparedStatement preparedStatement, UserMembership userMembership) throws SQLException {
         preparedStatement.setInt(1, userMembership.getUser().getId());
-        preparedStatement.setInt(1, userMembership.getGroup().getId());
+        preparedStatement.setInt(2, userMembership.getGroup().getId());
     }
     @Override
     String getQueryForGetLast() {return null;}
