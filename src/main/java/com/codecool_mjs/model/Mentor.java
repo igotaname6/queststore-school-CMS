@@ -20,6 +20,8 @@ public class Mentor extends User {
         super(name, surname, email, password);
     }
 
+    public Mentor(Integer id) {super(id);}
+
     public Integer getGroupId() {
         return groupId;
     }
