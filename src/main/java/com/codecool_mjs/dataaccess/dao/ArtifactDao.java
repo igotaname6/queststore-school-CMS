@@ -79,4 +79,6 @@ public class ArtifactDao extends Dao<Artifact> {
         preparedStatement.setBoolean(1, artifact.getIsGroup());
         preparedStatement.setBoolean(1, artifact.getIsUsed());
     }
+    @Override
+    String getQueryForGetLast() {return null;}
 }
