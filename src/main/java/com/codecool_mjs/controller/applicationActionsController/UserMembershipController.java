@@ -8,6 +8,7 @@ import com.codecool_mjs.model.Group;
 import com.codecool_mjs.model.User;
 import com.codecool_mjs.model.UserMembership;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -43,7 +44,6 @@ public class UserMembershipController {
             User user = MentorController.getInstance().getMentorById(id);
             UserMembership um = new UserMembership(user, group);
             this.dao.insert(um);
-            //coś się dodaje ale nie do końca to, co trzeba, zrobim jutro resztę
         }
     }
 }
