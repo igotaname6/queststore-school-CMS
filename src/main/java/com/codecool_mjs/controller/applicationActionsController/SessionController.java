@@ -66,7 +66,7 @@ public class SessionController{
             String cookie = cookiesMap.get("session_id");
             boolean isNewSession = !dao.checkSessionStatus(cookie);
 
-            return isNewSession;
+            return isNewSession;git
         }
     }
 
