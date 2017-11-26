@@ -59,4 +59,6 @@ public class QuestDao extends Dao<Quest> {
     void setInsertStatement(PreparedStatement preparedStatement, Quest quest) throws SQLException {
 
     }
+    @Override
+    String getQueryForGetLast() {return null;}
 }

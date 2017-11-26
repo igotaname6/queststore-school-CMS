@@ -67,17 +67,22 @@ public class EditMentorsActions implements HttpHandler{
 
         if(method.equals("POST")) {
 
-            Map<String, String> records = new HashMap<>();
+            Map<String, String> records;
 
             InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "UTF-8");
             BufferedReader br = new BufferedReader(isr);
             String dataForm = br.readLine();
 
             records = FormResolver.parseDataForm(dataForm);
-            System.out.println(records);
+            records.put("id", idStr);
 
-            // metoda zapisujaca do bazy
-            responseBody = templateProcessor.ProcessTemplateToPage("admin/admin-confirmation");
+            try {
+                mentorController.editMentor(records);
+            } catch (DaoException e) {
+                e.printStackTrace();
+            }
+
+            responseBody = templateProcessor.ProcessTemplateToPage("admin/admin-edit-confirmation");
         }
 
         httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);

@@ -6,12 +6,11 @@ import com.codecool_mjs.dataaccess.dao.IDao;
 import com.codecool_mjs.dataaccess.dao.MentorDao;
 import com.codecool_mjs.model.Mentor;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class MentorController{
+public class MentorController {
 
     private IDao<Mentor> dao;
     private static MentorController instance = null;
@@ -40,7 +39,6 @@ public class MentorController{
         return dao.getAll();
     }
 
-    //mentorData - mapa ze wszystkimi danymi potrzebnymi do stworzenia mentora
     public void addMentor(Map<String, String> mentorData) throws DaoException {
         String name = mentorData.get("name");
         String surname = mentorData.get("surname");
@@ -51,8 +49,10 @@ public class MentorController{
         this.dao.insert(mentor);
     }
 
-    //mapa zawierająca wszystkie dane mentora łącznie z jego id już po edycji
     public void editMentor(Map<String, String> mentorData) throws DaoException {
+
+        System.out.println(mentorData);
+
         Integer id = Integer.parseInt(mentorData.get("id"));
         String name = mentorData.get("name");
         String surname = mentorData.get("surname");
@@ -62,8 +62,17 @@ public class MentorController{
         this.dao.update(mentor); 
     }
 
+    public void deleteMentor(Integer id) throws DaoException {
+        Mentor mentor = new Mentor(id);
+        this.dao.delete(mentor);
+    }
+
     public Mentor getMentorById(Integer id) throws DaoException {
         Mentor mentor = this.dao.getById(id);
         return mentor;
+    }
+
+    public static void main(String[] args) throws DaoException {
+        MentorController.getInstance().deleteMentor(1);
     }
 }

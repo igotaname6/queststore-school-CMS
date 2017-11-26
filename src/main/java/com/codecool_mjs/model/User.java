@@ -24,6 +24,9 @@ public abstract class User {
         this.password = password;
     }
 
+    public User(Integer id) {
+        this.id = id;
+    }
 
     public Integer getId() {
         return id;

@@ -54,6 +54,8 @@ public class TeamDao extends Dao<Team> {
     String getInsertQuery() {
         return null;
     }
+    @Override
+    String getQueryForGetLast() {return null;}
 
     @Override
     void setInsertStatement(PreparedStatement preparedStatement, Team team) throws SQLException {

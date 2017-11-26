@@ -51,11 +51,20 @@ public class GroupDao extends Dao<Group> {
 
     @Override
     String getInsertQuery(){
-        return "INSERT INTO users (name) VALUES(?);";
+        return "INSERT INTO groups (name) VALUES(?);";
     }
 
     @Override
     void setInsertStatement(PreparedStatement preparedStatement, Group group) throws SQLException {
         preparedStatement.setString(1, group.getName());
     }
+
+    @Override
+    String getQueryForGetLast() {
+        return "SELECT * FROM groups\n" +
+                "WHERE id = (\n" +
+                "SELECT MAX(id) FROM groups);";
+    }
+
+
 }
