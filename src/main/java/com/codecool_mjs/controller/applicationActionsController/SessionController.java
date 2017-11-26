@@ -17,6 +17,7 @@ public class SessionController{
 
     private LogInDao dao;
     private User loggedUser;
+    private String sessionId;
 
     public SessionController(){
         dao = new LogInDao();
@@ -57,8 +58,37 @@ public class SessionController{
         return formMap;
     }
 
+    public boolean isNewSession(HttpExchange httpExchange) throws DaoException {
+        Map<String, String> cookiesMap = parseCookies(httpExchange);
+        if(cookiesMap == null){
+            return true;
+        }else{
+            String cookie = cookiesMap.get("session_id");
+            boolean isNewSession = !dao.checkSessionStatus(cookie);
 
+            return isNewSession;
+        }
+    }
 
+    private Map<String, String> parseCookies(HttpExchange httpExchange) {
+        Map<String, String> cookiesMap = new HashMap<>();
 
+        String cookies = httpExchange.getRequestHeaders().getFirst("Cookie");
 
+        if(cookies == null) {
+            return null;
+        }
+        String[] cookiesArray = cookies.split(";");
+
+        for (String cookiePair : cookiesArray) {
+            String[] cookie = cookiePair.split("=");
+
+            cookiesMap.put(cookie[0], cookie[1].replaceAll("\"", ""));
+        }
+        return cookiesMap;
+    }
+
+    public User getLoggedUser() {
+        return loggedUser;
+    }
 }
