@@ -32,7 +32,7 @@ public class LogInDao {
                 return null;
             }
 
-            user = createUser(rs, email, password);
+            user = createUser(rs);
 
             connection.close();
             return user;
@@ -41,10 +41,28 @@ public class LogInDao {
         }
     }
 
-    private User createUser(ResultSet rs, String email, String password) throws SQLException {
+    private User logInBySession(String sessionId) throws DaoException {
+        String query = "SELECT * from users JOIN sessions ON sessions.user_id = users.id " +
+                "WHERE sessions.session_id = ?";
+
+        try {
+            Class.forName(DRIVER_CLASS);
+            this.connection = DriverManager.getConnection(URL);
+            PreparedStatement preStatement = connection.prepareStatement(query);
+            preStatement.setString(1, sessionId);
+            ResultSet rs = preStatement.executeQuery();
+            return createUser(rs);
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new DaoException("Exception in logInBySession", e);
+        }
+    }
+
+    private User createUser(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
         String name = rs.getString("name");
         String surname = rs.getString("surname");
+        String email = rs.getString("email");
+        String password = rs.getString("password");
         String profession = rs.getString("profession");
 
         User user = null;
@@ -77,7 +95,6 @@ public class LogInDao {
 
         } catch (ClassNotFoundException | SQLException e) {
             throw new DaoException("Exception in addSession", e);
-
         }
     }
 
