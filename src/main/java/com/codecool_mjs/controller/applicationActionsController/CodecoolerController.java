@@ -9,7 +9,7 @@ import com.codecool_mjs.model.Codecooler;
 public class CodecoolerController {
 
     private Dao<Codecooler> dao;
-    private static GroupController instance = null;
+    private static CodecoolerController instance = null;
 
     public CodecoolerController(){
         setDao();
@@ -24,9 +24,9 @@ public class CodecoolerController {
         }
     }
 
-    public static GroupController getInstance() {
+    public static CodecoolerController getInstance() {
         if(instance==null){
-            instance = new GroupController();
+            instance = new CodecoolerController();
         }
         return instance;
     }
