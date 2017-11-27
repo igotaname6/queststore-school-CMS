@@ -76,8 +76,6 @@ public class DeleteMentorsActions implements HttpHandler{
         variables.put("user", loggedUser);
         variables.put("mentor", mentor);
 
-        System.out.println(variables);
-
         templateProcessor.setVariables(variables);
         String page = templateProcessor.ProcessTemplateToPage("admin/delete-mentor");
         return page;
