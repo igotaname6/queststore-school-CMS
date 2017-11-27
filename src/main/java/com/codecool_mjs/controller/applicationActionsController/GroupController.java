@@ -56,4 +56,9 @@ public class GroupController {
         Group group = this.dao.getById(id);
         return group;
     }
+
+    public void deleteGroup(Integer id) throws DaoException {
+        Group group = new Group(id);
+        this.dao.delete(group);
+    }
 }
