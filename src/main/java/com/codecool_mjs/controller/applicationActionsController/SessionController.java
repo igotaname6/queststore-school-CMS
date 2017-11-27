@@ -8,7 +8,7 @@ import com.sun.net.httpserver.HttpExchange;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.HttpCookie;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -31,15 +31,33 @@ public class SessionController{
 
         User user = dao.checkLogin(email, password);
         if(user != null) {
-            String uuid = createSessionUUID();
-            HttpCookie cookie = new HttpCookie("session_id", uuid);
-            httpExchange.getResponseHeaders().add("Set-Cookie", cookie.toString());
+            String uuid = createUuid();
+            saveSessionIdToDb(uuid, user.getId());
+            String cookie = createCookie(uuid);
+            httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
+            this.loggedUser = user;
         }
         return user;
     }
 
-    private String createSessionUUID(){
+    public User getSessionsUser(HttpExchange httpExchange) throws DaoException{
+        Map<String, String> cookiesMap = parseCookies(httpExchange);
+        User user = dao.logInBySession(cookiesMap.get("session_id"));
+        return user;
+    }
+
+    private boolean saveSessionIdToDb(String sessionId, int userId) throws DaoException {
+        return dao.addSession(sessionId, userId);
+    }
+
+    private String createUuid(){
         return UUID.randomUUID().toString();
+    }
+
+    private String createCookie(String uuid){
+        StringBuilder sb = new StringBuilder();
+         sb.append("session_id=").append(uuid);
+         return sb.toString();
     }
 
     private Map<String, String> parseForm(HttpExchange httpExchange) throws IOException {
@@ -47,8 +65,9 @@ public class SessionController{
         InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "utf-8");
         BufferedReader br = new BufferedReader(isr);
         String formData = br.readLine();
+        String decodedFormData = URLDecoder.decode(formData, "UTF-8");
 
-        String[] pairsArray = formData.split("&");
+        String[] pairsArray = decodedFormData.split("&");
 
         Map<String, String> formMap = new HashMap<>();
         for (String pair : pairsArray) {
@@ -58,15 +77,18 @@ public class SessionController{
         return formMap;
     }
 
-    public boolean isNewSession(HttpExchange httpExchange) throws DaoException {
+    public boolean checkSession(HttpExchange httpExchange) throws DaoException {
         Map<String, String> cookiesMap = parseCookies(httpExchange);
         if(cookiesMap == null){
             return true;
         }else{
+            //check if browser-side cookie exist in db
             String cookie = cookiesMap.get("session_id");
-            boolean isNewSession = !dao.checkSessionStatus(cookie);
+            boolean isSessionInDb = dao.checkSessionStatus(cookie);
 
-            return isNewSession;git
+            if(isSessionInDb){
+                this.loggedUser = dao.logInBySession(sessionId);
+            }
         }
     }
 
@@ -88,7 +110,15 @@ public class SessionController{
         return cookiesMap;
     }
 
-    public User getLoggedUser() {
-        return loggedUser;
+    public void logOut(HttpExchange httpExchange) throws DaoException {
+        Map<String, String > sessionCookie = parseCookies(httpExchange);
+        String sessionId = sessionCookie.get("session_id");
+
+        dao.remove(sessionId);
+        StringBuilder resettingCookie = new StringBuilder();
+        resettingCookie.append("session_id=").append(sessionId).append(";");
+        resettingCookie.append("MAX-AGE=").append(0).append(";");
+        httpExchange.getResponseHeaders().add("Set-cookie", resettingCookie.toString());
+
     }
 }
