@@ -8,7 +8,6 @@ import com.codecool_mjs.model.Group;
 import com.codecool_mjs.model.User;
 import com.codecool_mjs.model.UserMembership;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -19,12 +18,12 @@ public class UserMembershipController {
     private CodecoolerController codecoolerCon = CodecoolerController.getInstance();
     private GroupController groupCon = GroupController.getInstance();
 
-    public UserMembershipController(){
+    public UserMembershipController() {
         setDao();
     }
 
-    private void setDao(){
-        try{
+    private void setDao() {
+        try {
             dao = new UserMembershipDao();
             ConnectionProvider.getInstance().connectionRequest(dao);
         } catch (DaoException e) {
@@ -33,7 +32,7 @@ public class UserMembershipController {
     }
 
     public static UserMembershipController getInstance() {
-        if(instance==null){
+        if (instance == null) {
             instance = new UserMembershipController();
         }
         return instance;
@@ -60,6 +59,4 @@ public class UserMembershipController {
             this.dao.insert(um);
         }
     }
-
-
 }
