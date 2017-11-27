@@ -6,7 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserMembershipDao extends Dao<UserMembership>{
+public class UserMembershipDao extends Dao<UserMembership> {
+
     @Override
     UserMembership createObject(ResultSet results) throws SQLException {
         return null;
@@ -53,4 +54,5 @@ public class UserMembershipDao extends Dao<UserMembership>{
     }
     @Override
     String getQueryForGetLast() {return null;}
+
 }
