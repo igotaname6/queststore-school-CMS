@@ -50,7 +50,13 @@ public class MenageStudentsActions implements HttpHandler{
 
         Map<String, Object> variables = new HashMap<>();
 
-        List<Codecooler> allCodecoolers = codecoolerController.getAllCodecoolers();
+        List<Codecooler> allCodecoolers = null;
+
+        try {
+            allCodecoolers = codecoolerController.getAllCodecoolers();
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
 
         variables.put("user", loggedUser);
         variables.put("studentsList", allCodecoolers);
