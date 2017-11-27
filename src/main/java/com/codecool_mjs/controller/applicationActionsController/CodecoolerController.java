@@ -42,4 +42,9 @@ public class CodecoolerController {
         List<Codecooler> codecoolers = this.dao.getAll();
         return codecoolers;
     }
+
+    public void deleteCodecooler(Integer id) throws DaoException {
+        Codecooler codecooler = new Codecooler(id);
+        this.dao.delete(codecooler);
+    }
 }
