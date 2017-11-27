@@ -5,6 +5,7 @@ import com.codecool_mjs.controller.webAccessController.adminActionsController.Ad
 import com.codecool_mjs.controller.webAccessController.adminActionsController.EditMentorsActions;
 import com.codecool_mjs.controller.webAccessController.adminActionsController.ShowMentorsActions;
 import com.codecool_mjs.controller.webAccessController.logIn.HomeController;
+import com.codecool_mjs.controller.webAccessController.logIn.LogOutController;
 import com.codecool_mjs.controller.webAccessController.mentorActionController.MentorHomeController;
 import com.codecool_mjs.controller.webAccessController.studentActionController.StudentHomeController;
 import com.codecool_mjs.controller.webAccessController.utilController.StaticController;
@@ -26,8 +27,10 @@ public class ServerController {
         server.createContext("/mentor-home", new MentorHomeController());
         server.createContext("/student-home", new StudentHomeController());
         server.createContext("/static", new StaticController());
-//        server.createContext("/logout", new LogoutController());
+        server.createContext("/logout", new LogOutController());
+
         server.setExecutor(null);
+
         server.start();
     }
 }
