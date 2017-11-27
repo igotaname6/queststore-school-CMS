@@ -4,27 +4,24 @@ import com.codecool_mjs.controller.applicationActionsController.MentorController
 import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.model.Admin;
 import com.codecool_mjs.model.Mentor;
-import com.codecool_mjs.utilities.FormResolver;
 import com.codecool_mjs.utilities.UriResolver;
 import com.codecool_mjs.view.webView.TemplatesProcessor;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EditMentorsActions implements HttpHandler{
+public class DeleteMentorsActions implements HttpHandler{
 
     private TemplatesProcessor templateProcessor;
     private Admin loggedUser;
     private MentorController mentorController = new MentorController();
 
 
-    public EditMentorsActions(){
+    public DeleteMentorsActions(){
         this.templateProcessor = new TemplatesProcessor();
     }
 
@@ -43,30 +40,16 @@ public class EditMentorsActions implements HttpHandler{
 
         if(method.equals("GET")) {
 
-            System.out.println(idStr);
             Integer id = Integer.parseInt(idStr);
 
-            responseBody = editMentor(id);
+            responseBody = showMentorToDelete(id);
         }
 
         if(method.equals("POST")) {
 
-            Map<String, String> records;
+            Integer id = Integer.parseInt(idStr);
 
-            InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "UTF-8");
-            BufferedReader br = new BufferedReader(isr);
-            String dataForm = br.readLine();
-
-            records = FormResolver.parseDataForm(dataForm);
-            records.put("id", idStr);
-
-            try {
-                mentorController.editMentor(records);
-            } catch (DaoException e) {
-                e.printStackTrace();
-            }
-
-            responseBody = templateProcessor.ProcessTemplateToPage("admin/edit-confirmation");
+            responseBody = deleteMentor(id);
         }
 
         httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);
@@ -75,11 +58,13 @@ public class EditMentorsActions implements HttpHandler{
         os.close();
     }
 
-    private String editMentor(Integer id){
+    private String showMentorToDelete(Integer id){
 
         Mentor mentor = null;
+        //temporary example of logged user. To remove when sessions will be implemented
+        setLoggedUser(new Admin(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło"));
 
-        Admin admin = new Admin(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło");
+
         Map<String, Object> variables = new HashMap<>();
 
         try {
@@ -88,12 +73,25 @@ public class EditMentorsActions implements HttpHandler{
             e.printStackTrace();
         }
 
-        variables.put("user", admin);
+        variables.put("user", loggedUser);
         variables.put("mentor", mentor);
 
-        templateProcessor.setVariables(variables);
-        String page = templateProcessor.ProcessTemplateToPage("admin/edit-mentor");
+        System.out.println(variables);
 
+        templateProcessor.setVariables(variables);
+        String page = templateProcessor.ProcessTemplateToPage("admin/delete-mentor");
+        return page;
+    }
+
+    private String deleteMentor(Integer id) {
+
+        try {
+            mentorController.deleteMentor(id);
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
+
+        String page = templateProcessor.ProcessTemplateToPage("admin/delete-confirmation");
         return page;
     }
 }

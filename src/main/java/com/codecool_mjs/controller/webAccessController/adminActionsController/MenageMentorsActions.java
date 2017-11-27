@@ -14,13 +14,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ShowMentorsActions implements HttpHandler{
+public class MenageMentorsActions implements HttpHandler{
 
     private TemplatesProcessor templateProcessor;
     private Admin loggedUser;
 
 
-    public ShowMentorsActions(){
+    public MenageMentorsActions(){
         this.templateProcessor = new TemplatesProcessor();
     }
 
@@ -34,7 +34,7 @@ public class ShowMentorsActions implements HttpHandler{
         int responseCode;
 
         try {
-            responseBody = showAllMentors();
+            responseBody = menageMentors();
             responseCode = 200;
         } catch (DaoException e) {
             responseBody = "No such page";
@@ -47,7 +47,7 @@ public class ShowMentorsActions implements HttpHandler{
         os.close();
     }
 
-    public String showAllMentors() throws DaoException {
+    public String menageMentors() throws DaoException {
         //temporary example of logged user. To remove when sessions will be implemented
         setLoggedUser(new Admin(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło"));
 
@@ -61,7 +61,7 @@ public class ShowMentorsActions implements HttpHandler{
 
         templateProcessor.setVariables(variables);
 
-        String page = templateProcessor.ProcessTemplateToPage("admin/admin-show-mentors");
+        String page = templateProcessor.ProcessTemplateToPage("admin/menage-mentors");
         return page;
     }
 }

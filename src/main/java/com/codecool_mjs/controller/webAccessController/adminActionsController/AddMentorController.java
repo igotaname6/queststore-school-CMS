@@ -17,12 +17,12 @@ import java.util.Map;
 
 public class AddMentorController implements HttpHandler{
 
-    private TemplatesProcessor templatesProcessorr;
+    private TemplatesProcessor templatesProcessor;
     private Admin loggedUser;
     private MentorController mentorController;
 
     public AddMentorController(){
-        this.templatesProcessorr = new TemplatesProcessor();
+        this.templatesProcessor = new TemplatesProcessor();
         this.mentorController = new MentorController();
     }
 
@@ -41,7 +41,8 @@ public class AddMentorController implements HttpHandler{
         String method = httpExchange.getRequestMethod();
 
         if(method.equals("GET")) {
-            responseBody = AddMentorPage();
+
+            responseBody = addMentor();
         }
 
         if(method.equals("POST")) {
@@ -60,7 +61,7 @@ public class AddMentorController implements HttpHandler{
                 e.printStackTrace();
             }
 
-            responseBody = templatesProcessorr.ProcessTemplateToPage("admin/admin-add-confirmation");
+            responseBody = templatesProcessor.ProcessTemplateToPage("admin/add-confirmation");
 
         }
 
@@ -71,7 +72,7 @@ public class AddMentorController implements HttpHandler{
 
     }
 
-    private String AddMentorPage() {
+    private String addMentor() {
 
         Admin admin = new Admin(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło");
 
@@ -79,9 +80,9 @@ public class AddMentorController implements HttpHandler{
 
         variables.put("user", admin);
 
-        templatesProcessorr.setVariables(variables);
+        templatesProcessor.setVariables(variables);
 
-        String page = templatesProcessorr.ProcessTemplateToPage("admin/admin-create-mentor");
+        String page = templatesProcessor.ProcessTemplateToPage("admin/create-mentor");
         return page;
     }
 }
