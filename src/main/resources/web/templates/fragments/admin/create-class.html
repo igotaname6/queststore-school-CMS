@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="create-class" class = "content-box">
+        <div class="status-bar">
+            <p id="test">Mentor -> Edit mentor data</p>
+        </div>
+        <form method="POST">
+
+            <br/></br>Group name:
+            </br> <input type="text" name="groupName" placeholder="example name" required/>
+
+            <div class="button">
+                <input type="submit" value="Submit"/>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

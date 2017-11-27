@@ -1,10 +1,11 @@
 package com.codecool_mjs.controller.webAccessController.adminActionsController;
 
+import com.codecool_mjs.controller.applicationActionsController.GroupController;
 import com.codecool_mjs.controller.applicationActionsController.MentorController;
 import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.model.Admin;
+import com.codecool_mjs.model.Group;
 import com.codecool_mjs.model.Mentor;
-import com.codecool_mjs.utilities.UriResolver;
 import com.codecool_mjs.view.webView.TemplatesProcessor;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -12,16 +13,17 @@ import com.sun.net.httpserver.HttpHandler;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class DeleteMentorsActions implements HttpHandler{
+public class MenageClassesActions implements HttpHandler{
 
     private TemplatesProcessor templateProcessor;
     private Admin loggedUser;
-    private MentorController mentorController = new MentorController();
+    private GroupController groupController = GroupController.getInstance();
 
 
-    public DeleteMentorsActions(){
+    public MenageClassesActions(){
         this.templateProcessor = new TemplatesProcessor();
     }
 
@@ -32,25 +34,11 @@ public class DeleteMentorsActions implements HttpHandler{
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
-        String responseBody = "";
+        String responseBody;
+
+        responseBody = menageClasses();
         int responseCode = 200;
 
-        String method = httpExchange.getRequestMethod();
-        String idStr = UriResolver.getUserIdFromURI(httpExchange);
-
-        if(method.equals("GET")) {
-
-            Integer id = Integer.parseInt(idStr);
-
-            responseBody = showMentorToDelete(id);
-        }
-
-        if(method.equals("POST")) {
-
-            Integer id = Integer.parseInt(idStr);
-
-            responseBody = deleteMentor(id);
-        }
 
         httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);
         OutputStream os = httpExchange.getResponseBody();
@@ -58,38 +46,29 @@ public class DeleteMentorsActions implements HttpHandler{
         os.close();
     }
 
-    private String showMentorToDelete(Integer id){
+    private String menageClasses() {
 
-        Mentor mentor = null;
         //temporary example of logged user. To remove when sessions will be implemented
         setLoggedUser(new Admin(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło"));
 
-
         Map<String, Object> variables = new HashMap<>();
+        System.out.println("tutaj");
+        List<Group> allGroups = null;
 
         try {
-            mentor = mentorController.getMentorById(id);
+            allGroups = groupController.getAllGroups();
         } catch (DaoException e) {
             e.printStackTrace();
         }
 
         variables.put("user", loggedUser);
-        variables.put("mentor", mentor);
+        variables.put("classesList", allGroups);
+
+        System.out.println(variables);
 
         templateProcessor.setVariables(variables);
-        String page = templateProcessor.ProcessTemplateToPage("admin/delete-mentor");
-        return page;
-    }
 
-    private String deleteMentor(Integer id) {
-
-        try {
-            mentorController.deleteMentor(id);
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-
-        String page = templateProcessor.ProcessTemplateToPage("admin/delete-confirmation");
+        String page = templateProcessor.ProcessTemplateToPage("admin/menage-classes");
         return page;
     }
 }

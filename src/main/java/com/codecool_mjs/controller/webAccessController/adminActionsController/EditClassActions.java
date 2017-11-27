@@ -1,8 +1,10 @@
 package com.codecool_mjs.controller.webAccessController.adminActionsController;
 
+import com.codecool_mjs.controller.applicationActionsController.GroupController;
 import com.codecool_mjs.controller.applicationActionsController.MentorController;
 import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.model.Admin;
+import com.codecool_mjs.model.Group;
 import com.codecool_mjs.model.Mentor;
 import com.codecool_mjs.utilities.FormResolver;
 import com.codecool_mjs.utilities.UriResolver;
@@ -17,14 +19,13 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EditMentorsActions implements HttpHandler{
+public class EditClassActions implements HttpHandler{
 
     private TemplatesProcessor templateProcessor;
     private Admin loggedUser;
-    private MentorController mentorController = new MentorController();
+    private GroupController groupController = GroupController.getInstance();
 
-
-    public EditMentorsActions(){
+    public EditClassActions(){
         this.templateProcessor = new TemplatesProcessor();
     }
 
@@ -45,7 +46,7 @@ public class EditMentorsActions implements HttpHandler{
 
             Integer id = Integer.parseInt(idStr);
 
-            responseBody = editMentor(id);
+            responseBody = editClass(id);
         }
 
         if(method.equals("POST")) {
@@ -60,11 +61,10 @@ public class EditMentorsActions implements HttpHandler{
             records.put("id", idStr);
 
             try {
-                mentorController.editMentor(records);
+                groupController.editGroup(records);
             } catch (DaoException e) {
                 e.printStackTrace();
             }
-
             responseBody = templateProcessor.ProcessTemplateToPage("admin/edit-confirmation");
         }
 
@@ -74,24 +74,25 @@ public class EditMentorsActions implements HttpHandler{
         os.close();
     }
 
-    private String editMentor(Integer id){
+    private String editClass(Integer id){
 
-        Mentor mentor = null;
+        Group group = null;
 
         Admin admin = new Admin(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło");
         Map<String, Object> variables = new HashMap<>();
 
         try {
-            mentor = mentorController.getMentorById(id);
+            group = groupController.getGroup(id);
         } catch (DaoException e) {
             e.printStackTrace();
         }
 
         variables.put("user", admin);
-        variables.put("mentor", mentor);
+        variables.put("class", group);
 
         templateProcessor.setVariables(variables);
-        String page = templateProcessor.ProcessTemplateToPage("admin/edit-mentor");
+
+        String page = templateProcessor.ProcessTemplateToPage("admin/edit-class");
 
         return page;
     }
