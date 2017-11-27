@@ -43,7 +43,6 @@ public class MentorController {
         String name = mentorData.get("name");
         String surname = mentorData.get("surname");
         String email = mentorData.get("email");
-        //how to generate password?
         String password = UUID.randomUUID().toString();
         Mentor mentor = new Mentor(name, surname, email, password);
         this.dao.insert(mentor);
