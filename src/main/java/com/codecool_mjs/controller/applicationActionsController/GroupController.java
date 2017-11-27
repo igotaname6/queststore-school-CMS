@@ -56,5 +56,4 @@ public class GroupController {
         Group group = this.dao.getById(id);
         return group;
     }
-
 }
