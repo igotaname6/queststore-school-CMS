@@ -38,5 +38,22 @@ public class QuestController {
         return dao.getAll();
     }
 
+    public void addQuest(Map<String, String> questData) throws DaoException {
+        String name = questData.get("name");
+        String description = questData.get("description");
+        Integer reward = Integer.parseInt(questData.get("reward"));
+        Boolean isGroup;
+
+        if (questData.get("isGroup").equals("true")) {
+            isGroup = true;
+        }
+        else {
+            isGroup = false;
+        }
+        Quest quest = new Quest(name, description, reward, isGroup);
+        this.dao.insert(quest);
+    }
+
+
 
 }
