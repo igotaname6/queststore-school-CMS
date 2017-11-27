@@ -15,13 +15,19 @@ public class LogInDao {
     private static final String DRIVER_CLASS = "org.sqlite.JDBC";
 
 
-    public User checkLogin(String email, String password) throws DaoException {
-        String query = "SELECT * FROM users WHERE email = ? AND password = ?";
+    public void setConnection() throws DaoException {
         try {
             Class.forName(DRIVER_CLASS);
             this.connection = DriverManager.getConnection(URL);
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new DaoException("Exception in setConnection in logInDao");
+        }
+    }
 
-            PreparedStatement preStatement = connection.prepareStatement(query);
+    public User checkLogin(String email, String password) throws DaoException {
+        String query = "SELECT * FROM users WHERE email = ? AND password = ?";
+
+        try (PreparedStatement preStatement = connection.prepareStatement(query)){
             preStatement.setString(1, email);
             preStatement.setString(2, password);
             ResultSet rs = preStatement.executeQuery();
@@ -34,9 +40,9 @@ public class LogInDao {
 
             user = createUser(rs);
 
-            connection.close();
+
             return user;
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             throw new DaoException("Exception in loginDao", e);
         }
     }
@@ -45,14 +51,11 @@ public class LogInDao {
         String query = "SELECT * from users JOIN sessions ON sessions.user_id = users.id " +
                 "WHERE sessions.session_id = ?";
 
-        try {
-            Class.forName(DRIVER_CLASS);
-            this.connection = DriverManager.getConnection(URL);
-            PreparedStatement preStatement = connection.prepareStatement(query);
+        try(PreparedStatement preStatement = connection.prepareStatement(query)) {
             preStatement.setString(1, sessionId);
             ResultSet rs = preStatement.executeQuery();
             return createUser(rs);
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException("Exception in logInBySession", e);
         }
     }
@@ -79,21 +82,19 @@ public class LogInDao {
 
     public boolean addSession(String uuid, int userId) throws DaoException {
         String query = "INSERT INTO sessions (session_id, user_id) VALUES(? , ?)";
-        try {
-            Class.forName(DRIVER_CLASS);
-            this.connection = DriverManager.getConnection(URL);
 
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, uuid);
-            preparedStatement.setInt(2, userId);
-            int result = preparedStatement.executeUpdate();
+        try (PreparedStatement preStatement = connection.prepareStatement(query)){
+
+            preStatement.setString(1, uuid);
+            preStatement.setInt(2, userId);
+            int result = preStatement.executeUpdate();
             if (result == 1) {
                 return true;
             } else {
                 return false;
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException("Exception in addSession", e);
         }
     }
@@ -101,34 +102,30 @@ public class LogInDao {
     public boolean checkSessionStatus(String session_id) throws DaoException {
         String query = "SELECT * FROM sessions WHERE session_id = ?";
 
-        try {
-            Class.forName(DRIVER_CLASS);
-            this.connection = DriverManager.getConnection(URL);
+        try (PreparedStatement preStatement = connection.prepareStatement(query)){
 
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1,  session_id);
-            ResultSet rs = preparedStatement.executeQuery();
+            preStatement.setString(1,  session_id);
+            ResultSet rs = preStatement.executeQuery();
             if(rs.isClosed()){
                 return false;
             } else {
                 return true;
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException("exception in checkSessionStatus", e);
         }
     }
 
     public boolean remove(String sessionId) throws DaoException {
         String query = "DELETE FROM sessions WHERE session_id = ?";
-        try {
-            Class.forName(DRIVER_CLASS);
-            this.connection = DriverManager.getConnection(URL);
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, sessionId);
-            int result = preparedStatement.executeUpdate();
+
+        try(PreparedStatement preStatement = connection.prepareStatement(query)) {
+
+            preStatement.setString(1, sessionId);
+            int result = preStatement.executeUpdate();
             return result > 0;
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException("Exception in session delete", e);
         }
     }
