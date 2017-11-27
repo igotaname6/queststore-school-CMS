@@ -72,7 +72,4 @@ public class MentorController {
         return mentor;
     }
 
-    public static void main(String[] args) throws DaoException {
-        MentorController.getInstance().deleteMentor(1);
-    }
 }
