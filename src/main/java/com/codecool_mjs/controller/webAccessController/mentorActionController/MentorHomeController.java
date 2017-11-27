@@ -13,11 +13,11 @@ import java.util.Map;
 
 public class MentorHomeController implements HttpHandler{
 
-    private TemplatesProcessor templatesProcessorr;
+    private TemplatesProcessor templatesProcessor;
     private Mentor loggedUser;
 
     public MentorHomeController(){
-        this.templatesProcessorr = new TemplatesProcessor();
+        this.templatesProcessor = new TemplatesProcessor();
     }
 
     public void setLoggedUser(Mentor loggedUser) {
@@ -52,9 +52,9 @@ public class MentorHomeController implements HttpHandler{
 
         variables.put("user", loggedUser);
 
-        templatesProcessorr.setVariables(variables);
+        templatesProcessor.setVariables(variables);
 
-        String page = templatesProcessorr.ProcessTemplateToPage("/mentor/mentor-home");
+        String page = templatesProcessor.ProcessTemplateToPage("/mentor/mentor-home");
 
         return page;
     }
