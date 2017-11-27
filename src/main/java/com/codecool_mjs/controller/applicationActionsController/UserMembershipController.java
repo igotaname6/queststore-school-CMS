@@ -1,6 +1,7 @@
 package com.codecool_mjs.controller.applicationActionsController;
 
 import com.codecool_mjs.dataaccess.ConnectionProvider;
+import com.codecool_mjs.dataaccess.dao.Dao;
 import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.dataaccess.dao.IDao;
 import com.codecool_mjs.dataaccess.dao.UserMembershipDao;
@@ -12,7 +13,7 @@ import java.util.List;
 
 
 public class UserMembershipController {
-    private IDao<UserMembership> dao;
+    private Dao<UserMembership> dao;
     private static UserMembershipController instance = null;
     private MentorController mentorCon = MentorController.getInstance();
     private CodecoolerController codecoolerCon = CodecoolerController.getInstance();
