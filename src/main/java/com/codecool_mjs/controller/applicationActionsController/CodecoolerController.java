@@ -1,0 +1,33 @@
+package com.codecool_mjs.controller.applicationActionsController;
+
+import com.codecool_mjs.dataaccess.ConnectionProvider;
+import com.codecool_mjs.dataaccess.dao.CodecoolerDao;
+import com.codecool_mjs.dataaccess.dao.Dao;
+import com.codecool_mjs.dataaccess.dao.DaoException;
+import com.codecool_mjs.model.Codecooler;
+
+public class CodecoolerController {
+
+    private Dao<Codecooler> dao;
+    private static GroupController instance = null;
+
+    public CodecoolerController(){
+        setDao();
+    }
+
+    private void setDao(){
+        try{
+            dao = new CodecoolerDao();
+            ConnectionProvider.getInstance().connectionRequest(dao);
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static GroupController getInstance() {
+        if(instance==null){
+            instance = new GroupController();
+        }
+        return instance;
+    }
+}
