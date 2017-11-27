@@ -65,7 +65,6 @@ public class EditClassActions implements HttpHandler{
             } catch (DaoException e) {
                 e.printStackTrace();
             }
-
             responseBody = templateProcessor.ProcessTemplateToPage("admin/edit-confirmation");
         }
 
@@ -92,7 +91,8 @@ public class EditClassActions implements HttpHandler{
         variables.put("class", group);
 
         templateProcessor.setVariables(variables);
-        String page = templateProcessor.ProcessTemplateToPage("admin/edit-mentor");
+
+        String page = templateProcessor.ProcessTemplateToPage("admin/edit-class");
 
         return page;
     }
