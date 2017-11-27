@@ -33,7 +33,7 @@ public class CodecoolerController {
         return instance;
     }
 
-    public Codecooler getCodecooler(Integer id) throws DaoException {
+    public Codecooler getCodecoolerById(Integer id) throws DaoException {
         Codecooler codecooler = this.dao.getById(id);
         return codecooler;
     }
