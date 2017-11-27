@@ -77,19 +77,19 @@ public class EditStudentsActions implements HttpHandler{
 
     private String editStudent(Integer id){
 
-        Codecooler codecooler = null
+        Codecooler codecooler = null;
 
         Mentor mentor = new Mentor(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło");
         Map<String, Object> variables = new HashMap<>();
 
         try {
-            mentor = codecoolerController.getCodecoolerById(id);
+            codecooler = codecoolerController.getCodecoolerById(id);
         } catch (DaoException e) {
             e.printStackTrace();
         }
 
         variables.put("user", mentor);
-        variables.put("mentor", codecooler);
+        variables.put("student", codecooler);
 
         templateProcessor.setVariables(variables);
         String page = templateProcessor.ProcessTemplateToPage("mentor/edit-student");
