@@ -21,6 +21,8 @@ public class ServerController {
             server.createContext("/mentors/add",new AddMentorController());
             server.createContext("/mentors/edit", new EditMentorsActions());
             server.createContext("/mentors/delete", new DeleteMentorsActions());
+            server.createContext("/classes", new MenageClassesActions());
+            server.createContext("/classes/add", new AddClassController());
             server.createContext("/mentor-home", new MentorHomeController());
             server.createContext("/student-home", new StudentHomeController());
             server.createContext("/static", new StaticController());

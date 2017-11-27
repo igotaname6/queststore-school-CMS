@@ -53,6 +53,6 @@ public class GroupController {
     }
 
     public static void main(String[] args) throws DaoException {
-        System.out.println(GroupController.getInstance().getLastGroup());
+        System.out.println(GroupController.getInstance().getAllGroups());
     }
 }
