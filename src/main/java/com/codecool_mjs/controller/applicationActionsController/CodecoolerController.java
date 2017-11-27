@@ -6,6 +6,8 @@ import com.codecool_mjs.dataaccess.dao.Dao;
 import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.model.Codecooler;
 
+import java.util.List;
+
 public class CodecoolerController {
 
     private Dao<Codecooler> dao;
@@ -34,5 +36,10 @@ public class CodecoolerController {
     public Codecooler getCodecooler(Integer id) throws DaoException {
         Codecooler codecooler = this.dao.getById(id);
         return codecooler;
+    }
+
+    public List<Codecooler> getAllCodecoolers() throws DaoException {
+        List<Codecooler> codecoolers = this.dao.getAll();
+        return codecoolers;
     }
 }
