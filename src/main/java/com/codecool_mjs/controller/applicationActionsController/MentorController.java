@@ -43,15 +43,12 @@ public class MentorController {
         String name = mentorData.get("name");
         String surname = mentorData.get("surname");
         String email = mentorData.get("email");
-        //how to generate password?
         String password = UUID.randomUUID().toString();
         Mentor mentor = new Mentor(name, surname, email, password);
         this.dao.insert(mentor);
     }
 
     public void editMentor(Map<String, String> mentorData) throws DaoException {
-
-        System.out.println(mentorData);
 
         Integer id = Integer.parseInt(mentorData.get("id"));
         String name = mentorData.get("name");
@@ -70,9 +67,5 @@ public class MentorController {
     public Mentor getMentorById(Integer id) throws DaoException {
         Mentor mentor = this.dao.getById(id);
         return mentor;
-    }
-
-    public static void main(String[] args) throws DaoException {
-        MentorController.getInstance().deleteMentor(1);
     }
 }

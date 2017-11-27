@@ -52,7 +52,8 @@ public class GroupController {
         return group;
     }
 
-    public static void main(String[] args) throws DaoException {
-        System.out.println(GroupController.getInstance().getLastGroup());
+    public Group getGroup(Integer id) throws DaoException {
+        Group group = this.dao.getById(id);
+        return group;
     }
 }

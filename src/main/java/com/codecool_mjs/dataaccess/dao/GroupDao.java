@@ -26,7 +26,7 @@ public class GroupDao extends Dao<Group> {
 
     @Override
     String getQueryForGetById() {
-        return null;
+        return  String.format("SELECT * FROM groups WHERE id = ?");
     }
 
     @Override
