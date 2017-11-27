@@ -44,12 +44,12 @@ public class GroupDao extends Dao<Group> {
 
     @Override
     String getDeleteQuery() {
-        return null;
+        return "DELETE from groups WHERE id=?;";
     }
 
     @Override
     void setDeleteStatement(PreparedStatement preparedStatement, Group group) throws SQLException {
-
+        preparedStatement.setInt(1, group.getId());
     }
 
     @Override
