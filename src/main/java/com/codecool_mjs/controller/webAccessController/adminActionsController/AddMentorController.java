@@ -1,8 +1,9 @@
 package com.codecool_mjs.controller.webAccessController.adminActionsController;
 
 import com.codecool_mjs.controller.applicationActionsController.MentorController;
+import com.codecool_mjs.controller.applicationActionsController.SessionController;
 import com.codecool_mjs.dataaccess.dao.DaoException;
-import com.codecool_mjs.model.Admin;
+import com.codecool_mjs.model.User;
 import com.codecool_mjs.utilities.FormResolver;
 import com.codecool_mjs.view.webView.TemplatesProcessor;
 import com.sun.net.httpserver.HttpExchange;
@@ -17,36 +18,53 @@ import java.util.Map;
 
 public class AddMentorController implements HttpHandler{
 
+
     private TemplatesProcessor templatesProcessor;
-    private Admin loggedUser;
+    private User loggedUser;
+
     private MentorController mentorController;
+    private SessionController sessionController;
 
     public AddMentorController(){
         this.templatesProcessor = new TemplatesProcessor();
         this.mentorController = new MentorController();
+        this.sessionController = new SessionController();
     }
 
-    public void setLoggedUser(Admin loggedUser) {
+    private void setLoggedUser(User loggedUser) {
         this.loggedUser = loggedUser;
     }
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
-
         String responseBody = "";
         int responseCode = 200;
 
+        boolean isSessionExist = false;
+
+        try {
+            isSessionExist = sessionController.verifySession(httpExchange);
+            this.loggedUser = sessionController.getLoggedUser();
+        } catch (DaoException e) {
+            httpExchange.sendResponseHeaders(503, -1);
+        }
+
+
+        String profession = loggedUser.getProfession();
+
+        if(!isSessionExist){
+            httpExchange.getResponseHeaders().add("Location", "/home");
+            httpExchange.sendResponseHeaders(302, -1);
+        }else if(!profession.equals("Admin")){
+            httpExchange.sendResponseHeaders(403, -1);
+        }
 
         String method = httpExchange.getRequestMethod();
 
         if(method.equals("GET")) {
-
             responseBody = addMentor();
-        }
-
-        if(method.equals("POST")) {
-
+        }else if(method.equals("POST")) {
             Map<String, String> records;
 
             InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody());
@@ -60,7 +78,6 @@ public class AddMentorController implements HttpHandler{
             } catch (DaoException e) {
                 e.printStackTrace();
             }
-
             responseBody = templatesProcessor.ProcessTemplateToPage("admin/add-confirmation");
 
         }
@@ -74,12 +91,9 @@ public class AddMentorController implements HttpHandler{
 
     private String addMentor() {
 
-        Admin admin = new Admin(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło");
-
         Map<String, Object> variables = new HashMap<>();
 
-        variables.put("user", admin);
-
+        variables.put("user", loggedUser);
         templatesProcessor.setVariables(variables);
 
         String page = templatesProcessor.ProcessTemplateToPage("admin/create-mentor");
