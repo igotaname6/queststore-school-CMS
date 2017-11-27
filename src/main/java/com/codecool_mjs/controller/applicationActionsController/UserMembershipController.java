@@ -47,7 +47,16 @@ public class UserMembershipController {
         }
     }
 
+    public void addCodecoolersToGroup(List<Integer> usersId, Integer groupId) throws DaoException {
 
+        Group group = GroupController.getInstance().getGroup(groupId);
+
+        for (Integer id : usersId) {
+            User user = CodecoolerController.getInstance().getCodecoolerById(id);
+            UserMembership um = new UserMembership(user, group);
+            this.dao.insert(um);
+        }
+    }
 
 
 }
