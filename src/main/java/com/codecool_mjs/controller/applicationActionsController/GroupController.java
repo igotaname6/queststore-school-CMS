@@ -17,12 +17,12 @@ public class GroupController {
     private Dao<Group> dao;
     private static GroupController instance = null;
 
-    public GroupController(){
+    public GroupController() {
         setDao();
     }
 
-    private void setDao(){
-        try{
+    private void setDao() {
+        try {
             dao = new GroupDao();
             ConnectionProvider.getInstance().connectionRequest(dao);
         } catch (DaoException e) {
@@ -31,7 +31,7 @@ public class GroupController {
     }
 
     public static GroupController getInstance() {
-        if(instance==null){
+        if (instance == null) {
             instance = new GroupController();
         }
         return instance;
@@ -52,7 +52,22 @@ public class GroupController {
         return group;
     }
 
-    public static void main(String[] args) throws DaoException {
-        System.out.println(GroupController.getInstance().getAllGroups());
+    public Group getGroup(Integer id) throws DaoException {
+        Group group = this.dao.getById(id);
+        return group;
+    }
+
+    public void deleteGroup(Integer id) throws DaoException {
+        Group group = new Group(id);
+        this.dao.delete(group);
+    }
+
+    public void editGroup(Map<String, String> groupData) throws DaoException {
+
+        Integer id = Integer.parseInt(groupData.get("id"));
+        String name = groupData.get("name");
+
+        Group group = new Group(id, name);
+        this.dao.update(group);
     }
 }

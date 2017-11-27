@@ -8,20 +8,22 @@ import com.codecool_mjs.model.Group;
 import com.codecool_mjs.model.User;
 import com.codecool_mjs.model.UserMembership;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class UserMembershipController {
     private IDao<UserMembership> dao;
     private static UserMembershipController instance = null;
+    private MentorController mentorCon = MentorController.getInstance();
+    private CodecoolerController codecoolerCon = CodecoolerController.getInstance();
+    private GroupController groupCon = GroupController.getInstance();
 
-    public UserMembershipController(){
+    public UserMembershipController() {
         setDao();
     }
 
-    private void setDao(){
-        try{
+    private void setDao() {
+        try {
             dao = new UserMembershipDao();
             ConnectionProvider.getInstance().connectionRequest(dao);
         } catch (DaoException e) {
@@ -30,18 +32,29 @@ public class UserMembershipController {
     }
 
     public static UserMembershipController getInstance() {
-        if(instance==null){
+        if (instance == null) {
             instance = new UserMembershipController();
         }
         return instance;
     }
 
-    public void addMembership(List<Integer> usersId) throws DaoException {
+    public void addMentorsToGroup(List<Integer> usersId, Integer groupId) throws DaoException {
 
-        Group group = GroupController.getInstance().getLastGroup();
+        Group group = groupCon.getGroup(groupId);
 
         for (Integer id : usersId) {
-            User user = MentorController.getInstance().getMentorById(id);
+            User user = mentorCon.getMentorById(id);
+            UserMembership um = new UserMembership(user, group);
+            this.dao.insert(um);
+        }
+    }
+
+    public void addCodecoolersToGroup(List<Integer> usersId, Integer groupId) throws DaoException {
+
+        Group group = groupCon.getGroup(groupId);
+
+        for (Integer id : usersId) {
+            User user = codecoolerCon.getCodecooler(id);
             UserMembership um = new UserMembership(user, group);
             this.dao.insert(um);
         }
