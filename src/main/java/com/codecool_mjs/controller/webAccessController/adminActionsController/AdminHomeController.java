@@ -13,11 +13,11 @@ import java.util.Map;
 
 public class AdminHomeController implements HttpHandler{
 
-    private TemplatesProcessor templatesProcessorr;
+    private TemplatesProcessor templatesProcessor;
     private Admin loggedUser;
 
     public AdminHomeController(){
-        this.templatesProcessorr = new TemplatesProcessor();
+        this.templatesProcessor = new TemplatesProcessor();
     }
 
     public void setLoggedUser(Admin loggedUser) {
@@ -52,9 +52,9 @@ public class AdminHomeController implements HttpHandler{
 
         variables.put("user", loggedUser);
 
-        templatesProcessorr.setVariables(variables);
+        templatesProcessor.setVariables(variables);
 
-        String page = templatesProcessorr.ProcessTemplateToPage("/admin/admin-home");
+        String page = templatesProcessor.ProcessTemplateToPage("/admin/home");
         return page;
     }
 }

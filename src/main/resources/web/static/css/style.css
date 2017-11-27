@@ -243,6 +243,25 @@ iframe
     height: 100%;
 }
 
+.info
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.options-buttons
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.info span
+{
+    padding: 10px;
+}
+
 /*
 -----------------------------------
 Buttons

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
-    <div th:fragment="edit-mentors" class = "content-box">
+    <div th:fragment="menage-mentors" class = "content-box">
         <div class="status-bar">
             <h3>Mentor -> Edit mentors<h3>
         </div>
@@ -26,6 +26,11 @@
                         <td class="edit-button">
                             <a th:href="${'/mentors/edit/' + mentor.id}">
                                 <button type="button">Edit</button>
+                            </a>
+                        </td>
+                        <td class="edit-button">
+                            <a th:href="${'/mentors/delete/' + mentor.id}">
+                                <button type="button">Delete</button>
                             </a>
                         </td>
                 </tr>
