@@ -16,14 +16,15 @@ import java.util.UUID;
 public class SessionController{
 
     private LogInDao dao;
-    private User loggedUser;
-    private String sessionId;
 
+    private User loggedUser;
+
+    private String sessionId;
     public SessionController(){
         dao = new LogInDao();
     }
 
-    public User logIn(HttpExchange httpExchange) throws DaoException, IOException {
+    public boolean logIn(HttpExchange httpExchange) throws DaoException, IOException {
 
         Map<String, String> loginData = parseForm(httpExchange);
         String email = loginData.get("email");
@@ -36,8 +37,10 @@ public class SessionController{
             String cookie = createCookie(uuid);
             httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             this.loggedUser = user;
+            return true;
+        }else{
+            return false;
         }
-        return user;
     }
 
     public User getSessionsUser(HttpExchange httpExchange) throws DaoException{
@@ -77,17 +80,21 @@ public class SessionController{
         return formMap;
     }
 
-    public boolean checkSession(HttpExchange httpExchange) throws DaoException {
+    public boolean verifySession(HttpExchange httpExchange) throws DaoException {
         Map<String, String> cookiesMap = parseCookies(httpExchange);
         if(cookiesMap == null){
-            return true;
+            return false;
         }else{
             //check if browser-side cookie exist in db
             String cookie = cookiesMap.get("session_id");
             boolean isSessionInDb = dao.checkSessionStatus(cookie);
 
             if(isSessionInDb){
-                this.loggedUser = dao.logInBySession(sessionId);
+                this.loggedUser = dao.logInBySession(cookie);
+                return true;
+            }else{
+                //session id don't exist in db.
+                return false;
             }
         }
     }
@@ -120,5 +127,9 @@ public class SessionController{
         resettingCookie.append("MAX-AGE=").append(0).append(";");
         httpExchange.getResponseHeaders().add("Set-cookie", resettingCookie.toString());
 
+    }
+
+    public User getLoggedUser() {
+        return loggedUser;
     }
 }
