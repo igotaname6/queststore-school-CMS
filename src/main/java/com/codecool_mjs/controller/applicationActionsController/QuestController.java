@@ -54,6 +54,10 @@ public class QuestController {
         this.dao.insert(quest);
     }
 
+    public Quest getQuest(Integer id) throws DaoException {
+        Quest quest = this.dao.getById(id);
+        return quest;
+    }
 
 
 }
