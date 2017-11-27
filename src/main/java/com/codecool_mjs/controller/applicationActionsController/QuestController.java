@@ -34,5 +34,9 @@ public class QuestController {
         return instance;
     }
 
+    public List<Quest> getAllQuests() throws DaoException {
+        return dao.getAll();
+    }
+
 
 }
