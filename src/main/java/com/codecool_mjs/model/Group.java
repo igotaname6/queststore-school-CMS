@@ -15,6 +15,9 @@ public class Group {
 
     }
 
+    public Group(Integer id) {
+        this.id = id;
+    }
     public Group(Integer id, String name) {
 
         this.id = id;

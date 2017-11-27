@@ -8,8 +8,8 @@ import java.sql.SQLException;
 
 public class CodecoolerDao extends UserDao<Codecooler>{
 
-    public CodecoolerDao(Connection connection) {
-        super(connection);
+    public CodecoolerDao() {
+        super();
     }
 
     @Override

@@ -26,27 +26,30 @@ public class GroupDao extends Dao<Group> {
 
     @Override
     String getQueryForGetById() {
-        return null;
+        return  String.format("SELECT * FROM groups WHERE id = ?");
     }
 
     @Override
     String getUpdateQuery() {
-        return null;
+        return "UPDATE groups" +
+                " SET name = ?" +
+                " WHERE id = ?;";
     }
 
     @Override
     void setUpdateStatement(PreparedStatement preparedStatement, Group group) throws SQLException {
-
+        preparedStatement.setString(1, group.getName());
+        preparedStatement.setInt(2, group.getId());
     }
 
     @Override
     String getDeleteQuery() {
-        return null;
+        return "DELETE from groups WHERE id=?;";
     }
 
     @Override
     void setDeleteStatement(PreparedStatement preparedStatement, Group group) throws SQLException {
-
+        preparedStatement.setInt(1, group.getId());
     }
 
     @Override
@@ -65,6 +68,4 @@ public class GroupDao extends Dao<Group> {
                 "WHERE id = (\n" +
                 "SELECT MAX(id) FROM groups);";
     }
-
-
 }

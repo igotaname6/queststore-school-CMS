@@ -1,8 +1,10 @@
-package com.codecool_mjs.controller.webAccessController.adminActionsController;
+package com.codecool_mjs.controller.webAccessController.mentorActionController;
 
+import com.codecool_mjs.controller.applicationActionsController.CodecoolerController;
 import com.codecool_mjs.controller.applicationActionsController.MentorController;
 import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.model.Admin;
+import com.codecool_mjs.model.Codecooler;
 import com.codecool_mjs.model.Mentor;
 import com.codecool_mjs.utilities.FormResolver;
 import com.codecool_mjs.utilities.UriResolver;
@@ -17,18 +19,17 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EditMentorsActions implements HttpHandler{
+public class EditStudentsActions implements HttpHandler{
 
     private TemplatesProcessor templateProcessor;
-    private Admin loggedUser;
-    private MentorController mentorController = new MentorController();
+    private Mentor loggedUser;
+    private CodecoolerController codecoolerController = CodecoolerController.getInstance();
 
-
-    public EditMentorsActions(){
+    public EditStudentsActions(){
         this.templateProcessor = new TemplatesProcessor();
     }
 
-    public void setLoggedUser(Admin loggedUser) {
+    public void setLoggedUser(Mentor loggedUser) {
         this.loggedUser = loggedUser;
     }
 
@@ -45,7 +46,7 @@ public class EditMentorsActions implements HttpHandler{
 
             Integer id = Integer.parseInt(idStr);
 
-            responseBody = editMentor(id);
+            responseBody = editStudent(id);
         }
 
         if(method.equals("POST")) {
@@ -60,12 +61,12 @@ public class EditMentorsActions implements HttpHandler{
             records.put("id", idStr);
 
             try {
-                mentorController.editMentor(records);
+                codecoolerController.editCodecooler(records);
             } catch (DaoException e) {
                 e.printStackTrace();
             }
 
-            responseBody = templateProcessor.ProcessTemplateToPage("admin/edit-confirmation");
+            responseBody = templateProcessor.ProcessTemplateToPage("mentor/edit-confirmation");
         }
 
         httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);
@@ -74,24 +75,24 @@ public class EditMentorsActions implements HttpHandler{
         os.close();
     }
 
-    private String editMentor(Integer id){
+    private String editStudent(Integer id){
 
-        Mentor mentor = null;
+        Codecooler codecooler = null;
 
-        Admin admin = new Admin(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło");
+        Mentor mentor = new Mentor(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło");
         Map<String, Object> variables = new HashMap<>();
 
         try {
-            mentor = mentorController.getMentorById(id);
+            codecooler = codecoolerController.getCodecoolerById(id);
         } catch (DaoException e) {
             e.printStackTrace();
         }
 
-        variables.put("user", admin);
-        variables.put("mentor", mentor);
+        variables.put("user", mentor);
+        variables.put("student", codecooler);
 
         templateProcessor.setVariables(variables);
-        String page = templateProcessor.ProcessTemplateToPage("admin/edit-mentor");
+        String page = templateProcessor.ProcessTemplateToPage("mentor/edit-student");
 
         return page;
     }

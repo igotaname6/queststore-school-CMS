@@ -18,13 +18,15 @@ import java.util.Map;
 
 public class AddMentorController implements HttpHandler{
 
-    private TemplatesProcessor templatesProcessorr;
+
+    private TemplatesProcessor templatesProcessor;
     private User loggedUser;
+
     private MentorController mentorController;
     private SessionController sessionController;
 
     public AddMentorController(){
-        this.templatesProcessorr = new TemplatesProcessor();
+        this.templatesProcessor = new TemplatesProcessor();
         this.mentorController = new MentorController();
         this.sessionController = new SessionController();
     }
@@ -48,20 +50,20 @@ public class AddMentorController implements HttpHandler{
             httpExchange.sendResponseHeaders(503, -1);
         }
 
-        String userProffesion = loggedUser.getProfession();
+
+        String profession = loggedUser.getProfession();
 
         if(!isSessionExist){
             httpExchange.getResponseHeaders().add("Location", "/home");
             httpExchange.sendResponseHeaders(302, -1);
-        }else if(!userProffesion.equals("Admin")){
+        }else if(!profession.equals("Admin")){
             httpExchange.sendResponseHeaders(403, -1);
         }
-
 
         String method = httpExchange.getRequestMethod();
 
         if(method.equals("GET")) {
-            responseBody = AddMentorPage();
+            responseBody = addMentor();
         }else if(method.equals("POST")) {
             Map<String, String> records;
 
@@ -76,7 +78,8 @@ public class AddMentorController implements HttpHandler{
             } catch (DaoException e) {
                 e.printStackTrace();
             }
-            responseBody = templatesProcessorr.ProcessTemplateToPage("admin/admin-add-confirmation");
+            responseBody = templatesProcessor.ProcessTemplateToPage("admin/add-confirmation");
+
         }
 
         httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);
@@ -86,13 +89,14 @@ public class AddMentorController implements HttpHandler{
 
     }
 
-    private String AddMentorPage() {
+    private String addMentor() {
 
         Map<String, Object> variables = new HashMap<>();
-        variables.put("user", loggedUser);
-        templatesProcessorr.setVariables(variables);
 
-        String page = templatesProcessorr.ProcessTemplateToPage("admin/admin-create-mentor");
+        variables.put("user", loggedUser);
+        templatesProcessor.setVariables(variables);
+
+        String page = templatesProcessor.ProcessTemplateToPage("admin/create-mentor");
         return page;
     }
 }
