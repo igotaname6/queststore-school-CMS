@@ -2,8 +2,7 @@ package com.codecool_mjs.severProvider;
 
 import com.codecool_mjs.controller.webAccessController.adminActionsController.*;
 import com.codecool_mjs.controller.webAccessController.logIn.HomeController;
-import com.codecool_mjs.controller.webAccessController.mentorActionController.MenageStudentsActions;
-import com.codecool_mjs.controller.webAccessController.mentorActionController.MentorHomeController;
+import com.codecool_mjs.controller.webAccessController.mentorActionController.*;
 import com.codecool_mjs.controller.webAccessController.studentActionController.StudentHomeController;
 import com.codecool_mjs.controller.webAccessController.utilController.StaticController;
 import com.sun.net.httpserver.HttpServer;
@@ -28,6 +27,9 @@ public class ServerController {
             server.createContext("/classes/delete", new DeleteClassActions());
             server.createContext("/mentor-home", new MentorHomeController());
             server.createContext("/students", new MenageStudentsActions());
+            server.createContext("/students/add", new AddStudentController());
+            server.createContext("/students/edit", new EditStudentsActions());
+            server.createContext("/students/delete", new DeleteStudentActions());
             server.createContext("/student-home", new StudentHomeController());
             server.createContext("/static", new StaticController());
             server.setExecutor(null);

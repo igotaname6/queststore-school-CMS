@@ -40,6 +40,8 @@ public class DeleteStudentActions implements HttpHandler{
         String method = httpExchange.getRequestMethod();
         String idStr = UriResolver.getUserIdFromURI(httpExchange);
 
+        setLoggedUser(new Mentor(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło"));
+
         if(method.equals("GET")) {
 
             Integer id = Integer.parseInt(idStr);
@@ -63,8 +65,6 @@ public class DeleteStudentActions implements HttpHandler{
     private String showStudentToDelete(Integer id){
 
         Codecooler codecooler = null;
-        //temporary example of logged user. To remove when sessions will be implemented
-        setLoggedUser(new Mentor(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło"));
 
         Map<String, Object> variables = new HashMap<>();
 
@@ -78,7 +78,7 @@ public class DeleteStudentActions implements HttpHandler{
         variables.put("student", codecooler);
 
         templateProcessor.setVariables(variables);
-        String page = templateProcessor.ProcessTemplateToPage("mentor/delete-mentor");
+        String page = templateProcessor.ProcessTemplateToPage("mentor/delete-student");
         return page;
     }
 
@@ -89,6 +89,12 @@ public class DeleteStudentActions implements HttpHandler{
         } catch (DaoException e) {
             e.printStackTrace();
         }
+
+        Map<String, Object> variables = new HashMap<>();
+
+        variables.put("user", loggedUser);
+
+        templateProcessor.setVariables(variables);
 
         String page = templateProcessor.ProcessTemplateToPage("mentor/delete-confirmation");
         return page;
