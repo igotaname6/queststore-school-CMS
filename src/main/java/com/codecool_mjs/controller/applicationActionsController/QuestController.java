@@ -64,5 +64,22 @@ public class QuestController {
         this.dao.delete(quest);
     }
 
+    public void editQuest(Map<String, String> questData) throws DaoException {
 
+        Integer id = Integer.parseInt(questData.get("id"));
+        String name = questData.get("name");
+        String description = questData.get("description");
+        Integer reward = Integer.parseInt(questData.get("reward"));
+        Boolean isGroup;
+
+        if (questData.get("isGroup").equals("true")) {
+            isGroup = true;
+        }
+        else {
+            isGroup = false;
+        }
+        Quest quest = new Quest(id, name, description, reward, isGroup);
+
+        this.dao.update(quest);
+    }
 }
