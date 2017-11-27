@@ -36,9 +36,9 @@ public class UserMembershipController {
         return instance;
     }
 
-    public void addMembership(List<Integer> usersId) throws DaoException {
+    public void addMentorsToGroup(List<Integer> usersId, Integer groupId) throws DaoException {
 
-        Group group = GroupController.getInstance().getLastGroup();
+        Group group = GroupController.getInstance().getGroup(groupId);
 
         for (Integer id : usersId) {
             User user = MentorController.getInstance().getMentorById(id);
@@ -46,4 +46,8 @@ public class UserMembershipController {
             this.dao.insert(um);
         }
     }
+
+
+
+
 }
