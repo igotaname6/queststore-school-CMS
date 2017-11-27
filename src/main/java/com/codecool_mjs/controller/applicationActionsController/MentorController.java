@@ -51,8 +51,6 @@ public class MentorController {
 
     public void editMentor(Map<String, String> mentorData) throws DaoException {
 
-        System.out.println(mentorData);
-
         Integer id = Integer.parseInt(mentorData.get("id"));
         String name = mentorData.get("name");
         String surname = mentorData.get("surname");
@@ -71,5 +69,4 @@ public class MentorController {
         Mentor mentor = this.dao.getById(id);
         return mentor;
     }
-
 }
