@@ -41,7 +41,7 @@ public class LogInDao {
         }
     }
 
-    private User logInBySession(String sessionId) throws DaoException {
+    public User logInBySession(String sessionId) throws DaoException {
         String query = "SELECT * from users JOIN sessions ON sessions.user_id = users.id " +
                 "WHERE sessions.session_id = ?";
 
@@ -116,6 +116,20 @@ public class LogInDao {
 
         } catch (ClassNotFoundException | SQLException e) {
             throw new DaoException("exception in checkSessionStatus", e);
+        }
+    }
+
+    public boolean remove(String sessionId) throws DaoException {
+        String query = "DELETE FROM sessions WHERE session_id = ?";
+        try {
+            Class.forName(DRIVER_CLASS);
+            this.connection = DriverManager.getConnection(URL);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, sessionId);
+            int result = preparedStatement.executeUpdate();
+            return result > 0;
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new DaoException("Exception in session delete", e);
         }
     }
 }
