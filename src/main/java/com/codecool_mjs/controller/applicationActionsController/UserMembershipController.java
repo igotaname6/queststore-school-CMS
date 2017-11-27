@@ -55,7 +55,7 @@ public class UserMembershipController {
         Group group = groupCon.getGroup(groupId);
 
         for (Integer id : usersId) {
-            User user = codecoolerCon.getCodecooler(id);
+            User user = codecoolerCon.getCodecoolerById(id);
             UserMembership um = new UserMembership(user, group);
             this.dao.insert(um);
         }
