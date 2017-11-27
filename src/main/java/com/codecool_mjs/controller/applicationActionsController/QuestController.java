@@ -59,5 +59,10 @@ public class QuestController {
         return quest;
     }
 
+    public void deleteQuest(Integer id) throws DaoException {
+        Quest quest = new Quest(id);
+        this.dao.delete(quest);
+    }
+
 
 }
