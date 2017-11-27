@@ -81,6 +81,8 @@ public class SessionController{
     }
 
     public boolean verifySession(HttpExchange httpExchange) throws DaoException {
+
+        dao.setConnection();
         Map<String, String> cookiesMap = parseCookies(httpExchange);
         if(cookiesMap == null){
             return false;
@@ -121,6 +123,7 @@ public class SessionController{
         Map<String, String > sessionCookie = parseCookies(httpExchange);
         String sessionId = sessionCookie.get("session_id");
 
+        dao.setConnection();
         dao.remove(sessionId);
         StringBuilder resettingCookie = new StringBuilder();
         resettingCookie.append("session_id=").append(sessionId).append(";");
