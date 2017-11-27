@@ -33,7 +33,6 @@ public class AddMentorController implements HttpHandler{
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
-
         String responseBody = "";
         int responseCode = 200;
 
@@ -42,10 +41,7 @@ public class AddMentorController implements HttpHandler{
 
         if(method.equals("GET")) {
             responseBody = AddMentorPage();
-        }
-
-        if(method.equals("POST")) {
-
+        }else if(method.equals("POST")) {
             Map<String, String> records;
 
             InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody());
@@ -59,9 +55,7 @@ public class AddMentorController implements HttpHandler{
             } catch (DaoException e) {
                 e.printStackTrace();
             }
-
             responseBody = templatesProcessorr.ProcessTemplateToPage("admin/admin-add-confirmation");
-
         }
 
         httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);
@@ -76,9 +70,7 @@ public class AddMentorController implements HttpHandler{
         Admin admin = new Admin(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło");
 
         Map<String, Object> variables = new HashMap<>();
-
         variables.put("user", admin);
-
         templatesProcessorr.setVariables(variables);
 
         String page = templatesProcessorr.ProcessTemplateToPage("admin/admin-create-mentor");
