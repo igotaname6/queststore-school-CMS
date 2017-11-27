@@ -21,6 +21,16 @@ public class Codecooler extends User {
         this.wallet = null;
     }
 
+    public Codecooler(String name, String surname, String email, String password) {
+        super(name, surname, email, password);
+    }
+
+
+
+    public Codecooler(Integer id) {
+        super(id);
+    }
+
     public Wallet getWallet() {
         return wallet;
     }
