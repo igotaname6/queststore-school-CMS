@@ -1,11 +1,10 @@
 package com.codecool_mjs.controller.webAccessController.adminActionsController;
 
+import com.codecool_mjs.controller.applicationActionsController.GroupController;
 import com.codecool_mjs.controller.applicationActionsController.MentorController;
 import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.model.Admin;
-import com.codecool_mjs.model.Mentor;
 import com.codecool_mjs.utilities.FormResolver;
-import com.codecool_mjs.utilities.UriResolver;
 import com.codecool_mjs.view.webView.TemplatesProcessor;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -17,15 +16,14 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EditMentorsActions implements HttpHandler{
+public class AddClassController implements HttpHandler{
 
-    private TemplatesProcessor templateProcessor;
+    private TemplatesProcessor templatesProcessor;
     private Admin loggedUser;
-    private MentorController mentorController = new MentorController();
+    private GroupController groupController = GroupController.getInstance();
 
-
-    public EditMentorsActions(){
-        this.templateProcessor = new TemplatesProcessor();
+    public AddClassController(){
+        this.templatesProcessor = new TemplatesProcessor();
     }
 
     public void setLoggedUser(Admin loggedUser) {
@@ -35,64 +33,55 @@ public class EditMentorsActions implements HttpHandler{
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
+
         String responseBody = "";
         int responseCode = 200;
 
         String method = httpExchange.getRequestMethod();
-        String idStr = UriResolver.getUserIdFromURI(httpExchange);
 
         if(method.equals("GET")) {
 
-            Integer id = Integer.parseInt(idStr);
-
-            responseBody = editMentor(id);
+            responseBody = addClass();
         }
 
         if(method.equals("POST")) {
 
             Map<String, String> records;
 
-            InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "UTF-8");
+            InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody());
             BufferedReader br = new BufferedReader(isr);
-            String dataForm = br.readLine();
+            String formData = br.readLine();
 
-            records = FormResolver.parseDataForm(dataForm);
-            records.put("id", idStr);
+            records = FormResolver.parseDataForm(formData);
 
             try {
-                mentorController.editMentor(records);
+                groupController.addGroup(records);
             } catch (DaoException e) {
                 e.printStackTrace();
             }
 
-            responseBody = templateProcessor.ProcessTemplateToPage("admin/edit-confirmation");
+            responseBody = templatesProcessor.ProcessTemplateToPage("admin/add-confirmation");
+
         }
 
         httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);
         OutputStream os = httpExchange.getResponseBody();
         os.write(responseBody.getBytes());
         os.close();
+
     }
 
-    private String editMentor(Integer id){
-
-        Mentor mentor = null;
+    private String addClass() {
 
         Admin admin = new Admin(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło");
+
         Map<String, Object> variables = new HashMap<>();
 
-        try {
-            mentor = mentorController.getMentorById(id);
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-
         variables.put("user", admin);
-        variables.put("mentor", mentor);
 
-        templateProcessor.setVariables(variables);
-        String page = templateProcessor.ProcessTemplateToPage("admin/edit-mentor");
+        templatesProcessor.setVariables(variables);
 
+        String page = templatesProcessor.ProcessTemplateToPage("admin/create-class");
         return page;
     }
 }

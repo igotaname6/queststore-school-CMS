@@ -1,8 +1,10 @@
-package com.codecool_mjs.controller.webAccessController.adminActionsController;
+package com.codecool_mjs.controller.webAccessController.mentorActionController;
 
+import com.codecool_mjs.controller.applicationActionsController.CodecoolerController;
 import com.codecool_mjs.controller.applicationActionsController.MentorController;
 import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.model.Admin;
+import com.codecool_mjs.model.Mentor;
 import com.codecool_mjs.utilities.FormResolver;
 import com.codecool_mjs.view.webView.TemplatesProcessor;
 import com.sun.net.httpserver.HttpExchange;
@@ -15,18 +17,18 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddMentorController implements HttpHandler{
+public class AddStudentController implements HttpHandler{
 
     private TemplatesProcessor templatesProcessor;
-    private Admin loggedUser;
-    private MentorController mentorController;
+    private Mentor loggedUser;
+    private CodecoolerController codecoolerController;
 
-    public AddMentorController(){
+    public AddStudentController(){
         this.templatesProcessor = new TemplatesProcessor();
-        this.mentorController = new MentorController();
+        this.codecoolerController = CodecoolerController.getInstance();
     }
 
-    public void setLoggedUser(Admin loggedUser) {
+    public void setLoggedUser(Mentor loggedUser) {
         this.loggedUser = loggedUser;
     }
 
@@ -37,12 +39,11 @@ public class AddMentorController implements HttpHandler{
         String responseBody = "";
         int responseCode = 200;
 
-
         String method = httpExchange.getRequestMethod();
 
         if(method.equals("GET")) {
 
-            responseBody = addMentor();
+            responseBody = addStudent();
         }
 
         if(method.equals("POST")) {
@@ -56,12 +57,12 @@ public class AddMentorController implements HttpHandler{
             records = FormResolver.parseDataForm(formData);
 
             try {
-                mentorController.addMentor(records);
+                codecoolerController.addCodecooler(records);
             } catch (DaoException e) {
                 e.printStackTrace();
             }
 
-            responseBody = templatesProcessor.ProcessTemplateToPage("admin/add-confirmation");
+            responseBody = templatesProcessor.ProcessTemplateToPage("mentor/add-confirmation");
 
         }
 
@@ -72,17 +73,17 @@ public class AddMentorController implements HttpHandler{
 
     }
 
-    private String addMentor() {
+    private String addStudent() {
 
-        Admin admin = new Admin(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło");
+        Mentor mentor = new Mentor(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło");
 
         Map<String, Object> variables = new HashMap<>();
 
-        variables.put("user", admin);
+        variables.put("user", mentor);
 
         templatesProcessor.setVariables(variables);
 
-        String page = templatesProcessor.ProcessTemplateToPage("admin/create-mentor");
+        String page = templatesProcessor.ProcessTemplateToPage("mentor/create-student");
         return page;
     }
 }

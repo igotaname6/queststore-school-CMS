@@ -4,6 +4,7 @@ import com.codecool_mjs.controller.applicationActionsController.MentorController
 import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.model.Admin;
 import com.codecool_mjs.model.Mentor;
+import com.codecool_mjs.utilities.UriResolver;
 import com.codecool_mjs.view.webView.TemplatesProcessor;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -11,16 +12,16 @@ import com.sun.net.httpserver.HttpHandler;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class ShowMentorsActions implements HttpHandler{
+public class DeleteMentorsActions implements HttpHandler{
 
     private TemplatesProcessor templateProcessor;
     private Admin loggedUser;
+    private MentorController mentorController = new MentorController();
 
 
-    public ShowMentorsActions(){
+    public DeleteMentorsActions(){
         this.templateProcessor = new TemplatesProcessor();
     }
 
@@ -30,15 +31,25 @@ public class ShowMentorsActions implements HttpHandler{
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
-        String responseBody;
-        int responseCode;
 
-        try {
-            responseBody = showAllMentors();
-            responseCode = 200;
-        } catch (DaoException e) {
-            responseBody = "No such page";
-            responseCode = 404;
+        String responseBody = "";
+        int responseCode = 200;
+
+        String method = httpExchange.getRequestMethod();
+        String idStr = UriResolver.getUserIdFromURI(httpExchange);
+
+        if(method.equals("GET")) {
+
+            Integer id = Integer.parseInt(idStr);
+
+            responseBody = showMentorToDelete(id);
+        }
+
+        if(method.equals("POST")) {
+
+            Integer id = Integer.parseInt(idStr);
+
+            responseBody = deleteMentor(id);
         }
 
         httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);
@@ -47,21 +58,38 @@ public class ShowMentorsActions implements HttpHandler{
         os.close();
     }
 
-    public String showAllMentors() throws DaoException {
+    private String showMentorToDelete(Integer id){
+
+        Mentor mentor = null;
         //temporary example of logged user. To remove when sessions will be implemented
         setLoggedUser(new Admin(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło"));
 
+
         Map<String, Object> variables = new HashMap<>();
 
-        MentorController mentorController = new MentorController();
-        List<Mentor> allMentors = mentorController.getAllMentors();
+        try {
+            mentor = mentorController.getMentorById(id);
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
 
         variables.put("user", loggedUser);
-        variables.put("mentorsList", allMentors);
+        variables.put("mentor", mentor);
 
         templateProcessor.setVariables(variables);
+        String page = templateProcessor.ProcessTemplateToPage("admin/delete-mentor");
+        return page;
+    }
 
-        String page = templateProcessor.ProcessTemplateToPage("admin/admin-show-mentors");
+    private String deleteMentor(Integer id) {
+
+        try {
+            mentorController.deleteMentor(id);
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
+
+        String page = templateProcessor.ProcessTemplateToPage("admin/delete-confirmation");
         return page;
     }
 }
