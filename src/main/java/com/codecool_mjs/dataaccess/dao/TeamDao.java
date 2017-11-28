@@ -17,48 +17,53 @@ public class TeamDao extends Dao<Team> {
 
     @Override
     Team createObject(ResultSet results) throws SQLException {
-        return null;
+        Integer id = results.getInt("id");
+        String name = results.getString("name");
+        return new Team(id, name);
     }
 
     @Override
     String getQueryForGetAll() {
-        return null;
+        return String.format("SELECT * FROM teams;");
     }
 
     @Override
     String getQueryForGetById() {
-        return null;
+        return  String.format("SELECT * FROM teams WHERE id = ?");
     }
 
     @Override
     String getUpdateQuery() {
-        return null;
+        return "UPDATE groups" +
+                " SET name = ?" +
+                " WHERE id = ?;";
     }
 
     @Override
     void setUpdateStatement(PreparedStatement preparedStatement, Team team) throws SQLException {
-
+        preparedStatement.setString(1, team.getName());
+        preparedStatement.setInt(2, team.getId());
     }
 
     @Override
     String getDeleteQuery() {
-        return null;
+        return "DELETE FROM teams WHERE id=?;";
     }
 
     @Override
     void setDeleteStatement(PreparedStatement preparedStatement, Team team) throws SQLException {
-
+        preparedStatement.setInt(1, team.getId());
     }
 
     @Override
     String getInsertQuery() {
-        return null;
+        return "INSERT INTO teams (name) VALUES(?);";
     }
     @Override
     String getQueryForGetLast() {return null;}
 
     @Override
     void setInsertStatement(PreparedStatement preparedStatement, Team team) throws SQLException {
-
+        preparedStatement.setString(1, team.getName());
     }
 }
