@@ -14,7 +14,13 @@ public class GroupMembership {
         this.codecoolers = codecoolers;
     }
 
+    public List<Mentor> getMentors() {
+        return mentors;
+    }
 
+    public List<Codecooler> getCodecoolers() {
+        return codecoolers;
+    }
 
     public Group getGroup() {
         return group;
