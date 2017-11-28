@@ -53,4 +53,12 @@ public class TeamController {
         this.dao.delete(team);
     }
 
+    public void editTeam(Map<String, String> teamData) throws DaoException {
+
+        Integer id = Integer.parseInt(teamData.get("id"));
+        String name = teamData.get("name");
+
+        Team team = new Team(id, name);
+        this.dao.update(team);
+    }
 }
