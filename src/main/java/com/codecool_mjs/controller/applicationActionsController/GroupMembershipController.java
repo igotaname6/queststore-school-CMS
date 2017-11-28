@@ -3,38 +3,37 @@ package com.codecool_mjs.controller.applicationActionsController;
 import com.codecool_mjs.dataaccess.ConnectionProvider;
 import com.codecool_mjs.dataaccess.dao.Dao;
 import com.codecool_mjs.dataaccess.dao.DaoException;
-import com.codecool_mjs.dataaccess.dao.IDao;
-import com.codecool_mjs.dataaccess.dao.UserMembershipDao;
+import com.codecool_mjs.dataaccess.dao.GroupMembershipDao;
 import com.codecool_mjs.model.Group;
 import com.codecool_mjs.model.User;
-import com.codecool_mjs.model.UserMembership;
+import com.codecool_mjs.model.GroupMembership;
 
 import java.util.List;
 
 
-public class UserMembershipController {
-    private Dao<UserMembership> dao;
-    private static UserMembershipController instance = null;
+public class GroupMembershipController {
+    private Dao<GroupMembership> dao;
+    private static GroupMembershipController instance = null;
     private MentorController mentorCon = MentorController.getInstance();
     private CodecoolerController codecoolerCon = CodecoolerController.getInstance();
     private GroupController groupCon = GroupController.getInstance();
 
-    public UserMembershipController() {
+    public GroupMembershipController() {
         setDao();
     }
 
     private void setDao() {
         try {
-            dao = new UserMembershipDao();
+            dao = new GroupMembershipDao();
             ConnectionProvider.getInstance().connectionRequest(dao);
         } catch (DaoException e) {
             e.printStackTrace();
         }
     }
 
-    public static UserMembershipController getInstance() {
+    public static GroupMembershipController getInstance() {
         if (instance == null) {
-            instance = new UserMembershipController();
+            instance = new GroupMembershipController();
         }
         return instance;
     }
@@ -45,7 +44,7 @@ public class UserMembershipController {
 
         for (Integer id : usersId) {
             User user = mentorCon.getMentorById(id);
-            UserMembership um = new UserMembership(user, group);
+            GroupMembership um = new GroupMembership(user, group);
             this.dao.insert(um);
         }
     }
@@ -56,7 +55,7 @@ public class UserMembershipController {
 
         for (Integer id : usersId) {
             User user = codecoolerCon.getCodecoolerById(id);
-            UserMembership um = new UserMembership(user, group);
+            GroupMembership um = new GroupMembership(user, group);
             this.dao.insert(um);
         }
     }
