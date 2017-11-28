@@ -8,6 +8,8 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeController implements HttpHandler {
 
@@ -23,13 +25,13 @@ public class HomeController implements HttpHandler {
     public void handle(HttpExchange httpExchange) throws IOException {
 
         Boolean isSessionExist = false;
+        Boolean isLoginFailed = false;
         //check if cookie with session id exist in browser
         try {
             isSessionExist = sessionController.verifySession(httpExchange);
         } catch (DaoException e) {
             httpExchange.sendResponseHeaders(503, -1);
         }
-
 
         if (isSessionExist) {
         //means session id is in db, and user session is established.
@@ -40,14 +42,19 @@ public class HomeController implements HttpHandler {
             String method = httpExchange.getRequestMethod();
 
             if (method.equals("GET")) {
-                sendLoginPage(httpExchange);
+                sendLoginPage(httpExchange, isLoginFailed);
 
             } else if (method.equals("POST")) {
                 try {
                     //parse login form,  save session id to db, send cookie and redirect to proper user controller
                     sessionController.logIn(httpExchange);
                     User user = sessionController.getLoggedUser();
-                    sendUserController(httpExchange, user);
+                    if(user == null){
+                        isLoginFailed = true;
+                        sendLoginPage(httpExchange, isLoginFailed);
+                    }else {
+                        sendUserController(httpExchange, user);
+                    }
                 } catch (DaoException e) {
                     httpExchange.sendResponseHeaders(503, -1);
                 }
@@ -55,7 +62,13 @@ public class HomeController implements HttpHandler {
         }
     }
 
-    private void sendLoginPage(HttpExchange httpExchange) throws IOException {
+    private void sendLoginPage(HttpExchange httpExchange, boolean isLoginFailed) throws IOException {
+        //sets variable filedLogin - if true display info on the page
+        Map<String, Object> pageVariables = new HashMap<>();
+        pageVariables.put("isLoginFailed", isLoginFailed);
+
+        templatesProcessor.setVariables(pageVariables);
+
         String responseBody = templatesProcessor.ProcessTemplateToPage("index");
 
         httpExchange.sendResponseHeaders(200, responseBody.getBytes().length);
