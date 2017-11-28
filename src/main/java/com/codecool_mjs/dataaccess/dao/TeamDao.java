@@ -10,11 +10,6 @@ import java.sql.SQLException;
 
 public class TeamDao extends Dao<Team> {
 
-
-    public TeamDao(Connection connection) {
-        super(connection);
-    }
-
     @Override
     Team createObject(ResultSet results) throws SQLException {
         Integer id = results.getInt("id");
