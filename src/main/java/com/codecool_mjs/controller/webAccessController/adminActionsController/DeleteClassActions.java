@@ -1,6 +1,8 @@
 package com.codecool_mjs.controller.webAccessController.adminActionsController;
 
 import com.codecool_mjs.controller.applicationActionsController.GroupController;
+import com.codecool_mjs.controller.webAccessController.Sessionable;
+import com.codecool_mjs.controller.webAccessController.WebActionController;
 import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.model.Admin;
 import com.codecool_mjs.model.Group;
@@ -14,24 +16,40 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DeleteClassActions implements HttpHandler{
+public class DeleteClassActions extends WebActionController implements Sessionable{
 
-    private TemplatesProcessor templateProcessor;
-    private Admin loggedUser;
-    private GroupController groupController = GroupController.getInstance();
-
+    private GroupController groupController;
 
     public DeleteClassActions(){
-        this.templateProcessor = new TemplatesProcessor();
+        super();
+        this.groupController = GroupController.getInstance();
     }
 
-    public void setLoggedUser(Admin loggedUser) {
-        this.loggedUser = loggedUser;
+    private String showClassToDelete(Integer id) throws DaoException{
+
+        Group group;
+        group = groupController.getGroup(id);
+        setVariable("class", group);
+
+        String page = processTemplate("admin/delete-class");
+        return page;
+    }
+
+    private String deleteClass(Integer id) throws DaoException{
+
+        groupController.deleteGroup(id);
+
+        String page = processTemplate("admin/delete-confirmation");
+        return page;
     }
 
     @Override
-    public void handle(HttpExchange httpExchange) throws IOException {
+    public String getAccessType() {
+        return "Admin";
+    }
 
+    @Override
+    public void sendPageForPopperAccess(HttpExchange httpExchange) throws IOException, DaoException {
         String responseBody = "";
         int responseCode = 200;
 
@@ -41,14 +59,11 @@ public class DeleteClassActions implements HttpHandler{
         if(method.equals("GET")) {
 
             Integer id = Integer.parseInt(idStr);
-
             responseBody = showClassToDelete(id);
         }
-
         if(method.equals("POST")) {
 
             Integer id = Integer.parseInt(idStr);
-
             responseBody = deleteClass(id);
         }
 
@@ -56,40 +71,5 @@ public class DeleteClassActions implements HttpHandler{
         OutputStream os = httpExchange.getResponseBody();
         os.write(responseBody.getBytes());
         os.close();
-    }
-
-    private String showClassToDelete(Integer id){
-
-        Group group = null;
-        //temporary example of logged user. To remove when sessions will be implemented
-        setLoggedUser(new Admin(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło"));
-
-
-        Map<String, Object> variables = new HashMap<>();
-
-        try {
-            group = groupController.getGroup(id);
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-
-        variables.put("user", loggedUser);
-        variables.put("class", group);
-
-        templateProcessor.setVariables(variables);
-        String page = templateProcessor.ProcessTemplateToPage("admin/delete-class");
-        return page;
-    }
-
-    private String deleteClass(Integer id) {
-
-        try {
-            groupController.deleteGroup(id);
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-
-        String page = templateProcessor.ProcessTemplateToPage("admin/delete-confirmation");
-        return page;
     }
 }
