@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="create-artifact" class = "content-box">
+        <div class="status-bar">
+            <p id="test">Mentor -> Create artifact</p>
+        </div>
+        <form method="POST">
+
+            <br/></br>Name:
+            </br> <input type="text" name="name" placeholder="exampleName" required/>
+
+            </br>Description:
+            </br> <input type="text" name="description" placeholder="example description" required/>
+
+            </br>Cost:
+            </br> <input type="text" name="cost" placeholder="100" required/>
+
+            </br>Team quest:
+            </br> <input type="checkbox" name="isGroup" value="true"/>
+
+            <div class="button">
+                <input type="submit" value="Submit"/>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
