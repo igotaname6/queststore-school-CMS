@@ -39,6 +39,7 @@ public class SessionController{
             this.loggedUser = user;
             return true;
         }else{
+            this.loggedUser = null;
             return false;
         }
     }
