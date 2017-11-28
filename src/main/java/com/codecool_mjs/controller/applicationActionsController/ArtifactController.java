@@ -60,6 +60,12 @@ public class ArtifactController {
         Artifact artifact = this.dao.getById(id);
         return artifact;
     }
+    public void deleteArtifact(Integer id) throws DaoException {
+        Artifact artifact = new Artifact(id);
+        this.dao.delete(artifact);
+    }
+
+
 
 
 }
