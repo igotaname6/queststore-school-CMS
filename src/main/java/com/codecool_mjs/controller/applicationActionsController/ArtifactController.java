@@ -38,6 +38,24 @@ public class ArtifactController {
         return dao.getAll();
     }
 
+    public void addArtifact(Map<String, String> artifactData) throws DaoException {
+        String name = artifactData.get("name");
+        String description = artifactData.get("description");
+        String cost = artifactData.get("cost");
+        Boolean isGroup = false;
+        Boolean isUsed = false;
+
+        if (artifactData.get("isGroup").equals("true")) {
+            isGroup = true;
+        }
+        if (artifactData.get("isUsed").equals("true")) {
+            isUsed = true;
+        }
+
+        Artifact artifact = new Artifact(name, description, cost, isGroup, isUsed);
+        this.dao.insert(artifact);
+    }
+
 
 }
 
