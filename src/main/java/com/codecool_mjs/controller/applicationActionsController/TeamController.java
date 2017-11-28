@@ -6,6 +6,8 @@ import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.dataaccess.dao.TeamDao;
 import com.codecool_mjs.model.Team;
 
+import java.util.List;
+
 public class TeamController {
     private Dao<Team> dao;
     private static TeamController instance = null;
@@ -28,5 +30,9 @@ public class TeamController {
             instance = new TeamController();
         }
         return instance;
+    }
+
+    public List<Team> getAllTeams() throws DaoException {
+        return dao.getAll();
     }
 }
