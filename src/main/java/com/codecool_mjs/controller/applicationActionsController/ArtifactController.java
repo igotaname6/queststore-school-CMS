@@ -34,6 +34,10 @@ public class ArtifactController {
         return instance;
     }
 
+    public List<Artifact> getAllArtifacts() throws DaoException {
+        return dao.getAll();
+    }
+
 
 }
 
