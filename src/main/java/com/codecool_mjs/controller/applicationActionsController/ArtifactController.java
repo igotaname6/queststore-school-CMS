@@ -65,8 +65,25 @@ public class ArtifactController {
         this.dao.delete(artifact);
     }
 
+    public void editArtifact(Map<String, String> artifactData) throws DaoException {
 
+        Integer id = Integer.parseInt(artifactData.get("id"));
+        String name = artifactData.get("name");
+        String description = artifactData.get("description");
+        String cost = artifactData.get("cost");
+        Boolean isGroup = false;
+        Boolean isUsed = false;
 
+        if (artifactData.get("isGroup").equals("true")) {
+            isGroup = true;
+        }
+        if (artifactData.get("isUsed").equals("true")) {
+            isUsed = true;
+        }
 
+        Artifact artifact = new Artifact(id, name, description, cost, isGroup, isUsed);
+
+        this.dao.update(artifact);
+    }
 }
 
