@@ -16,7 +16,6 @@ import java.util.Map;
 
 public class AdminHomeController extends WebActionController implements Sessionable{
 
-    private Map<String, Object> pageVariables;
     private static String TEMPLATE_URL = "/admin/home";
 
     public AdminHomeController(){
@@ -40,12 +39,5 @@ public class AdminHomeController extends WebActionController implements Sessiona
     @Override
     public String getAccessType() {
         return "Admin";
-    }
-
-    @Override
-    public Map<String, Object> getPageVariables(){
-        Map<String, Object> variables = new HashMap<>();
-        variables.put("user", getLoggedUser());
-        return variables;
     }
 }

@@ -11,7 +11,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.util.HashMap;
 import java.util.Map;
 
 public class AddClassController extends WebActionController implements Sessionable{
@@ -60,12 +59,5 @@ public class AddClassController extends WebActionController implements Sessionab
         OutputStream os = httpExchange.getResponseBody();
         os.write(responseBody.getBytes());
         os.close();
-    }
-
-    @Override
-    public Map<String, Object> getPageVariables(){
-        Map<String, Object> variables = new HashMap<>();
-        variables.put("user", getLoggedUser());
-        return variables;
     }
 }
