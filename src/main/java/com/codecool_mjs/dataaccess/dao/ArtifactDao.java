@@ -37,7 +37,7 @@ public class ArtifactDao extends Dao<Artifact> {
                 " SET name = ?," +
                 " description = ?," +
                 " cost = ?," +
-                " is_group = ?" +
+                " is_group = ?," +
                 " is_used  = ?" +
                 " WHERE id = ?;";
     }
