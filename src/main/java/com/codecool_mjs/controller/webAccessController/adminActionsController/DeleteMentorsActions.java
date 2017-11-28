@@ -17,8 +17,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DeleteMentorsActions extends WebActionController implements Sessionable{
-    private MentorController mentorController;
 
+    private MentorController mentorController;
     private static String CONFIRMATION_TEMPLATE_URL = "admin/delete-confirmation";
     private static String DATA_TEMPLATE_URL = "admin/delete-mentor";
 
