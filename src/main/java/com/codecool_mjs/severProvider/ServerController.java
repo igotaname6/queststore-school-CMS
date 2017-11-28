@@ -36,6 +36,10 @@ public class ServerController {
         server.createContext("/quests/add", new AddQuestController());
         server.createContext("/quests/edit", new EditQuestActions());
         server.createContext("/quests/delete" , new DeleteQuestActions());
+        server.createContext("/artifacts", new MenageArtifactsActions());
+        server.createContext("/artifacts/add", new AddArtifactController());
+        server.createContext("/artifacts/edit", new EditArtifactActions());
+        server.createContext("/artifacts/delete", new DeleteArtifactActions());
         server.createContext("/static", new StaticController());
         server.createContext("/logout", new LogOutController());
         server.setExecutor(null);
