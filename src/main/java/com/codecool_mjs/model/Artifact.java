@@ -39,6 +39,20 @@ public class Artifact {
         this.isUsed = isUsed;
     }
 
+    public Artifact(String name, String description, Integer cost, Boolean isGroup, Boolean isUsed) {
+
+        this.name = name;
+        this.description = description;
+        this.cost = cost;
+        this.isGroup = isGroup;
+        this.isUsed = isUsed;
+    }
+
+    public Artifact(Integer id) {
+
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }

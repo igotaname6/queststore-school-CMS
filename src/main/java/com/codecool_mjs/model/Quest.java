@@ -34,6 +34,17 @@ public class Quest {
         this.isGroup = isGroup;
     }
 
+    public Quest(Integer id) {
+        this.id = id;
+    }
+
+    public Quest(String name, String description, Integer coinReward, Boolean isGroup) {
+        this.name = name;
+        this.description = description;
+        this.coinReward = coinReward;
+        this.isGroup = isGroup;
+    }
+
     public Integer getId() {
         return id;
     }
