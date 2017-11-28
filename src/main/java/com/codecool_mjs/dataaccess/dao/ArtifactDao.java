@@ -9,10 +9,6 @@ import java.sql.SQLException;
 
 public class ArtifactDao extends Dao<Artifact> {
 
-    public ArtifactDao(Connection connection) {
-        super(connection);
-    }
-
     Artifact createObject(ResultSet results) throws SQLException {
 
         int id = results.getInt("id");
