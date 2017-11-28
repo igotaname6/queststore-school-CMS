@@ -7,6 +7,7 @@ import com.codecool_mjs.dataaccess.dao.TeamDao;
 import com.codecool_mjs.model.Team;
 
 import java.util.List;
+import java.util.Map;
 
 public class TeamController {
     private Dao<Team> dao;
@@ -34,5 +35,11 @@ public class TeamController {
 
     public List<Team> getAllTeams() throws DaoException {
         return dao.getAll();
+    }
+
+    public void addTeam(Map<String, String> teamData) throws DaoException {
+        String name = teamData.get("name");
+        Team team = new Team(name);
+        this.dao.insert(team);
     }
 }
