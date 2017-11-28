@@ -56,7 +56,7 @@ public class ArtifactController {
         this.dao.insert(artifact);
     }
 
-    public Artifact getArtifact(Integer id) throws DaoException {
+    public Artifact getArtifactById(Integer id) throws DaoException {
         Artifact artifact = this.dao.getById(id);
         return artifact;
     }
