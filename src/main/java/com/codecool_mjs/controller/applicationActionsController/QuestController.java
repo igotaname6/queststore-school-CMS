@@ -41,7 +41,7 @@ public class QuestController {
     public void addQuest(Map<String, String> questData) throws DaoException {
         String name = questData.get("name");
         String description = questData.get("description");
-        Integer reward = Integer.parseInt(questData.get("reward"));
+        Integer reward = Integer.parseInt(questData.get("coinReward"));
         Boolean isGroup;
 
         if (questData.get("isGroup").equals("true")) {
@@ -69,7 +69,7 @@ public class QuestController {
         Integer id = Integer.parseInt(questData.get("id"));
         String name = questData.get("name");
         String description = questData.get("description");
-        Integer reward = Integer.parseInt(questData.get("reward"));
+        Integer reward = Integer.parseInt(questData.get("coinReward"));
         Boolean isGroup;
 
         if (questData.get("isGroup").equals("true")) {
