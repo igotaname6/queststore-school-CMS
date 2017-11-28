@@ -8,6 +8,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 public abstract class WebActionController implements HttpHandler, Sessionable{
@@ -15,10 +16,12 @@ public abstract class WebActionController implements HttpHandler, Sessionable{
     private TemplatesProcessor templatesProcessor;
     private SessionController sessionController;
     private User loggedUser;
+    private Map<String, Object> pageVariables;
 
     public WebActionController(){
         this.templatesProcessor = new TemplatesProcessor();
         this.sessionController = new SessionController();
+        this.pageVariables = new HashMap<>();
     }
 
 
@@ -43,10 +46,15 @@ public abstract class WebActionController implements HttpHandler, Sessionable{
 
     @Override
     public String processTemplate(String TemplateUrl) throws DaoException {
-        templatesProcessor.setVariables(getPageVariables());
+        setVariable("user", getLoggedUser());
 
+        templatesProcessor.setVariables(pageVariables);
         String page = templatesProcessor.ProcessTemplateToPage(TemplateUrl);
         return page;
+    }
+
+    public void setVariable(String variableName, Object variableObject){
+        this.pageVariables.put(variableName, variableObject);
     }
 
     public User getLoggedUser() {
@@ -61,5 +69,4 @@ public abstract class WebActionController implements HttpHandler, Sessionable{
         return sessionController;
     }
 
-    public abstract Map<String, Object> getPageVariables();
 }
