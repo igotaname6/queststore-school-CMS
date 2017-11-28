@@ -17,6 +17,14 @@ public class Team {
         this.name = name;
     }
 
+    public Team(Integer id) {
+        this.id = id;
+    }
+
+    public Team(String name) {
+        this.name = name;
+    }
+
     public Integer getId() {
         return id;
     }
