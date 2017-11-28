@@ -9,10 +9,6 @@ import java.sql.SQLException;
 
 public class ArtifactDao extends Dao<Artifact> {
 
-    public ArtifactDao(Connection connection) {
-        super(connection);
-    }
-
     Artifact createObject(ResultSet results) throws SQLException {
 
         int id = results.getInt("id");
@@ -32,18 +28,18 @@ public class ArtifactDao extends Dao<Artifact> {
 
     @Override
     String getQueryForGetById() {
-        return "SELECT * FROM artifacts where id = %d;";
+        return "SELECT * FROM artifacts where id = ?;";
     }
 
     @Override
     String getUpdateQuery() {
         return "UPDATE artifacts" +
-                "SET name = ?," +
-                "description = ?," +
-                "cost = ?," +
-                "is_group = ?" +
-                "is_used  = ?" +
-                "WHERE id = ?;";
+                " SET name = ?," +
+                " description = ?," +
+                " cost = ?," +
+                " is_group = ?" +
+                " is_used  = ?" +
+                " WHERE id = ?;";
     }
 
     @Override
@@ -52,7 +48,8 @@ public class ArtifactDao extends Dao<Artifact> {
         preparedStatement.setString(2, artifact.getDescription());
         preparedStatement.setInt(3, artifact.getCost());
         preparedStatement.setBoolean(4, artifact.getIsGroup());
-        preparedStatement.setBoolean(4, artifact.getIsUsed());
+        preparedStatement.setBoolean(5, artifact.getIsUsed());
+        preparedStatement.setInt(6, artifact.getId());
     }
 
     @Override
@@ -74,10 +71,10 @@ public class ArtifactDao extends Dao<Artifact> {
     @Override
     void setInsertStatement(PreparedStatement preparedStatement, Artifact artifact) throws SQLException {
         preparedStatement.setString(1, artifact.getName());
-        preparedStatement.setString(1, artifact.getDescription());
-        preparedStatement.setInt(1, artifact.getCost());
-        preparedStatement.setBoolean(1, artifact.getIsGroup());
-        preparedStatement.setBoolean(1, artifact.getIsUsed());
+        preparedStatement.setString(2, artifact.getDescription());
+        preparedStatement.setInt(3, artifact.getCost());
+        preparedStatement.setBoolean(4, artifact.getIsGroup());
+        preparedStatement.setBoolean(5, artifact.getIsUsed());
     }
     @Override
     String getQueryForGetLast() {return null;}
