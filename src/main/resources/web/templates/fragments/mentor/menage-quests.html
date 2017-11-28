@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="menage-quests" class = "content-box">
+        <div class="status-bar">
+            <h3>Students -> Menage quests<h3>
+        </div>
+        <div id="table">
+            <table>
+                <thead>
+                <tr>
+                    <th scope="col" id="id">No</th>
+                    <th scope="col" id="Name">Name</th>
+                    <th scope="col" id="Description">Description</th>
+                    <th scope="col" id="Cost">Coin reward</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="quest : ${questsList}">
+
+                        <td th:text="${questStat.count}"></td>
+                        <td th:text="${quest.name}">Berło</td>
+                        <td th:text="${quest.description}">Berło jak berło</td>
+                        <td th:text="${quest.coinReward}">200</td>
+                        <td class="edit-button">
+                            <a th:href="${'/quests/edit/' + quest.id}">
+                                <button type="button">Edit</button>
+                            </a>
+                        </td>
+                        <td class="edit-button">
+                            <a th:href="${'/quests/delete/' + quest.id}">
+                                <button type="button">Delete</button>
+                            </a>
+                        </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
