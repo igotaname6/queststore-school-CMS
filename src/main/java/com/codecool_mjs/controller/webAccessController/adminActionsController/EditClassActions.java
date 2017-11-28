@@ -1,41 +1,38 @@
 package com.codecool_mjs.controller.webAccessController.adminActionsController;
 
 import com.codecool_mjs.controller.applicationActionsController.GroupController;
-import com.codecool_mjs.controller.applicationActionsController.MentorController;
+import com.codecool_mjs.controller.webAccessController.Sessionable;
+import com.codecool_mjs.controller.webAccessController.WebActionController;
 import com.codecool_mjs.dataaccess.dao.DaoException;
-import com.codecool_mjs.model.Admin;
 import com.codecool_mjs.model.Group;
-import com.codecool_mjs.model.Mentor;
 import com.codecool_mjs.utilities.FormResolver;
 import com.codecool_mjs.utilities.UriResolver;
-import com.codecool_mjs.view.webView.TemplatesProcessor;
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.util.HashMap;
 import java.util.Map;
 
-public class EditClassActions implements HttpHandler{
+public class EditClassActions extends WebActionController implements Sessionable {
 
-    private TemplatesProcessor templateProcessor;
-    private Admin loggedUser;
-    private GroupController groupController = GroupController.getInstance();
+    private GroupController groupController;
+    private static String CONFIRMATION_TEMPLATE_URL = "admin/edit-confirmation";
+    private static String DATA_TEMPLATE_URL = "admin/edit-class";
 
     public EditClassActions(){
-        this.templateProcessor = new TemplatesProcessor();
-    }
-
-    public void setLoggedUser(Admin loggedUser) {
-        this.loggedUser = loggedUser;
+        super();
+        groupController = GroupController.getInstance();
     }
 
     @Override
-    public void handle(HttpExchange httpExchange) throws IOException {
+    public String getAccessType() {
+        return "Admin";
+    }
 
+    @Override
+    public void sendPageForPopperAccess(HttpExchange httpExchange) throws IOException, DaoException {
         String responseBody = "";
         int responseCode = 200;
 
@@ -43,14 +40,11 @@ public class EditClassActions implements HttpHandler{
         String idStr = UriResolver.getUserIdFromURI(httpExchange);
 
         if(method.equals("GET")) {
-
             Integer id = Integer.parseInt(idStr);
-
             responseBody = editClass(id);
         }
 
-        if(method.equals("POST")) {
-
+        else if(method.equals("POST")) {
             Map<String, String> records;
 
             InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "UTF-8");
@@ -60,12 +54,8 @@ public class EditClassActions implements HttpHandler{
             records = FormResolver.parseDataForm(dataForm);
             records.put("id", idStr);
 
-            try {
-                groupController.editGroup(records);
-            } catch (DaoException e) {
-                e.printStackTrace();
-            }
-            responseBody = templateProcessor.ProcessTemplateToPage("admin/edit-confirmation");
+            groupController.editGroup(records);
+            responseBody = processTemplate(CONFIRMATION_TEMPLATE_URL);
         }
 
         httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);
@@ -74,26 +64,12 @@ public class EditClassActions implements HttpHandler{
         os.close();
     }
 
-    private String editClass(Integer id){
+    private String editClass(Integer id) throws DaoException{
 
-        Group group = null;
+        Group group = groupController.getGroup(id);
 
-        Admin admin = new Admin(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło");
-        Map<String, Object> variables = new HashMap<>();
-
-        try {
-            group = groupController.getGroup(id);
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-
-        variables.put("user", admin);
-        variables.put("class", group);
-
-        templateProcessor.setVariables(variables);
-
-        String page = templateProcessor.ProcessTemplateToPage("admin/edit-class");
-
-        return page;
+        setVariable("class", group);
+        return processTemplate(DATA_TEMPLATE_URL);
     }
+
 }
