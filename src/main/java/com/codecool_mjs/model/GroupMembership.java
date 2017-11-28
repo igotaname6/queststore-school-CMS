@@ -8,7 +8,7 @@ public class GroupMembership {
     private List<Codecooler> codecoolers;
     private Group group;
 
-    public GroupMembership(Group group, List<Mentor> mentors, List<Codecooler> codecoolers) {
+    public GroupMembership(Group group, List<Codecooler> codecoolers) {
         this.group = group;
         this.mentors = mentors;
         this.codecoolers = codecoolers;
