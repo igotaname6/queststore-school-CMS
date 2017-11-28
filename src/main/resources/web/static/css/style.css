@@ -61,6 +61,7 @@ body
 body
 {
     background-image: url("../img/hexellence.png");
+    /*background: url("../img/hexellence.png") center top / cover;*/
     display: flex;
     flex-direction: column;
 }
