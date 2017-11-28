@@ -11,25 +11,28 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
-public class MenageClassesActions extends WebActionController implements Sessionable {
+public class ManageClassesActions extends WebActionController implements Sessionable {
 
-    private static String CONFIRMATION_TEMPLATE_URL = "admin/edit-confirmation";
-    private static String DATA_TEMPLATE_URL = "admin/edit-mentor";
+    private static String DATA_TEMPLATE_URL = "admin/menage-classes";
     private GroupController groupController;
 
 
-    public MenageClassesActions(){
+    public ManageClassesActions(){
+        super();
         this.groupController = GroupController.getInstance();
     }
 
     @Override
-    public void handle(HttpExchange httpExchange) throws IOException {
+    public String getAccessType() {
+        return "Admin";
+    }
 
+    @Override
+    public void sendPageForPopperAccess(HttpExchange httpExchange) throws IOException, DaoException {
         String responseBody;
 
         responseBody = manageClasses();
         int responseCode = 200;
-
 
         httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);
         OutputStream os = httpExchange.getResponseBody();
@@ -40,15 +43,8 @@ public class MenageClassesActions extends WebActionController implements Session
     private String manageClasses() throws DaoException {
 
         List<Group> allGroups = groupController.getAllGroups();
+        setVariable("classesList", allGroups);
 
-        variables.put("user", loggedUser);
-        variables.put("classesList", allGroups);
-
-        System.out.println(variables);
-
-        templateProcessor.setVariables(variables);
-
-        String page = templateProcessor.ProcessTemplateToPage("admin/menage-classes");
-        return page;
+        return processTemplate(DATA_TEMPLATE_URL);
     }
 }
