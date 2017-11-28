@@ -32,6 +32,10 @@ public class ServerController {
         server.createContext("/students/edit", new EditStudentsActions());
         server.createContext("/students/delete", new DeleteStudentActions());
         server.createContext("/student-home", new StudentHomeController());
+        server.createContext("/quests", new MenageQuestsActions());
+        server.createContext("/quests/add", new AddQuestController());
+        server.createContext("/quests/edit", new EditQuestActions());
+        server.createContext("/quests/delete" , new DeleteQuestActions());
         server.createContext("/static", new StaticController());
         server.createContext("/logout", new LogOutController());
         server.setExecutor(null);
