@@ -41,7 +41,7 @@ public class ArtifactController {
     public void addArtifact(Map<String, String> artifactData) throws DaoException {
         String name = artifactData.get("name");
         String description = artifactData.get("description");
-        String cost = artifactData.get("cost");
+        Integer cost = Integer.parseInt(artifactData.get("cost"));
         Boolean isGroup = false;
         Boolean isUsed = false;
 
@@ -70,7 +70,7 @@ public class ArtifactController {
         Integer id = Integer.parseInt(artifactData.get("id"));
         String name = artifactData.get("name");
         String description = artifactData.get("description");
-        String cost = artifactData.get("cost");
+        Integer cost = Integer.parseInt(artifactData.get("cost"));
         Boolean isGroup = false;
         Boolean isUsed = false;
 
