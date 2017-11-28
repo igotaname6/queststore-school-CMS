@@ -25,4 +25,8 @@ public class GroupMembership {
     public Group getGroup() {
         return group;
     }
+
+    public void addMentors(Mentor mentor) {
+        this.mentors.add(mentor);
+    }
 }
