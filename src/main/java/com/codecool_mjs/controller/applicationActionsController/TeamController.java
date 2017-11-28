@@ -42,4 +42,9 @@ public class TeamController {
         Team team = new Team(name);
         this.dao.insert(team);
     }
+
+    public Team getTeamById(Integer id) throws DaoException {
+        Team team = this.dao.getById(id);
+        return team;
+    }
 }
