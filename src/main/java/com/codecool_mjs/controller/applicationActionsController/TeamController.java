@@ -47,4 +47,10 @@ public class TeamController {
         Team team = this.dao.getById(id);
         return team;
     }
+
+    public void deleteTeam(Integer id) throws DaoException {
+        Team team = new Team(id);
+        this.dao.delete(team);
+    }
+
 }
