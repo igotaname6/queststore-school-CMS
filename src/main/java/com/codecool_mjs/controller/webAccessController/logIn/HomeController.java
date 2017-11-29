@@ -84,7 +84,7 @@ public class HomeController implements HttpHandler {
             httpExchange.getResponseHeaders().add("Location", "/mentor-home");
             httpExchange.sendResponseHeaders(302, -1);
         } else if (userRole.equals("Codecooler")) {
-            httpExchange.getResponseHeaders().add("Location", "/codecooler-home");
+            httpExchange.getResponseHeaders().add("Location", "/student-home");
             httpExchange.sendResponseHeaders(302, -1);
         } else if (userRole.equals("Admin")) {
             httpExchange.getResponseHeaders().add("Location", "/admin-home");
