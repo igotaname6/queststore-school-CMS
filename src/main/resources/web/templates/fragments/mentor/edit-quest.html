@@ -6,21 +6,22 @@
             <p id="test">Mentor -> Edit quest data</p>
         </div>
         <form method="POST">
+            <div class="form">
+                Name:
+                <input type="text" name="name" th:value="${quest.name}" required/>
 
-            <br/></br>Name:
-            </br> <input type="text" name="name" th:value="${quest.name}" required/>
+                Description:
+                <input type="text" name="description" th:value="${quest.description}" required/>
 
-            </br>Description:
-            </br> <input type="text" name="description" th:value="${quest.description}" required/>
+                Coin reward:
+                <input type="text" name="coinReward" th:value="${quest.coinReward}" required/>
 
-            </br>Coin reward:
-            </br> <input type="text" name="coinReward" th:value="${quest.coinReward}" required/>
+                Team quest:
+                <input type="checkbox" name="isGroup" value="true"/>
 
-            </br>Team quest:
-            </br> <input type="checkbox" name="isGroup" value="true"/>
-
-            <div class="button">
-                <input type="submit" value="Submit"/>
+                <div class="button">
+                    <input type="submit" value="Submit"/>
+                </div>
             </div>
         </form>
     </div>

@@ -60,10 +60,28 @@ body
 
 body
 {
-    background-image: url("../img/hexellence.png");
-    /*background: url("../img/hexellence.png") center top / cover;*/
+    background: url("../img/background.jpg");
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     flex-direction: column;
+    height: 100%;
+    margin: 0px;
+}
+
+html
+{
+    height: 100%;
+    margin: 0px;
+}
+
+.wrapper
+{
+    min-height: 100%;
+    margin-bottom: -30px;
 }
 
 /*
@@ -78,17 +96,30 @@ header
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: #BCB1B3;
-    border-radius: 10px;
     color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+}
 
+.index-header
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .logo
 {
-    margin: 0px 10px;
-    height: 42px;
-    width: 42px;
+    margin: 10px 5px;
+    padding-left: 30px;
+    height: 50px;
+    width: 50px;
+}
+
+.index-logo
+{
+    margin: 10px 5px;
+    height: 50px;
+    width: 50px;
 }
 
 .user-holder
@@ -105,7 +136,12 @@ Typography
 
 h1
 {
-    font-size: 200%;
+    font-size: 250%;
+}
+
+h1 span
+{
+    color: orange;
 }
 
 
@@ -120,9 +156,15 @@ h3
     font-size: 125%;
 }
 
+h4
+{
+    font-size: 100%
+}
+
 th
 {
-    background-color: #BCB1B3;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
     padding: 5px;
     height: 30px;
     vertical-align: middle;
@@ -130,6 +172,8 @@ th
 
 td
 {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: black;
     padding: 5px;
     vertical-align: middle;
 }
@@ -147,6 +191,11 @@ table th#edit-button
     border-top: none;
 }
 
+#failed
+{
+    color: #e6424b;
+}
+
 /*
 -----------------------------------
 Sidebar, content
@@ -159,7 +208,7 @@ Sidebar, content
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 500px;
+    width: 25%;
 }
 
 #sidebar-content-container
@@ -170,26 +219,70 @@ Sidebar, content
     width: 100%;
 }
 
+.form
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    align-items: center;
+    margin: 50px 0px;
+    padding: 15px;
+    border-radius: 5px;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.form input
+{
+    margin: 5px;
+}
+
+.info
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    align-items: center;
+    margin: 50px 0px;
+    padding: 15px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.center
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+}
+
+nav
+{
+    padding: 10px 0px;
+}
+
+
 .category
 {
-    background-color: #CDB7B0;
+    background-color: rgba(0, 0, 0, 0.6);
     font-size: 25px;
-    border-top: solid 1px white;
-    border-bottom: solid 1px white;
     border-radius: 5px;
     padding:5px 5px;
-    color: #fff;
+    color: white;
 }
 
 .option
 {
-    background-color: #DEC8C1;
-    font-size: 25px;
-    border-top: solid 1px white;
-    border-bottom: solid 1px white;
+    background-color: rgba(255, 255, 255, 0.6);
+    font-size: 20px;
+    border-bottom: solid 1px black;
     border-radius: 5px;
     padding:5px 5px;
-    color: #fff;
+    color: black;
+    white-space: nowrap;
 }
 
 .option:hover
@@ -204,6 +297,7 @@ Sidebar, content
     flex-direction: column;
     align-items: center;
     width: 100%;
+    overflow-y: auto;
 
 }
 
@@ -221,7 +315,7 @@ Sidebar, content
     width: 90%;
     margin: 5px;
     text-align: center;
-    background-color: #797071;
+    background-color: rgba(0, 0, 0, 0.7);
     border-radius: 10px;
     color: white;
     padding: 5px;
@@ -234,7 +328,7 @@ Sidebar, content
     align-items: center;
     text-align: center;
     height: 100%;
-    padding: 5px;
+    padding: 30px;
 }
 
 iframe
@@ -250,6 +344,14 @@ iframe
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    align-content: center;
+    max-width: 95%;
+}
+
+.show-data
+{
+    display: flex;
+    justify-content: center;
 }
 
 .options-buttons
@@ -274,21 +376,22 @@ Buttons
     border-radius: 5px;
     padding: 0px 20px;
     margin: 5px 20px;
-    color: #998e90;
+    color: black;
     font-size: 15px;
-    background-color: #DEC8C1;
+    background-color: rgba(255, 255, 255, 0.5);
     letter-spacing: 5px;
     text-transform: uppercase;
 }
 
 #logout-button:hover
 {
-    background-color: #cdb7b0;
+    background-color: rgba(255, 255, 255, 0.7);
     cursor: pointer;
 }
 
 .edit-button
 {
+    background-color: transparent;
     border: none;
 }
 
@@ -300,12 +403,15 @@ Footer
 
 footer
 {
-    height: 50px;
-    text-align: center;
-
-    background-color: #BCB1B3;
-    border-radius: 10px;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.6);
     color: white;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 /*
