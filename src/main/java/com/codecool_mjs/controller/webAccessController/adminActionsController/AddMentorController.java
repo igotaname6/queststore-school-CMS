@@ -30,7 +30,7 @@ public class AddMentorController extends WebActionController implements Sessiona
     }
 
     @Override
-    public void sendPageForPopperAccess(HttpExchange httpExchange) throws IOException, DaoException{
+    public void sendPageForProperAccess(HttpExchange httpExchange) throws IOException, DaoException{
         String responseBody = "";
         int responseCode = 200;
 

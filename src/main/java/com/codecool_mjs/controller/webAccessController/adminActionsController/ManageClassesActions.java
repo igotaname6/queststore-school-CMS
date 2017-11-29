@@ -28,7 +28,7 @@ public class ManageClassesActions extends WebActionController implements Session
     }
 
     @Override
-    public void sendPageForPopperAccess(HttpExchange httpExchange) throws IOException, DaoException {
+    public void sendPageForProperAccess(HttpExchange httpExchange) throws IOException, DaoException {
         String responseBody;
 
         responseBody = manageClasses();

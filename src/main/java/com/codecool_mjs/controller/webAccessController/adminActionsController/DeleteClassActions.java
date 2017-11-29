@@ -25,31 +25,8 @@ public class DeleteClassActions extends WebActionController implements Sessionab
         this.groupController = GroupController.getInstance();
     }
 
-    private String showClassToDelete(Integer id) throws DaoException{
-
-        Group group;
-        group = groupController.getGroup(id);
-        setVariable("class", group);
-
-        String page = processTemplate("admin/delete-class");
-        return page;
-    }
-
-    private String deleteClass(Integer id) throws DaoException{
-
-        groupController.deleteGroup(id);
-
-        String page = processTemplate("admin/delete-confirmation");
-        return page;
-    }
-
     @Override
-    public String getAccessType() {
-        return "Admin";
-    }
-
-    @Override
-    public void sendPageForPopperAccess(HttpExchange httpExchange) throws IOException, DaoException {
+    public void sendPageForProperAccess(HttpExchange httpExchange) throws IOException, DaoException {
         String responseBody = "";
         int responseCode = 200;
 
@@ -71,5 +48,28 @@ public class DeleteClassActions extends WebActionController implements Sessionab
         OutputStream os = httpExchange.getResponseBody();
         os.write(responseBody.getBytes());
         os.close();
+    }
+
+    private String showClassToDelete(Integer id) throws DaoException{
+
+        Group group;
+        group = groupController.getGroup(id);
+        setVariable("class", group);
+
+        String page = processTemplate("admin/delete-class");
+        return page;
+    }
+
+    private String deleteClass(Integer id) throws DaoException{
+
+        groupController.deleteGroup(id);
+
+        String page = processTemplate("admin/delete-confirmation");
+        return page;
+    }
+
+    @Override
+    public String getAccessType() {
+        return "Admin";
     }
 }
