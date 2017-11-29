@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public interface Sessionable {
     String getAccessType();
-    void sendPageForPopperAccess(HttpExchange httpExchange) throws IOException, DaoException;
+    void sendPageForProperAccess(HttpExchange httpExchange) throws IOException, DaoException;
     void setLoggedUser();
     String processTemplate(String templateUrl) throws DaoException;
 }
