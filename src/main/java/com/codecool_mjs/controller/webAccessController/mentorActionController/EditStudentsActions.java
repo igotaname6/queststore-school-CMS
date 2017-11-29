@@ -1,41 +1,47 @@
 package com.codecool_mjs.controller.webAccessController.mentorActionController;
 
 import com.codecool_mjs.controller.applicationActionsController.CodecoolerController;
-import com.codecool_mjs.controller.applicationActionsController.MentorController;
+import com.codecool_mjs.controller.webAccessController.Sessionable;
+import com.codecool_mjs.controller.webAccessController.WebActionController;
 import com.codecool_mjs.dataaccess.dao.DaoException;
-import com.codecool_mjs.model.Admin;
 import com.codecool_mjs.model.Codecooler;
-import com.codecool_mjs.model.Mentor;
 import com.codecool_mjs.utilities.FormResolver;
 import com.codecool_mjs.utilities.UriResolver;
-import com.codecool_mjs.view.webView.TemplatesProcessor;
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.util.HashMap;
 import java.util.Map;
 
-public class EditStudentsActions implements HttpHandler{
+public class EditStudentsActions extends WebActionController implements Sessionable {
 
-    private TemplatesProcessor templateProcessor;
-    private Mentor loggedUser;
-    private CodecoolerController codecoolerController = CodecoolerController.getInstance();
+    private static String CONFIRMATION_TEMPLATE_URL = "mentor/edit-confirmation";
+    private static String DATA_TEMPLATE_URL = "mentor/edit-student";
+    private CodecoolerController codecoolerController;
 
     public EditStudentsActions(){
-        this.templateProcessor = new TemplatesProcessor();
+        super();
+        codecoolerController = CodecoolerController.getInstance();
+
     }
 
-    public void setLoggedUser(Mentor loggedUser) {
-        this.loggedUser = loggedUser;
+    private String editStudentAction(Integer id) throws DaoException {
+
+        Codecooler codecooler = codecoolerController.getCodecoolerById(id);
+        setVariable("student", codecooler);
+
+        return processTemplate(DATA_TEMPLATE_URL);
     }
 
     @Override
-    public void handle(HttpExchange httpExchange) throws IOException {
+    public String getAccessType() {
+        return "Mentor";
+    }
 
+    @Override
+    public void sendPageForProperAccess(HttpExchange httpExchange) throws IOException, DaoException {
         String responseBody = "";
         int responseCode = 200;
 
@@ -43,10 +49,8 @@ public class EditStudentsActions implements HttpHandler{
         String idStr = UriResolver.getUserIdFromURI(httpExchange);
 
         if(method.equals("GET")) {
-
             Integer id = Integer.parseInt(idStr);
-
-            responseBody = editStudent(id);
+            responseBody = editStudentAction(id);
         }
 
         if(method.equals("POST")) {
@@ -60,40 +64,14 @@ public class EditStudentsActions implements HttpHandler{
             records = FormResolver.parseDataForm(dataForm);
             records.put("id", idStr);
 
-            try {
-                codecoolerController.editCodecooler(records);
-            } catch (DaoException e) {
-                e.printStackTrace();
-            }
+            codecoolerController.editCodecooler(records);
 
-            responseBody = templateProcessor.ProcessTemplateToPage("mentor/edit-confirmation");
+            processTemplate(CONFIRMATION_TEMPLATE_URL);
         }
 
         httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);
         OutputStream os = httpExchange.getResponseBody();
         os.write(responseBody.getBytes());
         os.close();
-    }
-
-    private String editStudent(Integer id){
-
-        Codecooler codecooler = null;
-
-        Mentor mentor = new Mentor(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło");
-        Map<String, Object> variables = new HashMap<>();
-
-        try {
-            codecooler = codecoolerController.getCodecoolerById(id);
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-
-        variables.put("user", mentor);
-        variables.put("student", codecooler);
-
-        templateProcessor.setVariables(variables);
-        String page = templateProcessor.ProcessTemplateToPage("mentor/edit-student");
-
-        return page;
     }
 }
