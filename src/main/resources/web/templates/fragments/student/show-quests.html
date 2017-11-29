@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="show-quests" class = "content-box">
+        <div class="status-bar">
+            <h3>Quest -> Show quests<h3>
+        </div>
+        <div id="table">
+            <table>
+                <thead>
+                <tr>
+                    <th scope="col" id="id">No</th>
+                    <th scope="col" id="Name">Name</th>
+                    <th scope="col" id="Description">Description</th>
+                    <th scope="col" id="Cost">Coin reward</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="quest : ${questsList}">
+                    <td th:text="${questStat.count}"></td>
+                    <td th:text="${quest.name}">Berło</td>
+                    <td th:text="${quest.description}">Berło jak berło</td>
+                    <td th:text="${quest.coinReward}">200</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
