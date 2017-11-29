@@ -1,9 +1,6 @@
 package com.codecool_mjs.dataaccess.dao;
 
-import com.codecool_mjs.model.Codecooler;
-import com.codecool_mjs.model.Group;
-import com.codecool_mjs.model.GroupMembership;
-import com.codecool_mjs.model.Mentor;
+import com.codecool_mjs.model.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -119,3 +116,5 @@ abstract public class MembershipDao<T> {
     abstract void addMentorToMembership(T membership, Mentor mentor);
     abstract void addCodecoolerToMembership(T membership, Codecooler codecooler);
 }
+
+
