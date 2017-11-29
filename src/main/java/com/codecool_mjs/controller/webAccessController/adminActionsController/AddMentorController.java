@@ -1,69 +1,43 @@
 package com.codecool_mjs.controller.webAccessController.adminActionsController;
 
 import com.codecool_mjs.controller.applicationActionsController.MentorController;
-import com.codecool_mjs.controller.applicationActionsController.SessionController;
+import com.codecool_mjs.controller.webAccessController.Sessionable;
+import com.codecool_mjs.controller.webAccessController.WebActionController;
 import com.codecool_mjs.dataaccess.dao.DaoException;
-import com.codecool_mjs.model.User;
 import com.codecool_mjs.utilities.FormResolver;
-import com.codecool_mjs.view.webView.TemplatesProcessor;
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.util.HashMap;
 import java.util.Map;
 
-public class AddMentorController implements HttpHandler{
-
-
-    private TemplatesProcessor templatesProcessor;
-    private User loggedUser;
+public class AddMentorController extends WebActionController implements Sessionable{
 
     private MentorController mentorController;
-    private SessionController sessionController;
+    private static String CONFIRMATION_TEMPLATE_URL = "admin/add-confirmation";
+    private static String DATA_TEMPLATE_URL = "admin/create-mentor";
 
     public AddMentorController(){
-        this.templatesProcessor = new TemplatesProcessor();
+        super();
         this.mentorController = new MentorController();
-        this.sessionController = new SessionController();
-    }
-
-    private void setLoggedUser(User loggedUser) {
-        this.loggedUser = loggedUser;
     }
 
     @Override
-    public void handle(HttpExchange httpExchange) throws IOException {
+    public String getAccessType() {
+        return "Admin";
+    }
 
+    @Override
+    public void sendPageForPopperAccess(HttpExchange httpExchange) throws IOException, DaoException{
         String responseBody = "";
         int responseCode = 200;
-
-        boolean isSessionExist = false;
-
-        try {
-            isSessionExist = sessionController.verifySession(httpExchange);
-            this.loggedUser = sessionController.getLoggedUser();
-        } catch (DaoException e) {
-            httpExchange.sendResponseHeaders(503, -1);
-        }
-
-
-        String profession = loggedUser.getProfession();
-
-        if(!isSessionExist){
-            httpExchange.getResponseHeaders().add("Location", "/home");
-            httpExchange.sendResponseHeaders(302, -1);
-        }else if(!profession.equals("Admin")){
-            httpExchange.sendResponseHeaders(403, -1);
-        }
 
         String method = httpExchange.getRequestMethod();
 
         if(method.equals("GET")) {
-            responseBody = addMentor();
+            responseBody = processTemplate(DATA_TEMPLATE_URL);
         }else if(method.equals("POST")) {
             Map<String, String> records;
 
@@ -78,25 +52,12 @@ public class AddMentorController implements HttpHandler{
             } catch (DaoException e) {
                 e.printStackTrace();
             }
-            responseBody = templatesProcessor.ProcessTemplateToPage("admin/add-confirmation");
-
+            responseBody = processTemplate(CONFIRMATION_TEMPLATE_URL);
         }
 
         httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);
         OutputStream os = httpExchange.getResponseBody();
         os.write(responseBody.getBytes());
         os.close();
-
-    }
-
-    private String addMentor() {
-
-        Map<String, Object> variables = new HashMap<>();
-
-        variables.put("user", loggedUser);
-        templatesProcessor.setVariables(variables);
-
-        String page = templatesProcessor.ProcessTemplateToPage("admin/create-mentor");
-        return page;
     }
 }

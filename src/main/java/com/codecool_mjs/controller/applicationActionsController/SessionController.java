@@ -16,10 +16,9 @@ import java.util.UUID;
 public class SessionController{
 
     private LogInDao dao;
-
     private User loggedUser;
 
-    private String sessionId;
+
     public SessionController(){
         dao = new LogInDao();
     }
@@ -39,8 +38,31 @@ public class SessionController{
             this.loggedUser = user;
             return true;
         }else{
+            this.loggedUser = null;
             return false;
         }
+    }
+
+    public boolean checkAccountAccess(HttpExchange httpExchange, String accessType) throws IOException, DaoException {
+
+        boolean isSessionExist = verifySession(httpExchange);
+        this.loggedUser = getLoggedUser();
+        boolean accessStatus;
+
+        String profession = loggedUser.getProfession();
+
+        if(!isSessionExist){
+            httpExchange.getResponseHeaders().add("Location", "/home");
+            httpExchange.sendResponseHeaders(302, -1);
+            accessStatus = false;
+        }else if(!profession.equals(accessType)){
+            httpExchange.sendResponseHeaders(403, -1);
+            accessStatus = false;
+        }
+        else {
+            accessStatus = true;
+        }
+        return accessStatus;
     }
 
     public User getSessionsUser(HttpExchange httpExchange) throws DaoException{

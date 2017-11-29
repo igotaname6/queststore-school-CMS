@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <title> Codecool Quest Store </title>
@@ -21,7 +21,7 @@
         <fieldset>
             <label>
             E-mail:<br>
-            <input type="text" name="email" placeholder="jan.kowalski@gmail.com" required><br>
+            <input type="email" name="email" placeholder="jan.kowalski@gmail.com" required><br>
             </label>
             <label>
             Password:<br>
@@ -29,6 +29,7 @@
             </label>
             <input class="center" type="submit" name="submit" value="log in">
         </fieldset>
+        <span th:if="${isLoginFailed} == true">Wrong user name or password</span>
     </form>
 </div>
 <footer th:replace="fragments/footer :: footer"></footer>
