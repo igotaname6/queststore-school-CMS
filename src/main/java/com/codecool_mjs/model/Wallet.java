@@ -16,8 +16,8 @@ public class Wallet {
     public Wallet(Integer id, Integer totalEarnedCoins, Integer availableCoins) {
 
         this.id = id;
-        this.totalEarnedCoins = totalEarnedCoins;
-        this.availableCoins = availableCoins;
+        setAvailableCoins(availableCoins);
+        setTotalEarnedCoins(totalEarnedCoins);
     }
 
     public Integer getId() {
@@ -51,12 +51,18 @@ public class Wallet {
     }
 
     public void setTotalEarnedCoins(Integer amount) {
-        
-        this.totalEarnedCoins = amount;
+        if(amount<0){
+            this.totalEarnedCoins = 0;
+        }else {
+            this.totalEarnedCoins = amount;
+        }
     }
 
     public void setAvailableCoins(Integer amount) {
-
-        this.availableCoins = amount;
+        if(amount<0){
+            this.totalEarnedCoins = 0;
+        }else {
+            this.availableCoins = amount;
+        }
     }
 }
