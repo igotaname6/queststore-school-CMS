@@ -14,6 +14,13 @@ public class Codecooler extends User {
         this.wallet = wallet;
     }
 
+    public Codecooler(Integer id, String name, String surname, String email, String password, Wallet wallet) {
+
+        super(id, name, surname, email, password);
+        this.groupId = null;
+        this.wallet = wallet;
+    }
+
     public Codecooler(Integer id, String name, String surname, String email, String password) {
 
         super(id, name, surname, email, password);
