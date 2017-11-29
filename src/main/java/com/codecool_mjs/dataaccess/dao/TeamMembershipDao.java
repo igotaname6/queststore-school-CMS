@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TeamMembershipDao extends MembershipDao<TeamMembership> {
 
-    TeamMembershipDao() {
+    public TeamMembershipDao() {
         super();
     }
 
