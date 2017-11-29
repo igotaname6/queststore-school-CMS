@@ -15,14 +15,7 @@ public class GroupMembershipController {
         setDao();
     }
 
-    private void setDao() {
-        try {
-            dao = new GroupMembershipDao();
-            ConnectionProvider.getInstance().connectionRequest(dao);
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-    }
+    private void setDao() { dao = new GroupMembershipDao(); }
 
     public static GroupMembershipController getInstance() {
         if (instance == null) {
