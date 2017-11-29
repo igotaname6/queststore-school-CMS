@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="show-artifacts" class = "content-box">
+        <div class="status-bar">
+            <h3>Artifact -> Show artifacts<h3>
+        </div>
+        <div id="table">
+            <table>
+                <thead>
+                <tr>
+                    <th scope="col" id="id">No</th>
+                    <th scope="col" id="Name">Name</th>
+                    <th scope="col" id="Description">Description</th>
+                    <th scope="col" id="Cost">Cost</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="artifact : ${artifactsList}">
+                        <td th:text="${artifactStat.count}"></td>
+                        <td th:text="${artifact.name}">Berło</td>
+                        <td th:text="${artifact.description}">Berło jak berło</td>
+                        <td th:text="${artifact.cost}">200</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
