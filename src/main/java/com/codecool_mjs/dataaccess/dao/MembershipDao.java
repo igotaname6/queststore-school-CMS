@@ -90,10 +90,32 @@ abstract public class MembershipDao<T> {
         return resultsList;
     }
 
+    Codecooler createCodecooler(ResultSet results) throws SQLException {
+        Integer id = results.getInt(4);
+        String name = results.getString(5);
+        String surname = results.getString(6);
+        String email = results.getString(7);
+        String password = results.getString(8);
+
+        Codecooler codecooler = new Codecooler(id, name, surname, email, password);
+        return codecooler;
+    }
+
+    Mentor createMentor(ResultSet results) throws  SQLException {
+
+        Integer id = results.getInt(4);
+        String name = results.getString(5);
+        String surname = results.getString(6);
+        String email = results.getString(7);
+        String password = results.getString(8);
+
+        Mentor mentor = new Mentor(id, name, surname, email, password);
+        return mentor;
+    }
+
     //TO DO: FIX BUG - adding to many Memberships
     abstract String getQueryForGetAll();
-    abstract Codecooler createCodecooler(ResultSet results) throws SQLException;
-    abstract Mentor createMentor(ResultSet results) throws SQLException;
+
     abstract T createMembership(ResultSet results) throws SQLException;
     abstract T getRelevantMembership(List<T> memberships, Integer id);
     abstract void addMentorToMembership(T membership, Mentor mentor);
