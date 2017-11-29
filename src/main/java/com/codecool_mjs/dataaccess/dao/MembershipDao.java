@@ -68,6 +68,7 @@ abstract public class MembershipDao<T> {
 
                 if (resultsList.isEmpty() || getRelevantMembership(resultsList, results.getInt(10)) == null) {
                     membership = createMembership(results);
+                    resultsList.add(membership);
                 } else {
                    membership = getRelevantMembership(resultsList, results.getInt(10));
                 }
@@ -78,8 +79,6 @@ abstract public class MembershipDao<T> {
                 } else if (codecooler != null) {
                    addCodecoolerToMembership(membership, codecooler);
                 }
-
-                resultsList.add(membership);
 
             }
             preparedStatement.close();
@@ -99,5 +98,4 @@ abstract public class MembershipDao<T> {
     abstract T getRelevantMembership(List<T> memberships, Integer id);
     abstract void addMentorToMembership(T membership, Mentor mentor);
     abstract void addCodecoolerToMembership(T membership, Codecooler codecooler);
-
 }
