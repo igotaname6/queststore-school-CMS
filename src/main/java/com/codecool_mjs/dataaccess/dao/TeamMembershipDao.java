@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TeamMembershipDao extends MembershipDao<TeamMembership> {
 
-    TeamMembershipDao() {
+    public TeamMembershipDao() {
         super();
     }
 
@@ -49,4 +49,12 @@ public class TeamMembershipDao extends MembershipDao<TeamMembership> {
     void addCodecoolerToMembership(TeamMembership teamMembership, Codecooler codecooler) {
         teamMembership.addCodecoolers(codecooler);
     }
+
+    @Override
+    void setInsertStatement(PreparedStatement ps, TeamMembership tm) {
+    }
+
+    @Override
+    String getInsertQuery() {return "INSERT INTO group_membership (user_id, group_id) VALUES(?, ?);";}
+
 }

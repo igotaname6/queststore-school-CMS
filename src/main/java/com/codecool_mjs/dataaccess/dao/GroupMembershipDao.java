@@ -13,7 +13,7 @@ import java.util.List;
 
 public class GroupMembershipDao extends MembershipDao<GroupMembership> {
 
-    GroupMembershipDao() {
+    public GroupMembershipDao() {
         super();
     }
 
@@ -53,4 +53,12 @@ public class GroupMembershipDao extends MembershipDao<GroupMembership> {
     void addCodecoolerToMembership(GroupMembership groupMembership, Codecooler codecooler) {
         groupMembership.addCodecoolers(codecooler);
     }
+
+    @Override
+    void setInsertStatement(PreparedStatement ps, GroupMembership gm) {
+    }
+
+    @Override
+    String getInsertQuery() {return "INSERT INTO group_membership (user_id, group_id) VALUES(?, ?);";}
+
 }
