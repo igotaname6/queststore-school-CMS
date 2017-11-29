@@ -18,31 +18,6 @@ public class GroupMembershipDao extends MembershipDao<GroupMembership> {
     }
 
     @Override
-    Codecooler createCodecooler(ResultSet results) throws SQLException {
-        Integer id = results.getInt(4);
-        String name = results.getString(5);
-        String surname = results.getString(6);
-        String email = results.getString(7);
-        String password = results.getString(8);
-
-        Codecooler codecooler = new Codecooler(id, name, surname, email, password);
-        return codecooler;
-    }
-
-    @Override
-    Mentor createMentor(ResultSet results) throws  SQLException {
-
-        Integer id = results.getInt(4);
-        String name = results.getString(5);
-        String surname = results.getString(6);
-        String email = results.getString(7);
-        String password = results.getString(8);
-
-        Mentor mentor = new Mentor(id, name, surname, email, password);
-        return mentor;
-    }
-
-    @Override
     GroupMembership createMembership(ResultSet results) throws  SQLException {
         Integer id = results.getInt(10);
         String name = results.getString(11);
