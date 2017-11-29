@@ -22,7 +22,7 @@ public class ServerController {
         server.createContext("/mentors/add",new AddMentorController());
         server.createContext("/mentors/edit", new EditMentorsActions());
         server.createContext("/mentors/delete", new DeleteMentorsActions());
-        server.createContext("/classes", new MenageClassesActions());
+        server.createContext("/classes", new ManageClassesActions());
         server.createContext("/classes/add", new AddClassController());
         server.createContext("/classes/edit" , new EditClassActions());
         server.createContext("/classes/delete", new DeleteClassActions());

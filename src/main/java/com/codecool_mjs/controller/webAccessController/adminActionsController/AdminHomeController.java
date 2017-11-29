@@ -1,7 +1,10 @@
 package com.codecool_mjs.controller.webAccessController.adminActionsController;
 
+import com.codecool_mjs.controller.applicationActionsController.SessionController;
+import com.codecool_mjs.controller.webAccessController.Sessionable;
+import com.codecool_mjs.controller.webAccessController.WebActionController;
 import com.codecool_mjs.dataaccess.dao.DaoException;
-import com.codecool_mjs.model.Admin;
+import com.codecool_mjs.model.User;
 import com.codecool_mjs.view.webView.TemplatesProcessor;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -11,50 +14,30 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AdminHomeController implements HttpHandler{
+public class AdminHomeController extends WebActionController implements Sessionable{
 
-    private TemplatesProcessor templatesProcessor;
-    private Admin loggedUser;
+    private static String TEMPLATE_URL = "/admin/home";
 
     public AdminHomeController(){
-        this.templatesProcessor = new TemplatesProcessor();
-    }
-
-    public void setLoggedUser(Admin loggedUser) {
-        this.loggedUser = loggedUser;
+        super();
     }
 
     @Override
-    public void handle(HttpExchange httpExchange) throws IOException {
+    public void sendPageForProperAccess(HttpExchange httpExchange) throws IOException, DaoException{
         String responseBody;
         int responseCode;
 
-        try {
-            responseBody = showAdminHomePage();
-            responseCode = 200;
-        } catch (DaoException e) {
-            responseBody = "No such page";
-            responseCode = 404;
-        }
+        responseBody = processTemplate(TEMPLATE_URL);
+        responseCode = 200;
 
         httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);
         OutputStream os = httpExchange.getResponseBody();
         os.write(responseBody.getBytes());
         os.close();
-
     }
 
-    public String showAdminHomePage() throws DaoException {
-        //temporary example of logged user. To remove when sessions will be implemented
-        setLoggedUser(new Admin(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło"));
-
-        Map<String, Object> variables = new HashMap<>();
-
-        variables.put("user", loggedUser);
-
-        templatesProcessor.setVariables(variables);
-
-        String page = templatesProcessor.ProcessTemplateToPage("/admin/home");
-        return page;
+    @Override
+    public String getAccessType() {
+        return "Admin";
     }
 }

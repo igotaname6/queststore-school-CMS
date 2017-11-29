@@ -1,69 +1,50 @@
 package com.codecool_mjs.controller.webAccessController.mentorActionController;
 
-import com.codecool_mjs.controller.applicationActionsController.CodecoolerController;
 import com.codecool_mjs.controller.applicationActionsController.QuestController;
+import com.codecool_mjs.controller.webAccessController.Sessionable;
+import com.codecool_mjs.controller.webAccessController.WebActionController;
 import com.codecool_mjs.dataaccess.dao.DaoException;
-import com.codecool_mjs.model.Codecooler;
-import com.codecool_mjs.model.Mentor;
 import com.codecool_mjs.model.Quest;
-import com.codecool_mjs.view.webView.TemplatesProcessor;
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class MenageQuestsActions implements HttpHandler{
+public class MenageQuestsActions extends WebActionController implements Sessionable {
 
-    private TemplatesProcessor templateProcessor;
-    private Mentor loggedUser;
-    private QuestController questController = QuestController.getInstance();
+    private static String CONFIRMATION_TEMPLATE_URL = "mentor/edit-confirmation";
+    private static String DATA_TEMPLATE_URL = "mentor/menage-quests";
+    private QuestController questController;
 
     public MenageQuestsActions(){
-        this.templateProcessor = new TemplatesProcessor();
+        super();
+        questController = QuestController.getInstance();
     }
 
-    public void setLoggedUser(Mentor loggedUser) {
-        this.loggedUser = loggedUser;
+    public String menageQuestsAction() throws DaoException {
+
+        List<Quest> allQuests = questController.getAllQuests();
+        setVariable("questsList", allQuests);
+
+        return processTemplate(DATA_TEMPLATE_URL);
     }
 
     @Override
-    public void handle(HttpExchange httpExchange) throws IOException {
+    public String getAccessType() {
+        return "Mentor";
+    }
 
+    @Override
+    public void sendPageForProperAccess(HttpExchange httpExchange) throws IOException, DaoException {
         String responseBody;
         int responseCode = 200;
 
-        responseBody = menageQuests();
+        responseBody = menageQuestsAction();
 
         httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);
         OutputStream os = httpExchange.getResponseBody();
         os.write(responseBody.getBytes());
         os.close();
-    }
-
-    public String menageQuests(){
-        //temporary example of logged user. To remove when sessions will be implemented
-        setLoggedUser(new Mentor(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło"));
-
-        Map<String, Object> variables = new HashMap<>();
-
-        List<Quest> allQuests = null;
-
-        try {
-            allQuests = questController.getAllQuests();
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-
-        variables.put("user", loggedUser);
-        variables.put("questsList", allQuests);
-
-        templateProcessor.setVariables(variables);
-
-        String page = templateProcessor.ProcessTemplateToPage("mentor/menage-quests");
-        return page;
     }
 }

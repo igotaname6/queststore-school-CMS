@@ -1,5 +1,7 @@
 package com.codecool_mjs.controller.webAccessController.studentActionController;
 
+import com.codecool_mjs.controller.webAccessController.Sessionable;
+import com.codecool_mjs.controller.webAccessController.WebActionController;
 import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.model.Codecooler;
 import com.codecool_mjs.model.Mentor;
@@ -12,51 +14,34 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StudentHomeController implements HttpHandler{
+public class StudentHomeController extends WebActionController implements Sessionable {
 
-    private TemplatesProcessor templatesProcessorr;
-    private Codecooler loggedUser;
+    private static String DATA_TEMPLATE_URL = "/student/student-home";
 
     public StudentHomeController(){
-        this.templatesProcessorr = new TemplatesProcessor();
+        super();
     }
 
-    public void setLoggedUser(Codecooler loggedUser) {
-        this.loggedUser = loggedUser;
+    public String showCodecoolerHomePage() throws DaoException {
+        return processTemplate(DATA_TEMPLATE_URL);
     }
 
     @Override
-    public void handle(HttpExchange httpExchange) throws IOException {
+    public String getAccessType() {
+        return "Codecooler";
+    }
+
+    @Override
+    public void sendPageForProperAccess(HttpExchange httpExchange) throws IOException, DaoException {
         String responseBody;
         int responseCode;
 
-        try {
-            responseBody = showCodecoolerHomePage();
-            responseCode = 200;
-        } catch (DaoException e) {
-            responseBody = "No such page";
-            responseCode = 404;
-        }
+        responseBody = showCodecoolerHomePage();
+        responseCode = 200;
 
         httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);
         OutputStream os = httpExchange.getResponseBody();
         os.write(responseBody.getBytes());
         os.close();
-
-    }
-
-    public String showCodecoolerHomePage() throws DaoException {
-        //temporary example of logged user. To remove when sessions will be implemented
-        setLoggedUser(new Codecooler(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło"));
-
-        Map<String, Object> variables = new HashMap<>();
-
-        variables.put("user", loggedUser);
-
-        templatesProcessorr.setVariables(variables);
-
-        String page = templatesProcessorr.ProcessTemplateToPage("/student/student-home");
-
-        return page;
     }
 }

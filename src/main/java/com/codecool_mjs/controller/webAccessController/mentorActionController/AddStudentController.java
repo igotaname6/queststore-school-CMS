@@ -2,6 +2,8 @@ package com.codecool_mjs.controller.webAccessController.mentorActionController;
 
 import com.codecool_mjs.controller.applicationActionsController.CodecoolerController;
 import com.codecool_mjs.controller.applicationActionsController.MentorController;
+import com.codecool_mjs.controller.webAccessController.Sessionable;
+import com.codecool_mjs.controller.webAccessController.WebActionController;
 import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.model.Admin;
 import com.codecool_mjs.model.Mentor;
@@ -17,25 +19,31 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddStudentController implements HttpHandler{
+public class AddStudentController extends WebActionController implements Sessionable {
 
-    private TemplatesProcessor templatesProcessor;
-    private Mentor loggedUser;
+    private static String CONFIRMATION_TEMPLATE_URL = "mentor/add-confirmation";
+    private static String DATA_TEMPLATE_URL = "mentor/create-student";
     private CodecoolerController codecoolerController;
 
     public AddStudentController(){
-        this.templatesProcessor = new TemplatesProcessor();
+        super();
         this.codecoolerController = CodecoolerController.getInstance();
     }
 
-    public void setLoggedUser(Mentor loggedUser) {
-        this.loggedUser = loggedUser;
+
+    private String addStudent() throws DaoException {
+
+        String page = processTemplate(DATA_TEMPLATE_URL);
+        return page;
     }
 
     @Override
-    public void handle(HttpExchange httpExchange) throws IOException {
+    public String getAccessType() {
+        return "Mentor";
+    }
 
-
+    @Override
+    public void sendPageForProperAccess(HttpExchange httpExchange) throws IOException, DaoException {
         String responseBody = "";
         int responseCode = 200;
 
@@ -56,13 +64,9 @@ public class AddStudentController implements HttpHandler{
 
             records = FormResolver.parseDataForm(formData);
 
-            try {
-                codecoolerController.addCodecooler(records);
-            } catch (DaoException e) {
-                e.printStackTrace();
-            }
+            codecoolerController.addCodecooler(records);
 
-            responseBody = templatesProcessor.ProcessTemplateToPage("mentor/add-confirmation");
+            responseBody = processTemplate(CONFIRMATION_TEMPLATE_URL);
 
         }
 
@@ -70,20 +74,5 @@ public class AddStudentController implements HttpHandler{
         OutputStream os = httpExchange.getResponseBody();
         os.write(responseBody.getBytes());
         os.close();
-
-    }
-
-    private String addStudent() {
-
-        Mentor mentor = new Mentor(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło");
-
-        Map<String, Object> variables = new HashMap<>();
-
-        variables.put("user", mentor);
-
-        templatesProcessor.setVariables(variables);
-
-        String page = templatesProcessor.ProcessTemplateToPage("mentor/create-student");
-        return page;
     }
 }
