@@ -37,11 +37,11 @@ public class GroupMembershipDao extends MembershipDao<GroupMembership> {
 
     @Override
     String getQueryForGetAll() {
-        return "SELECT * FROM user_membership" +
+        return "SELECT * FROM group_membership" +
                 " LEFT JOIN users" +
-                " ON user_membership.user_id = users.id" +
+                " ON group_membership.user_id = users.id" +
                 " LEFT JOIN groups" +
-                " ON user_membership.group_id = groups.id;";
+                " ON group_membership.group_id = groups.id;";
     }
 
     @Override
