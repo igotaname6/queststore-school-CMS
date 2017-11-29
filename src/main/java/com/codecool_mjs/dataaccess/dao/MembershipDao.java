@@ -42,6 +42,18 @@ abstract public class MembershipDao<T> {
         }
     }
 
+    public void insert(T t) throws DaoException{
+        try{
+            PreparedStatement preparedStatement = this.connection.prepareStatement(getInsertQuery());
+            setInsertStatement(preparedStatement, t);
+
+            preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            String message = "Exception in insert method";
+            throw new DaoException(message, e);
+        }
+    }
+
     protected List<T> get(PreparedStatement preparedStatement) throws DaoException{
         ArrayList<T> resultsList;
 
@@ -111,6 +123,8 @@ abstract public class MembershipDao<T> {
     }
 
     abstract String getQueryForGetAll();
+    abstract void setInsertStatement(PreparedStatement ps, T t);
+    abstract String getInsertQuery();
     abstract T createMembership(ResultSet results) throws SQLException;
     abstract T getRelevantMembership(List<T> memberships, Integer id);
     abstract void addMentorToMembership(T membership, Mentor mentor);
