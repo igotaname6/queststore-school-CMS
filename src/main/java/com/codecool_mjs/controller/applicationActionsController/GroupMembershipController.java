@@ -1,8 +1,11 @@
 package com.codecool_mjs.controller.applicationActionsController;
 
+import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.dataaccess.dao.GroupMembershipDao;
 import com.codecool_mjs.dataaccess.dao.MembershipDao;
 import com.codecool_mjs.model.GroupMembership;
+
+import java.util.List;
 
 public class GroupMembershipController {
 
@@ -20,5 +23,10 @@ public class GroupMembershipController {
             instance = new GroupMembershipController();
         }
         return instance;
+    }
+
+    public List<GroupMembership> getAll() throws DaoException {
+         List<GroupMembership> gmList = this.dao.getAll();
+         return gmList;
     }
 }
