@@ -21,5 +21,3 @@ public class TeamMembership {
         this.codecoolers.add(codecooler);
     }
 }
-
-
