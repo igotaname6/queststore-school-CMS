@@ -13,6 +13,10 @@ public class TeamMembership {
         this.codecoolers = new ArrayList<>();
     }
 
+    public Team getTeam() {
+        return team;
+    }
+
     public List<Codecooler> getCodecoolers() {
         return codecoolers;
     }
