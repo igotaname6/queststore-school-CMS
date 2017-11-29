@@ -55,8 +55,10 @@ public class GroupMembershipDao extends MembershipDao<GroupMembership> {
     }
 
     @Override
-    void setInsertStatement(PreparedStatement ps, GroupMembership gm) {}
+    void setInsertStatement(PreparedStatement ps, GroupMembership gm) {
+    }
 
     @Override
-    String getInsertQuery() {return null;}
+    String getInsertQuery() {return "INSERT INTO group_membership (user_id, group_id) VALUES(?, ?);";}
+
 }
