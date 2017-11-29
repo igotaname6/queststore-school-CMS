@@ -37,8 +37,8 @@ public class TeamMembershipDao extends MembershipDao<TeamMembership> {
         return "SELECT * FROM team_membership" +
                 " LEFT JOIN users" +
                 " ON team_membership.user_id = users.id" +
-                " LEFT JOIN groups" +
-                " ON team_membership.group_id = groups.id;";
+                " LEFT JOIN teams" +
+                " ON team_membership.team_id = teams.id;";
     }
 
     @Override
