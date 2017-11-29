@@ -113,9 +113,7 @@ abstract public class MembershipDao<T> {
         return mentor;
     }
 
-    //TO DO: FIX BUG - adding to many Memberships
     abstract String getQueryForGetAll();
-
     abstract T createMembership(ResultSet results) throws SQLException;
     abstract T getRelevantMembership(List<T> memberships, Integer id);
     abstract void addMentorToMembership(T membership, Mentor mentor);
