@@ -53,4 +53,10 @@ public class GroupMembershipDao extends MembershipDao<GroupMembership> {
     void addCodecoolerToMembership(GroupMembership groupMembership, Codecooler codecooler) {
         groupMembership.addCodecoolers(codecooler);
     }
+
+    @Override
+    void setInsertStatement(PreparedStatement ps, GroupMembership gm) {}
+
+    @Override
+    String getInsertQuery() {return null;}
 }
