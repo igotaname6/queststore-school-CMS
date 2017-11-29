@@ -32,7 +32,7 @@ public abstract class WebActionController implements HttpHandler, Sessionable{
             boolean correctAccessRequest = sessionController.checkAccountAccess(httpExchange, getAccessType());
             if (correctAccessRequest){
                 setLoggedUser();
-                sendPageForPopperAccess(httpExchange);
+                sendPageForProperAccess(httpExchange);
             }
         } catch (DaoException e) {
             httpExchange.sendResponseHeaders(500, -1);
