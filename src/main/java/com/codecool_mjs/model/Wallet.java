@@ -3,6 +3,7 @@ package com.codecool_mjs.model;
 public class Wallet {
 
     private Integer id;
+    private Integer userId;
     private Integer totalEarnedCoins;
     private Integer availableCoins;
 
@@ -20,12 +21,27 @@ public class Wallet {
         setTotalEarnedCoins(totalEarnedCoins);
     }
 
+    public Wallet(Integer id, Integer userId, Integer totalEarnedCoins, Integer availableCoins) {
+        this.id = id;
+        this.userId = userId;
+        setAvailableCoins(availableCoins);
+        setTotalEarnedCoins(totalEarnedCoins);
+    }
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public void addCoins(Integer amount) {
