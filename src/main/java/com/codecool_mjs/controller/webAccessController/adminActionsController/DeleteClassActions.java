@@ -1,6 +1,8 @@
 package com.codecool_mjs.controller.webAccessController.adminActionsController;
 
 import com.codecool_mjs.controller.applicationActionsController.GroupController;
+import com.codecool_mjs.controller.webAccessController.Sessionable;
+import com.codecool_mjs.controller.webAccessController.WebActionController;
 import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.model.Admin;
 import com.codecool_mjs.model.Group;
@@ -14,24 +16,17 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DeleteClassActions implements HttpHandler{
+public class DeleteClassActions extends WebActionController implements Sessionable{
 
-    private TemplatesProcessor templateProcessor;
-    private Admin loggedUser;
-    private GroupController groupController = GroupController.getInstance();
-
+    private GroupController groupController;
 
     public DeleteClassActions(){
-        this.templateProcessor = new TemplatesProcessor();
-    }
-
-    public void setLoggedUser(Admin loggedUser) {
-        this.loggedUser = loggedUser;
+        super();
+        this.groupController = GroupController.getInstance();
     }
 
     @Override
-    public void handle(HttpExchange httpExchange) throws IOException {
-
+    public void sendPageForProperAccess(HttpExchange httpExchange) throws IOException, DaoException {
         String responseBody = "";
         int responseCode = 200;
 
@@ -41,14 +36,11 @@ public class DeleteClassActions implements HttpHandler{
         if(method.equals("GET")) {
 
             Integer id = Integer.parseInt(idStr);
-
             responseBody = showClassToDelete(id);
         }
-
         if(method.equals("POST")) {
 
             Integer id = Integer.parseInt(idStr);
-
             responseBody = deleteClass(id);
         }
 
@@ -58,38 +50,26 @@ public class DeleteClassActions implements HttpHandler{
         os.close();
     }
 
-    private String showClassToDelete(Integer id){
+    private String showClassToDelete(Integer id) throws DaoException{
 
-        Group group = null;
-        //temporary example of logged user. To remove when sessions will be implemented
-        setLoggedUser(new Admin(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło"));
+        Group group;
+        group = groupController.getGroup(id);
+        setVariable("class", group);
 
-
-        Map<String, Object> variables = new HashMap<>();
-
-        try {
-            group = groupController.getGroup(id);
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-
-        variables.put("user", loggedUser);
-        variables.put("class", group);
-
-        templateProcessor.setVariables(variables);
-        String page = templateProcessor.ProcessTemplateToPage("admin/delete-class");
+        String page = processTemplate("admin/delete-class");
         return page;
     }
 
-    private String deleteClass(Integer id) {
+    private String deleteClass(Integer id) throws DaoException{
 
-        try {
-            groupController.deleteGroup(id);
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
+        groupController.deleteGroup(id);
 
-        String page = templateProcessor.ProcessTemplateToPage("admin/delete-confirmation");
+        String page = processTemplate("admin/delete-confirmation");
         return page;
+    }
+
+    @Override
+    public String getAccessType() {
+        return "Admin";
     }
 }

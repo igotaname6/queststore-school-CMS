@@ -1,9 +1,6 @@
 package com.codecool_mjs.dataaccess.dao;
 
-import com.codecool_mjs.model.Codecooler;
-import com.codecool_mjs.model.Group;
-import com.codecool_mjs.model.GroupMembership;
-import com.codecool_mjs.model.Mentor;
+import com.codecool_mjs.model.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -45,6 +42,18 @@ abstract public class MembershipDao<T> {
         }
     }
 
+    public void insert(T t) throws DaoException{
+        try{
+            PreparedStatement preparedStatement = this.connection.prepareStatement(getInsertQuery());
+            setInsertStatement(preparedStatement, t);
+
+            preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            String message = "Exception in insert method";
+            throw new DaoException(message, e);
+        }
+    }
+
     protected List<T> get(PreparedStatement preparedStatement) throws DaoException{
         ArrayList<T> resultsList;
 
@@ -68,6 +77,7 @@ abstract public class MembershipDao<T> {
 
                 if (resultsList.isEmpty() || getRelevantMembership(resultsList, results.getInt(10)) == null) {
                     membership = createMembership(results);
+                    resultsList.add(membership);
                 } else {
                    membership = getRelevantMembership(resultsList, results.getInt(10));
                 }
@@ -79,8 +89,6 @@ abstract public class MembershipDao<T> {
                    addCodecoolerToMembership(membership, codecooler);
                 }
 
-                resultsList.add(membership);
-
             }
             preparedStatement.close();
         } catch (SQLException e) {
@@ -91,13 +99,36 @@ abstract public class MembershipDao<T> {
         return resultsList;
     }
 
-    //TO DO: FIX BUG - adding to many Memberships
+    Codecooler createCodecooler(ResultSet results) throws SQLException {
+        Integer id = results.getInt(4);
+        String name = results.getString(5);
+        String surname = results.getString(6);
+        String email = results.getString(7);
+        String password = results.getString(8);
+
+        Codecooler codecooler = new Codecooler(id, name, surname, email, password);
+        return codecooler;
+    }
+
+    Mentor createMentor(ResultSet results) throws  SQLException {
+
+        Integer id = results.getInt(4);
+        String name = results.getString(5);
+        String surname = results.getString(6);
+        String email = results.getString(7);
+        String password = results.getString(8);
+
+        Mentor mentor = new Mentor(id, name, surname, email, password);
+        return mentor;
+    }
+
     abstract String getQueryForGetAll();
-    abstract Codecooler createCodecooler(ResultSet results) throws SQLException;
-    abstract Mentor createMentor(ResultSet results) throws SQLException;
+    abstract void setInsertStatement(PreparedStatement ps, T t);
+    abstract String getInsertQuery();
     abstract T createMembership(ResultSet results) throws SQLException;
     abstract T getRelevantMembership(List<T> memberships, Integer id);
     abstract void addMentorToMembership(T membership, Mentor mentor);
     abstract void addCodecoolerToMembership(T membership, Codecooler codecooler);
-
 }
+
+

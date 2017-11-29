@@ -1,6 +1,8 @@
 package com.codecool_mjs.controller.webAccessController.mentorActionController;
 
 import com.codecool_mjs.controller.applicationActionsController.ArtifactController;
+import com.codecool_mjs.controller.webAccessController.Sessionable;
+import com.codecool_mjs.controller.webAccessController.WebActionController;
 import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.model.Mentor;
 import com.codecool_mjs.utilities.FormResolver;
@@ -15,24 +17,30 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddArtifactController implements HttpHandler{
+public class AddArtifactController extends WebActionController implements Sessionable {
 
-    private TemplatesProcessor templatesProcessor;
-    private Mentor loggedUser;
+    private static String CONFIRMATION_TEMPLATE_URL = "mentor/add-confirmation";
+    private static String DATA_TEMPLATE_URL = "mentor/create-artifact";
     private ArtifactController artifactController;
 
     public AddArtifactController(){
-        this.templatesProcessor = new TemplatesProcessor();
+        super();
         this.artifactController = ArtifactController.getInstance();
     }
 
-    public void setLoggedUser(Mentor loggedUser) {
-        this.loggedUser = loggedUser;
+    private String addArtifact() throws DaoException {
+
+        String page = processTemplate(DATA_TEMPLATE_URL);
+        return page;
     }
 
     @Override
-    public void handle(HttpExchange httpExchange) throws IOException {
+    public String getAccessType() {
+        return "Mentor";
+    }
 
+    @Override
+    public void sendPageForProperAccess(HttpExchange httpExchange) throws IOException, DaoException {
 
         String responseBody = "";
         int responseCode = 200;
@@ -40,7 +48,6 @@ public class AddArtifactController implements HttpHandler{
         String method = httpExchange.getRequestMethod();
 
         if(method.equals("GET")) {
-
             responseBody = addArtifact();
         }
 
@@ -59,34 +66,14 @@ public class AddArtifactController implements HttpHandler{
                 records.put("isGroup" , "false");
             }
 
-            try {
-                artifactController.addArtifact(records);
-            } catch (DaoException e) {
-                e.printStackTrace();
-            }
+            artifactController.addArtifact(records);
 
-            responseBody = templatesProcessor.ProcessTemplateToPage("mentor/add-confirmation");
+            responseBody = processTemplate(CONFIRMATION_TEMPLATE_URL);
 
         }
-
         httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);
         OutputStream os = httpExchange.getResponseBody();
         os.write(responseBody.getBytes());
         os.close();
-
-    }
-
-    private String addArtifact() {
-
-        Mentor mentor = new Mentor(15,"Janusz", "Kowal", "j.k@cc.pl", "typoweHasło");
-
-        Map<String, Object> variables = new HashMap<>();
-
-        variables.put("user", mentor);
-
-        templatesProcessor.setVariables(variables);
-
-        String page = templatesProcessor.ProcessTemplateToPage("mentor/create-artifact");
-        return page;
     }
 }
