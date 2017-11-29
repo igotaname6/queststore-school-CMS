@@ -13,7 +13,7 @@ import java.util.List;
 
 public class GroupMembershipDao extends MembershipDao<GroupMembership> {
 
-    GroupMembershipDao() {
+    public GroupMembershipDao() {
         super();
     }
 
