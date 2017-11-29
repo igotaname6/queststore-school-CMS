@@ -6,21 +6,22 @@
             <p id="test">Mentor -> Create artifact</p>
         </div>
         <form method="POST">
+            <div class="form">
+                Name:
+                <input type="text" name="name" placeholder="exampleName" required/>
 
-            <br/></br>Name:
-            </br> <input type="text" name="name" placeholder="exampleName" required/>
+                Description:
+                <input type="text" name="description" placeholder="example description" required/>
 
-            </br>Description:
-            </br> <input type="text" name="description" placeholder="example description" required/>
+                Cost:
+                <input type="text" name="cost" placeholder="100" required/>
 
-            </br>Cost:
-            </br> <input type="text" name="cost" placeholder="100" required/>
+                Team quest:
+                <input type="checkbox" name="isGroup" value="true"/>
 
-            </br>Team quest:
-            </br> <input type="checkbox" name="isGroup" value="true"/>
-
-            <div class="button">
-                <input type="submit" value="Submit"/>
+                <div class="button">
+                    <input type="submit" value="Submit"/>
+                </div>
             </div>
         </form>
     </div>

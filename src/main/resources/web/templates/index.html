@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title> Codecool Quest Store </title>
@@ -8,30 +8,26 @@
     <link rel="stylesheet" href="static/css/style.css" type="text/css"/>
 </head>
 <body>
-<section>
-    <header class="container bar header-container">
-        <img class="logo" src="static/img/cc.png">
-        <h1>
-            Quest Store
-        </h1>
-    </header>
-</section>
-<div id="login-content">
-    <form method="post">
-        <fieldset>
-            <label>
-            E-mail:<br>
-            <input type="text" name="email" placeholder="jan.kowalski@gmail.com" required><br>
-            </label>
-            <label>
-            Password:<br>
-            <input type="password" name="password" required>
-            </label>
-            <input class="center" type="submit" name="submit" value="log in">
-        </fieldset>
-    </form>
-</div>
-<footer th:replace="fragments/footer :: footer"></footer>
-</div>
+    <div class="wrapper">
+        <header class="container bar header-container index-header">
+            <img class="index-logo" src="static/img/cc.png">
+            <h1>
+                Quest <span>Store</span>
+            </h1>
+        </header>
+        <section class="center">
+            <div id="login-content">
+                <form method="post" class="form">
+                    <span>Login:</span>
+                    <input type="email" name="email" placeholder="jan.kowalski@gmail.com" required><br>
+                    <span>Password:</span>
+                    <input type="password" name="password" placeholder="*********" required>
+                    <input type="submit" name="submit" value="log in">
+                    <span id="failed" th:if="${isLoginFailed} == true">Wrong user name or password</span>
+                </form>
+            </div>
+        </section>
+    </div>
+    <footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>

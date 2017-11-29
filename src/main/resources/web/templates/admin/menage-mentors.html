@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="/static/css/style.css" type="text/css"/>
 </head>
 <body>
-<header th:replace="fragments/header :: header">
-</header>
-<div id="sidebar-content-container">
-    <nav th:replace="fragments/side-bars/admin-sidebar :: admin-sidebar"></nav>
-    <div th:replace="fragments/admin/menage-mentors :: menage-mentors"></div>
+    <div class="wrapper">
+        <header th:replace="fragments/header :: header"></header>
+        <div id="sidebar-content-container">
+            <nav th:replace="fragments/side-bars/admin-sidebar :: admin-sidebar"></nav>
+            <div th:replace="fragments/admin/menage-mentors :: menage-mentors"></div>
+        </div>
     </div>
-</div>
-<footer th:replace="fragments/footer :: footer"></footer>
+    <footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>

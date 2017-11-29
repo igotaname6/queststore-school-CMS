@@ -6,12 +6,13 @@
             <p id="test">Mentor -> Edit class data</p>
         </div>
         <form method="POST">
+            <div class="form">
+                New name:
+                <input type="text" name="name" th:value="${class.name}"/>
 
-            <br/></br>New name:
-            </br> <input type="text" name="name" th:value="${class.name}"/>
-            
-            <div class="button">
-                <input type="submit" value="Submit"/>
+                <div class="button">
+                    <input type="submit" value="Submit"/>
+                </div>
             </div>
         </form>
     </div>

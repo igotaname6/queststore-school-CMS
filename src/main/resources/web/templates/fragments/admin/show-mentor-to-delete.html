@@ -7,9 +7,9 @@
     </div>
     <div class="show-data">
         <div class="info">
-            <span>First name:</span><span th:text="${mentor.name}"></span>
-            <span>Last name:</span><span th:text="${mentor.surname}"></span>
-            <span>E mail:</span><span th:text="${mentor.email}"></span>
+            <span th:text="${'First name: ' + mentor.name}"></span>
+            <span th:text="${'Last name: ' + mentor.surname}"></span>
+            <span th:text="${'E mail: ' + mentor.email}"></span>
             <span>Are you sure you want to delete this mentor?</span>
             <div class="options-buttons">
                 <form method="POST">

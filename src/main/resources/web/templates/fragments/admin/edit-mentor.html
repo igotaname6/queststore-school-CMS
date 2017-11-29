@@ -6,24 +6,25 @@
             <p id="test">Mentor -> Edit mentor data</p>
         </div>
         <form method="POST">
+            <div class="form">
+                Fist name:
+                <input type="text" name="name" th:value="${mentor.name}"/>
 
-            <br/></br>Fist name:
-            </br> <input type="text" name="name" th:value="${mentor.name}"/>
+                Last name:
+                <input type="text" name="surname" th:value="${mentor.surname}"/>
 
-            </br>Last name:
-            </br> <input type="text" name="surname" th:value="${mentor.surname}"/>
+                Email:
+                <input type="email" name="email" th:value="${mentor.email}"/>
 
-            </br>Email:
-            </br> <input type="email" name="email" th:value="${mentor.email}"/>
+                Password:
+                <input type="password" name="password" th:value="${mentor.password}"/>
 
-            </br>Password:
-            </br><input type="password" name="password" th:value="${mentor.password}"/>
+                Confirm Password:
+                <input type="password" th:value="${mentor.password}"/>
 
-            </br>Confirm Password:
-            </br><input type="password" th:value="${mentor.password}"/>
-
-            <div class="button">
-                <input type="submit" value="Submit"/>
+                <div class="button">
+                    <input type="submit" value="Submit"/>
+                </div>
             </div>
         </form>
     </div>
