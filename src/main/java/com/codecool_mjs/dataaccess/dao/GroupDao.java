@@ -21,7 +21,7 @@ public class GroupDao extends Dao<Group> {
 
     @Override
     String getQueryForGetAll() {
-        return String.format("SELECT * FROM groups;");
+        return String.format("SELECT * FROM groups ORDER BY name;");
     }
 
     @Override
