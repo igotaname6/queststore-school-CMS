@@ -32,17 +32,14 @@ public class WalletDao extends Dao<Wallet>{
 
     @Override
     String getUpdateQuery() {
-        return "UPDATE wallets" +
-                " SET total_earned_coins = ?," +
-                " available_coins = ?," +
-                " WHERE id = ?;";
+        return "UPDATE wallets SET total_earned_coins = ?, available_coins = ? WHERE id = ?;";
     }
 
     @Override
     void setUpdateStatement(PreparedStatement preparedStatement, Wallet wallet) throws SQLException {
         preparedStatement.setInt(1, wallet.getTotalEarnedCoins());
         preparedStatement.setInt(2, wallet.getAvailableCoins());
-        preparedStatement.setInt(3,wallet.getId());
+        preparedStatement.setInt(3, wallet.getId());
     }
 
     @Override
