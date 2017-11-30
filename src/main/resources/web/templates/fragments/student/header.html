@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <header th:fragment="header">
+        <a href="/home">
+            <img class="logo" src="/static/img/cc.png">
+        </a>
+        <h1>
+            Quest <span>Store</span>
+        </h1>
+        <div class="user-info-container">
+            <div class="acc-balance">
+                <img class="coin-logo" src="/static/img/coin.png">
+                <h2 th:text="${user.getWallet().getAvailableCoins()}"></h2>
+            </div>
+            <div class="user-holder">
+                <h2 th:text="${user.getFullName()}" class="user-name">
+                    Jan Kowalski
+                </h2>
+                <a href="/logout">
+                    <div id = "logout-button">
+                        Log out
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </header>
+</body>
+</html>
