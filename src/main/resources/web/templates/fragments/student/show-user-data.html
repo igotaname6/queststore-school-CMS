@@ -10,6 +10,8 @@
             <span th:text="${'First name: ' + user.name}"></span>
             <span th:text="${'Last name: ' + user.surname}"></span>
             <span th:text="${'E mail: ' + user.email}"></span>
+            <span th:text="${'Available Coins: ' + '$' + user.getWallet().getAvailableCoins()}"></span>
+            <span th:text="${'Experience: ' + user.getWallet().getTotalEarnedCoins()}"></span>
             <div class="options-buttons">
                 <div class="button">
                     <a href="/student-home">

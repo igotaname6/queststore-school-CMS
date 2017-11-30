@@ -53,4 +53,12 @@ public class Codecooler extends User {
     public void setGroupId(Integer groupId) {
         this.groupId = groupId;
     }
+
+    public void substractCoolCoins(Integer amount) {
+
+        Integer actualBalance = this.wallet.getAvailableCoins();
+        Integer newBalance = actualBalance - amount;
+
+        this.wallet.setAvailableCoins(newBalance);
+    }
 }

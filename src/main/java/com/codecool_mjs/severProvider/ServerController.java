@@ -46,6 +46,7 @@ public class ServerController {
         server.createContext("/artifacts/delete", new DeleteArtifactActions());
         server.createContext("/artifacts/read", new ShowArtifactsActions());
         server.createContext("/artifacts/owned", new ShowOwnedArtifactsActions());
+        server.createContext("/artifacts/buy", new BuyArtifactsActions());
         server.createContext("/static", new StaticController());
         server.createContext("/logout", new LogOutController());
         server.setExecutor(null);
