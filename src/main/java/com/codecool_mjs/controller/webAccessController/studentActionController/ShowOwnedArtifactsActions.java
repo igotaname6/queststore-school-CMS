@@ -24,8 +24,8 @@ public class ShowOwnedArtifactsActions extends WebActionController implements Se
 
     public String showArtifactsAction() throws DaoException {
 
-//        List<Artifact> ownedArtifacts = artifactController.getUserOwnedArtifacts(getLoggedUser().getId());
-//        setVariable("artifactsList", ownedArtifacts);
+        List<Artifact> ownedArtifacts = artifactController.getArtifactsOwnedByUser(getLoggedUser().getId());
+        setVariable("artifactsList", ownedArtifacts);
 
         return processTemplate(DATA_TEMPLATE_URL);
     }
