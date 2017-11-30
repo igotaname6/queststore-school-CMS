@@ -32,7 +32,7 @@ public class ArtifactOwnerDao {
         }
     }
 
-    public void addQuestAchiever(ArtifactOwner artifactOwner) {
+    public void addArtifactOwner(ArtifactOwner artifactOwner) {
         PreparedStatement stmt;
 
         String update =  "INSERT INTO artifact_owners (artifact_id, owner_id) VALUES (?, ?);";
