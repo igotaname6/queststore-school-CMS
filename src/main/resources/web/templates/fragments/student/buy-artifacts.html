@@ -21,7 +21,7 @@
                         <td th:text="${artifact.name}">Berło</td>
                         <td th:text="${artifact.description}">Berło jak berło</td>
                         <td th:text="${artifact.cost}">200</td>
-                        <td th:if="${artifact.cost > user.getWaller.getAvailableCoins()}" class="edit-button">
+                        <td th:if="${artifact.cost < user.getWallet().getAvailableCoins()}" class="edit-button">
                             <a th:href="${'/artifacts/buy/' + artifact.id}">
                                 <button type="button">Buy</button>
                             </a>
