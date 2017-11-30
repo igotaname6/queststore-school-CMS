@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ArtifactDao extends Dao<Artifact> {
 
@@ -19,6 +21,28 @@ public class ArtifactDao extends Dao<Artifact> {
         Boolean isUsed = results.getBoolean("is_used");
 
         return new Artifact(id, name, description, cost, isGroup, isUsed);
+    }
+
+    public List<Artifact> getArtifactsByUserId(int userId) throws DaoException {
+        String query = "SELECT * FROM artifacts " +
+                "  JOIN artifact_owners ON artifact_owners.artifact_id = artifacts.id " +
+                "  WHERE artifact_owners.owner_id = ?;";
+
+        Connection connection = getConnection();
+
+        List<Artifact> artifactList =  new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()) {
+                Artifact artifact = createObject(resultSet);
+                artifactList.add(artifact);
+            }
+            return artifactList;
+        } catch (SQLException e) {
+            throw new DaoException("Exception in getArtifactsByUserId", e);
+        }
     }
 
     @Override
