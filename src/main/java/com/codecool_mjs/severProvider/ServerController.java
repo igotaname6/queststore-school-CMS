@@ -40,6 +40,7 @@ public class ServerController {
         server.createContext("/quests/edit", new EditQuestActions());
         server.createContext("/quests/delete" , new DeleteQuestActions());
         server.createContext("/quests/achieved", new ShowAchievedQuestsActions());
+        server.createContext("/quests/achiever" , new AddAchieverActions());
         server.createContext("/artifacts", new MenageArtifactsActions());
         server.createContext("/artifacts/add", new AddArtifactController());
         server.createContext("/artifacts/edit", new EditArtifactActions());

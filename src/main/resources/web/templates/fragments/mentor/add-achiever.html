@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="add-achiever" class = "content-box">
+        <div class="status-bar">
+            <h3>Mentor -> Add achiever<h3>
+        </div>
+        <div class="dropdown">
+            <h2>Select quest to mark</h2>
+            <form method="POST">
+                <select name="questId" required>
+                    <option disabled selected value hidden>Select</option>
+                    <option th:each="quest : ${questsList}"
+                            th:text="${quest.name}"
+                            th:value="${quest.id}">
+                    </option>
+                </select>
+        </div>
+        <div id="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col" id="id">No</th>
+                        <th scope="col" id="first-name">First Name</th>
+                        <th scope="col" id="last-name">Last Name</th>
+                        <th scope="col" id="e-mail">e - mail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="student : ${studentsList}">
+                        <td th:text="${studentStat.count}"></td>
+                        <td th:text="${student.name}">Adam</td>
+                        <td th:text="${student.surname}">Nowak</td>
+                        <td th:text="${student.email}">example@gmail.com</td>
+                        <td><input type="radio" th:value="${student.id}" name="studentId" required></td>
+                    </tr>
+                </tbody>
+            </table>
+            <input type="submit" value="Submit">
+        </div>
+
+        </form>
+    </div>
+</body>
+</html>

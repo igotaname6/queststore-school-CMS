@@ -49,6 +49,7 @@ q:before, q:after
 table {
     border-collapse: collapse;
     border-spacing: 0;
+
 }
 
 /*
@@ -144,7 +145,6 @@ header
 {
     display: flex;
     flex-direction: row;
-    background-color: rgba(0, 0, 0, 0.7);
     align-items: center;
     justify-content: center;
     padding: 5px;
@@ -257,6 +257,19 @@ Sidebar, content
     width: 100%;
 }
 
+.dropdown
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 30%;
+    border-radius: 5px;
+    margin-top: 30px;
+    padding: 15px;
+}
+
 .form input
 {
     margin: 5px;
@@ -321,6 +334,7 @@ nav
     flex-direction: column;
     align-items: center;
     width: 100%;
+    min-height: 500px;
     overflow-y: auto;
 
 }
@@ -348,6 +362,7 @@ nav
 #table
 {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -355,12 +370,18 @@ nav
     padding: 30px;
 }
 
+#table input
+{
+    margin: 5px;
+}
+
 iframe
 {
     margin: 10px;
     width: 90%;
-    height: 100%;
+    min-height: 450px;
 }
+
 
 .info
 {
