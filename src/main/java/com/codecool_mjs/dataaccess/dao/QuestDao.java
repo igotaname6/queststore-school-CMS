@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class QuestDao extends Dao<Quest> {
 
@@ -21,6 +23,28 @@ public class QuestDao extends Dao<Quest> {
 
         Quest quest = new Quest(id, name, description, reward, isGroup);
         return quest;
+    }
+
+    public List<Quest> getQuestAchivedByUser(int userId) throws DaoException {
+        String query = "SELECT * FROM quests " +
+                "JOIN quest_achievers ON quest_achievers.quest_id = quests.id " +
+                "WHERE quest_achievers.achiever_id = ?";
+
+        Connection connection = getConnection();
+        List<Quest> questList = new ArrayList<>();
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                Quest quest = createObject(resultSet);
+                questList.add(quest);
+            }
+            return questList;
+        } catch (SQLException e) {
+            throw new DaoException("Exception in getQuestAchivedByUser", e);
+        }
+
     }
 
     @Override

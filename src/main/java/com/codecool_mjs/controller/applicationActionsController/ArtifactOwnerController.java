@@ -7,10 +7,10 @@ import com.codecool_mjs.model.Codecooler;
 
 public class ArtifactOwnerController {
 
-    private ArtifactOwnerDao aod = new ArtifactOwnerDao();
+    private ArtifactOwnerDao dao = new ArtifactOwnerDao();
 
-    public ArtifactOwnerDao getAod() {
-        return aod;
+    public ArtifactOwnerDao getDao() {
+        return dao;
     }
 
     public void addArtifactOwner(Integer userId, Integer artifactId) {
@@ -18,6 +18,6 @@ public class ArtifactOwnerController {
         Artifact artifact = new Artifact(artifactId);
         ArtifactOwner artifactOwner = new ArtifactOwner(codecooler, artifact);
 
-        aod.addArtifactOwner(artifactOwner);
+        dao.addArtifactOwner(artifactOwner);
     }
 }
