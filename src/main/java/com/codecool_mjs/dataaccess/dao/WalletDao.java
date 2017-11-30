@@ -9,14 +9,15 @@ import java.sql.SQLException;
 
 public class WalletDao extends Dao<Wallet>{
 
-
-    public WalletDao(Connection connection) {
-        super(connection);
-    }
-
     @Override
     Wallet createObject(ResultSet results) throws SQLException {
-        return null;
+        int wallet_id = results.getInt("wallet_id");
+        int user_id = results.getInt("user_id");
+        int totalEarnedCoins = results.getInt("total_earned_coins");
+        int availableCoins = results.getInt("available_coins");
+
+        Wallet wallet = new Wallet(wallet_id, user_id, totalEarnedCoins, availableCoins);
+        return wallet;
     }
 
     @Override
@@ -26,7 +27,7 @@ public class WalletDao extends Dao<Wallet>{
 
     @Override
     String getQueryForGetById() {
-        return null;
+        return "SELECT * form wallets WHERE id = ?";
     }
 
     @Override
