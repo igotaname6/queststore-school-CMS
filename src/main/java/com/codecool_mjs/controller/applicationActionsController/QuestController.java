@@ -6,12 +6,13 @@ import com.codecool_mjs.dataaccess.dao.DaoException;
 import com.codecool_mjs.dataaccess.dao.QuestDao;
 import com.codecool_mjs.model.Quest;
 
+import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
 
 public class QuestController {
 
-    private Dao<Quest> dao;
+    private QuestDao dao;
     private static QuestController instance = null;
 
     public QuestController() {
@@ -62,6 +63,10 @@ public class QuestController {
     public void deleteQuest(Integer id) throws DaoException {
         Quest quest = new Quest(id);
         this.dao.delete(quest);
+    }
+
+    public List<Quest> getUserAchievedQuests(int userId) throws DaoException {
+        return dao.getQuestAchivedByUser(userId);
     }
 
     public void editQuest(Map<String, String> questData) throws DaoException {
