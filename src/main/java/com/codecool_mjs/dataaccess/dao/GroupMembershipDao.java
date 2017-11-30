@@ -4,7 +4,6 @@ import com.codecool_mjs.model.Codecooler;
 import com.codecool_mjs.model.Group;
 import com.codecool_mjs.model.GroupMembership;
 import com.codecool_mjs.model.Mentor;
-import com.sun.org.apache.bcel.internal.classfile.Code;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

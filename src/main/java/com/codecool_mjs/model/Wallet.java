@@ -14,6 +14,12 @@ public class Wallet {
         this.availableCoins = 0;
     }
 
+    public Wallet(int userId){
+        this.userId = userId;
+        this.totalEarnedCoins = 0;
+        this.availableCoins = 0;
+    }
+
     public Wallet(Integer id, Integer totalEarnedCoins, Integer availableCoins) {
 
         this.id = id;
