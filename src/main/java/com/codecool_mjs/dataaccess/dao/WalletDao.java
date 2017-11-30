@@ -57,14 +57,13 @@ public class WalletDao extends Dao<Wallet>{
 
     @Override
     String getInsertQuery() {
-        return "INSERT INTO wallets (user_id, total_earned_coins, available_coins)" +
-                " VALUES(?, ?, ?);";
+        return "INSERT INTO wallets (user_id, total_earned_coins, available_coins) VALUES(?, ?, ?);";
     }
 
     @Override
     void setInsertStatement(PreparedStatement preparedStatement, Wallet wallet) throws SQLException {
         preparedStatement.setInt(1, wallet.getUserId());
-        preparedStatement.setInt(1, wallet.getTotalEarnedCoins());
-        preparedStatement.setInt(1, wallet.getAvailableCoins());
+        preparedStatement.setInt(2, wallet.getTotalEarnedCoins());
+        preparedStatement.setInt(3, wallet.getAvailableCoins());
     }
 }

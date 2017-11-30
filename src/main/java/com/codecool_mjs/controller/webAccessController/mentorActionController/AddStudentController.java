@@ -50,24 +50,19 @@ public class AddStudentController extends WebActionController implements Session
         String method = httpExchange.getRequestMethod();
 
         if(method.equals("GET")) {
-
             responseBody = addStudent();
         }
 
         if(method.equals("POST")) {
 
             Map<String, String> records;
-
             InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody());
             BufferedReader br = new BufferedReader(isr);
             String formData = br.readLine();
-
             records = FormResolver.parseDataForm(formData);
-
             codecoolerController.addCodecooler(records);
 
             responseBody = processTemplate(CONFIRMATION_TEMPLATE_URL);
-
         }
 
         httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);

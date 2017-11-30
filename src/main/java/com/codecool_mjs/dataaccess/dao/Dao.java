@@ -86,6 +86,7 @@ abstract public class Dao<T> implements IDao<T> {
             setInsertStatement(preparedStatement, t);
 
             rowsAffected = preparedStatement.executeUpdate();
+            preparedStatement.close();
         }catch (SQLException e){
             String message = "Exception in insert method";
             throw new DaoException(message, e);

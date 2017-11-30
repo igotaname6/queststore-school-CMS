@@ -61,7 +61,7 @@ public class CodecoolerController {
         String name = codecoolerData.get("name");
         String surname = codecoolerData.get("surname");
         String email = codecoolerData.get("email");
-        String password = UUID.randomUUID().toString();
+        String password = codecoolerData.get("password");
 
         Codecooler codecooler = new Codecooler(name, surname, email, password);
         this.codecoolerDao.insert(codecooler);
