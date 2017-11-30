@@ -23,7 +23,7 @@ public class ArtifactDao extends Dao<Artifact> {
 
     @Override
     String getQueryForGetAll() {
-        return "SELECT * FROM artifacts;";
+        return "SELECT * FROM artifacts ORDER BY cost;";
     }
 
     @Override
