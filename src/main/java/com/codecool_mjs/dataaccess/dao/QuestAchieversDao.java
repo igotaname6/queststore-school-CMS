@@ -15,6 +15,10 @@ public class QuestAchieversDao {
     private static final String DRIVER_CLASS = "org.sqlite.JDBC";
 
 
+    public QuestAchieversDao () throws DaoException {
+        setConnection();
+    }
+
     public void setConnection() throws DaoException {
         try {
             Class.forName(DRIVER_CLASS);
@@ -33,7 +37,7 @@ public class QuestAchieversDao {
             stmt = this.connection.prepareStatement(update);
 
             stmt.setInt(1, questAchievers.getQuest().getId());
-            stmt.setInt(1, questAchievers.getCodecooler().getId());
+            stmt.setInt(2, questAchievers.getCodecooler().getId());
 
             stmt.executeUpdate();
             stmt.close();
@@ -42,6 +46,4 @@ public class QuestAchieversDao {
             e.printStackTrace();
         }
     }
-
-
 }
