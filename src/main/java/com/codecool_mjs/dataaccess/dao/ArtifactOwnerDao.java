@@ -16,11 +16,7 @@ public class ArtifactOwnerDao {
 
 
     public ArtifactOwnerDao() {
-        try {
-            setConnection();
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
+
     }
 
     public void setConnection() throws DaoException {
