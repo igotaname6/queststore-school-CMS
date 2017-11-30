@@ -28,9 +28,7 @@ public abstract class UserDao<T extends User> extends Dao<T> {
     }
     @Override
     String getQueryForGetLast() {
-        String query = "SELECT * FROM users " +
-                        "WHERE id = ( " +
-                        "SELECT MAX(id) FROM users;";
+        String query = "SELECT * FROM users WHERE id = (SELECT MAX(id) FROM users);";
         return query;
     }
 
