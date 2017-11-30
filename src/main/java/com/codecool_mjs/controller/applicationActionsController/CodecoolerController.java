@@ -85,8 +85,4 @@ public class CodecoolerController {
         Wallet wallet = codecooler.getWallet();
         walletDao.update(wallet);
     }
-
-    public void updateCodecoolerWallet(Codecooler codecooler) throws DaoException {
-
-    }
 }
