@@ -69,4 +69,8 @@ public class CodecoolerController {
         Codecooler codecooler= new Codecooler(id, name, surname, email, password);
         this.dao.update(codecooler);
     }
+
+    public void updateCodecoolerWallet(Codecooler codecooler) throws DaoException {
+
+    }
 }
