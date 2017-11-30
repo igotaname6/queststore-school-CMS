@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class EditArtifactActions extends WebActionController implements Sessionable {
 
-    private static String CONFIRMATION_TEMPLATE_URL = "mentor/edit-artifact";
+    private static String CONFIRMATION_TEMPLATE_URL = "mentor/edit-confirmation";
     private static String DATA_TEMPLATE_URL = "mentor/edit-artifact";
     private ArtifactController artifactController;
 
