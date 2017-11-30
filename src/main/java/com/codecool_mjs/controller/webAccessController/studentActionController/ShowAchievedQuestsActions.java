@@ -23,8 +23,8 @@ public class ShowAchievedQuestsActions extends WebActionController implements Se
 
     public String showAchievedQuestsAction() throws DaoException {
 
-//        List<Quest> achievedQuests = questController.getUserAchievedQuests(getLoggedUser().getId());
-//        setVariable("questsList", achievedQuests);
+        List<Quest> achievedQuests = questController.getUserAchievedQuests(getLoggedUser().getId());
+        setVariable("questsList", achievedQuests);
 
         return processTemplate(DATA_TEMPLATE_URL);
     }
