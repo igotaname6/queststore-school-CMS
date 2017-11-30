@@ -26,7 +26,7 @@ public class Artifact {
         this.description = description;
         this.cost = cost;
         this.isGroup = isGroup;
-        this.isUsed = null;
+        this.isUsed = false;
     }
 
     public Artifact(Integer id, String name, String description, Integer cost, Boolean isGroup, Boolean isUsed) {
