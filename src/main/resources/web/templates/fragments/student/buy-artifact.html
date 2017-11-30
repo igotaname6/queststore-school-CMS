@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="buy-artifact" class = "content-box">
+    <div class="status-bar">
+        <h3>Store -> Buy artifact<h3>
+    </div>
+    <div class="show-data">
+        <div class="info">
+            <span th:text="${'Name: ' + artifact.name}"></span>
+            <span th:text="${'Description: ' + artifact.description}"></span>
+            <span th:text="${'Cost: ' + artifact.cost}"></span>
+            <span>Are you sure you want to buy this artifact?</span>
+            <div class="options-buttons">
+                <form method="POST">
+                    <div class="button">
+                        <a th:href="${'/artifacts/buy/' + artifact.id}">
+                            <input type="submit" value="Buy"/>
+                        </a>
+                    </div>
+                </form>
+                <div class="button">
+                    <a href="/artifacts/buy">
+                        <input type="submit" value="Back"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
