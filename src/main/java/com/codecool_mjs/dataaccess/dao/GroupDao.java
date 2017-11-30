@@ -64,8 +64,8 @@ public class GroupDao extends Dao<Group> {
 
     @Override
     String getQueryForGetLast() {
-        return "SELECT * FROM groups\n" +
-                "WHERE id = (\n" +
+        return "SELECT * FROM groups " +
+                "WHERE id = ( " +
                 "SELECT MAX(id) FROM groups);";
     }
 }

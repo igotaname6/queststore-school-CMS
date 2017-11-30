@@ -1,7 +1,6 @@
 package com.codecool_mjs.dataaccess.dao;
 
 import com.codecool_mjs.model.*;
-import com.sun.org.apache.bcel.internal.classfile.Code;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
