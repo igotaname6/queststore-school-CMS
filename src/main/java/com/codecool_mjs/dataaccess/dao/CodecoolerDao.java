@@ -6,6 +6,8 @@ import com.codecool_mjs.model.Wallet;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CodecoolerDao extends UserDao<Codecooler>{
 
@@ -54,37 +56,55 @@ public class CodecoolerDao extends UserDao<Codecooler>{
         return query;
     }
 
-//    String getUpdateWalletQuery(){
-//        String query = " UPDATE WALLETS " +
-//                       "SET total_earned_coins = ?, " +
-//                       "available_coins = ? " +
-//                        "WHERE user_id = ?";
-//        return query;
-//    }
-//
-//    void setUpdateWalletQuery(PreparedStatement preStatement, Codecooler codecooler) throws SQLException {
-//        Wallet wallet = codecooler.getWallet();
-//
-//        preStatement.setInt(1, wallet.getTotalEarnedCoins());
-//        preStatement.setInt(2, wallet.getAvailableCoins());
-//        preStatement.setInt(3, codecooler.getId());
-//    }
+    public Codecooler getLast() throws DaoException{
 
-//    @Override
-//    void setUpdateStatement(PreparedStatement preStatement, Codecooler codecooler) throws SQLException {
-//        super.setUpdateStatement(preStatement, codecooler);
-//
-//        Wallet wallet = codecooler.getWallet();
-//
-//        preStatement.setInt(6, wallet.getTotalEarnedCoins());
-//        preStatement.setInt(7, wallet.getAvailableCoins());
-//        preStatement.setInt(7, wallet.getId());
-//    }
+        String query = getQueryForGetLast();
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(query);
+            return prepareLast(statement).get(0);
+        } catch (SQLException e) {
+            throw new DaoException("GetLast exception", e);
+        }
+    }
+
+    protected List<Codecooler> prepareLast(PreparedStatement preparedStatement) throws DaoException{
+        ArrayList<Codecooler> resultsList;
+
+        ResultSet results;
+
+        try {
+            results = preparedStatement.executeQuery();
+
+            resultsList = new ArrayList<>();
+
+            while (results.next()) {
+                Codecooler object = createObjectWithoutWallet(results);
+                resultsList.add(object);
+            }
+            preparedStatement.close();
+        } catch (SQLException e) {
+            String message = "Exception in get method";
+            throw new DaoException(message, e);
+        }
+
+        return resultsList;
+    }
 
 
     @Override
     String getProfession() {
         return "codecooler";
+    }
+
+    private Codecooler createObjectWithoutWallet(ResultSet results) throws SQLException{
+        Integer id = results.getInt("id");
+        String name = results.getString("name");
+        String surname = results.getString("surname");
+        String email = results.getString("email");
+        String password = results.getString("password");
+
+        Codecooler codecooler = new Codecooler(id, name, surname, email, password);
+        return codecooler;
     }
 
     @Override
