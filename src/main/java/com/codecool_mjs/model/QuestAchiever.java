@@ -1,11 +1,11 @@
 package com.codecool_mjs.model;
 
-public class QuestAchievers {
+public class QuestAchiever {
 
     private Codecooler codecooler;
     private Quest quest;
 
-    public QuestAchievers(Codecooler codecooler, Quest quest) {
+    public QuestAchiever(Codecooler codecooler, Quest quest) {
         this.codecooler = codecooler;
         this.quest = quest;
     }
