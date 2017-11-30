@@ -18,7 +18,7 @@ public abstract class UserDao<T extends User> extends Dao<T> {
     @Override
     String getQueryForGetAll() {
 
-        return String.format("SELECT * FROM users WHERE profession = '%s';", getProfession());
+        return String.format("SELECT * FROM users WHERE profession = '%s' ORDER BY surname;", getProfession());
     }
 
     @Override
@@ -27,7 +27,12 @@ public abstract class UserDao<T extends User> extends Dao<T> {
         return String.format("Select * FROM users WHERE profession = '%s' AND id = ?", getProfession());
     }
     @Override
-    String getQueryForGetLast() {return null;}
+    String getQueryForGetLast() {
+        String query = "SELECT * FROM users " +
+                        "WHERE id = ( " +
+                        "SELECT MAX(id) FROM users;";
+        return query;
+    }
 
     @Override
     String getUpdateQuery() {

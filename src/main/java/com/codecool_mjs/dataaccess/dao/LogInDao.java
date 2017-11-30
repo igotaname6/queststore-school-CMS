@@ -1,9 +1,6 @@
 package com.codecool_mjs.dataaccess.dao;
 
-import com.codecool_mjs.model.Admin;
-import com.codecool_mjs.model.Codecooler;
-import com.codecool_mjs.model.Mentor;
-import com.codecool_mjs.model.User;
+import com.codecool_mjs.model.*;
 
 import java.sql.*;
 
@@ -39,8 +36,6 @@ public class LogInDao {
             }
 
             user = createUser(rs);
-
-
             return user;
         } catch (SQLException e) {
             throw new DaoException("Exception in loginDao", e);
@@ -71,7 +66,8 @@ public class LogInDao {
         User user = null;
 
         if (profession.equals("codecooler")) {
-            user = new Codecooler(id, name, surname, email, password);
+            Wallet wallet = getCodecoolerWallet(id);
+            user = new Codecooler(id, name, surname, email, password, wallet);
         } else if (profession.equals("mentor")) {
             user = new Mentor(id, name, surname, email, password);
         } else if (profession.equals("admin")) {
@@ -128,5 +124,26 @@ public class LogInDao {
         } catch (SQLException e) {
             throw new DaoException("Exception in session delete", e);
         }
+    }
+
+    private Wallet getCodecoolerWallet(int userId) throws SQLException {
+        String query = "SELECT * FROM wallets WHERE user_id = ?;";
+
+        try(PreparedStatement preStatement = connection.prepareStatement(query)) {
+            preStatement.setInt(1, userId);
+            ResultSet rs = preStatement.executeQuery();
+            Wallet wallet = createWallet(rs);
+            return wallet;
+        }
+    }
+
+    private Wallet createWallet(ResultSet rs) throws SQLException {
+        int id = rs.getInt("id");
+        int userId = rs.getInt("user_id");
+        int totalEarned = rs.getInt("total_earned_coins");
+        int availableCoins = rs.getInt("available_coins");
+
+        Wallet wallet = new Wallet(id, userId, totalEarned, availableCoins);
+        return wallet;
     }
 }

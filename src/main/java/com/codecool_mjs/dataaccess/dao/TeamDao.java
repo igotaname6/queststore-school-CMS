@@ -19,7 +19,7 @@ public class TeamDao extends Dao<Team> {
 
     @Override
     String getQueryForGetAll() {
-        return String.format("SELECT * FROM teams;");
+        return String.format("SELECT * FROM teams ORDER BY name;");
     }
 
     @Override

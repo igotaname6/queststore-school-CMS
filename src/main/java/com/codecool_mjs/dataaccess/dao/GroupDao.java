@@ -21,7 +21,7 @@ public class GroupDao extends Dao<Group> {
 
     @Override
     String getQueryForGetAll() {
-        return String.format("SELECT * FROM groups;");
+        return String.format("SELECT * FROM groups ORDER BY name;");
     }
 
     @Override
@@ -64,8 +64,8 @@ public class GroupDao extends Dao<Group> {
 
     @Override
     String getQueryForGetLast() {
-        return "SELECT * FROM groups\n" +
-                "WHERE id = (\n" +
+        return "SELECT * FROM groups " +
+                "WHERE id = ( " +
                 "SELECT MAX(id) FROM groups);";
     }
 }
