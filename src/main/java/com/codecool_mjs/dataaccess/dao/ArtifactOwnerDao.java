@@ -28,14 +28,13 @@ public class ArtifactOwnerDao {
         }
     }
 
-    public void addArtifactOwner(ArtifactOwner artifactOwner) {
+    public void addArtifactOwner(ArtifactOwner artifactOwner) throws DaoException{
         PreparedStatement stmt;
 
         String update =  "INSERT INTO artifact_owners (artifact_id, owner_id) VALUES (?, ?);";
 
         try {
             stmt = this.connection.prepareStatement(update);
-
             stmt.setInt(1, artifactOwner.getArtifact().getId());
             stmt.setInt(2, artifactOwner.getCodecooler().getId());
 
@@ -43,7 +42,7 @@ public class ArtifactOwnerDao {
             stmt.close();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DaoException("Exception in addartifactOwner");
         }
     }
 }
