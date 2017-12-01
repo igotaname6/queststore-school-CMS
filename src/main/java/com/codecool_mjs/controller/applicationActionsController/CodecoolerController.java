@@ -54,7 +54,7 @@ public class CodecoolerController {
         Codecooler codecooler = codecoolerDao.getById(id);
         Wallet wallet = codecooler.getWallet();
         this.codecoolerDao.delete(codecooler);
-        walletDao.delete(wallet);
+         walletDao.delete(wallet);
     }
 
     public void addCodecooler(Map<String, String> codecoolerData) throws DaoException {
