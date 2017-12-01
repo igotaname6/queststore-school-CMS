@@ -35,6 +35,7 @@ public class DeleteArtifactActions extends WebActionController implements Sessio
 
     private String deleteArtifactAction(Integer id) throws DaoException {
 
+        artifactController.deleteArtifact(id);
         String page = processTemplate(CONFIRMATION_TEMPLATE_URL);
         return page;
     }
