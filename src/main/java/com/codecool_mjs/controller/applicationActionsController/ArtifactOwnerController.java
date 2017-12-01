@@ -18,7 +18,7 @@ public class ArtifactOwnerController {
         Codecooler codecooler = new Codecooler(userId);
         Artifact artifact = new Artifact(artifactId);
         ArtifactOwner artifactOwner = new ArtifactOwner(codecooler, artifact);
-
+        dao.setConnection();
         dao.addArtifactOwner(artifactOwner);
     }
 }
