@@ -49,7 +49,7 @@ public class QuestDao extends Dao<Quest> {
 
     @Override
     String getQueryForGetAll() {
-        return "SELECT * FROM quests ORDER BY name;";
+        return "SELECT * FROM quests ORDER BY description, name;";
     }
 
     @Override
