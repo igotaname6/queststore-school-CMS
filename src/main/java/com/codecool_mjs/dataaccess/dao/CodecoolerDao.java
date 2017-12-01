@@ -38,7 +38,7 @@ public class CodecoolerDao extends UserDao<Codecooler>{
     @Override
     String getQueryForGetById(){
         String query = "SELECT users.id as codecooler_id, name, surname, email, password, profession, " +
-                "wallets.id as wallet_id, wallets.total_earned_coins, wallets.available_coins " +
+                "wallets.id as wallet_id, wallets.user_id, wallets.total_earned_coins, wallets.available_coins " +
                 "FROM users " +
                 "LEFT JOIN wallets ON codecooler_id = wallets.user_id " +
                 "WHERE profession = 'codecooler' AND codecooler_id = ?;";
@@ -48,7 +48,7 @@ public class CodecoolerDao extends UserDao<Codecooler>{
     @Override
     String getQueryForGetAll() {
         String query = "SELECT users.id as codecooler_id, name, surname, email, password, profession, " +
-                "wallets.id as wallet_id, wallets.user_id as wal_user_id, wallets.total_earned_coins, wallets.available_coins " +
+                "wallets.id as wallet_id, wallets.user_id, wallets.total_earned_coins, wallets.available_coins " +
                 "FROM users " +
                 "LEFT JOIN wallets ON codecooler_id = wallets.user_id " +
                 "WHERE profession = 'codecooler'" +
@@ -118,7 +118,7 @@ public class CodecoolerDao extends UserDao<Codecooler>{
 
         //wallet data
         int wallet_id = results.getInt("wallet_id");
-        int user_id = results.getInt("wal_user_id");
+        int user_id = results.getInt("user_id");
         int totalEarnedCoins = results.getInt("total_earned_coins");
         int availableCoins = results.getInt("available_coins");
 
