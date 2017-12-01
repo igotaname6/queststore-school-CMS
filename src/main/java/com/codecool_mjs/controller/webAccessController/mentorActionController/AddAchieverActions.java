@@ -1,6 +1,7 @@
 package com.codecool_mjs.controller.webAccessController.mentorActionController;
 
 import com.codecool_mjs.controller.applicationActionsController.CodecoolerController;
+import com.codecool_mjs.controller.applicationActionsController.QuestAchieversController;
 import com.codecool_mjs.controller.applicationActionsController.QuestController;
 import com.codecool_mjs.controller.webAccessController.Sessionable;
 import com.codecool_mjs.controller.webAccessController.WebActionController;
@@ -20,13 +21,16 @@ import java.util.Map;
 public class AddAchieverActions extends WebActionController implements Sessionable {
 
     private static String DATA_TEMPLATE_URL = "mentor/add-achiever";
+    private static String CONFIRMATION_TEMPLATE_URL = "mentor/achiever-confirmation";
     private CodecoolerController codecoolerController;
     private QuestController questController;
+    private QuestAchieversController questAchieversController;
 
     public AddAchieverActions(){
         super();
         codecoolerController = CodecoolerController.getInstance();
         questController = QuestController.getInstance();
+        questAchieversController = new QuestAchieversController();
     }
 
     private String addAchieverAction() throws DaoException {
@@ -66,10 +70,25 @@ public class AddAchieverActions extends WebActionController implements Sessionab
             String formData = br.readLine();
 
             records = FormResolver.parseDataForm(formData);
-            System.out.println(records);
+
+            Integer studentId = Integer.parseInt(records.get("studentId"));
+            Integer questId = Integer.parseInt(records.get("questId"));
+
+
+            questAchieversController.addQuestAchiever(studentId, questId);
+
+            Quest quest = questController.getQuestById(questId);
+            Codecooler codecooler = codecoolerController.getCodecoolerById(studentId);
+
+            System.out.println(codecooler.getWallet().getTotalEarnedCoins());
+            System.out.println(quest);
+
+            codecooler.addCoolCoins(quest.getCoinReward());
+            System.out.println(codecooler.getWallet().getTotalEarnedCoins());
+            codecoolerController.updateCodecoolerWallet(codecooler);
+
+            responseBody = processTemplate(CONFIRMATION_TEMPLATE_URL);
         }
-
-
 
         httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);
         OutputStream os = httpExchange.getResponseBody();

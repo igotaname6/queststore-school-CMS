@@ -61,4 +61,16 @@ public class Codecooler extends User {
 
         this.wallet.setAvailableCoins(newBalance);
     }
+
+    public void addCoolCoins(Integer amount) {
+
+        Integer actualBalance = this.wallet.getAvailableCoins();
+        Integer actualExperience = this.wallet.getTotalEarnedCoins();
+
+        Integer newBalance = actualBalance + amount;
+        Integer newExperience = actualExperience + amount;
+
+        this.wallet.setAvailableCoins(newBalance);
+        this.wallet.setTotalEarnedCoins(newExperience);
+    }
 }
