@@ -66,7 +66,7 @@ public class EditStudentsActions extends WebActionController implements Sessiona
 
             codecoolerController.editCodecooler(records);
 
-            processTemplate(CONFIRMATION_TEMPLATE_URL);
+            responseBody = processTemplate(CONFIRMATION_TEMPLATE_URL);
         }
 
         httpExchange.sendResponseHeaders(responseCode, responseBody.getBytes().length);
